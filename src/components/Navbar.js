@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Navbar() {
+function Navbar({ onThemeToggle, currentTheme }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleScroll = (e, sectionId) => {
@@ -20,6 +20,14 @@ function Navbar() {
     <nav className="navbar">
       <div className="nav-container">
         <div className="logo">Robert Heslar</div>
+        <button 
+          className="theme-toggle" 
+          onClick={onThemeToggle}
+          aria-label="Toggle theme"
+          title={`Switch to ${currentTheme === 'light' ? 'dark' : 'light'} mode`}
+        >
+          {currentTheme === 'light' ? '🌙' : '☀️'}
+        </button>
         <button className="hamburger" onClick={toggleMenu} aria-label="Toggle menu">
           <span className="hamburger-line"></span>
           <span className="hamburger-line"></span>
