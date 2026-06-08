@@ -13,7 +13,7 @@ function Hero() {
     <section id="home" className="hero">
       <div className="hero-content">
         <h1>Hi, I'm Robert Heslar</h1>
-        <p className="tagline">Full Stack React + Node.js Engineer | MySQL | Embedded Systems</p>
+        <p className="tagline">Embedded Engineer | Full Stack Developer | React + Node.js + MySQL</p>
         <button className="cta-button" onClick={handleScroll}>
           View My Work
         </button>

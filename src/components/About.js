@@ -43,7 +43,7 @@ function About() {
             </div>
             <div className="highlight">
               <h3>Focus</h3>
-              <p>Full-stack React, Node.js, MySQL, Yocto, embedded Linux, C/C++, Python automation, and CI/CD.</p>
+              <p>Embedded engineering, full-stack React, Node.js, MySQL, Yocto, embedded Linux, C/C++, Python automation, and CI/CD.</p>
             </div>
           </div>
         </div>
