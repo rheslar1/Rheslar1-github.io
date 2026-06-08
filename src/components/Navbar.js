@@ -56,9 +56,9 @@ function Navbar({ onThemeToggle, currentTheme }) {
             <a 
               href="#projects" 
               className="nav-link"
-              onClick={(e) => handleScroll(e, 'projects')}
+              onClick={(e) => handleScroll(e, 'experience')}
             >
-              Projects
+              Experience
             </a>
           </li>
           <li>
@@ -68,6 +68,15 @@ function Navbar({ onThemeToggle, currentTheme }) {
               onClick={(e) => handleScroll(e, 'skills')}
             >
               Skills
+            </a>
+          </li>
+          <li>
+            <a
+              href="#projects"
+              className="nav-link"
+              onClick={(e) => handleScroll(e, 'projects')}
+            >
+              Projects
             </a>
           </li>
           <li>

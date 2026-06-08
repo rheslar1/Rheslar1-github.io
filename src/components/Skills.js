@@ -24,23 +24,27 @@ function Skills() {
   const skillCategories = [
     {
       name: 'Languages',
-      skills: ['C', 'C++', 'Python', 'JavaScript']
+      skills: ['C', 'C++', 'Python', 'JavaScript', 'C#']
     },
     {
       name: 'Full Stack',
-      skills: ['React', 'Node.js', 'Express', 'REST APIs']
+      skills: ['React', 'Node.js', 'Express', 'ASP.NET Web API', 'REST APIs']
     },
     {
       name: 'Databases',
       skills: ['MySQL', 'MS SQL Server', 'SQL', 'Data Modeling']
     },
     {
-      name: 'Embedded',
-      skills: ['Yocto/BitBake', 'Embedded Linux', 'RTOS', 'Firmware']
+      name: 'Embedded Linux',
+      skills: ['Yocto/BitBake', 'Device Trees', 'Kernel Drivers', 'BSP Layers']
+    },
+    {
+      name: 'Firmware',
+      skills: ['RTOS', 'Bare-Metal C', 'ARM Cortex', 'NRF52', 'STM32']
     },
     {
       name: 'Tools',
-      skills: ['GitHub Actions', 'Docker', 'CMake', 'GitLab']
+      skills: ['GitHub Actions', 'Jenkins', 'Docker', 'CMake', 'GitLab']
     }
   ];
 

@@ -69,7 +69,7 @@ function Projects() {
   return (
     <section id="projects" className="projects">
       <div className="container">
-        <h2>GitHub Projects</h2>
+        <h2>Selected GitHub Projects</h2>
         <div className="projects-grid">
           {projects.map((project, index) => (
             <div key={index} className="project-card">
