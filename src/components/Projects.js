@@ -37,6 +37,16 @@ function Projects({ projects, onSelectProject }) {
                 <h4>Deployment Details</h4>
                 <p>{project.deployment}</p>
               </div>
+              {project.suggestedContent?.length > 0 && (
+                <div className="project-card-section project-suggested-content">
+                  <h4>Suggested Content</h4>
+                  <ul>
+                    {project.suggestedContent.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               <div className="project-tags">
                 {project.tags.map((tag, tagIndex) => (
                   <span key={tagIndex} className="tag">{tag}</span>

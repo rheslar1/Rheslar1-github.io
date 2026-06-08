@@ -42,7 +42,7 @@ function Dashboard({ projects, onSelectProject }) {
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
     .slice(0, 18);
   const captureQueue = projects.flatMap((project) =>
-    (project.suggestedContent || []).slice(0, 2).map((item) => ({
+    (project.suggestedContent || []).map((item) => ({
       project: project.title,
       item
     }))

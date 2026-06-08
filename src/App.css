@@ -359,6 +359,19 @@ section h2 {
   margin-bottom: 16px;
 }
 
+.project-suggested-content ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.project-suggested-content li {
+  overflow-wrap: anywhere;
+}
+
 .project-tags {
   display: flex;
   flex-wrap: wrap;
