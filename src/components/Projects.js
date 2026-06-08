@@ -23,22 +23,46 @@ function Projects() {
 
   const projects = [
     {
-      title: 'Project One',
-      description: 'Description of your first project and the technologies used.',
-      tags: ['Technology 1', 'Technology 2'],
-      link: '#'
+      title: 'Rheslar1-github.io',
+      description: 'Personal portfolio site built with React and deployed with GitHub Pages.',
+      tags: ['JavaScript', 'React', 'GitHub Pages'],
+      link: 'https://github.com/rheslar1/Rheslar1-github.io'
     },
     {
-      title: 'Project Two',
-      description: 'Description of your second project and the technologies used.',
-      tags: ['Technology 1', 'Technology 2'],
-      link: '#'
+      title: 'BMS',
+      description: 'Python repository from Robert Heslar\'s GitHub portfolio.',
+      tags: ['Python', 'GitHub'],
+      link: 'https://github.com/rheslar1/BMS'
     },
     {
-      title: 'Project Three',
-      description: 'Description of your third project and the technologies used.',
-      tags: ['Technology 1', 'Technology 2'],
-      link: '#'
+      title: 'ansible',
+      description: 'Infrastructure automation repository for Ansible configuration work.',
+      tags: ['Ansible', 'Automation', 'GitHub'],
+      link: 'https://github.com/rheslar1/ansible'
+    },
+    {
+      title: 'pythonHelpers',
+      description: 'Python helper utilities and reusable scripts.',
+      tags: ['Python', 'Utilities', 'GitHub'],
+      link: 'https://github.com/rheslar1/pythonHelpers'
+    },
+    {
+      title: 'pythonProject',
+      description: 'Python project repository from Robert Heslar\'s GitHub portfolio.',
+      tags: ['Python', 'GitHub'],
+      link: 'https://github.com/rheslar1/pythonProject'
+    },
+    {
+      title: 'home-automation',
+      description: 'Home automation repository for configuration and automation experiments.',
+      tags: ['Home Automation', 'Automation', 'GitHub'],
+      link: 'https://github.com/rheslar1/home-automation'
+    },
+    {
+      title: 'containers',
+      description: 'C code containers.',
+      tags: ['C', 'Containers', 'GitHub'],
+      link: 'https://github.com/rheslar1/containers'
     }
   ];
 
@@ -56,7 +80,15 @@ function Projects() {
                   <span key={tagIndex} className="tag">{tag}</span>
                 ))}
               </div>
-              <a href={project.link} className="project-link">View Project →</a>
+              <a
+                href={project.link}
+                className="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View ${project.title} on GitHub`}
+              >
+                View Repository
+              </a>
             </div>
           ))}
         </div>
