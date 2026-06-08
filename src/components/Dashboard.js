@@ -12,6 +12,15 @@ const energyZones = [
   { name: 'Tower B Floor 1', kwh: 24.1, temp: '24.0 C', risk: 'High', action: 'BEMS-ai: reduce peak load', level: 5 }
 ];
 
+const usageTrend = [
+  { label: '06:00', kwh: 8.2 },
+  { label: '09:00', kwh: 12.6 },
+  { label: '12:00', kwh: 18.7 },
+  { label: '15:00', kwh: 24.1 },
+  { label: '18:00', kwh: 15.8 },
+  { label: '21:00', kwh: 9.4 }
+];
+
 function Dashboard({ projects, onSelectProject }) {
   const [failedVisuals, setFailedVisuals] = React.useState({});
   const allDependencies = uniqueItems(projects, 'dependencies');
@@ -38,6 +47,8 @@ function Dashboard({ projects, onSelectProject }) {
       item
     }))
   );
+  const totalBemsUsage = energyZones.reduce((total, zone) => total + zone.kwh, 0);
+  const peakUsage = Math.max(...usageTrend.map((point) => point.kwh));
 
   return (
     <main className="dashboard-page" id="dashboard">
@@ -86,9 +97,27 @@ function Dashboard({ projects, onSelectProject }) {
             <section className="dashboard-panel dashboard-panel-wide">
               <div className="dashboard-panel-heading">
                 <div>
-                  <h2>BMS + BEMS-ai Energy Heat Map</h2>
-                  <p>Simulated BMS zone energy intensity using the BEMS-ai optimization layer for comfort risk and control recommendations.</p>
+                  <h2>BEMS Dashboard: Energy Heat Map + Usage</h2>
+                  <p>Simulated BEMS zone energy intensity and usage analytics using the BEMS-ai optimization layer for comfort risk and control recommendations.</p>
                 </div>
+              </div>
+              <div className="usage-kpis">
+                <article>
+                  <span>Current Load</span>
+                  <strong>{totalBemsUsage.toFixed(1)} kWh</strong>
+                </article>
+                <article>
+                  <span>Peak Interval</span>
+                  <strong>{peakUsage.toFixed(1)} kWh</strong>
+                </article>
+                <article>
+                  <span>BEMS-ai Target</span>
+                  <strong>18 kWh saved</strong>
+                </article>
+                <article>
+                  <span>Comfort Risk</span>
+                  <strong>Moderate</strong>
+                </article>
               </div>
               <div className="energy-heatmap">
                 <div className="energy-map-grid">
@@ -114,6 +143,14 @@ function Dashboard({ projects, onSelectProject }) {
                     <li>Estimated savings target: 18 kWh</li>
                     <li>BEMS-ai action: shift load and trim peak airflow</li>
                   </ul>
+                  <div className="usage-chart" aria-label="BEMS usage trend">
+                    {usageTrend.map((point) => (
+                      <div className="usage-bar" key={point.label}>
+                        <span style={{ height: `${Math.max(18, (point.kwh / peakUsage) * 100)}%` }}></span>
+                        <small>{point.label}</small>
+                      </div>
+                    ))}
+                  </div>
                   <div className="heatmap-legend" aria-label="Energy heat map legend">
                     <span className="energy-zone-1"></span>
                     <span className="energy-zone-2"></span>

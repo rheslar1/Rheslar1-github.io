@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-  <title id="title">BMS + BEMS-ai Energy Heat Map</title>
-  <desc id="desc">Simulated BMS energy heat map using BEMS-ai for zone energy intensity, comfort risk, and optimization actions.</desc>
+  <title id="title">BEMS Energy Heat Map and Usage</title>
+  <desc id="desc">Simulated BEMS dashboard showing zone energy intensity, usage, comfort risk, and BEMS-ai optimization actions.</desc>
   <rect width="1200" height="630" fill="#071936"/>
   <rect x="52" y="44" width="1096" height="542" rx="14" fill="#0b1f3a" stroke="#24507d" stroke-width="2"/>
-  <text x="86" y="100" fill="#eef6ff" font-family="Arial, sans-serif" font-size="34" font-weight="700">BMS + BEMS-ai Energy Heat Map</text>
-  <text x="86" y="136" fill="#b7d2f2" font-family="Arial, sans-serif" font-size="18">Simulated BMS zone energy intensity using BEMS-ai comfort risk and optimization actions</text>
+  <text x="86" y="100" fill="#eef6ff" font-family="Arial, sans-serif" font-size="34" font-weight="700">BEMS Energy Heat Map + Usage</text>
+  <text x="86" y="136" fill="#b7d2f2" font-family="Arial, sans-serif" font-size="18">Simulated BEMS zone energy intensity, usage trend, and BEMS-ai optimization actions</text>
 
   <defs>
     <style>
@@ -42,13 +42,19 @@
   <text class="zoneMeta" x="568" y="448">BEMS-ai: high risk</text>
 
   <rect x="802" y="178" width="286" height="350" rx="10" fill="#102b52" stroke="#24507d"/>
-  <text class="panelTitle" x="832" y="226">BEMS-ai Readout</text>
+  <text class="panelTitle" x="832" y="226">Usage + BEMS-ai Readout</text>
   <text class="panelText" x="832" y="272">Peak zone: Tower B Floor 1</text>
-  <text class="panelText" x="832" y="310">Estimated savings: 18 kWh</text>
-  <text class="panelText" x="832" y="348">Comfort risk: moderate</text>
-  <text class="panelText" x="832" y="386">BEMS-ai: reduce peak airflow</text>
-  <text class="panelText" x="832" y="424">BEMS-ai: shift battery discharge</text>
-  <text class="panelText" x="832" y="462">BEMS-ai: monitor demand response</text>
+  <text class="panelText" x="832" y="310">Current load: 68.0 kWh</text>
+  <text class="panelText" x="832" y="348">Estimated savings: 18 kWh</text>
+  <text class="panelText" x="832" y="386">Comfort risk: moderate</text>
+  <text class="panelText" x="832" y="424">BEMS-ai: shift load + trim airflow</text>
+  <rect x="832" y="454" width="24" height="34" rx="4" fill="#0ea5e9"/>
+  <rect x="866" y="432" width="24" height="56" rx="4" fill="#2563eb"/>
+  <rect x="900" y="404" width="24" height="84" rx="4" fill="#f59e0b"/>
+  <rect x="934" y="378" width="24" height="110" rx="4" fill="#ef4444"/>
+  <rect x="968" y="420" width="24" height="68" rx="4" fill="#2563eb"/>
+  <rect x="1002" y="446" width="24" height="42" rx="4" fill="#0ea5e9"/>
+  <text class="panelText" x="832" y="514">Usage trend: 06:00 to 21:00</text>
 
   <rect x="86" y="548" width="56" height="16" rx="8" fill="#22c55e"/>
   <rect x="156" y="548" width="56" height="16" rx="8" fill="#38bdf8"/>
@@ -56,5 +62,5 @@
   <rect x="296" y="548" width="56" height="16" rx="8" fill="#f59e0b"/>
   <rect x="366" y="548" width="56" height="16" rx="8" fill="#ef4444"/>
   <text x="440" y="562" fill="#b7d2f2" font-family="Arial, sans-serif" font-size="16">Low to high energy intensity</text>
-  <text x="86" y="592" fill="#b7d2f2" font-family="Arial, sans-serif" font-size="16">Simulated heat map based on BMS zones, MySQL device schema, React dashboard, and BEMS-ai optimization workflow.</text>
+  <text x="86" y="592" fill="#b7d2f2" font-family="Arial, sans-serif" font-size="16">Simulated heat map and usage view based on BEMS zones, MySQL device schema, React dashboard, and BEMS-ai optimization workflow.</text>
 </svg>

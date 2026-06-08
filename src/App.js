@@ -65,7 +65,9 @@ function App() {
     document.documentElement.setAttribute('data-theme', newTheme);
   };
 
-  const selectedProject = projects.find((project) => project.id === selectedProjectId);
+  const selectedProject = projects.find((project) => (
+    project.id === selectedProjectId || project.aliases?.includes(selectedProjectId)
+  ));
 
   const handleProjectSelect = (projectId) => {
     window.location.hash = `project/${encodeURIComponent(projectId)}`;

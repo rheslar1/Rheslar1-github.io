@@ -227,9 +227,10 @@ const projects = [
     ]
   },
   {
-    id: 'bms',
-    title: 'BMS',
-    summary: 'Building management system that uses BEMS-ai as the optimization layer with edge C++, Node.js API, React UI, MySQL, Docker, and Yocto integration.',
+    id: 'bems',
+    aliases: ['bms', 'nms'],
+    title: 'BEMS',
+    summary: 'Building energy management system that uses BEMS-ai as the optimization layer with edge C++, Node.js API, React UI, MySQL, Docker, and Yocto integration.',
     deployment:
       'Designed for containerized and embedded deployment with Docker services, a MySQL schema, Node.js API, React/Vite UI, BEMS-ai/Python optimization service, and Yocto meta-bems layers.',
     dependencies: ['BEMS-ai', 'C++', 'Node.js', 'Express', 'mysql2', 'React', 'Vite', 'Recharts', 'Python', 'gRPC', 'Docker', 'Yocto'],
@@ -238,15 +239,15 @@ const projects = [
     visuals: [
       {
         src: projectAsset('bms-dashboard-simulated.svg'),
-        caption: 'Simulated BMS operations dashboard based on the React/Vite UI source and seeded MySQL schema.'
+        caption: 'Simulated BEMS operations dashboard based on the React/Vite UI source and seeded MySQL schema.'
       },
       {
         src: projectAsset('bems-energy-heat-map.svg'),
-        caption: 'Simulated BMS + BEMS-ai energy heat map showing zone-level energy intensity, comfort risk, and optimization actions.'
+        caption: 'Simulated BEMS dashboard heat map and usage view showing zone-level energy intensity, comfort risk, and optimization actions.'
       },
       {
         src: projectAsset('bems-ai-rl-simulated.svg'),
-        caption: 'BEMS-ai controller view used as the BMS optimization layer for predictive energy decisions.'
+        caption: 'BEMS-ai controller view used as the BEMS optimization layer for predictive energy decisions.'
       },
       {
         src: projectAsset('bms-detail.png'),
@@ -254,22 +255,22 @@ const projects = [
       },
       {
         src: projectAsset('bms-uml-architecture.png'),
-        caption: 'BMS UML architecture diagram from the BMS repository.'
+        caption: 'BEMS UML architecture diagram from the repository.'
       },
       {
         src: projectAsset('bms-uml-layers.png'),
-        caption: 'BMS layer diagram showing system separation.'
+        caption: 'BEMS layer diagram showing system separation.'
       }
     ],
     tags: ['BEMS-ai', 'C++', 'Node.js', 'React', 'MySQL', 'Yocto', 'Docker'],
     problem:
-      'Model an enterprise-style building management platform that connects edge data, BEMS-ai optimization, APIs, database storage, and operator-facing dashboards.',
+      'Model an enterprise-style building energy management platform that connects edge data, BEMS-ai optimization, APIs, database storage, and operator-facing dashboards.',
     architecture:
       'Public repository structure includes edge-core C++, node-api Express service using mysql2 and gRPC packages, React/Vite UI with Recharts, BEMS-ai/Python optimization service, database/schema.sql, Docker deployment files, protobuf definitions, and Yocto meta-bems layers.',
     deepDetails: [
       'edge-core is the embedded/edge layer and is primarily C++, with BACnet-oriented integration and CMake-style structure.',
       'node-api is an Express service that depends on cors, @grpc/grpc-js, @grpc/proto-loader, and mysql2 for API, service, and database workflows.',
-      'ui is a React/Vite dashboard that uses Recharts for operator-facing visualization, including BEMS-ai energy heat-map concepts.',
+      'ui is a React/Vite dashboard that uses Recharts for operator-facing visualization, including BEMS-ai energy heat-map and usage concepts.',
       'ai-service is the BEMS-ai/Python optimization layer with gRPC/protobuf dependencies, designed to connect predictive energy analysis into the system.',
       'database/schema.sql provides the database foundation, while Docker files and Yocto meta-bems recipes support containerized and embedded Linux deployment.'
     ],
@@ -286,15 +287,15 @@ const projects = [
       'UML architecture, layer, sequence, and data-model diagrams are included as case-study documentation.'
     ],
     resumeBullets: [
-      'Designed a multi-service BMS architecture that uses BEMS-ai for predictive energy optimization with edge C++, Node.js API, React dashboard, MySQL schema, Docker, and Yocto integration.',
+      'Designed a multi-service BEMS architecture that uses BEMS-ai for predictive energy optimization with edge C++, Node.js API, React dashboard, MySQL schema, Docker, and Yocto integration.',
       'Connected embedded/edge concerns with full-stack web application patterns and database-backed workflows.',
       'Organized repository structure for deployment, documentation, edge-core code, API services, UI, AI service, and Yocto layers.'
     ],
     screenshotCaption:
-      'BMS case-study images combine a simulated dashboard view, BMS + BEMS-ai energy heat map, BEMS-ai controller view, a real running portfolio detail screenshot, and UML diagrams sourced from the BMS repository.',
+      'BEMS case-study images combine a simulated dashboard view, BEMS heat map and usage panel, BEMS-ai controller view, a real running portfolio detail screenshot, and UML diagrams sourced from the repository.',
     suggestedContent: [
       'Run the Docker stack and capture the real React dashboard with seeded MySQL data.',
-      'Capture a real BMS + BEMS-ai energy heat map from telemetry or MySQL sample data.',
+      'Capture a real BEMS energy heat map and usage dashboard from telemetry or MySQL sample data.',
       'Capture API health, digital-twin, alarm, and schedule endpoint responses.',
       'Add MySQL schema/entity screenshots or an ERD generated from schema.sql.',
       'Add a deployment screenshot showing Docker services healthy together.'
