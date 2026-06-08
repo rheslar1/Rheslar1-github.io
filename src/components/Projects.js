@@ -23,6 +23,24 @@ function Projects() {
 
   const projects = [
     {
+      title: 'pythonProject',
+      description: 'Python project repository from Robert Heslar\'s GitHub portfolio.',
+      tags: ['Python', 'GitHub'],
+      link: 'https://github.com/rheslar1/pythonProject'
+    },
+    {
+      title: 'study',
+      description: 'Study notes, experiments, and learning materials.',
+      tags: ['Study', 'Learning', 'GitHub'],
+      link: 'https://github.com/rheslar1/study'
+    },
+    {
+      title: 'BEMS-ai',
+      description: 'AI-focused BEMS repository from Robert Heslar\'s GitHub portfolio.',
+      tags: ['AI', 'BEMS', 'GitHub'],
+      link: 'https://github.com/rheslar1/BEMS-ai'
+    },
+    {
       title: 'Rheslar1-github.io',
       description: 'Personal portfolio site built with React and deployed with GitHub Pages.',
       tags: ['JavaScript', 'React', 'GitHub Pages'],
@@ -41,35 +59,17 @@ function Projects() {
       link: 'https://github.com/rheslar1/ansible'
     },
     {
-      title: 'pythonHelpers',
-      description: 'Python helper utilities and reusable scripts.',
-      tags: ['Python', 'Utilities', 'GitHub'],
-      link: 'https://github.com/rheslar1/pythonHelpers'
-    },
-    {
-      title: 'pythonProject',
-      description: 'Python project repository from Robert Heslar\'s GitHub portfolio.',
-      tags: ['Python', 'GitHub'],
-      link: 'https://github.com/rheslar1/pythonProject'
-    },
-    {
-      title: 'home-automation',
-      description: 'Home automation repository for configuration and automation experiments.',
-      tags: ['Home Automation', 'Automation', 'GitHub'],
-      link: 'https://github.com/rheslar1/home-automation'
-    },
-    {
-      title: 'containers',
-      description: 'C code containers.',
-      tags: ['C', 'Containers', 'GitHub'],
-      link: 'https://github.com/rheslar1/containers'
+      title: 'CameraDemo',
+      description: 'Camera demo repository from Robert Heslar\'s GitHub portfolio.',
+      tags: ['Camera', 'Demo', 'GitHub'],
+      link: 'https://github.com/rheslar1/CameraDemo'
     }
   ];
 
   return (
     <section id="projects" className="projects">
       <div className="container">
-        <h2>Featured Projects</h2>
+        <h2>GitHub Projects</h2>
         <div className="projects-grid">
           {projects.map((project, index) => (
             <div key={index} className="project-card">
