@@ -97,8 +97,8 @@ function Dashboard({ projects, onSelectProject }) {
             <section className="dashboard-panel dashboard-panel-wide">
               <div className="dashboard-panel-heading">
                 <div>
-                  <h2>BEMS Dashboard: Actual Building Floorplan</h2>
-                  <p>Energy heat map and usage analytics over the actual building floorplan, using the BEMS-ai optimization layer for comfort risk and control recommendations.</p>
+                  <h2>BEMS Dashboard: Simulated Building Floorplan</h2>
+                  <p>Energy heat map and usage analytics over a simulated building floorplan, using the BEMS-ai optimization layer for comfort risk and control recommendations.</p>
                 </div>
               </div>
               <div className="usage-kpis">
@@ -120,7 +120,7 @@ function Dashboard({ projects, onSelectProject }) {
                 </article>
               </div>
               <div className="energy-heatmap">
-                <div className="building-floorplan" aria-label="Actual building floorplan energy heat map">
+                <div className="building-floorplan" aria-label="Simulated building floorplan energy heat map">
                   <div className="floorplan-corridor">Main Corridor / Mechanical Core</div>
                   {energyZones.map((zone) => (
                     <article

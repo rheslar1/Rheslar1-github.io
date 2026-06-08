@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-  <title id="title">BEMS Actual Building Floorplan Energy Heat Map and Usage</title>
-  <desc id="desc">Simulated BEMS dashboard showing zone energy intensity, usage, comfort risk, and BEMS-ai optimization actions over the actual building floorplan.</desc>
+  <title id="title">BEMS Simulated Building Floorplan Energy Heat Map and Usage</title>
+  <desc id="desc">Simulated BEMS dashboard showing zone energy intensity, usage, comfort risk, and BEMS-ai optimization actions over a simulated building floorplan.</desc>
   <rect width="1200" height="630" fill="#071936"/>
   <rect x="52" y="44" width="1096" height="542" rx="14" fill="#0b1f3a" stroke="#24507d" stroke-width="2"/>
-  <text x="86" y="100" fill="#eef6ff" font-family="Arial, sans-serif" font-size="34" font-weight="700">BEMS Actual Floorplan Heat Map + Usage</text>
-  <text x="86" y="136" fill="#b7d2f2" font-family="Arial, sans-serif" font-size="18">Energy intensity and usage trend over the building floorplan with BEMS-ai optimization actions</text>
+  <text x="86" y="100" fill="#eef6ff" font-family="Arial, sans-serif" font-size="34" font-weight="700">BEMS Simulated Floorplan Heat Map + Usage</text>
+  <text x="86" y="136" fill="#b7d2f2" font-family="Arial, sans-serif" font-size="18">Energy intensity and usage trend over a simulated building floorplan with BEMS-ai optimization actions</text>
 
   <defs>
     <style>
@@ -16,7 +16,7 @@
   </defs>
 
   <rect x="86" y="178" width="676" height="350" rx="10" fill="#102b52" stroke="#24507d"/>
-  <text class="panelText" x="116" y="204">Actual building floorplan overlay</text>
+  <text class="panelText" x="116" y="204">Simulated building floorplan overlay</text>
 
   <rect x="116" y="222" width="260" height="108" rx="4" fill="#0ea5e9" stroke="#eef6ff" stroke-width="2"/>
   <text class="zoneLabel" x="142" y="258">Lobby</text>
@@ -65,5 +65,5 @@
   <rect x="296" y="548" width="56" height="16" rx="8" fill="#f59e0b"/>
   <rect x="366" y="548" width="56" height="16" rx="8" fill="#ef4444"/>
   <text x="440" y="562" fill="#b7d2f2" font-family="Arial, sans-serif" font-size="16">Low to high energy intensity</text>
-  <text x="86" y="592" fill="#b7d2f2" font-family="Arial, sans-serif" font-size="16">Simulated heat map and usage view over the actual BEMS floorplan, MySQL device schema, React dashboard, and BEMS-ai optimization workflow.</text>
+  <text x="86" y="592" fill="#b7d2f2" font-family="Arial, sans-serif" font-size="16">Simulated heat map and usage view over a simulated BEMS floorplan, MySQL device schema, React dashboard, and BEMS-ai optimization workflow.</text>
 </svg>
