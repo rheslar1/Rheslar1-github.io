@@ -15,6 +15,12 @@ const projects = [
       'Create a small Python application that can model users, persist user records, and provide a simple command workflow for viewing and adding data.',
     architecture:
       'A command-line Python app organized around main.py for menu flow, db.py for CSV persistence, Userclass.py for the user model, and users.csv as lightweight storage.',
+    deepDetails: [
+      'main.py owns the command loop and routes user commands to focused functions such as show_users, add_user, and del_user.',
+      'db.py isolates CSV file access so persistence can be replaced later without rewriting command-flow logic.',
+      'Userclass.py defines the User model, equality behavior, and accessors used by the command workflow.',
+      'The current structure is suitable for incremental upgrades such as input validation, unit tests, a MySQL storage adapter, or a Node.js/React front end.'
+    ],
     features: [
       'Command menu for showing users, adding users, deleting users, and exiting the program.',
       'Dataclass-backed user model with equality behavior for duplicate detection.',
@@ -48,6 +54,12 @@ const projects = [
       'Keep technical notes and experiments organized so topics learned during embedded, full-stack, and automation work can be revisited quickly.',
     architecture:
       'A documentation-first repository intended to hold topic folders, notes, examples, and small experiments as the study material grows.',
+    deepDetails: [
+      'The repository is intended to work as a durable engineering notebook rather than a single deployable application.',
+      'Useful additions include topic folders for embedded Linux, Yocto, React, Node.js, MySQL, Python, and automation.',
+      'Study entries can include commands, diagrams, source snippets, troubleshooting notes, and links back to working projects.',
+      'The repository can support portfolio credibility by showing continuous learning and organized technical research.'
+    ],
     features: [
       'Space for short technical examples and reference notes.',
       'Can group study material by language, platform, tooling, or project area.',
@@ -80,6 +92,12 @@ const projects = [
       'Explore how AI assistance can support building energy management by helping analyze system behavior, alerts, and operational decisions.',
     architecture:
       'Conceptual AI service layer intended to sit beside building-management data sources, automation scripts, and operator-facing interfaces.',
+    deepDetails: [
+      'The project is positioned as an AI companion to building energy management workflows.',
+      'Future implementation can ingest building telemetry, alarms, equipment states, historical metrics, and operator notes.',
+      'A practical architecture would pair Python model/service code with Node.js APIs, MySQL data storage, and a React dashboard.',
+      'The strongest use cases are anomaly explanation, maintenance prioritization, operator recommendations, and summary generation.'
+    ],
     features: [
       'AI-oriented project framing for building energy management workflows.',
       'Designed to support analysis, recommendations, and operational context around BEMS data.',
@@ -112,6 +130,12 @@ const projects = [
       'Create a public portfolio that communicates embedded engineering, full-stack development, MySQL, automation, and GitHub project experience.',
     architecture:
       'Create React App project built by Node.js tooling. GitHub Actions installs dependencies, runs the production build, uploads the build artifact, and deploys it to GitHub Pages.',
+    deepDetails: [
+      'The application is split into focused React components for hero, about, experience, skills, projects, project details, contact, navigation, and footer.',
+      'Project data lives in src/data/projects.js so summaries, deployment details, dependencies, features, and outcomes can be maintained in one place.',
+      'Hash-based routes such as #project/bms keep project detail pages compatible with static GitHub Pages hosting.',
+      'The GitHub Pages workflow uses Node.js 18, npm ci, npm run build, upload-pages-artifact, and deploy-pages.'
+    ],
     features: [
       'Responsive portfolio layout with hero, about, professional experience, skills, projects, contact, and footer sections.',
       'Dark and light theme toggle persisted in localStorage.',
@@ -145,6 +169,13 @@ const projects = [
       'Model an enterprise-style building energy management platform that connects edge data, AI services, APIs, database storage, and operator-facing dashboards.',
     architecture:
       'Public repository structure includes edge-core C++, node-api Express service using mysql2 and gRPC packages, React/Vite UI with Recharts, Python AI service, database/schema.sql, Docker deployment files, protobuf definitions, and Yocto meta-bems layers.',
+    deepDetails: [
+      'edge-core is the embedded/edge layer and is primarily C++, with BACnet-oriented integration and CMake-style structure.',
+      'node-api is an Express service that depends on cors, @grpc/grpc-js, @grpc/proto-loader, and mysql2 for API, service, and database workflows.',
+      'ui is a React/Vite dashboard that uses Recharts for operator-facing visualization.',
+      'ai-service is a Python service area with gRPC/protobuf dependencies, designed to connect AI analysis into the system.',
+      'database/schema.sql provides the database foundation, while Docker files and Yocto meta-bems recipes support containerized and embedded Linux deployment.'
+    ],
     features: [
       'Edge Core BACnet-oriented integration area written primarily in C++.',
       'Node.js API service using Express, CORS, gRPC tooling, and mysql2 for database workflows.',
@@ -179,6 +210,12 @@ const projects = [
       'Capture repeatable infrastructure automation examples for local and remote host workflows instead of relying on manual command execution.',
     architecture:
       'Ansible repository with playbooks including a hello-world debug playbook, SSH remote login command example, local ping test, ansible.cfg, and inventory structure.',
+    deepDetails: [
+      'helloworld.yml validates basic Ansible task execution with ansible.builtin.debug.',
+      'ssh_renmote_login.yml demonstrates remote execution, fact gathering, privilege escalation, command registration, and debug output.',
+      'test.yml provides a local ping workflow for quick connectivity and inventory checks.',
+      'The repository can grow into provisioning, validation, deployment, and embedded Linux support automation.'
+    ],
     features: [
       'Basic hello-world playbook for validating Ansible execution.',
       'Remote SSH command workflow with fact gathering, privilege escalation, command registration, and debug output.',
@@ -212,6 +249,12 @@ const projects = [
       'Explore camera capture and imaging workflows that can support embedded, robotics, inspection, or UI demonstration scenarios.',
     architecture:
       'Demo-oriented repository intended for camera input, preview/display logic, and small interface experiments. Public source details were not readable from this environment.',
+    deepDetails: [
+      'The project is intended to represent camera capture and imaging experimentation aligned with embedded and OpenCV-style work.',
+      'Likely next implementation layers include device discovery, frame capture, preview rendering, diagnostic output, and image-processing hooks.',
+      'The demo can be expanded into a React/Node.js visualization or a native embedded Linux/OpenCV workflow depending on target hardware.',
+      'Adding real screenshots from a camera run would make this one of the strongest visual portfolio projects.'
+    ],
     features: [
       'Camera-oriented project space for capture and imaging experiments.',
       'Can support OpenCV-style workflows, preview windows, diagnostics, or UI integration.',

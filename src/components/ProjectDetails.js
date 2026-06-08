@@ -51,6 +51,15 @@ function ProjectDetails({ project, onBack }) {
             </article>
 
             <article className="detail-panel detail-panel-wide">
+              <h2>Deep Technical Details</h2>
+              <ul>
+                {project.deepDetails.map((detail) => (
+                  <li key={detail}>{detail}</li>
+                ))}
+              </ul>
+            </article>
+
+            <article className="detail-panel detail-panel-wide">
               <h2>Screenshot / Preview</h2>
               <div className="screenshot-frame">
                 {!previewFailed ? (
