@@ -24,19 +24,19 @@ function Skills() {
   const skillCategories = [
     {
       name: 'Languages',
-      skills: ['JavaScript', 'Python', 'Java']
+      skills: ['C', 'C++', 'Python', 'JavaScript']
     },
     {
-      name: 'Frontend',
-      skills: ['React', 'HTML/CSS', 'TypeScript']
+      name: 'React + UI',
+      skills: ['React', 'Node.js Tooling', 'Qt/QML', 'HTML/CSS']
     },
     {
-      name: 'Backend',
-      skills: ['Node.js', 'Express', 'Databases']
+      name: 'Embedded',
+      skills: ['Yocto/BitBake', 'Embedded Linux', 'RTOS', 'Firmware']
     },
     {
       name: 'Tools',
-      skills: ['Git', 'Docker', 'AWS']
+      skills: ['GitHub Actions', 'Docker', 'CMake', 'GitLab']
     }
   ];
 

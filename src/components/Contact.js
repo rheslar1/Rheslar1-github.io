@@ -5,15 +5,15 @@ function Contact() {
     <section id="contact" className="contact">
       <div className="container">
         <h2>Get In Touch</h2>
-        <p>I'm always interested in hearing about new projects and opportunities.</p>
+        <p>I'm always interested in hearing about embedded systems, React + Node.js, automation, and software opportunities.</p>
         <div className="contact-links">
           <a href="https://github.com/rheslar1" target="_blank" rel="noopener noreferrer" className="contact-link">
             GitHub
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="contact-link">
+          <a href="https://www.linkedin.com/in/robert-h-2343bb21/" target="_blank" rel="noopener noreferrer" className="contact-link">
             LinkedIn
           </a>
-          <a href="mailto:your.email@example.com" className="contact-link">
+          <a href="mailto:rheslar@gmail.com" className="contact-link">
             Email
           </a>
         </div>

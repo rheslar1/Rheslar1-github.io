@@ -24,32 +24,32 @@ function Projects() {
   const projects = [
     {
       title: 'pythonProject',
-      description: 'Python project repository from Robert Heslar\'s GitHub portfolio.',
-      tags: ['Python', 'GitHub'],
+      description: 'Python project repository for automation, scripting, and engineering experiments.',
+      tags: ['Python', 'Automation'],
       link: 'https://github.com/rheslar1/pythonProject'
     },
     {
       title: 'study',
       description: 'Study notes, experiments, and learning materials.',
-      tags: ['Study', 'Learning', 'GitHub'],
+      tags: ['Study', 'Learning'],
       link: 'https://github.com/rheslar1/study'
     },
     {
       title: 'BEMS-ai',
-      description: 'AI-focused BEMS repository from Robert Heslar\'s GitHub portfolio.',
-      tags: ['AI', 'BEMS', 'GitHub'],
+      description: 'AI-focused BEMS project exploring intelligent software support for engineering systems.',
+      tags: ['AI', 'BEMS'],
       link: 'https://github.com/rheslar1/BEMS-ai'
     },
     {
       title: 'Rheslar1-github.io',
-      description: 'Personal portfolio site built with React and deployed with GitHub Pages.',
-      tags: ['JavaScript', 'React', 'GitHub Pages'],
+      description: 'Personal portfolio site built with React and Node.js tooling, then deployed with GitHub Pages.',
+      tags: ['React', 'Node.js', 'GitHub Pages'],
       link: 'https://github.com/rheslar1/Rheslar1-github.io'
     },
     {
       title: 'BMS',
-      description: 'Python repository from Robert Heslar\'s GitHub portfolio.',
-      tags: ['Python', 'GitHub'],
+      description: 'Python repository for building-management and automation-oriented software work.',
+      tags: ['Python', 'Automation'],
       link: 'https://github.com/rheslar1/BMS'
     },
     {
@@ -60,8 +60,8 @@ function Projects() {
     },
     {
       title: 'CameraDemo',
-      description: 'Camera demo repository from Robert Heslar\'s GitHub portfolio.',
-      tags: ['Camera', 'Demo', 'GitHub'],
+      description: 'Camera and imaging demo repository for interface and capture experiments.',
+      tags: ['Camera', 'Demo'],
       link: 'https://github.com/rheslar1/CameraDemo'
     }
   ];

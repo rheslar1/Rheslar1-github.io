@@ -27,21 +27,23 @@ function About() {
         <h2>About Me</h2>
         <div className="about-content">
           <p>
-            I'm an engineer passionate about building scalable solutions and contributing to open source projects.
-            With experience in full-stack development, I love solving complex problems and learning new technologies.
+            I'm a Senior Embedded Software Engineer with 15+ years of experience building reliable software for
+            embedded Linux, medical devices, automation systems, and production hardware. I also build practical
+            React interfaces, Node.js tooling, and Python automation that help teams test, deploy, and maintain
+            complex systems.
           </p>
           <div className="about-highlights">
             <div className="highlight">
-              <h3>🎓 Education</h3>
-              <p>Add your education details here</p>
+              <h3>Education</h3>
+              <p>B.S. in Computer Science from SUNY Old Westbury, plus electronics and FMEA training.</p>
             </div>
             <div className="highlight">
-              <h3>💼 Experience</h3>
-              <p>Add your professional experience here</p>
+              <h3>Experience</h3>
+              <p>Senior embedded, IoT, firmware, and software roles across medical, robotics, security, and industrial systems.</p>
             </div>
             <div className="highlight">
-              <h3>🚀 Focus</h3>
-              <p>Add your areas of focus here</p>
+              <h3>Focus</h3>
+              <p>React, Node.js, Yocto, embedded Linux, C/C++, Python automation, and CI/CD.</p>
             </div>
           </div>
         </div>
