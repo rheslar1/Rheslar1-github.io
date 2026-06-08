@@ -59,7 +59,6 @@ Rheslar1-github.io/
 │   └── index.css               # Global styles
 ├── package.json                # Dependencies & scripts
 ├── vercel.json                 # Vercel config
-├── netlify.toml                # Netlify config
 ├── DEPLOY_NOW.md               # Deployment guide
 ├── QUICK_DEPLOY.md             # 5-min quickstart
 ├── SETUP.md                    # Dev setup
@@ -112,7 +111,6 @@ Rheslar1-github.io/
 
 ### Alternative Deployments
 - GitHub Pages: `npm run deploy`
-- Netlify: Connect GitHub repo
 - AWS: S3 + CloudFront
 
 ---
@@ -361,7 +359,6 @@ Share on LinkedIn, GitHub, Twitter, Email
 ### Deployment Help
 - [Vercel Docs](https://vercel.com/docs)
 - [GitHub Pages Guide](https://pages.github.com)
-- [Netlify Docs](https://docs.netlify.com)
 
 ### React Help
 - [React Documentation](https://react.dev)

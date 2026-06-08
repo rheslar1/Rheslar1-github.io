@@ -19,7 +19,6 @@ Your engineering portfolio is ready for cloud deployment with multiple options!
 
 ### Deployment Files
 - ✅ `vercel.json` - Vercel routing configuration
-- ✅ `netlify.toml` - Netlify build settings
 - ✅ Updated `package.json` - Build scripts for deployment
 - ✅ Enhanced `public/index.html` - SEO meta tags
 
@@ -45,14 +44,7 @@ Your engineering portfolio is ready for cloud deployment with multiple options!
 - **Features:** Built-in GitHub integration
 - **Setup:** `npm run deploy`
 
-### 3. **Netlify** 🟦 (ALTERNATIVE)
-- **Time:** 3-5 minutes
-- **Cost:** Free tier included
-- **Best for:** JAMstack sites
-- **Features:** Forms, functions, analytics
-- **Setup:** GitHub connection
-
-### 4. **AWS** ☁️ (ENTERPRISE)
+### 3. **AWS** ☁️ (ENTERPRISE)
 - **Time:** 10-15 minutes
 - **Cost:** Paid (pay-as-you-go)
 - **Best for:** Enterprise apps
@@ -88,16 +80,16 @@ Your engineering portfolio is ready for cloud deployment with multiple options!
 
 ## 📊 Deployment Comparison
 
-| Feature | Vercel | GitHub Pages | Netlify | AWS |
-|---------|--------|-------------|---------|-----|
-| Setup Time | 2 min | 3 min | 3 min | 15 min |
-| Free Tier | Yes | Yes | Yes | Free tier |
-| Auto Deploy | Yes | Manual | Yes | Manual |
-| Custom Domain | Yes | Yes | Yes | Yes |
-| HTTPS | Yes | Yes | Yes | Yes |
-| Analytics | Yes | No | Yes | No |
-| Preview URLs | Yes | No | Yes | No |
-| Best for | React ⭐ | Static | JAMstack | Enterprise |
+| Feature | Vercel | GitHub Pages | AWS |
+|---------|--------|--------------|-----|
+| Setup Time | 2 min | 3 min | 15 min |
+| Free Tier | Yes | Yes | Free tier |
+| Auto Deploy | Yes | Manual | Manual |
+| Custom Domain | Yes | Yes | Yes |
+| HTTPS | Yes | Yes | Yes |
+| Analytics | Yes | No | No |
+| Preview URLs | Yes | No | No |
+| Best for | React ⭐ | Static | Enterprise |
 
 ---
 
@@ -140,28 +132,6 @@ npm run deploy
 # Step 4: Your site is live!
 # https://rheslar1.github.io
 ```
-
-### Option C: Netlify
-
-```bash
-# Step 1: Visit Netlify
-# https://netlify.com
-
-# Step 2: Connect GitHub
-# New Site → Select repo
-
-# Step 3: Configure
-# Build: npm run build
-# Publish: build
-
-# Step 4: Deploy
-# Auto-deploys on push
-
-# Step 5: Your site is live!
-# https://your-site.netlify.app
-```
-
----
 
 ## ✅ Post-Deployment Checklist
 
@@ -209,7 +179,7 @@ npm run deploy
    - Wait 24-48 hours
 
 3. **Enable HTTPS**
-   - Automatic with Vercel/Netlify
+   - Automatic with Vercel
    - Free SSL certificate
    - No extra steps needed
 
@@ -261,12 +231,6 @@ npm install react@latest react-dom@latest
 ### GitHub Pages Help
 - [GitHub Pages Guide](https://pages.github.com)
 - [GitHub Docs](https://docs.github.com/en/pages)
-
-### Netlify Help
-- [Netlify Docs](https://docs.netlify.com)
-- [Build Settings](https://docs.netlify.com/build-settings/get-started)
-
----
 
 ## 🎉 Congratulations!
 
