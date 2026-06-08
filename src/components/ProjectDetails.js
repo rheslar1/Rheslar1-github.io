@@ -25,14 +25,24 @@ function ProjectDetails({ project, onBack }) {
                 ))}
               </div>
             </div>
-            <a
-              href={project.repository}
-              className="project-link detail-repo-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Repository
-            </a>
+            <div className="detail-actions">
+              <a
+                href={project.repository}
+                className="project-link detail-repo-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Repository
+              </a>
+              {project.loginRoute && (
+                <a
+                  href={project.loginRoute}
+                  className="project-link secondary-link detail-repo-link"
+                >
+                  {project.loginLabel || 'Login Page'}
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </section>

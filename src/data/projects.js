@@ -235,6 +235,8 @@ const projects = [
       'Designed for containerized and embedded deployment with Docker services, a MySQL schema, Node.js API, React/Vite UI, BEMS-ai/Python optimization service, and Yocto meta-bems layers.',
     dependencies: ['BEMS-ai', 'C++', 'Node.js', 'Express', 'mysql2', 'React', 'Vite', 'Recharts', 'Python', 'gRPC', 'Docker', 'Yocto'],
     repository: 'https://github.com/rheslar1/BMS',
+    loginRoute: '#bms-login',
+    loginLabel: 'BMS Login Page',
     preview: projectAsset('bms-detail.png'),
     visuals: [
       {

@@ -93,6 +93,15 @@ function Navbar({ onThemeToggle, currentTheme }) {
             </a>
           </li>
           <li>
+            <a
+              href="#bms-login"
+              className="nav-link"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              BMS Login
+            </a>
+          </li>
+          <li>
             <a 
               href="#contact" 
               className="nav-link"

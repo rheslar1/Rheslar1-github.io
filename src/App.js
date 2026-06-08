@@ -6,6 +6,7 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import ProjectDetails from './components/ProjectDetails';
 import Dashboard from './components/Dashboard';
+import BmsLogin from './components/BmsLogin';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -18,12 +19,14 @@ const getProjectIdFromHash = () => {
 };
 
 const getDashboardFromHash = () => window.location.hash === '#dashboard';
+const getBmsLoginFromHash = () => window.location.hash === '#bms-login';
 
 function App() {
   const [theme, setTheme] = React.useState('light');
   const [isLoading, setIsLoading] = React.useState(true);
   const [selectedProjectId, setSelectedProjectId] = React.useState(getProjectIdFromHash);
   const [isDashboard, setIsDashboard] = React.useState(getDashboardFromHash);
+  const [isBmsLogin, setIsBmsLogin] = React.useState(getBmsLoginFromHash);
 
   React.useEffect(() => {
     // Check for saved theme preference
@@ -39,9 +42,10 @@ function App() {
     const handleHashChange = () => {
       setSelectedProjectId(getProjectIdFromHash());
       setIsDashboard(getDashboardFromHash());
+      setIsBmsLogin(getBmsLoginFromHash());
 
       const hash = window.location.hash.replace('#', '');
-      if (!hash || hash === 'dashboard' || hash.startsWith('project/')) {
+      if (!hash || hash === 'dashboard' || hash === 'bms-login' || hash.startsWith('project/')) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
@@ -103,6 +107,16 @@ function App() {
       <div className="App" data-theme={theme}>
         <Navbar onThemeToggle={toggleTheme} currentTheme={theme} />
         <Dashboard projects={projects} onSelectProject={handleProjectSelect} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (isBmsLogin) {
+    return (
+      <div className="App" data-theme={theme}>
+        <Navbar onThemeToggle={toggleTheme} currentTheme={theme} />
+        <BmsLogin />
         <Footer />
       </div>
     );

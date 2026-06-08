@@ -69,6 +69,14 @@ function Projects({ projects, onSelectProject }) {
                 >
                   Repository
                 </a>
+                {project.loginRoute && (
+                  <a
+                    href={project.loginRoute}
+                    className="project-link secondary-link"
+                  >
+                    {project.loginLabel || 'Login Page'}
+                  </a>
+                )}
               </div>
             </div>
           ))}
