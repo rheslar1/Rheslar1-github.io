@@ -20,6 +20,12 @@ function Hero() {
           </button>
           <a
             className="cta-button secondary-cta"
+            href="#dashboard"
+          >
+            Dashboard
+          </a>
+          <a
+            className="cta-button secondary-cta"
             href="https://www.linkedin.com/in/robert-h-2343bb21/"
             target="_blank"
             rel="noopener noreferrer"

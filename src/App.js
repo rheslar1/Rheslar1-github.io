@@ -5,6 +5,7 @@ import About from './components/About';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
 import ProjectDetails from './components/ProjectDetails';
+import Dashboard from './components/Dashboard';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -16,10 +17,13 @@ const getProjectIdFromHash = () => {
   return match ? decodeURIComponent(match[1]) : null;
 };
 
+const getDashboardFromHash = () => window.location.hash === '#dashboard';
+
 function App() {
   const [theme, setTheme] = React.useState('light');
   const [isLoading, setIsLoading] = React.useState(true);
   const [selectedProjectId, setSelectedProjectId] = React.useState(getProjectIdFromHash);
+  const [isDashboard, setIsDashboard] = React.useState(getDashboardFromHash);
 
   React.useEffect(() => {
     // Check for saved theme preference
@@ -34,7 +38,20 @@ function App() {
   React.useEffect(() => {
     const handleHashChange = () => {
       setSelectedProjectId(getProjectIdFromHash());
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setIsDashboard(getDashboardFromHash());
+
+      const hash = window.location.hash.replace('#', '');
+      if (!hash || hash === 'dashboard' || hash.startsWith('project/')) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      setTimeout(() => {
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 0);
     };
 
     window.addEventListener('hashchange', handleHashChange);
@@ -74,6 +91,16 @@ function App() {
       <div className="App" data-theme={theme}>
         <Navbar onThemeToggle={toggleTheme} currentTheme={theme} />
         <ProjectDetails project={selectedProject} onBack={handleProjectBack} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (isDashboard) {
+    return (
+      <div className="App" data-theme={theme}>
+        <Navbar onThemeToggle={toggleTheme} currentTheme={theme} />
+        <Dashboard projects={projects} onSelectProject={handleProjectSelect} />
         <Footer />
       </div>
     );

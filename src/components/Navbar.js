@@ -9,7 +9,11 @@ function Navbar({ onThemeToggle, currentTheme }) {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setIsMenuOpen(false);
+      return;
     }
+
+    window.location.hash = sectionId;
+    setIsMenuOpen(false);
   };
 
   const toggleMenu = () => {
@@ -77,6 +81,15 @@ function Navbar({ onThemeToggle, currentTheme }) {
               onClick={(e) => handleScroll(e, 'projects')}
             >
               Projects
+            </a>
+          </li>
+          <li>
+            <a
+              href="#dashboard"
+              className="nav-link"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Dashboard
             </a>
           </li>
           <li>
