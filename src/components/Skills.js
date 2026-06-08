@@ -27,8 +27,12 @@ function Skills() {
       skills: ['C', 'C++', 'Python', 'JavaScript']
     },
     {
-      name: 'React + UI',
-      skills: ['React', 'Node.js Tooling', 'Qt/QML', 'HTML/CSS']
+      name: 'Full Stack',
+      skills: ['React', 'Node.js', 'Express', 'REST APIs']
+    },
+    {
+      name: 'Databases',
+      skills: ['MySQL', 'MS SQL Server', 'SQL', 'Data Modeling']
     },
     {
       name: 'Embedded',

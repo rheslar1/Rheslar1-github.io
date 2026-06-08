@@ -28,9 +28,9 @@ function About() {
         <div className="about-content">
           <p>
             I'm a Senior Embedded Software Engineer with 15+ years of experience building reliable software for
-            embedded Linux, medical devices, automation systems, and production hardware. I also build practical
-            React interfaces, Node.js tooling, and Python automation that help teams test, deploy, and maintain
-            complex systems.
+            embedded Linux, medical devices, automation systems, and production hardware. I also build full-stack
+            React and Node.js applications with MySQL-backed data workflows and Python automation that help teams
+            test, deploy, and maintain complex systems.
           </p>
           <div className="about-highlights">
             <div className="highlight">
@@ -43,7 +43,7 @@ function About() {
             </div>
             <div className="highlight">
               <h3>Focus</h3>
-              <p>React, Node.js, Yocto, embedded Linux, C/C++, Python automation, and CI/CD.</p>
+              <p>Full-stack React, Node.js, MySQL, Yocto, embedded Linux, C/C++, Python automation, and CI/CD.</p>
             </div>
           </div>
         </div>
