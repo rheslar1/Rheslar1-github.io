@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Simulated CameraDemo Capture View</title>
+  <desc id="desc">Simulated camera capture diagnostics for V4L2, mmap buffers, framebuffer output, and target deployment.</desc>
+  <rect width="1200" height="630" fill="#0b1020"/>
+  <rect x="56" y="46" width="1088" height="538" rx="12" fill="#111a2d" stroke="#2c3a52"/>
+  <text x="88" y="102" fill="#edf5ff" font-family="Arial, sans-serif" font-size="34" font-weight="700">CameraDemo Capture Console</text>
+  <text x="88" y="138" fill="#b4c3d6" font-family="Arial, sans-serif" font-size="18">Simulated view: Linux V4L2 camera bring-up, mmap buffers, framebuffer preview, and i.MX93 deployment</text>
+  <rect x="88" y="178" width="624" height="322" rx="8" fill="#020617" stroke="#334155"/>
+  <rect x="124" y="214" width="552" height="250" fill="#1e293b"/>
+  <rect x="146" y="236" width="508" height="206" fill="#0f172a" stroke="#64748b"/>
+  <line x1="146" y1="304" x2="654" y2="304" stroke="#334155"/>
+  <line x1="146" y1="374" x2="654" y2="374" stroke="#334155"/>
+  <line x1="315" y1="236" x2="315" y2="442" stroke="#334155"/>
+  <line x1="485" y1="236" x2="485" y2="442" stroke="#334155"/>
+  <circle cx="402" cy="336" r="58" fill="#2563eb" opacity="0.7"/>
+  <circle cx="402" cy="336" r="24" fill="#6ee7f9"/>
+  <text x="176" y="486" fill="#b4c3d6" font-family="Arial, sans-serif" font-size="16">Framebuffer/DRM preview placeholder</text>
+  <rect x="750" y="178" width="336" height="322" rx="8" fill="#0f172a" stroke="#334155"/>
+  <text x="780" y="222" fill="#edf5ff" font-family="Arial, sans-serif" font-size="22" font-weight="700">Capture Diagnostics</text>
+  <text x="780" y="266" fill="#a7f3d0" font-family="monospace" font-size="18">Driver: v4l2</text>
+  <text x="780" y="302" fill="#a7f3d0" font-family="monospace" font-size="18">Device: /dev/video0</text>
+  <text x="780" y="338" fill="#a7f3d0" font-family="monospace" font-size="18">Buffers: 4 mmap</text>
+  <text x="780" y="374" fill="#a7f3d0" font-family="monospace" font-size="18">Output: /dev/fb0</text>
+  <text x="780" y="410" fill="#a7f3d0" font-family="monospace" font-size="18">Target: i.MX93 EVK</text>
+  <text x="780" y="454" fill="#fbbf24" font-family="monospace" font-size="18">make run TARGET_IP=...</text>
+  <text x="88" y="548" fill="#b4c3d6" font-family="Arial, sans-serif" font-size="18">Simulated screenshot based on main.c V4L2 ioctls, frame_data_t, framebuffer hooks, and Makefile deploy targets.</text>
+</svg>

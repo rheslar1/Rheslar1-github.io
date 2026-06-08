@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">CameraDemo Architecture</title>
+  <desc id="desc">Architecture diagram for CameraDemo showing V4L2 capture, mmap buffers, frame processing, framebuffer display, optional PNG export, and i.MX93 deployment.</desc>
+  <rect width="1200" height="630" fill="#0b1020"/>
+  <rect x="42" y="42" width="1116" height="546" rx="18" fill="#111a2d" stroke="#2c3a52" stroke-width="2"/>
+  <text x="80" y="104" fill="#edf5ff" font-family="Arial, sans-serif" font-size="34" font-weight="700">CameraDemo V4L2 Capture Pipeline</text>
+  <text x="80" y="140" fill="#b4c3d6" font-family="Arial, sans-serif" font-size="18">i.MX93 EVK target, Linux video device capture, framebuffer display, optional frame export</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#64b5ff"/>
+    </marker>
+    <style>
+      .box { fill: #17243b; stroke: #64b5ff; stroke-width: 2; }
+      .label { fill: #edf5ff; font-family: Arial, sans-serif; font-size: 20px; font-weight: 700; }
+      .small { fill: #b4c3d6; font-family: Arial, sans-serif; font-size: 15px; }
+      .arrow { stroke: #64b5ff; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect class="box" x="80" y="210" width="190" height="110" rx="10"/>
+  <text class="label" x="115" y="252">Camera Device</text>
+  <text class="small" x="115" y="282">/dev/video0</text>
+  <text class="small" x="115" y="305">VIDIOC_QUERYCAP</text>
+
+  <rect class="box" x="345" y="210" width="210" height="110" rx="10"/>
+  <text class="label" x="390" y="252">V4L2 Setup</text>
+  <text class="small" x="382" y="282">Format selection</text>
+  <text class="small" x="382" y="305">Capability checks</text>
+
+  <rect class="box" x="630" y="210" width="220" height="110" rx="10"/>
+  <text class="label" x="676" y="252">mmap Buffers</text>
+  <text class="small" x="670" y="282">4 capture buffers</text>
+  <text class="small" x="670" y="305">Queue/dequeue loop</text>
+
+  <rect class="box" x="920" y="210" width="190" height="110" rx="10"/>
+  <text class="label" x="958" y="252">Frame Data</text>
+  <text class="small" x="957" y="282">Timestamp</text>
+  <text class="small" x="957" y="305">Width/height/size</text>
+
+  <path class="arrow" d="M270 265 H345"/>
+  <path class="arrow" d="M555 265 H630"/>
+  <path class="arrow" d="M850 265 H920"/>
+
+  <rect class="box" x="230" y="410" width="250" height="118" rx="10"/>
+  <text class="label" x="274" y="452">Framebuffer Output</text>
+  <text class="small" x="274" y="482">/dev/fb0 or DRM card</text>
+  <text class="small" x="274" y="505">HDMI preview path</text>
+
+  <rect class="box" x="520" y="410" width="220" height="118" rx="10"/>
+  <text class="label" x="568" y="452">Optional Export</text>
+  <text class="small" x="560" y="482">PNG frame save</text>
+  <text class="small" x="560" y="505">Movie frame set</text>
+
+  <rect class="box" x="780" y="410" width="240" height="118" rx="10"/>
+  <text class="label" x="828" y="452">Target Deploy</text>
+  <text class="small" x="820" y="482">aarch64-linux-gnu-gcc</text>
+  <text class="small" x="820" y="505">SCP/SSH run target</text>
+
+  <path class="arrow" d="M1015 320 C1015 370 422 370 355 410"/>
+  <path class="arrow" d="M1015 320 C1015 380 660 370 630 410"/>
+  <path class="arrow" d="M1015 320 C1015 385 900 370 900 410"/>
+</svg>

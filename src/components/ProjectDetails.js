@@ -1,7 +1,7 @@
 import React from 'react';
 
 function ProjectDetails({ project, onBack }) {
-  const [previewFailed, setPreviewFailed] = React.useState(false);
+  const [failedVisuals, setFailedVisuals] = React.useState({});
 
   if (!project) {
     return null;
@@ -60,19 +60,29 @@ function ProjectDetails({ project, onBack }) {
             </article>
 
             <article className="detail-panel detail-panel-wide">
-              <h2>Screenshot / Preview</h2>
-              <div className="screenshot-frame">
-                {!previewFailed ? (
-                  <img
-                    src={project.preview}
-                    alt={`${project.title} repository preview`}
-                    onError={() => setPreviewFailed(true)}
-                  />
-                ) : (
-                  <div className="screenshot-fallback">
-                    Preview image unavailable
-                  </div>
-                )}
+              <h2>Screenshots / Case-Study Images</h2>
+              <div className="visual-gallery">
+                {project.visuals.map((visual) => (
+                  <figure key={visual.src} className="visual-item">
+                    <div className="screenshot-frame">
+                      {!failedVisuals[visual.src] ? (
+                        <img
+                          src={visual.src}
+                          alt={`${project.title} visual`}
+                          onError={() => setFailedVisuals((current) => ({
+                            ...current,
+                            [visual.src]: true
+                          }))}
+                        />
+                      ) : (
+                        <div className="screenshot-fallback">
+                          Preview image unavailable
+                        </div>
+                      )}
+                    </div>
+                    <figcaption>{visual.caption}</figcaption>
+                  </figure>
+                ))}
               </div>
               <p>{project.screenshotCaption}</p>
             </article>
@@ -101,7 +111,7 @@ function ProjectDetails({ project, onBack }) {
             </article>
 
             <article className="detail-panel">
-              <h2>Outcomes</h2>
+              <h2>Measurable Outcomes</h2>
               <ul>
                 {project.outcomes.map((outcome) => (
                   <li key={outcome}>{outcome}</li>
@@ -117,6 +127,17 @@ function ProjectDetails({ project, onBack }) {
                 ))}
               </ul>
             </article>
+
+            {project.suggestedContent?.length > 0 && (
+              <article className="detail-panel detail-panel-wide">
+                <h2>Suggested Content To Add</h2>
+                <ul>
+                  {project.suggestedContent.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+            )}
           </div>
         </div>
       </section>

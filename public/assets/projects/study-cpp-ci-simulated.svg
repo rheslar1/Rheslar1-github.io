@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Simulated Study Repository Workbench</title>
+  <desc id="desc">Simulated view of the study repository with C++ examples, CI checks, and UML diagrams.</desc>
+  <rect width="1200" height="630" fill="#f8fafc"/>
+  <rect x="56" y="44" width="1088" height="542" rx="12" fill="#ffffff" stroke="#d8e2ea" stroke-width="2"/>
+  <text x="92" y="100" fill="#152238" font-family="Arial, sans-serif" font-size="34" font-weight="700">Study Repo Engineering Workbench</text>
+  <text x="92" y="136" fill="#526173" font-family="Arial, sans-serif" font-size="18">C++17 examples, static analysis, CI, and exported architecture diagrams</text>
+  <rect x="92" y="184" width="322" height="326" rx="8" fill="#0f172a"/>
+  <text x="116" y="224" fill="#93c5fd" font-family="monospace" font-size="20">$ cmake --build build</text>
+  <text x="116" y="266" fill="#d1fae5" font-family="monospace" font-size="20">[100%] Built target strategy</text>
+  <text x="116" y="302" fill="#d1fae5" font-family="monospace" font-size="20">[100%] Built target observer</text>
+  <text x="116" y="338" fill="#d1fae5" font-family="monospace" font-size="20">ctest: 12 examples passed</text>
+  <text x="116" y="392" fill="#fbbf24" font-family="monospace" font-size="20">$ ./tools/run_static_analysis.sh</text>
+  <text x="116" y="434" fill="#d1fae5" font-family="monospace" font-size="20">clang-tidy: complete</text>
+  <text x="116" y="470" fill="#d1fae5" font-family="monospace" font-size="20">cppcheck: complete</text>
+  <rect x="454" y="184" width="268" height="326" rx="8" fill="#eef6ff" stroke="#bfdbfe"/>
+  <text x="486" y="230" fill="#1f355e" font-family="Arial, sans-serif" font-size="24" font-weight="700">CI Pipeline</text>
+  <rect x="492" y="262" width="192" height="40" rx="5" fill="#2563eb"/>
+  <rect x="492" y="322" width="192" height="40" rx="5" fill="#0f766e"/>
+  <rect x="492" y="382" width="192" height="40" rx="5" fill="#7c3aed"/>
+  <text x="526" y="288" fill="#ffffff" font-family="Arial, sans-serif" font-size="16" font-weight="700">Build</text>
+  <text x="526" y="348" fill="#ffffff" font-family="Arial, sans-serif" font-size="16" font-weight="700">Analyze</text>
+  <text x="526" y="408" fill="#ffffff" font-family="Arial, sans-serif" font-size="16" font-weight="700">Artifacts</text>
+  <rect x="762" y="184" width="314" height="326" rx="8" fill="#fff7ed" stroke="#fed7aa"/>
+  <text x="796" y="230" fill="#7c2d12" font-family="Arial, sans-serif" font-size="24" font-weight="700">Diagram Set</text>
+  <rect x="812" y="268" width="214" height="56" rx="6" fill="#ffffff" stroke="#fb923c"/>
+  <rect x="812" y="350" width="214" height="56" rx="6" fill="#ffffff" stroke="#fb923c"/>
+  <rect x="812" y="432" width="214" height="56" rx="6" fill="#ffffff" stroke="#fb923c"/>
+  <text x="842" y="302" fill="#7c2d12" font-family="Arial, sans-serif" font-size="17" font-weight="700">Service lifecycle</text>
+  <text x="854" y="384" fill="#7c2d12" font-family="Arial, sans-serif" font-size="17" font-weight="700">RAII cleanup</text>
+  <text x="858" y="466" fill="#7c2d12" font-family="Arial, sans-serif" font-size="17" font-weight="700">SOLID patterns</text>
+  <text x="92" y="552" fill="#526173" font-family="Arial, sans-serif" font-size="19">Simulated view based on repository examples, GitHub Actions workflow, and draw.io exports.</text>
+</svg>

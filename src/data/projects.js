@@ -1,4 +1,5 @@
 const githubPreview = (repo) => `https://opengraph.githubassets.com/1/rheslar1/${repo}`;
+const projectAsset = (name) => `${process.env.PUBLIC_URL}/assets/projects/${name}`;
 
 const projects = [
   {
@@ -9,7 +10,17 @@ const projects = [
       'Runs locally with Python from the command line; data is stored in users.csv and can later be migrated to MySQL or an API-backed service.',
     dependencies: ['Python standard library', 'csv', 'os', 'dataclasses'],
     repository: 'https://github.com/rheslar1/pythonProject',
-    preview: githubPreview('pythonProject'),
+    preview: projectAsset('python-cli-simulated.svg'),
+    visuals: [
+      {
+        src: projectAsset('python-cli-simulated.svg'),
+        caption: 'Simulated CLI screenshot based on main.py, db.py, Userclass.py, and CSV-backed workflow.'
+      },
+      {
+        src: githubPreview('pythonProject'),
+        caption: 'GitHub repository preview for the Python CLI project.'
+      }
+    ],
     tags: ['Python', 'CSV', 'CLI', 'Automation'],
     problem:
       'Create a small Python application that can model users, persist user records, and provide a simple command workflow for viewing and adding data.',
@@ -28,9 +39,9 @@ const projects = [
       'Separation between application flow, user model, and data access code.'
     ],
     outcomes: [
-      'Demonstrates Python fundamentals, object modeling, file persistence, and CLI workflow design.',
-      'Provides a compact codebase for practicing validation, refactoring, testing, and storage abstraction.',
-      'Creates a foundation that could be extended into a MySQL-backed service or React/Node.js UI.'
+      '158-line starter application split across 3 Python modules plus CSV storage.',
+      'CSV-backed workflow keeps the project runnable with no database server or external package installation.',
+      'Provides a compact foundation for adding unit tests, validation, a MySQL storage adapter, or a React/Node.js UI.'
     ],
     resumeBullets: [
       'Built Python automation-style application code with discrete modules for command handling, persistence, and data modeling.',
@@ -38,37 +49,56 @@ const projects = [
       'Structured the project so storage and user behavior can evolve independently.'
     ],
     screenshotCaption:
-      'Repository preview for the Python CLI project. Application terminal screenshots can be added as the workflow matures.'
+      'Simulated view shows the intended terminal workflow. Replace it with a real terminal capture after running the CLI with sample data.',
+    suggestedContent: [
+      'Capture a real terminal screenshot showing show users, add user, del user, and updated users.csv output.',
+      'Add unit-test output once model and persistence tests are added.',
+      'Add a MySQL adapter diagram if the storage layer is upgraded from CSV.'
+    ]
   },
   {
     id: 'study',
     title: 'study',
-    summary: 'Study and reference repository for engineering notes, experiments, and learning material.',
+    summary: 'Engineering study repository with C++17 examples, static-analysis workflows, diagrams, and embedded Linux notes.',
     deployment:
       'Documentation/reference repository hosted on GitHub; published by repository browsing rather than an application runtime.',
-    dependencies: ['GitHub', 'Markdown', 'Topic folders', 'Code examples'],
+    dependencies: ['C++17', 'CMake', 'clang-tidy', 'cppcheck', 'CodeChecker', 'Draw.io', 'GitHub Actions'],
     repository: 'https://github.com/rheslar1/study',
-    preview: githubPreview('study'),
-    tags: ['Study', 'Learning', 'Reference'],
+    preview: projectAsset('study-cpp-ci-simulated.svg'),
+    visuals: [
+      {
+        src: projectAsset('study-cpp-ci-simulated.svg'),
+        caption: 'Simulated study workbench showing CMake builds, static analysis, CI, and diagram review.'
+      },
+      {
+        src: projectAsset('study-cpp-service-lifecycle.png'),
+        caption: 'C++ service lifecycle diagram from the study repository.'
+      },
+      {
+        src: githubPreview('study'),
+        caption: 'GitHub repository preview for the study notes and examples.'
+      }
+    ],
+    tags: ['C++17', 'Static Analysis', 'UML', 'Yocto Notes'],
     problem:
-      'Keep technical notes and experiments organized so topics learned during embedded, full-stack, and automation work can be revisited quickly.',
+      'Keep engineering notes, C++ examples, diagrams, static-analysis workflows, and embedded Linux deployment references organized for reuse.',
     architecture:
-      'A documentation-first repository intended to hold topic folders, notes, examples, and small experiments as the study material grows.',
+      'A documentation and examples repository with examples/cpp for CMake-based C++17 code, diagrams for draw.io source and exported PNGs, and GitHub Actions for build/static-analysis validation.',
     deepDetails: [
-      'The repository is intended to work as a durable engineering notebook rather than a single deployable application.',
-      'Useful additions include topic folders for embedded Linux, Yocto, React, Node.js, MySQL, Python, and automation.',
-      'Study entries can include commands, diagrams, source snippets, troubleshooting notes, and links back to working projects.',
-      'The repository can support portfolio credibility by showing continuous learning and organized technical research.'
+      'examples/cpp contains 12 C++ source examples covering RAII, strategy, observer, factory method, dependency inversion, startup cleanup, lock guards, and sanitizer practice.',
+      'The CMake project supports local builds, test execution, clang-tidy, cppcheck, CodeChecker, and sanitizer smoke-test workflows.',
+      'The diagrams folder includes 10 exported PNG diagrams with editable draw.io source files.',
+      'The repository also includes Yocto and ARM Linux deployment notes that connect study material back to embedded engineering practice.'
     ],
     features: [
-      'Space for short technical examples and reference notes.',
-      'Can group study material by language, platform, tooling, or project area.',
-      'Supports repeatable learning by keeping commands, examples, and observations together.'
+      'C++17 examples for design patterns, resource management, lifecycle handling, and static-analysis practice.',
+      'CI workflow for CMake builds, clang-tidy, cppcheck, CodeChecker, sanitizer smoke tests, and artifact upload.',
+      'UML/architecture diagrams exported from draw.io for visual review and portfolio support.'
     ],
     outcomes: [
-      'Creates a durable reference base for ongoing React, Node.js, MySQL, Python, embedded Linux, and automation learning.',
-      'Helps turn one-off experiments into reusable notes and starter examples.',
-      'Can become a public knowledge base as topics are documented.'
+      '12 C++17 example programs and 10 exported architecture/study diagrams are tracked in the repository.',
+      'GitHub Actions validates build and analysis workflows for the C++ study examples.',
+      'Study notes connect C++ patterns, embedded Linux, Yocto deployment, and static-analysis tooling.'
     ],
     resumeBullets: [
       'Maintained a study repository to capture technical research, implementation notes, and engineering experiments.',
@@ -76,37 +106,57 @@ const projects = [
       'Used GitHub as a repeatable knowledge-management workflow.'
     ],
     screenshotCaption:
-      'Repository preview. This repository may require GitHub access if it is private or still being prepared.'
+      'Simulated view summarizes the C++/CI study workflow. Repository diagrams are real exported assets from the study repo.',
+    suggestedContent: [
+      'Capture GitHub Actions passing for the C++ CI workflow.',
+      'Add screenshots of selected C++ examples running locally.',
+      'Add a diagram index image that links each UML visual to its source example.'
+    ]
   },
   {
     id: 'BEMS-ai',
     title: 'BEMS-ai',
-    summary: 'AI-focused building energy management concept for intelligent system support.',
+    summary: 'Reinforcement-learning BEMS controller with Python training, digital twin logic, forecasting, ONNX export, and C++ deployment code.',
     deployment:
-      'Concept repository intended for future service deployment with Python automation, API integration, and dashboard/database connections.',
-    dependencies: ['Python', 'AI workflow concepts', 'BEMS data', 'Future API/database integration'],
+      'Supports Python research/training workflows and C++ controller deployment checks using CMake, pytest, EnergyPlus-oriented scaffolding, and an ONNX Runtime deployment boundary.',
+    dependencies: ['Python', 'pytest', 'C++', 'CMake', 'EnergyPlus concepts', 'LightGBM concepts', 'PPO', 'ONNX Runtime'],
     repository: 'https://github.com/rheslar1/BEMS-ai',
-    preview: githubPreview('BEMS-ai'),
+    preview: projectAsset('bems-ai-system-architecture.png'),
+    visuals: [
+      {
+        src: projectAsset('bems-ai-rl-simulated.svg'),
+        caption: 'Simulated BEMS-ai controller dashboard based on the 116-state and 12-action RL contract.'
+      },
+      {
+        src: projectAsset('bems-ai-system-architecture.png'),
+        caption: 'BEMS-ai system architecture diagram from the repository documentation.'
+      },
+      {
+        src: projectAsset('bems-ai-rl-control-loop.png'),
+        caption: 'Reinforcement-learning control loop diagram for BEMS-ai.'
+      }
+    ],
     tags: ['AI', 'BEMS', 'Python', 'Automation'],
     problem:
-      'Explore how AI assistance can support building energy management by helping analyze system behavior, alerts, and operational decisions.',
+      'Explore how reinforcement learning, forecasting, occupancy prediction, and digital-twin simulation can improve building energy management decisions.',
     architecture:
-      'Conceptual AI service layer intended to sit beside building-management data sources, automation scripts, and operator-facing interfaces.',
+      'Python package for state layout, prediction, simulation, digital twin logic, PPO training, and ONNX export; C++ source for action decoding, state building, controller behavior, and deployment-oriented tests.',
     deepDetails: [
-      'The project is positioned as an AI companion to building energy management workflows.',
-      'Future implementation can ingest building telemetry, alarms, equipment states, historical metrics, and operator notes.',
-      'A practical architecture would pair Python model/service code with Node.js APIs, MySQL data storage, and a React dashboard.',
-      'The strongest use cases are anomaly explanation, maintenance prioritization, operator recommendations, and summary generation.'
+      'The project defines a 116-dimensional state contract and 12-dimensional action contract for multi-zone HVAC, battery, and thermal storage control.',
+      'Python modules cover energy prediction, occupancy prediction, occupancy-aware setpoint adjustment, digital twin rollout, simulation, solar/battery optimization, power-grid optimization, and resource-advisor style insights.',
+      'C++ modules provide action_decoder, controller, digital_twin, and state_builder source for deterministic deployment-side behavior.',
+      'Tests cover cloud services, digital twin behavior, energy prediction, MDP/reward logic, occupancy prediction, simulation, training/export scaffolding, and C++ controller patterns.'
     ],
     features: [
-      'AI-oriented project framing for building energy management workflows.',
-      'Designed to support analysis, recommendations, and operational context around BEMS data.',
-      'Natural companion to Python automation, Node.js APIs, MySQL data storage, and React dashboards.'
+      'Multi-zone HVAC, battery, and thermal-storage control framing.',
+      'Forecast-aware state, reward, simulation, and digital-twin modules.',
+      'Python research path with C++ deployment boundary and ONNX export/validation scaffolding.',
+      'Architecture diagrams for system flow, RL control loop, and C++ deployment classes.'
     ],
     outcomes: [
-      'Defines a direction for applying AI to engineering and building-management operations.',
-      'Can be expanded into a service that connects model output to alarms, metrics, and maintenance workflows.',
-      'Shows interest in combining embedded systems, automation, data, and AI-enabled software.'
+      '116-dimensional state vector and 12-dimensional action vector define the BEMS control contract.',
+      '36 Python/C++ source and test files provide about 2,900 lines of controller, simulation, prediction, export, and test code.',
+      'Python and C++ tests document expected behavior across control, prediction, simulation, and reward workflows.'
     ],
     resumeBullets: [
       'Explored AI-backed support workflows for building energy management use cases.',
@@ -114,7 +164,13 @@ const projects = [
       'Positioned the project for future integration with APIs, databases, and dashboard interfaces.'
     ],
     screenshotCaption:
-      'Repository preview. Public source details were not readable from this environment, so this page summarizes the portfolio intent.'
+      'Simulated controller view is paired with real BEMS-ai architecture and RL control-loop diagrams from the repository.',
+    suggestedContent: [
+      'Capture pytest and CTest output from a clean run.',
+      'Add a training/reward plot from a PPO training session.',
+      'Add an ONNX export/validation screenshot once a trained policy artifact is generated.',
+      'Add a before/after energy-cost comparison using a representative simulation scenario.'
+    ]
   },
   {
     id: 'portfolio',
@@ -124,7 +180,17 @@ const projects = [
       'Deployed by GitHub Actions: npm ci, npm run build, upload the build artifact, and publish to GitHub Pages.',
     dependencies: ['React 18', 'Node.js', 'react-scripts', 'GitHub Actions', 'GitHub Pages'],
     repository: 'https://github.com/rheslar1/Rheslar1-github.io',
-    preview: githubPreview('Rheslar1-github.io'),
+    preview: projectAsset('portfolio-home.png'),
+    visuals: [
+      {
+        src: projectAsset('portfolio-home.png'),
+        caption: 'Real screenshot captured from the running portfolio production build.'
+      },
+      {
+        src: githubPreview('Rheslar1-github.io'),
+        caption: 'GitHub repository preview for the portfolio source.'
+      }
+    ],
     tags: ['React', 'Node.js', 'GitHub Actions', 'GitHub Pages'],
     problem:
       'Create a public portfolio that communicates embedded engineering, full-stack development, MySQL, automation, and GitHub project experience.',
@@ -145,7 +211,7 @@ const projects = [
     outcomes: [
       'Live portfolio is deployed at rheslar1.github.io/Rheslar1-github.io.',
       'Current resume positioning is visible: Embedded Engineer, Full Stack Developer, React, Node.js, and MySQL.',
-      'Deployment workflow has repeatedly completed successfully through GitHub Actions.'
+      'GitHub Actions deployment published the portfolio successfully to GitHub Pages.'
     ],
     resumeBullets: [
       'Built and deployed a React portfolio using Node.js build tooling and GitHub Pages.',
@@ -153,7 +219,12 @@ const projects = [
       'Used GitHub Actions to publish a production build from the main branch.'
     ],
     screenshotCaption:
-      'Repository preview for the live portfolio. The live site itself is the primary screenshot source.'
+      'Repository preview for the live portfolio. The live site itself is the primary screenshot source.',
+    suggestedContent: [
+      'Capture desktop and mobile screenshots after every major content update.',
+      'Add a GitHub Actions deployment screenshot showing the latest successful Pages run.',
+      'Add Lighthouse or accessibility results after the final content pass.'
+    ]
   },
   {
     id: 'bms',
@@ -163,7 +234,25 @@ const projects = [
       'Designed for containerized and embedded deployment with Docker services, a MySQL schema, Node.js API, React/Vite UI, Python AI service, and Yocto meta-bems layers.',
     dependencies: ['C++', 'Node.js', 'Express', 'mysql2', 'React', 'Vite', 'Recharts', 'Python', 'gRPC', 'Docker', 'Yocto'],
     repository: 'https://github.com/rheslar1/BMS',
-    preview: githubPreview('BMS'),
+    preview: projectAsset('bms-detail.png'),
+    visuals: [
+      {
+        src: projectAsset('bms-dashboard-simulated.svg'),
+        caption: 'Simulated BMS operations dashboard based on the React/Vite UI source and seeded MySQL schema.'
+      },
+      {
+        src: projectAsset('bms-detail.png'),
+        caption: 'Real screenshot captured from the running portfolio BMS project detail page.'
+      },
+      {
+        src: projectAsset('bms-uml-architecture.png'),
+        caption: 'BMS UML architecture diagram from the BMS repository.'
+      },
+      {
+        src: projectAsset('bms-uml-layers.png'),
+        caption: 'BMS layer diagram showing system separation.'
+      }
+    ],
     tags: ['C++', 'Node.js', 'React', 'MySQL', 'Yocto', 'Docker'],
     problem:
       'Model an enterprise-style building energy management platform that connects edge data, AI services, APIs, database storage, and operator-facing dashboards.',
@@ -184,9 +273,9 @@ const projects = [
       'Docker deployment files, MySQL schema, and Yocto recipes for embedded Linux packaging.'
     ],
     outcomes: [
-      'Shows a full-stack plus embedded architecture spanning C++, Python, JavaScript, Node.js, React, MySQL, Docker, and Yocto.',
-      'Demonstrates alignment between building-management software, edge systems, and web dashboards.',
-      'Provides the strongest portfolio case study for Embedded Engineer plus Full Stack Developer positioning.'
+      '38 source/config/database/deployment files and about 7,800 lines are tracked in the enterprise project tree when generated caches and node_modules are excluded.',
+      'Multi-service architecture covers React UI, Node.js API, Python AI service, C++ edge control, MySQL schema, Docker deployment, protobuf contracts, and Yocto recipes.',
+      'UML architecture, layer, sequence, and data-model diagrams are included as case-study documentation.'
     ],
     resumeBullets: [
       'Designed a multi-service BEMS architecture with edge C++, Node.js API, React dashboard, Python AI service, MySQL schema, Docker, and Yocto integration.',
@@ -194,7 +283,13 @@ const projects = [
       'Organized repository structure for deployment, documentation, edge-core code, API services, UI, AI service, and Yocto layers.'
     ],
     screenshotCaption:
-      'Repository preview for the BMS case study. UI screenshots from the React/Vite dashboard can be added as generated artifacts become available.'
+      'BMS case-study images combine a simulated dashboard view, a real running portfolio detail screenshot, and UML diagrams sourced from the BMS repository.',
+    suggestedContent: [
+      'Run the Docker stack and capture the real React dashboard with seeded MySQL data.',
+      'Capture API health, digital-twin, alarm, and schedule endpoint responses.',
+      'Add MySQL schema/entity screenshots or an ERD generated from schema.sql.',
+      'Add a deployment screenshot showing Docker services healthy together.'
+    ]
   },
   {
     id: 'ansible',
@@ -204,7 +299,17 @@ const projects = [
       'Executed with Ansible against local or remote inventory; playbooks support connectivity checks, command execution, and automation validation.',
     dependencies: ['Ansible', 'YAML', 'SSH', 'Inventory files', 'Linux shell commands'],
     repository: 'https://github.com/rheslar1/ansible',
-    preview: githubPreview('ansible'),
+    preview: projectAsset('ansible-playbook-simulated.svg'),
+    visuals: [
+      {
+        src: projectAsset('ansible-playbook-simulated.svg'),
+        caption: 'Simulated Ansible terminal output based on the repository playbooks and inventory structure.'
+      },
+      {
+        src: githubPreview('ansible'),
+        caption: 'GitHub repository preview for Ansible playbooks and inventory examples.'
+      }
+    ],
     tags: ['Ansible', 'Automation', 'Infrastructure'],
     problem:
       'Capture repeatable infrastructure automation examples for local and remote host workflows instead of relying on manual command execution.',
@@ -223,9 +328,9 @@ const projects = [
       'Inventory folder and configuration file layout for future expansion.'
     ],
     outcomes: [
-      'Demonstrates infrastructure-as-code habits for repeatable operations.',
-      'Provides starter playbooks that can grow into server provisioning, CI/CD support, or embedded Linux deployment automation.',
-      'Connects with resume experience around Jenkins, Docker, Yocto, Linux, and automation workflows.'
+      '3 starter playbooks cover hello-world validation, local ping checks, and remote SSH command execution.',
+      'Inventory and ansible.cfg examples establish a reusable structure for remote automation.',
+      'Repository can grow into provisioning, CI/CD support, and embedded Linux deployment automation.'
     ],
     resumeBullets: [
       'Created Ansible playbooks to standardize command execution, connectivity checks, and remote automation tasks.',
@@ -233,45 +338,71 @@ const projects = [
       'Structured repository for future inventory and playbook expansion.'
     ],
     screenshotCaption:
-      'Repository preview for Ansible automation examples. Terminal output screenshots can be added after playbook runs are captured.'
+      'Simulated terminal view shows the intended validation workflow. Replace it with real playbook output after running against a safe inventory.',
+    suggestedContent: [
+      'Capture a real ansible-playbook run with hostnames/IPs masked if needed.',
+      'Add ansible-lint or syntax-check output once linting is configured.',
+      'Add a short deployment before/after example for a real managed host.'
+    ]
   },
   {
     id: 'CameraDemo',
     title: 'CameraDemo',
-    summary: 'Camera and imaging demo project for capture, preview, and interface experiments.',
+    summary: 'Native C camera capture demo for Linux V4L2, mmap buffers, framebuffer/DRM display hooks, and i.MX93-style target deployment.',
     deployment:
-      'Demo repository intended for local hardware or workstation execution where camera devices, imaging libraries, or preview UIs are available.',
-    dependencies: ['Camera hardware', 'Imaging pipeline', 'Preview UI', 'Potential OpenCV integration'],
+      'Built with an aarch64 cross-compiler Makefile and deployable to an embedded Linux target over SCP/SSH for camera bring-up and display validation.',
+    dependencies: ['C', 'Linux V4L2', 'Framebuffer/DRM', 'mmap', 'aarch64-linux-gnu-gcc', 'SCP/SSH', 'Optional libpng'],
     repository: 'https://github.com/rheslar1/CameraDemo',
-    preview: githubPreview('CameraDemo'),
-    tags: ['Camera', 'Imaging', 'Demo'],
+    preview: projectAsset('camera-architecture.svg'),
+    visuals: [
+      {
+        src: projectAsset('camera-capture-simulated.svg'),
+        caption: 'Simulated camera capture console based on the V4L2, mmap, framebuffer, and i.MX93 deployment code.'
+      },
+      {
+        src: projectAsset('camera-detail.png'),
+        caption: 'Real screenshot captured from the running portfolio CameraDemo project detail page.'
+      },
+      {
+        src: projectAsset('camera-architecture.svg'),
+        caption: 'CameraDemo architecture diagram based on the V4L2, mmap, framebuffer, and i.MX93 deployment code.'
+      }
+    ],
+    tags: ['C', 'V4L2', 'Embedded Linux', 'i.MX93'],
     problem:
-      'Explore camera capture and imaging workflows that can support embedded, robotics, inspection, or UI demonstration scenarios.',
+      'Provide a small native utility for verifying camera device capability, capture formats, mmap buffers, timestamps, display output, and target deployment.',
     architecture:
-      'Demo-oriented repository intended for camera input, preview/display logic, and small interface experiments. Public source details were not readable from this environment.',
+      'main.c opens /dev/video0, queries V4L2 capabilities and formats, configures capture, requests four mmap buffers, queues frames, streams data, and routes output toward framebuffer/DRM or optional file export; the Makefile cross-compiles and deploys to an i.MX93-style target.',
     deepDetails: [
-      'The project is intended to represent camera capture and imaging experimentation aligned with embedded and OpenCV-style work.',
-      'Likely next implementation layers include device discovery, frame capture, preview rendering, diagnostic output, and image-processing hooks.',
-      'The demo can be expanded into a React/Node.js visualization or a native embedded Linux/OpenCV workflow depending on target hardware.',
-      'Adding real screenshots from a camera run would make this one of the strongest visual portfolio projects.'
+      'The capture path uses V4L2 ioctl calls including VIDIOC_QUERYCAP, VIDIOC_ENUM_FMT, VIDIOC_S_FMT, VIDIOC_REQBUFS, VIDIOC_QUERYBUF, VIDIOC_QBUF, and VIDIOC_STREAMON.',
+      'BUFFER_COUNT is set to 4, giving the application a four-buffer mmap capture path for frame acquisition.',
+      'frame_data_t records frame pointer, size, index, geometry, and capture timestamp for downstream processing or display.',
+      'The Makefile targets aarch64-linux-gnu-gcc and includes scp, ssh, run, and debug targets for embedded target iteration.'
     ],
     features: [
-      'Camera-oriented project space for capture and imaging experiments.',
-      'Can support OpenCV-style workflows, preview windows, diagnostics, or UI integration.',
-      'Natural fit for embedded Linux, robotics, medical-device imaging, and full-stack visualization work.'
+      'V4L2 capability query, format enumeration, format setting, buffer request, mmap mapping, queueing, and streaming.',
+      'Framebuffer/DRM display configuration hooks for HDMI or local display output.',
+      'Optional PNG/movie frame export hooks behind compile-time support.',
+      'Cross-compile and deploy workflow for embedded Linux target testing.'
     ],
     outcomes: [
-      'Provides a portfolio slot for camera and imaging work aligned with OpenCV and display-integration resume experience.',
-      'Can be expanded with screenshots, capture examples, and architecture diagrams as the demo matures.',
-      'Shows cross-over between embedded devices, imaging pipelines, and operator-facing software.'
+      'Native C application includes a 4-buffer mmap V4L2 capture path.',
+      'Makefile automates cross-compilation plus SCP/SSH deployment and target execution.',
+      'Architecture diagram documents the /dev/video0 to framebuffer/DRM capture and display flow.'
     ],
     resumeBullets: [
-      'Prepared a camera demo project area for imaging, capture, and interface experimentation.',
-      'Aligned project direction with embedded Linux, OpenCV, robotics, and display-integration experience.',
-      'Positioned the repository for future screenshots, diagnostics, and UI workflow examples.'
+      'Built a native C V4L2 camera capture demo with mmap buffers and framebuffer/DRM display integration hooks.',
+      'Created Makefile targets for aarch64 cross-compilation, SCP deployment, SSH execution, and debug builds.',
+      'Documented camera bring-up architecture for embedded Linux/i.MX93-style validation.'
     ],
     screenshotCaption:
-      'Repository preview. Public source details were not readable from this environment, so live screenshots should be added when available.'
+      'CameraDemo case-study visuals include a simulated capture console, a running portfolio detail screenshot, and an architecture diagram derived from the C/V4L2 implementation.',
+    suggestedContent: [
+      'Capture real target terminal output from make run with /dev/video0 connected.',
+      'Add a real frame or HDMI preview photo from the embedded target.',
+      'Add a hardware setup photo showing camera, target board, display, and network connection.',
+      'Add format/capability output for the tested camera module.'
+    ]
   }
 ];
 
