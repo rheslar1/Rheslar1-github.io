@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-  <title id="title">BEMS Energy Heat Map and Usage</title>
-  <desc id="desc">Simulated BEMS dashboard showing zone energy intensity, usage, comfort risk, and BEMS-ai optimization actions.</desc>
+  <title id="title">BEMS Actual Building Floorplan Energy Heat Map and Usage</title>
+  <desc id="desc">Simulated BEMS dashboard showing zone energy intensity, usage, comfort risk, and BEMS-ai optimization actions over the actual building floorplan.</desc>
   <rect width="1200" height="630" fill="#071936"/>
   <rect x="52" y="44" width="1096" height="542" rx="14" fill="#0b1f3a" stroke="#24507d" stroke-width="2"/>
-  <text x="86" y="100" fill="#eef6ff" font-family="Arial, sans-serif" font-size="34" font-weight="700">BEMS Energy Heat Map + Usage</text>
-  <text x="86" y="136" fill="#b7d2f2" font-family="Arial, sans-serif" font-size="18">Simulated BEMS zone energy intensity, usage trend, and BEMS-ai optimization actions</text>
+  <text x="86" y="100" fill="#eef6ff" font-family="Arial, sans-serif" font-size="34" font-weight="700">BEMS Actual Floorplan Heat Map + Usage</text>
+  <text x="86" y="136" fill="#b7d2f2" font-family="Arial, sans-serif" font-size="18">Energy intensity and usage trend over the building floorplan with BEMS-ai optimization actions</text>
 
   <defs>
     <style>
@@ -16,30 +16,33 @@
   </defs>
 
   <rect x="86" y="178" width="676" height="350" rx="10" fill="#102b52" stroke="#24507d"/>
-  <rect x="116" y="210" width="278" height="110" rx="8" fill="#0ea5e9"/>
-  <text class="zoneLabel" x="142" y="248">Lobby</text>
-  <text class="zoneMeta" x="142" y="280">8.4 kWh | 21.9 C</text>
-  <text class="zoneMeta" x="142" y="304">BEMS-ai: hold setpoint</text>
+  <text class="panelText" x="116" y="204">Actual building floorplan overlay</text>
 
-  <rect x="426" y="210" width="286" height="110" rx="8" fill="#f59e0b"/>
-  <text class="zoneLabel" x="452" y="248">Floor 1</text>
-  <text class="zoneMeta" x="452" y="280">18.7 kWh | 23.4 C</text>
-  <text class="zoneMeta" x="452" y="304">BEMS-ai: trim airflow</text>
+  <rect x="116" y="222" width="260" height="108" rx="4" fill="#0ea5e9" stroke="#eef6ff" stroke-width="2"/>
+  <text class="zoneLabel" x="142" y="258">Lobby</text>
+  <text class="zoneMeta" x="142" y="288">8.4 kWh | 21.9 C</text>
+  <text class="zoneMeta" x="142" y="312">BEMS-ai: hold setpoint</text>
 
-  <rect x="116" y="350" width="196" height="126" rx="8" fill="#38bdf8"/>
-  <text class="zoneLabel" x="140" y="390">Floor 2</text>
-  <text class="zoneMeta" x="140" y="422">11.2 kWh</text>
-  <text class="zoneMeta" x="140" y="448">BEMS-ai: maintain</text>
+  <rect x="402" y="222" width="310" height="158" rx="4" fill="#f59e0b" stroke="#eef6ff" stroke-width="2"/>
+  <text class="zoneLabel" x="428" y="260">Floor 1</text>
+  <text class="zoneMeta" x="428" y="292">18.7 kWh | 23.4 C</text>
+  <text class="zoneMeta" x="428" y="318">BEMS-ai: trim airflow</text>
 
-  <rect x="344" y="350" width="168" height="126" rx="8" fill="#22c55e"/>
-  <text class="zoneLabel" x="368" y="390">Tower B Lobby</text>
-  <text class="zoneMeta" x="368" y="422">5.6 kWh</text>
-  <text class="zoneMeta" x="368" y="448">BEMS-ai: low load</text>
+  <rect x="116" y="358" width="190" height="118" rx="4" fill="#2563eb" stroke="#eef6ff" stroke-width="2"/>
+  <text class="zoneLabel" x="140" y="396">Floor 2</text>
+  <text class="zoneMeta" x="140" y="428">11.2 kWh</text>
+  <text class="zoneMeta" x="140" y="452">BEMS-ai: maintain</text>
 
-  <rect x="544" y="350" width="168" height="126" rx="8" fill="#ef4444"/>
-  <text class="zoneLabel" x="568" y="390">Tower B Floor 1</text>
-  <text class="zoneMeta" x="568" y="422">24.1 kWh</text>
-  <text class="zoneMeta" x="568" y="448">BEMS-ai: high risk</text>
+  <rect x="326" y="358" width="50" height="118" rx="4" fill="#0b1f3a" stroke="#b7d2f2" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="337" y="406" fill="#b7d2f2" font-family="Arial, sans-serif" font-size="14" font-weight="700" transform="rotate(90 337 406)">CORE</text>
+
+  <rect x="402" y="404" width="140" height="72" rx="4" fill="#22c55e" stroke="#eef6ff" stroke-width="2"/>
+  <text class="zoneLabel" x="420" y="434">Tower B Lobby</text>
+  <text class="zoneMeta" x="420" y="462">5.6 kWh</text>
+
+  <rect x="562" y="404" width="150" height="72" rx="4" fill="#ef4444" stroke="#eef6ff" stroke-width="2"/>
+  <text class="zoneLabel" x="580" y="432">Tower B Floor 1</text>
+  <text class="zoneMeta" x="580" y="462">24.1 kWh | high</text>
 
   <rect x="802" y="178" width="286" height="350" rx="10" fill="#102b52" stroke="#24507d"/>
   <text class="panelTitle" x="832" y="226">Usage + BEMS-ai Readout</text>
@@ -62,5 +65,5 @@
   <rect x="296" y="548" width="56" height="16" rx="8" fill="#f59e0b"/>
   <rect x="366" y="548" width="56" height="16" rx="8" fill="#ef4444"/>
   <text x="440" y="562" fill="#b7d2f2" font-family="Arial, sans-serif" font-size="16">Low to high energy intensity</text>
-  <text x="86" y="592" fill="#b7d2f2" font-family="Arial, sans-serif" font-size="16">Simulated heat map and usage view based on BEMS zones, MySQL device schema, React dashboard, and BEMS-ai optimization workflow.</text>
+  <text x="86" y="592" fill="#b7d2f2" font-family="Arial, sans-serif" font-size="16">Simulated heat map and usage view over the actual BEMS floorplan, MySQL device schema, React dashboard, and BEMS-ai optimization workflow.</text>
 </svg>

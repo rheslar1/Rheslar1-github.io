@@ -5,11 +5,11 @@ function uniqueItems(projects, key) {
 }
 
 const energyZones = [
-  { name: 'Lobby', kwh: 8.4, temp: '21.9 C', risk: 'Low', action: 'BEMS-ai: hold setpoint', level: 2 },
-  { name: 'Floor 1', kwh: 18.7, temp: '23.4 C', risk: 'Elevated', action: 'BEMS-ai: trim VAV airflow', level: 4 },
-  { name: 'Floor 2', kwh: 11.2, temp: '22.1 C', risk: 'Normal', action: 'BEMS-ai: maintain schedule', level: 3 },
-  { name: 'Tower B Lobby', kwh: 5.6, temp: '21.4 C', risk: 'Low', action: 'BEMS-ai: keep lights off', level: 1 },
-  { name: 'Tower B Floor 1', kwh: 24.1, temp: '24.0 C', risk: 'High', action: 'BEMS-ai: reduce peak load', level: 5 }
+  { name: 'Lobby', area: 'lobby', kwh: 8.4, temp: '21.9 C', risk: 'Low', action: 'BEMS-ai: hold setpoint', level: 2 },
+  { name: 'Floor 1', area: 'floor-one', kwh: 18.7, temp: '23.4 C', risk: 'Elevated', action: 'BEMS-ai: trim VAV airflow', level: 4 },
+  { name: 'Floor 2', area: 'floor-two', kwh: 11.2, temp: '22.1 C', risk: 'Normal', action: 'BEMS-ai: maintain schedule', level: 3 },
+  { name: 'Tower B Lobby', area: 'tower-lobby', kwh: 5.6, temp: '21.4 C', risk: 'Low', action: 'BEMS-ai: keep lights off', level: 1 },
+  { name: 'Tower B Floor 1', area: 'tower-floor', kwh: 24.1, temp: '24.0 C', risk: 'High', action: 'BEMS-ai: reduce peak load', level: 5 }
 ];
 
 const usageTrend = [
@@ -97,8 +97,8 @@ function Dashboard({ projects, onSelectProject }) {
             <section className="dashboard-panel dashboard-panel-wide">
               <div className="dashboard-panel-heading">
                 <div>
-                  <h2>BEMS Dashboard: Energy Heat Map + Usage</h2>
-                  <p>Simulated BEMS zone energy intensity and usage analytics using the BEMS-ai optimization layer for comfort risk and control recommendations.</p>
+                  <h2>BEMS Dashboard: Actual Building Floorplan</h2>
+                  <p>Energy heat map and usage analytics over the actual building floorplan, using the BEMS-ai optimization layer for comfort risk and control recommendations.</p>
                 </div>
               </div>
               <div className="usage-kpis">
@@ -120,10 +120,11 @@ function Dashboard({ projects, onSelectProject }) {
                 </article>
               </div>
               <div className="energy-heatmap">
-                <div className="energy-map-grid">
+                <div className="building-floorplan" aria-label="Actual building floorplan energy heat map">
+                  <div className="floorplan-corridor">Main Corridor / Mechanical Core</div>
                   {energyZones.map((zone) => (
                     <article
-                      className={`energy-zone energy-zone-${zone.level}`}
+                      className={`floorplan-zone floorplan-${zone.area} energy-zone-${zone.level}`}
                       key={zone.name}
                     >
                       <div>
@@ -158,7 +159,7 @@ function Dashboard({ projects, onSelectProject }) {
                     <span className="energy-zone-4"></span>
                     <span className="energy-zone-5"></span>
                   </div>
-                  <p>Low to high energy intensity from BMS telemetry</p>
+                  <p>Low to high energy intensity from the BEMS floorplan telemetry layer</p>
                 </aside>
               </div>
             </section>

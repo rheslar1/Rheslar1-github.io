@@ -243,7 +243,7 @@ const projects = [
       },
       {
         src: projectAsset('bems-energy-heat-map.svg'),
-        caption: 'Simulated BEMS dashboard heat map and usage view showing zone-level energy intensity, comfort risk, and optimization actions.'
+        caption: 'BEMS dashboard view showing energy heat map and usage over the actual building floorplan.'
       },
       {
         src: projectAsset('bems-ai-rl-simulated.svg'),
@@ -270,7 +270,7 @@ const projects = [
     deepDetails: [
       'edge-core is the embedded/edge layer and is primarily C++, with BACnet-oriented integration and CMake-style structure.',
       'node-api is an Express service that depends on cors, @grpc/grpc-js, @grpc/proto-loader, and mysql2 for API, service, and database workflows.',
-      'ui is a React/Vite dashboard that uses Recharts for operator-facing visualization, including BEMS-ai energy heat-map and usage concepts.',
+      'ui is a React/Vite dashboard that uses Recharts for operator-facing visualization, including BEMS-ai energy heat-map and usage overlays on the actual building floorplan.',
       'ai-service is the BEMS-ai/Python optimization layer with gRPC/protobuf dependencies, designed to connect predictive energy analysis into the system.',
       'database/schema.sql provides the database foundation, while Docker files and Yocto meta-bems recipes support containerized and embedded Linux deployment.'
     ],
@@ -292,10 +292,10 @@ const projects = [
       'Organized repository structure for deployment, documentation, edge-core code, API services, UI, AI service, and Yocto layers.'
     ],
     screenshotCaption:
-      'BEMS case-study images combine a simulated dashboard view, BEMS heat map and usage panel, BEMS-ai controller view, a real running portfolio detail screenshot, and UML diagrams sourced from the repository.',
+      'BEMS case-study images combine a simulated dashboard view, energy heat map and usage over the actual building floorplan, BEMS-ai controller view, a real running portfolio detail screenshot, and UML diagrams sourced from the repository.',
     suggestedContent: [
       'Run the Docker stack and capture the real React dashboard with seeded MySQL data.',
-      'Capture a real BEMS energy heat map and usage dashboard from telemetry or MySQL sample data.',
+      'Capture a real BEMS energy heat map and usage dashboard over the actual building floorplan from telemetry or MySQL sample data.',
       'Capture API health, digital-twin, alarm, and schedule endpoint responses.',
       'Add MySQL schema/entity screenshots or an ERD generated from schema.sql.',
       'Add a deployment screenshot showing Docker services healthy together.'
