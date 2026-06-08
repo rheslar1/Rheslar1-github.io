@@ -5,7 +5,7 @@ Your engineering portfolio is ready for cloud deployment with multiple options!
 ## 🚀 Recommended: Vercel (2 Minutes)
 
 ### Quick Start
-1. Go to https://vercel.com
+1. Use the GitHub Pages workflow in this repository
 2. Click "Sign Up" → "Continue with GitHub"
 3. Click "New Project" → Select "rheslar1-github.io"
 4. Click "Deploy"
@@ -109,8 +109,8 @@ Your engineering portfolio is ready for cloud deployment with multiple options!
 # Step 1: Ensure code is pushed to GitHub
 git push origin main
 
-# Step 2: Visit Vercel
-# https://vercel.com
+# Step 2: Use the GitHub Pages workflow
+# .github/workflows/static.yml
 
 # Step 3: Sign Up with GitHub
 # Create account → Authorize

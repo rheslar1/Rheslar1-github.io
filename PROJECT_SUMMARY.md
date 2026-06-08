@@ -100,7 +100,7 @@ Rheslar1-github.io/
 
 ### Quick Deploy (2 Minutes)
 ```bash
-1. Go to https://vercel.com
+1. Use the GitHub Pages workflow in this repository
 2. Sign in with GitHub
 3. Import: rheslar1-github.io
 4. Click Deploy
