@@ -4,6 +4,14 @@ function uniqueItems(projects, key) {
   return Array.from(new Set(projects.flatMap((project) => project[key] || [])));
 }
 
+const energyZones = [
+  { name: 'Lobby', kwh: 8.4, temp: '21.9 C', risk: 'Low', action: 'BEMS-ai: hold setpoint', level: 2 },
+  { name: 'Floor 1', kwh: 18.7, temp: '23.4 C', risk: 'Elevated', action: 'BEMS-ai: trim VAV airflow', level: 4 },
+  { name: 'Floor 2', kwh: 11.2, temp: '22.1 C', risk: 'Normal', action: 'BEMS-ai: maintain schedule', level: 3 },
+  { name: 'Tower B Lobby', kwh: 5.6, temp: '21.4 C', risk: 'Low', action: 'BEMS-ai: keep lights off', level: 1 },
+  { name: 'Tower B Floor 1', kwh: 24.1, temp: '24.0 C', risk: 'High', action: 'BEMS-ai: reduce peak load', level: 5 }
+];
+
 function Dashboard({ projects, onSelectProject }) {
   const [failedVisuals, setFailedVisuals] = React.useState({});
   const allDependencies = uniqueItems(projects, 'dependencies');
@@ -75,6 +83,49 @@ function Dashboard({ projects, onSelectProject }) {
           </div>
 
           <div className="dashboard-layout">
+            <section className="dashboard-panel dashboard-panel-wide">
+              <div className="dashboard-panel-heading">
+                <div>
+                  <h2>BMS + BEMS-ai Energy Heat Map</h2>
+                  <p>Simulated BMS zone energy intensity using the BEMS-ai optimization layer for comfort risk and control recommendations.</p>
+                </div>
+              </div>
+              <div className="energy-heatmap">
+                <div className="energy-map-grid">
+                  {energyZones.map((zone) => (
+                    <article
+                      className={`energy-zone energy-zone-${zone.level}`}
+                      key={zone.name}
+                    >
+                      <div>
+                        <h3>{zone.name}</h3>
+                        <strong>{zone.kwh} kWh</strong>
+                      </div>
+                      <p>{zone.temp} | {zone.risk} risk</p>
+                      <span>{zone.action}</span>
+                    </article>
+                  ))}
+                </div>
+                <aside className="energy-readout">
+                  <h3>BEMS-ai Optimization Readout</h3>
+                  <ul>
+                    <li>Peak zone: Tower B Floor 1</li>
+                    <li>Total sampled load: 68.0 kWh</li>
+                    <li>Estimated savings target: 18 kWh</li>
+                    <li>BEMS-ai action: shift load and trim peak airflow</li>
+                  </ul>
+                  <div className="heatmap-legend" aria-label="Energy heat map legend">
+                    <span className="energy-zone-1"></span>
+                    <span className="energy-zone-2"></span>
+                    <span className="energy-zone-3"></span>
+                    <span className="energy-zone-4"></span>
+                    <span className="energy-zone-5"></span>
+                  </div>
+                  <p>Low to high energy intensity from BMS telemetry</p>
+                </aside>
+              </div>
+            </section>
+
             <section className="dashboard-panel dashboard-panel-wide">
               <div className="dashboard-panel-heading">
                 <div>

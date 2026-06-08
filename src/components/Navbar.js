@@ -58,7 +58,7 @@ function Navbar({ onThemeToggle, currentTheme }) {
           </li>
           <li>
             <a 
-              href="#projects" 
+              href="#experience"
               className="nav-link"
               onClick={(e) => handleScroll(e, 'experience')}
             >
