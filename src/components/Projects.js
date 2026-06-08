@@ -29,7 +29,14 @@ function Projects({ projects, onSelectProject }) {
           {projects.map((project, index) => (
             <div key={index} className="project-card">
               <h3>{project.title}</h3>
-              <p>{project.summary}</p>
+              <div className="project-card-section">
+                <h4>Project Summary</h4>
+                <p>{project.summary}</p>
+              </div>
+              <div className="project-card-section">
+                <h4>Deployment Details</h4>
+                <p>{project.deployment}</p>
+              </div>
               <div className="project-tags">
                 {project.tags.map((tag, tagIndex) => (
                   <span key={tagIndex} className="tag">{tag}</span>

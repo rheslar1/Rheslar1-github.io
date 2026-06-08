@@ -73,11 +73,11 @@ gtag('event', 'project_viewed', {
 });
 ```
 
-### Vercel Analytics
-- Automatically included with Vercel
-- View in project dashboard
-- No setup required
-- Real-time metrics
+### GitHub Pages Analytics Options
+- Add Google Analytics for visitor reporting
+- Use Google Search Console for search visibility
+- Use Lighthouse and PageSpeed Insights for performance checks
+- Review GitHub Actions runs for deployment health
 
 ---
 
@@ -119,11 +119,10 @@ const Component = React.lazy(() => import('./Component'));
 
 ## 🔐 Security Headers
 
-### Vercel Auto-Configured
-- HSTS (HTTP Strict Transport Security)
-- X-Frame-Options (Clickjack protection)
-- X-Content-Type-Options (MIME sniffing prevention)
-- Referrer-Policy
+### GitHub Pages Defaults
+- HTTPS is available for the GitHub Pages site
+- Static assets are served through GitHub Pages infrastructure
+- Application-level security should be handled through safe React rendering and dependency maintenance
 
 ### Additional Headers
 ```json
@@ -265,13 +264,13 @@ Sitemap: https://rheslar1.github.io/sitemap.xml
 
 ## 📊 Analytics Dashboard Setup
 
-### Vercel Analytics
+### GitHub Pages Reporting
 ```
-1. Go to project Settings
-2. Analytics → Enable
-3. View real-time data
-4. Track visitor counts
-5. Monitor performance
+1. Open the repository Actions tab
+2. Review the latest Pages deployment run
+3. Confirm install, build, upload, and deploy steps succeeded
+4. Check the live site with Lighthouse or PageSpeed Insights
+5. Add Google Analytics if visitor metrics are needed
 ```
 
 ### Google Search Console
@@ -325,7 +324,6 @@ Sitemap: https://rheslar1.github.io/sitemap.xml
 ## 📞 Support & Resources
 
 ### Documentation
-- [Vercel Docs](https://vercel.com/docs)
 - [Google Analytics Help](https://support.google.com/analytics)
 - [Google Search Console Help](https://support.google.com/webmasters)
 

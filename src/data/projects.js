@@ -5,6 +5,9 @@ const projects = [
     id: 'pythonProject',
     title: 'pythonProject',
     summary: 'Python command-line project for user and task-list management experiments.',
+    deployment:
+      'Runs locally with Python from the command line; data is stored in users.csv and can later be migrated to MySQL or an API-backed service.',
+    dependencies: ['Python standard library', 'csv', 'os', 'dataclasses'],
     repository: 'https://github.com/rheslar1/pythonProject',
     preview: githubPreview('pythonProject'),
     tags: ['Python', 'CSV', 'CLI', 'Automation'],
@@ -35,6 +38,9 @@ const projects = [
     id: 'study',
     title: 'study',
     summary: 'Study and reference repository for engineering notes, experiments, and learning material.',
+    deployment:
+      'Documentation/reference repository hosted on GitHub; published by repository browsing rather than an application runtime.',
+    dependencies: ['GitHub', 'Markdown', 'Topic folders', 'Code examples'],
     repository: 'https://github.com/rheslar1/study',
     preview: githubPreview('study'),
     tags: ['Study', 'Learning', 'Reference'],
@@ -64,6 +70,9 @@ const projects = [
     id: 'BEMS-ai',
     title: 'BEMS-ai',
     summary: 'AI-focused building energy management concept for intelligent system support.',
+    deployment:
+      'Concept repository intended for future service deployment with Python automation, API integration, and dashboard/database connections.',
+    dependencies: ['Python', 'AI workflow concepts', 'BEMS data', 'Future API/database integration'],
     repository: 'https://github.com/rheslar1/BEMS-ai',
     preview: githubPreview('BEMS-ai'),
     tags: ['AI', 'BEMS', 'Python', 'Automation'],
@@ -93,6 +102,9 @@ const projects = [
     id: 'portfolio',
     title: 'Rheslar1-github.io',
     summary: 'React portfolio built with Node.js tooling and deployed through GitHub Pages.',
+    deployment:
+      'Deployed by GitHub Actions: npm ci, npm run build, upload the build artifact, and publish to GitHub Pages.',
+    dependencies: ['React 18', 'Node.js', 'react-scripts', 'GitHub Actions', 'GitHub Pages'],
     repository: 'https://github.com/rheslar1/Rheslar1-github.io',
     preview: githubPreview('Rheslar1-github.io'),
     tags: ['React', 'Node.js', 'GitHub Actions', 'GitHub Pages'],
@@ -123,6 +135,9 @@ const projects = [
     id: 'bms',
     title: 'BMS',
     summary: 'Building energy management system with edge C++, Node.js API, React UI, Flask AI service, MySQL, Docker, and Yocto integration.',
+    deployment:
+      'Designed for containerized and embedded deployment with Docker services, a MySQL schema, Node.js API, React/Vite UI, Python AI service, and Yocto meta-bems layers.',
+    dependencies: ['C++', 'Node.js', 'Express', 'mysql2', 'React', 'Vite', 'Recharts', 'Python', 'gRPC', 'Docker', 'Yocto'],
     repository: 'https://github.com/rheslar1/BMS',
     preview: githubPreview('BMS'),
     tags: ['C++', 'Node.js', 'React', 'MySQL', 'Yocto', 'Docker'],
@@ -154,6 +169,9 @@ const projects = [
     id: 'ansible',
     title: 'ansible',
     summary: 'Infrastructure automation repository with Ansible playbooks and inventory examples.',
+    deployment:
+      'Executed with Ansible against local or remote inventory; playbooks support connectivity checks, command execution, and automation validation.',
+    dependencies: ['Ansible', 'YAML', 'SSH', 'Inventory files', 'Linux shell commands'],
     repository: 'https://github.com/rheslar1/ansible',
     preview: githubPreview('ansible'),
     tags: ['Ansible', 'Automation', 'Infrastructure'],
@@ -184,6 +202,9 @@ const projects = [
     id: 'CameraDemo',
     title: 'CameraDemo',
     summary: 'Camera and imaging demo project for capture, preview, and interface experiments.',
+    deployment:
+      'Demo repository intended for local hardware or workstation execution where camera devices, imaging libraries, or preview UIs are available.',
+    dependencies: ['Camera hardware', 'Imaging pipeline', 'Preview UI', 'Potential OpenCV integration'],
     repository: 'https://github.com/rheslar1/CameraDemo',
     preview: githubPreview('CameraDemo'),
     tags: ['Camera', 'Imaging', 'Demo'],

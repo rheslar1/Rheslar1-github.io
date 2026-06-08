@@ -69,6 +69,20 @@ function ProjectDetails({ project, onBack }) {
             </article>
 
             <article className="detail-panel">
+              <h2>Deployment Details</h2>
+              <p>{project.deployment}</p>
+            </article>
+
+            <article className="detail-panel">
+              <h2>Dependencies / Stack</h2>
+              <ul>
+                {project.dependencies.map((dependency) => (
+                  <li key={dependency}>{dependency}</li>
+                ))}
+              </ul>
+            </article>
+
+            <article className="detail-panel">
               <h2>Features</h2>
               <ul>
                 {project.features.map((feature) => (
