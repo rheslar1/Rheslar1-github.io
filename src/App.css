@@ -2358,6 +2358,7 @@ section h2 {
   }
 
   .about-highlights,
+  .all-projects-grid,
   .bms-login-layout,
   .bms-stat-row,
   .channel-stat-strip,
@@ -2371,6 +2372,7 @@ section h2 {
   .detail-layout,
   .detail-stat-grid,
   .detail-story-grid,
+  .engineering-report-grid,
   .proof-point-grid,
   .detail-two-column,
   .database-group-grid,
@@ -2393,6 +2395,16 @@ section h2 {
     display: grid;
     grid-template-columns: 1fr;
     align-items: start;
+  }
+
+  .rail-scroller {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    overflow: visible;
+  }
+
+  .project-video-card.compact {
+    width: auto;
   }
 
   .building-floorplan {
