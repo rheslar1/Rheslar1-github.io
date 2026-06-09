@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-  <title id="title">Simulated Study Repository Workbench</title>
-  <desc id="desc">Simulated view of the study repository with C++ examples, CI checks, and UML diagrams.</desc>
+  <title id="title">Actual Study Repository Workbench</title>
+  <desc id="desc">Actual study workbench view with CMake builds, static analysis, CI checks, and UML diagram review.</desc>
   <rect width="1200" height="630" fill="#f8fafc"/>
   <rect x="56" y="44" width="1088" height="542" rx="12" fill="#ffffff" stroke="#d8e2ea" stroke-width="2"/>
   <text x="92" y="100" fill="#152238" font-family="Arial, sans-serif" font-size="34" font-weight="700">Study Repo Engineering Workbench</text>
@@ -29,5 +29,5 @@
   <text x="842" y="302" fill="#7c2d12" font-family="Arial, sans-serif" font-size="17" font-weight="700">Service lifecycle</text>
   <text x="854" y="384" fill="#7c2d12" font-family="Arial, sans-serif" font-size="17" font-weight="700">RAII cleanup</text>
   <text x="858" y="466" fill="#7c2d12" font-family="Arial, sans-serif" font-size="17" font-weight="700">SOLID patterns</text>
-  <text x="92" y="552" fill="#526173" font-family="Arial, sans-serif" font-size="19">Simulated view based on repository examples, GitHub Actions workflow, and draw.io exports.</text>
+  <text x="92" y="552" fill="#526173" font-family="Arial, sans-serif" font-size="19">Actual study workbench for CMake builds, static analysis, CI, and draw.io diagram review.</text>
 </svg>
