@@ -2321,6 +2321,9 @@ section h2 {
 .eco-system-summary,
 .eco-kpi-grid,
 .eco-dashboard-grid,
+.eco-building-list,
+.eco-zone-list,
+.eco-floor-grid,
 .eco-equipment-grid,
 .eco-distribution-list,
 .eco-project-list,
@@ -2520,6 +2523,142 @@ section h2 {
 .eco-alarm.high .eco-priority-badge {
   background: color-mix(in srgb, var(--eco-critical) 15%, var(--eco-panel));
   color: var(--eco-critical);
+}
+
+.eco-building-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.eco-building-list section,
+.eco-zone-list section,
+.eco-floor-grid section {
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid var(--eco-line);
+  border-radius: 6px;
+  background: var(--eco-field);
+}
+
+.eco-building-list span,
+.eco-zone-list span,
+.eco-zone-list small,
+.eco-floor-grid span,
+.eco-floor-grid small,
+.eco-floor-grid em {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.eco-building-list strong,
+.eco-zone-list strong,
+.eco-floor-grid strong,
+.eco-schedule-table strong {
+  display: block;
+  color: var(--eco-ink);
+}
+
+.eco-building-list strong {
+  margin-top: 7px;
+  font-size: 1.04rem;
+  line-height: 1.25;
+}
+
+.eco-zone-list section {
+  display: grid;
+  gap: 8px;
+  border-left: 5px solid var(--eco-green);
+}
+
+.eco-zone-list section > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.eco-zone-list .zone-cold {
+  border-left-color: #2563eb;
+}
+
+.eco-zone-list .zone-normal {
+  border-left-color: #16a34a;
+}
+
+.eco-zone-list .zone-mid {
+  border-left-color: var(--eco-warning);
+}
+
+.eco-zone-list .zone-hot {
+  border-left-color: var(--eco-critical);
+}
+
+.eco-floor-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.eco-floor-grid section {
+  display: grid;
+  gap: 8px;
+  border-top: 4px solid var(--eco-green);
+}
+
+.eco-floor-grid section.elevated {
+  border-top-color: var(--eco-warning);
+}
+
+.eco-floor-grid section.high {
+  border-top-color: var(--eco-critical);
+}
+
+.eco-floor-grid strong {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.eco-floor-grid small,
+.eco-floor-grid em {
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.eco-floor-grid em {
+  font-style: normal;
+}
+
+.eco-schedule-table {
+  min-width: 0;
+  overflow-x: auto;
+  border: 1px solid var(--eco-line);
+  border-radius: 6px;
+  background: var(--eco-field);
+}
+
+.eco-schedule-table [role='row'] {
+  min-width: 760px;
+  display: grid;
+  grid-template-columns: minmax(150px, 1.25fr) repeat(5, minmax(110px, 1fr));
+  gap: 0;
+  border-bottom: 1px solid var(--eco-line);
+}
+
+.eco-schedule-table [role='row']:last-child {
+  border-bottom: 0;
+}
+
+.eco-schedule-table [role='columnheader'],
+.eco-schedule-table [role='cell'] {
+  min-width: 0;
+  padding: 12px;
+  color: var(--muted);
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.eco-schedule-table [role='columnheader'] {
+  background: color-mix(in srgb, var(--eco-green) 12%, var(--eco-panel));
+  color: var(--eco-green-dark);
+  font-size: 0.76rem;
+  font-weight: 1000;
+  text-transform: uppercase;
 }
 
 .eco-equipment-grid {
