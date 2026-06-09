@@ -5,11 +5,11 @@ function uniqueItems(projects, key) {
 }
 
 const energyZones = [
-  { name: 'Lobby', area: 'lobby', kwh: 8.4, temp: '21.9 C', risk: 'Low', action: 'BEMS-ai: hold setpoint', level: 2 },
-  { name: 'Floor 1', area: 'floor-one', kwh: 18.7, temp: '23.4 C', risk: 'Elevated', action: 'BEMS-ai: trim VAV airflow', level: 4 },
-  { name: 'Floor 2', area: 'floor-two', kwh: 11.2, temp: '22.1 C', risk: 'Normal', action: 'BEMS-ai: maintain schedule', level: 3 },
-  { name: 'Tower B Lobby', area: 'tower-lobby', kwh: 5.6, temp: '21.4 C', risk: 'Low', action: 'BEMS-ai: keep lights off', level: 1 },
-  { name: 'Tower B Floor 1', area: 'tower-floor', kwh: 24.1, temp: '24.0 C', risk: 'High', action: 'BEMS-ai: reduce peak load', level: 5 }
+  { name: 'Lobby', area: 'lobby', kwh: 8.4, temp: '21.9 C', risk: 'Low', action: 'BEMS-ai: hold setpoint', heat: 'normal' },
+  { name: 'Floor 1', area: 'floor-one', kwh: 18.7, temp: '23.4 C', risk: 'Elevated', action: 'BEMS-ai: trim VAV airflow', heat: 'mid' },
+  { name: 'Floor 2', area: 'floor-two', kwh: 11.2, temp: '22.1 C', risk: 'Normal', action: 'BEMS-ai: maintain schedule', heat: 'normal' },
+  { name: 'Tower B Lobby', area: 'tower-lobby', kwh: 5.6, temp: '21.4 C', risk: 'Low', action: 'BEMS-ai: keep lights off', heat: 'cold' },
+  { name: 'Tower B Floor 1', area: 'tower-floor', kwh: 24.1, temp: '24.0 C', risk: 'High', action: 'BEMS-ai: reduce peak load', heat: 'hot' }
 ];
 
 const usageTrend = [
@@ -124,7 +124,7 @@ function Dashboard({ projects, onSelectProject }) {
                   <div className="floorplan-corridor">Main Corridor / Mechanical Core</div>
                   {energyZones.map((zone) => (
                     <article
-                      className={`floorplan-zone floorplan-${zone.area} energy-zone-${zone.level}`}
+                      className={`floorplan-zone floorplan-${zone.area} energy-zone-${zone.heat}`}
                       key={zone.name}
                     >
                       <div>
@@ -153,13 +153,12 @@ function Dashboard({ projects, onSelectProject }) {
                     ))}
                   </div>
                   <div className="heatmap-legend" aria-label="Energy heat map legend">
-                    <span className="energy-zone-1"></span>
-                    <span className="energy-zone-2"></span>
-                    <span className="energy-zone-3"></span>
-                    <span className="energy-zone-4"></span>
-                    <span className="energy-zone-5"></span>
+                    <span className="energy-zone-cold">Cold</span>
+                    <span className="energy-zone-normal">Normal</span>
+                    <span className="energy-zone-mid">Mid</span>
+                    <span className="energy-zone-hot">Hot</span>
                   </div>
-                  <p>Low to high energy intensity from the BEMS floorplan telemetry layer</p>
+                  <p>Blue cold, green normal, orange mid, and red hot energy states from the BEMS floorplan telemetry layer</p>
                 </aside>
               </div>
             </section>

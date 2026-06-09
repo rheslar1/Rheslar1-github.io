@@ -1063,23 +1063,19 @@ section h2 {
   font-weight: 800;
 }
 
-.energy-zone-1 {
-  background: #16a34a;
-}
-
-.energy-zone-2 {
-  background: #0ea5e9;
-}
-
-.energy-zone-3 {
+.energy-zone-cold {
   background: #2563eb;
 }
 
-.energy-zone-4 {
+.energy-zone-normal {
+  background: #16a34a;
+}
+
+.energy-zone-mid {
   background: #f59e0b;
 }
 
-.energy-zone-5 {
+.energy-zone-hot {
   background: #dc2626;
 }
 
@@ -1107,14 +1103,21 @@ section h2 {
 
 .heatmap-legend {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 6px;
   margin: 22px 0 10px;
 }
 
 .heatmap-legend span {
-  height: 14px;
-  border-radius: 999px;
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 900;
+  line-height: 1;
 }
 
 .usage-chart {
