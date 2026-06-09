@@ -2231,7 +2231,7 @@ section h2 {
 
 .eco-workspace {
   min-width: 0;
-  padding: 22px 24px 58px;
+  padding: 16px 18px 42px;
 }
 
 .eco-topbar,
@@ -2249,9 +2249,9 @@ section h2 {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 18px;
-  padding: 18px;
-  margin-bottom: 16px;
+  gap: 14px;
+  padding: 14px;
+  margin-bottom: 10px;
 }
 
 .eco-topbar h1,
@@ -2263,7 +2263,7 @@ section h2 {
 }
 
 .eco-topbar h1 {
-  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-size: clamp(1.65rem, 3.2vw, 2.7rem);
 }
 
 .eco-topbar-actions {
@@ -2305,10 +2305,10 @@ section h2 {
 .eco-command-hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.55fr);
-  gap: 18px;
+  gap: 12px;
   align-items: end;
-  padding: 22px;
-  margin-bottom: 16px;
+  padding: 16px;
+  margin-bottom: 10px;
   background:
     linear-gradient(135deg, color-mix(in srgb, var(--eco-green) 16%, transparent), transparent 42%),
     var(--eco-panel);
@@ -2316,21 +2316,27 @@ section h2 {
 
 .eco-command-hero h2 {
   max-width: 860px;
-  font-size: clamp(1.5rem, 3vw, 2.35rem);
+  font-size: clamp(1.22rem, 2.4vw, 1.9rem);
 }
 
 .eco-command-hero p,
 .eco-card p,
 .eco-stack-note {
-  margin: 10px 0 0;
+  margin: 8px 0 0;
   color: var(--muted);
-  line-height: 1.65;
+  line-height: 1.5;
 }
 
 .eco-system-summary,
 .eco-kpi-grid,
 .eco-dashboard-grid,
+.eco-alarm-detail-grid,
+.eco-alarm-location-grid,
+.eco-alarm-narrative,
+.eco-alarm-queue,
+.eco-building-detail-grid,
 .eco-building-list,
+.eco-building-system-grid,
 .eco-zone-list,
 .eco-floor-grid,
 .eco-equipment-grid,
@@ -2338,7 +2344,7 @@ section h2 {
 .eco-project-list,
 .eco-alarm-list {
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
 .eco-system-summary {
@@ -2347,7 +2353,7 @@ section h2 {
 
 .eco-system-summary article {
   min-width: 0;
-  padding: 14px;
+  padding: 10px;
   border: 1px solid var(--eco-line);
   border-radius: 6px;
   background: var(--eco-field);
@@ -2366,32 +2372,32 @@ section h2 {
 
 .eco-system-summary strong {
   display: block;
-  margin-top: 8px;
+  margin-top: 5px;
   color: var(--eco-green-dark);
-  font-size: 1.2rem;
+  font-size: 1.08rem;
 }
 
 .eco-kpi-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .eco-kpi {
-  padding: 16px;
+  padding: 12px;
   border-top: 4px solid var(--eco-green);
 }
 
 .eco-kpi strong {
   display: block;
-  margin-top: 9px;
+  margin-top: 6px;
   color: var(--eco-ink);
-  font-size: clamp(1.65rem, 3vw, 2.25rem);
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
   line-height: 1;
 }
 
 .eco-kpi small {
   display: block;
-  margin-top: 8px;
+  margin-top: 5px;
   color: var(--muted);
   font-weight: 800;
 }
@@ -2401,7 +2407,7 @@ section h2 {
 }
 
 .eco-card {
-  padding: 18px;
+  padding: 14px;
 }
 
 .eco-card-wide {
@@ -2416,13 +2422,13 @@ section h2 {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 16px;
+  gap: 12px;
+  margin-bottom: 10px;
 }
 
 .eco-card-heading h2 {
-  margin-top: 4px;
-  font-size: 1.45rem;
+  margin-top: 3px;
+  font-size: 1.24rem;
 }
 
 .eco-card-heading > strong {
@@ -2441,6 +2447,15 @@ section h2 {
 .ecostruxure-dashboard .usage-kpis article {
   background: var(--eco-field);
   border-color: var(--eco-line);
+}
+
+.ecostruxure-dashboard .usage-kpis {
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.ecostruxure-dashboard .usage-kpis article {
+  padding: 10px;
 }
 
 .ecostruxure-dashboard .usage-kpis strong {
@@ -2470,6 +2485,36 @@ section h2 {
 .ecostruxure-dashboard .usage-bar span,
 .ecostruxure-dashboard .dashboard-meter span {
   background: linear-gradient(180deg, var(--eco-green), var(--eco-green-dark));
+}
+
+.ecostruxure-dashboard .building-floorplan {
+  min-height: 360px;
+  gap: 8px;
+  padding: 10px;
+}
+
+.ecostruxure-dashboard .floorplan-zone {
+  gap: 8px;
+  padding: 12px;
+}
+
+.ecostruxure-dashboard .floorplan-zone strong {
+  margin-top: 6px;
+  font-size: clamp(1.45rem, 3vw, 2.05rem);
+}
+
+.ecostruxure-dashboard .energy-readout {
+  padding: 14px;
+}
+
+.ecostruxure-dashboard .usage-chart {
+  height: 94px;
+  margin-top: 12px;
+  padding-top: 10px;
+}
+
+.ecostruxure-dashboard .heatmap-legend {
+  margin: 14px 0 4px;
 }
 
 .eco-alarm {

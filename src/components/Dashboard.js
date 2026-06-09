@@ -210,7 +210,7 @@ function Dashboard({ projects, onSelectProject }) {
     ? 'Alarm queue, response ownership, and BMS troubleshooting details are available from the active console view.'
     : isBuildingView
       ? 'Building Summary provides a focused operational page for facility identity, floors, zones, rooms, and systems.'
-      : 'Monitor, manage, and optimize the simulated facility from one control view.';
+      : '';
   const heroCopy = isAlarmView
     ? 'Select an alarm to inspect its location, source point, current reading, threshold, likely cause, impact, response steps, and event history.'
     : isBuildingView
@@ -280,20 +280,22 @@ function Dashboard({ projects, onSelectProject }) {
           </div>
         </section>
 
-        <section className="eco-command-hero">
-          <div>
-            <h2>{heroTitle}</h2>
-            <p>{heroCopy}</p>
-          </div>
-          <div className="eco-system-summary" aria-label="System health summary">
-            {systemSummary.map((item) => (
-              <article key={item.label}>
-                <span>{item.label}</span>
-                <strong>{item.value}</strong>
-              </article>
-            ))}
-          </div>
-        </section>
+        {(isAlarmView || isBuildingView) && (
+          <section className="eco-command-hero">
+            <div>
+              <h2>{heroTitle}</h2>
+              <p>{heroCopy}</p>
+            </div>
+            <div className="eco-system-summary" aria-label="System health summary">
+              {systemSummary.map((item) => (
+                <article key={item.label}>
+                  <span>{item.label}</span>
+                  <strong>{item.value}</strong>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
 
         <section className="eco-kpi-grid" aria-label="Building dashboard KPIs">
           {activeKpis.map((kpi) => (
