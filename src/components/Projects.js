@@ -157,7 +157,7 @@ function Projects({ projects, onSelectProject }) {
       { threshold: 0.1 }
     );
 
-    const cards = document.querySelectorAll('.project-card');
+    const cards = document.querySelectorAll('.project-card, .project-video-card, .embedded-proof-grid article, .roadmap-panel');
     cards.forEach((el) => observer.observe(el));
 
     return () => {
