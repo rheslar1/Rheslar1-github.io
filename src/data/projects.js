@@ -138,9 +138,9 @@ const projects = [
   {
     id: 'BEMS-ai',
     title: 'BEMS-ai',
-    summary: 'Reinforcement-learning BEMS controller with Python training, digital twin logic, forecasting, ONNX export, and C++ deployment code.',
+    summary: 'PPO-based BEMS controller with Python training, closed-loop simulation, digital twin logic, forecasting, ONNX export, and C++ deployment code.',
     deployment:
-      'Supports Python research/training workflows and C++ controller deployment checks using CMake, pytest, EnergyPlus-oriented scaffolding, and an ONNX Runtime deployment boundary.',
+      'Supports Python research/training workflows and C++ controller deployment checks using CMake, pytest, EnergyPlus-oriented scaffolding, a deterministic simulation harness, and an ONNX Runtime deployment boundary.',
     dependencies: ['Python', 'pytest', 'C++', 'CMake', 'EnergyPlus concepts', 'LightGBM concepts', 'PPO', 'ONNX Runtime'],
     repository: 'https://github.com/rheslar1/BEMS-ai',
     architectureDocs: [
@@ -176,21 +176,25 @@ const projects = [
     problem:
       'Explore how reinforcement learning, forecasting, occupancy prediction, and digital-twin simulation can improve building energy management decisions.',
     architecture:
-      'Python package for state layout, prediction, simulation, digital twin logic, PPO training, and ONNX export; C++ source for action decoding, state building, controller behavior, and deployment-oriented tests.',
+      'Python package for state layout, prediction, closed-loop simulation, digital twin logic, PPO training, and ONNX export; C++ source for action decoding, state building, controller behavior, and deployment-oriented tests.',
     deepDetails: [
       'The project defines a 116-dimensional state contract and 12-dimensional action contract for multi-zone HVAC, battery, and thermal storage control.',
-      'Python modules cover energy prediction, occupancy prediction, occupancy-aware setpoint adjustment, digital twin rollout, simulation, solar/battery optimization, power-grid optimization, and resource-advisor style insights.',
+      'Python modules cover energy prediction, occupancy prediction, occupancy-aware setpoint adjustment, digital twin rollout, closed-loop simulation, solar/battery optimization, power-grid optimization, and resource-advisor style insights.',
+      'The simulation path now uses PpoBemsPolicy as the default AI controller, with RuleBasedBaselinePolicy preserved as a non-AI comparison baseline.',
+      'The simulator can run deterministic scenario tests with the same 116-state and 12-action contracts used by training and deployment.',
       'C++ modules provide action_decoder, controller, digital_twin, and state_builder source for deterministic deployment-side behavior.',
       'Tests cover cloud services, digital twin behavior, energy prediction, MDP/reward logic, occupancy prediction, simulation, training/export scaffolding, and C++ controller patterns.'
     ],
     features: [
       'Multi-zone HVAC, battery, and thermal-storage control framing.',
-      'Forecast-aware state, reward, simulation, and digital-twin modules.',
+      'Forecast-aware state, reward, PPO simulation, and digital-twin modules.',
+      'Operator-approved fallback schedules and rule-based baseline simulation for non-AI comparison.',
       'Python research path with C++ deployment boundary and ONNX export/validation scaffolding.',
       'Architecture diagrams for system flow, RL control loop, and C++ deployment classes.'
     ],
     outcomes: [
       '116-dimensional state vector and 12-dimensional action vector define the BEMS control contract.',
+      'Rebased master/debug branches now point to the PPO simulation update commit d6f09d1.',
       '36 Python/C++ source and test files provide about 2,900 lines of controller, simulation, prediction, export, and test code.',
       'Python and C++ tests document expected behavior across control, prediction, simulation, and reward workflows.'
     ],
@@ -274,10 +278,10 @@ const projects = [
     id: 'bems',
     aliases: ['bms', 'nms'],
     title: 'BEMS',
-    summary: 'Building energy management system that uses BEMS-ai as the optimization layer with edge C++, Node.js API, React UI, MySQL, Docker, and Yocto integration.',
+    summary: 'Building energy management system that uses BEMS-ai as the optimization layer with edge C++, Node.js API, React/Vite dashboard, MySQL, Docker, GitHub Actions, and Yocto integration.',
     deployment:
-      'Designed for containerized and embedded deployment with Docker services, a MySQL schema, Node.js API, React/Vite UI, BEMS-ai/Python optimization service, and Yocto meta-bems layers.',
-    dependencies: ['BEMS-ai', 'C++', 'Node.js', 'Express', 'mysql2', 'React', 'Vite', 'Recharts', 'Python', 'gRPC', 'Docker', 'Yocto'],
+      'Verified with the local Docker stack: UI, API, BEMS-ai service, edge-core, MySQL, Kafka, RabbitMQ, Prometheus, Grafana, Alertmanager, and Watchtower run together with healthy container checks.',
+    dependencies: ['BEMS-ai', 'C++', 'Node.js', 'Express', 'mysql2', 'React', 'Vite', 'Recharts', 'Python', 'gRPC', 'Docker', 'GitHub Actions', 'Yocto'],
     repository: 'https://github.com/rheslar1/BMS',
     architectureDocs: [
       {
@@ -331,28 +335,32 @@ const projects = [
       'edge-core is the embedded/edge layer and is primarily C++, with BACnet-oriented integration and CMake-style structure.',
       'node-api is an Express service that depends on cors, @grpc/grpc-js, @grpc/proto-loader, and mysql2 for API, service, and database workflows.',
       'ui is a React/Vite dashboard that uses Recharts for operator-facing visualization, including BEMS-ai energy heat-map and usage overlays on a simulated building floorplan.',
+      'The dashboard home page now includes a Deep Architecture Alignment panel that maps React/Vite UI, Node API, MySQL, BEMS-ai service, C++ edge core, and BACnet devices to live status and evidence rows.',
       'ai-service is the BEMS-ai/Python optimization layer with gRPC/protobuf dependencies, designed to connect predictive energy analysis into the system.',
-      'database/schema.sql provides the database foundation, while Docker files and Yocto meta-bems recipes support containerized and embedded Linux deployment.'
+      'database/schema.sql provides the database foundation, while Docker files and Yocto meta-bems recipes support containerized and embedded Linux deployment.',
+      'Root GitHub Actions workflows now run BEMS CI and BEMS CD from the repository root, including C++ tests, static analysis, Python checks, Node checks, UI build, Docker image build, and GHCR publishing.'
     ],
     features: [
       'Edge Core BACnet-oriented integration area written primarily in C++.',
       'Node.js API service using Express, CORS, gRPC tooling, and mysql2 for database workflows.',
-      'React/Vite UI with Recharts for dashboard-style visualization.',
+      'React/Vite UI with Recharts, architecture-alignment status, dashboard-style visualization, energy heat-map, and usage trends.',
       'BEMS-ai/Python optimization layer with gRPC/protobuf dependencies for predictive energy recommendations.',
-      'Docker deployment files, MySQL schema, and Yocto recipes for embedded Linux packaging.'
+      'Docker deployment files, MySQL schema, GitHub Actions CI/CD, and Yocto recipes for embedded Linux packaging.'
     ],
     outcomes: [
       '38 source/config/database/deployment files and about 7,800 lines are tracked in the enterprise project tree when generated caches and node_modules are excluded.',
       'Multi-service architecture covers React UI, Node.js API, BEMS-ai/Python optimization, C++ edge control, MySQL schema, Docker deployment, protobuf contracts, and Yocto recipes.',
+      'GitHub Actions BEMS CI and BEMS CD passed on commit 4dbd8045 after root workflow and CMake-cache cleanup fixes.',
+      'Local Docker deployment verified the updated dashboard bundle and healthy UI, API, AI service, edge-core, database, event bus, and observability containers.',
       'UML architecture, layer, sequence, and data-model diagrams are included as case-study documentation.'
     ],
     resumeBullets: [
-      'Designed a multi-service BEMS architecture that uses BEMS-ai for predictive energy optimization with edge C++, Node.js API, React dashboard, MySQL schema, Docker, and Yocto integration.',
+      'Designed a multi-service BEMS architecture that uses BEMS-ai for predictive energy optimization with edge C++, Node.js API, React dashboard, MySQL schema, Docker, GitHub Actions, and Yocto integration.',
       'Connected embedded/edge concerns with full-stack web application patterns and database-backed workflows.',
-      'Organized repository structure for deployment, documentation, edge-core code, API services, UI, AI service, and Yocto layers.'
+      'Organized repository structure for deployment, documentation, edge-core code, API services, UI, AI service, CI/CD, and Yocto layers.'
     ],
     screenshotCaption:
-      'BEMS case-study images combine a simulated dashboard view, energy heat map and usage over a simulated building floorplan, BEMS-ai controller view, a real running portfolio detail screenshot, and UML diagrams sourced from the repository.',
+      'BEMS case-study images combine a simulated dashboard view, energy heat map and usage over a simulated building floorplan, BEMS-ai controller view, a real running portfolio detail screenshot, and UML diagrams sourced from the repository. The real BMS Docker dashboard was also verified locally on port 5173.',
     suggestedContent: [
       'Run the Docker stack and capture the real React dashboard with seeded MySQL data.',
       'Capture a real BEMS energy heat map and usage dashboard over the production building floorplan from telemetry or MySQL sample data.',
