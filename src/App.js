@@ -18,7 +18,29 @@ const getProjectIdFromHash = () => {
   return match ? decodeURIComponent(match[1]) : null;
 };
 
-const getDashboardFromHash = () => window.location.hash === '#dashboard';
+const getDashboardFromHash = () => /^#dashboard(?:\/.*)?$/.test(window.location.hash);
+const getDashboardViewFromHash = () => {
+  const match = window.location.hash.match(/^#dashboard\/(.+)$/);
+  const view = match ? match[1] : '';
+
+  if (view === 'alarms') {
+    return 'Alarms';
+  }
+
+  if (view === 'building') {
+    return 'Building';
+  }
+
+  if (view === 'rooms') {
+    return 'Rooms';
+  }
+
+  if (view === 'schedules') {
+    return 'Schedules';
+  }
+
+  return 'Overview';
+};
 const getBmsLoginFromHash = () => window.location.hash === '#bms-login';
 
 function App() {
@@ -26,6 +48,7 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [selectedProjectId, setSelectedProjectId] = React.useState(getProjectIdFromHash);
   const [isDashboard, setIsDashboard] = React.useState(getDashboardFromHash);
+  const [dashboardView, setDashboardView] = React.useState(getDashboardViewFromHash);
   const [isBmsLogin, setIsBmsLogin] = React.useState(getBmsLoginFromHash);
 
   React.useEffect(() => {
@@ -44,9 +67,10 @@ function App() {
       const hash = window.location.hash.replace('#', '');
 
       setIsDashboard(getDashboardFromHash());
+      setDashboardView(getDashboardViewFromHash());
       setIsBmsLogin(getBmsLoginFromHash());
 
-      if (!hash || hash === 'dashboard' || hash === 'bms-login' || hash.startsWith('project/')) {
+      if (!hash || hash.startsWith('dashboard') || hash === 'bms-login' || hash.startsWith('project/')) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
@@ -107,7 +131,7 @@ function App() {
     return (
       <div className="App" data-theme={theme}>
         <Navbar onThemeToggle={toggleTheme} currentTheme={theme} />
-        <Dashboard projects={projects} onSelectProject={handleProjectSelect} />
+        <Dashboard projects={projects} onSelectProject={handleProjectSelect} activeView={dashboardView} />
         <Footer />
       </div>
     );

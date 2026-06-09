@@ -142,9 +142,21 @@ const roomSchedules = [
   { room: 'Tower Office', floor: 'Tower B', zone: 'Tower B Floor 1', schedule: '07:00-19:00', mode: 'Demand response', setpoint: '73 F' }
 ];
 
-function Dashboard({ projects, onSelectProject }) {
-  const [activeNav, setActiveNav] = React.useState('Overview');
+const dashboardRoutes = {
+  Overview: '#dashboard',
+  Alarms: '#dashboard/alarms',
+  Building: '#dashboard/building',
+  Rooms: '#dashboard/rooms',
+  Schedules: '#dashboard/schedules'
+};
+
+function Dashboard({ projects, onSelectProject, activeView = 'Overview' }) {
+  const [activeNav, setActiveNav] = React.useState(activeView);
   const [selectedAlarmId, setSelectedAlarmId] = React.useState(alarmEvents[0].id);
+
+  React.useEffect(() => {
+    setActiveNav(activeView);
+  }, [activeView]);
 
   const allDependencies = uniqueItems(projects, 'dependencies');
   const totalBemsUsage = energyZones.reduce((total, zone) => total + zone.kwh, 0);
@@ -168,7 +180,21 @@ function Dashboard({ projects, onSelectProject }) {
     setActiveNav(item);
 
     if (item === 'Alarms' || item === 'Building' || item === 'Rooms' || item === 'Schedules') {
+      if (window.location.hash !== dashboardRoutes[item]) {
+        window.location.hash = dashboardRoutes[item];
+      }
       return;
+    }
+
+    if (item === 'Overview') {
+      if (window.location.hash !== dashboardRoutes.Overview) {
+        window.location.hash = dashboardRoutes.Overview;
+      }
+      return;
+    }
+
+    if (window.location.hash !== dashboardRoutes.Overview) {
+      window.history.pushState('', document.title, `${window.location.pathname}${window.location.search}${dashboardRoutes.Overview}`);
     }
 
     window.setTimeout(() => {
