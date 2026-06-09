@@ -209,12 +209,12 @@ function Dashboard({ projects, onSelectProject }) {
   const heroTitle = isAlarmView
     ? 'Alarm queue, response ownership, and BMS troubleshooting details are available from the active console view.'
     : isBuildingView
-      ? 'Building Summary provides a focused operational page for facility identity, floors, zones, rooms, and systems.'
+      ? 'Brief Building Summary opens as a dedicated dashboard subpage for core facility status.'
       : '';
   const heroCopy = isAlarmView
     ? 'Select an alarm to inspect its location, source point, current reading, threshold, likely cause, impact, response steps, and event history.'
     : isBuildingView
-      ? 'Use this page when the operations team needs building-level context before drilling into alarms, floors, zones, schedules, or equipment.'
+      ? 'Use the Building tab for a concise view of the building, floors, zones, rooms, schedules, and connected systems.'
       : 'Real-time energy zones, comfort risk, alarm state, equipment health, portfolio evidence, and AI-assisted BEMS recommendations are arranged like an operational building dashboard.';
   const systemSummary = isAlarmView
     ? [
@@ -260,7 +260,7 @@ function Dashboard({ projects, onSelectProject }) {
         <section className="eco-topbar">
           <div>
             <p className="detail-kicker">EnergyBuildAI</p>
-            <h1>{isAlarmView ? 'Alarm Response Center' : isBuildingView ? 'Building Summary' : 'Building Operation Center'}</h1>
+            <h1>{isAlarmView ? 'Alarm Response Center' : isBuildingView ? 'Brief Building Summary' : 'Building Operation Center'}</h1>
           </div>
           <div className="eco-topbar-actions">
             <span className="eco-live-pill">Live</span>
@@ -436,12 +436,12 @@ function Dashboard({ projects, onSelectProject }) {
             </article>
           </section>
         ) : isBuildingView ? (
-          <section className="eco-dashboard-grid eco-building-page" aria-label="Building summary dashboard">
+          <section className="eco-dashboard-grid eco-building-page" aria-label="Brief building summary subpage">
             <article className="eco-card eco-card-wide">
               <div className="eco-card-heading">
                 <div>
                   <span>Building</span>
-                  <h2>Building Summary</h2>
+                  <h2>Brief Building Summary</h2>
                   <p>Focused facility status for the EnergyBuildAI Tower, including floors, zones, rooms, operating mode, and active controls context.</p>
                 </div>
                 <strong>Online</strong>
@@ -639,7 +639,7 @@ function Dashboard({ projects, onSelectProject }) {
                 <h2>Brief Building Summary</h2>
               </div>
               <button type="button" className="eco-inline-action" onClick={() => jumpToDashboardContent('Building')}>
-                Full Building
+                Building Subpage
               </button>
             </div>
             <div className="eco-building-list">
