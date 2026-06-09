@@ -126,10 +126,10 @@ function App() {
     <div className="App" data-theme={theme}>
       <Navbar onThemeToggle={toggleTheme} currentTheme={theme} />
       <Hero projects={projects} />
+      <Projects projects={projects} onSelectProject={handleProjectSelect} />
       <About />
       <Experience />
       <Skills />
-      <Projects projects={projects} onSelectProject={handleProjectSelect} />
       <Contact />
       <Footer />
     </div>
