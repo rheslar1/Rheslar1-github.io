@@ -476,6 +476,47 @@ section h2 {
   gap: 10px;
 }
 
+.detail-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.detail-stat {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--surface) 84%, var(--surface-soft) 16%);
+  box-shadow: 0 12px 30px rgba(5, 53, 115, 0.1);
+}
+
+.detail-stat span,
+.detail-stat small {
+  display: block;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.detail-stat span {
+  margin-bottom: 8px;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.detail-stat strong {
+  display: block;
+  color: var(--primary-strong);
+  font-size: 2.15rem;
+  line-height: 1;
+}
+
+.detail-stat small {
+  margin-top: 8px;
+  font-size: 0.84rem;
+}
+
 .project-detail-content {
   padding: 54px 0 92px;
   background: var(--surface-soft);
