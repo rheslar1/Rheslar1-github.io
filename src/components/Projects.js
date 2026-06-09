@@ -41,6 +41,29 @@ const projectRails = [
   }
 ];
 
+const roadmapIdeas = [
+  {
+    title: 'Custom Peripheral Driver',
+    build: 'Bare-metal SPI TFT or I2C temperature sensor driver on STM32 or ESP32 using native C/C++.',
+    proves: 'Reads datasheets, configures registers, and controls timing without hiding behind pre-made libraries.'
+  },
+  {
+    title: 'FreeRTOS Telemetry Device',
+    build: 'Sensor task, display task, wireless task, queues, semaphores, mutexes, and priority decisions.',
+    proves: 'Understands real-time scheduling, concurrency boundaries, and non-blocking embedded architecture.'
+  },
+  {
+    title: 'Low-Power Data Logger',
+    build: 'Battery sensor node that logs to flash, sleeps aggressively, and records measured current draw.',
+    proves: 'Optimizes clocks, sleep states, wake cycles, storage writes, and power budget tradeoffs.'
+  },
+  {
+    title: 'UART Command Shell',
+    build: 'Serial REPL for reading pins, toggling outputs, dumping registers, and triggering diagnostics.',
+    proves: 'Builds practical debug tools and handles command parsing over constrained communication links.'
+  }
+];
+
 const getProjectText = (project) => [
   project.title,
   project.summary,
@@ -163,6 +186,25 @@ function Projects({ projects, onSelectProject }) {
               <p>{item.detail}</p>
             </article>
           ))}
+        </div>
+
+        <div className="roadmap-panel">
+          <div className="rail-heading">
+            <div>
+              <p className="detail-kicker">Next High-Impact Builds</p>
+              <h3>Industry-Standard Embedded Project Roadmap</h3>
+              <p>These roadmap items are framed as complete systems, with code, hardware artifacts, timing proof, and test evidence expected for each build.</p>
+            </div>
+          </div>
+          <div className="roadmap-grid">
+            {roadmapIdeas.map((idea) => (
+              <article key={idea.title}>
+                <h4>{idea.title}</h4>
+                <p><strong>Build:</strong> {idea.build}</p>
+                <p><strong>Proves:</strong> {idea.proves}</p>
+              </article>
+            ))}
+          </div>
         </div>
 
         <div className="featured-project-row">

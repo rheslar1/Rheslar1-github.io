@@ -1,15 +1,8 @@
 import React from 'react';
 
-const channelStats = [
-  { label: 'Repositories', value: '6' },
-  { label: 'Architecture Docs', value: '9' },
-  { label: 'C/C++ Focus', value: '3 repos' },
-  { label: 'Deployment Evidence', value: 'CI + Docker' }
-];
-
 const channelTabs = ['Embedded Systems', 'C/C++', 'BEMS', 'Architecture', 'Evidence'];
 
-function Hero() {
+function Hero({ projects = [] }) {
   const handleScroll = (e) => {
     e.preventDefault();
     const element = document.getElementById('projects');
@@ -17,6 +10,17 @@ function Hero() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const architectureDocCount = projects.reduce((total, project) => total + (project.architectureDocs?.length || 0), 0);
+  const nativeProjectCount = projects.filter((project) => (
+    [...(project.dependencies || []), ...(project.tags || [])].join(' ').match(/C\+\+|CMake|C$|V4L2|Linux|Yocto|BACnet|i\.MX93/i)
+  )).length;
+  const channelStats = [
+    { label: 'Repositories', value: String(projects.length) },
+    { label: 'Architecture Docs', value: String(architectureDocCount) },
+    { label: 'C/C++ Focus', value: `${nativeProjectCount} repos` },
+    { label: 'Deployment Evidence', value: 'CI + Docker' }
+  ];
 
   return (
     <section id="home" className="hero">

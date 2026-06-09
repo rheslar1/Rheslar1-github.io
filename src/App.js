@@ -125,7 +125,7 @@ function App() {
   return (
     <div className="App" data-theme={theme}>
       <Navbar onThemeToggle={toggleTheme} currentTheme={theme} />
-      <Hero />
+      <Hero projects={projects} />
       <About />
       <Experience />
       <Skills />

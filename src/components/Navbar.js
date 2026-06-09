@@ -30,7 +30,7 @@ function Navbar({ onThemeToggle, currentTheme }) {
           aria-label="Toggle theme"
           title={`Switch to ${currentTheme === 'light' ? 'dark' : 'light'} mode`}
         >
-          {currentTheme === 'light' ? '🌙' : '☀️'}
+          {currentTheme === 'light' ? 'Dark' : 'Light'}
         </button>
         <button className="hamburger" onClick={toggleMenu} aria-label="Toggle menu">
           <span className="hamburger-line"></span>
