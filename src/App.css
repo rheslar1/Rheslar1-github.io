@@ -471,6 +471,8 @@ section h2 {
   border-radius: 6px;
   background: var(--primary);
   color: #ffffff;
+  cursor: pointer;
+  font: inherit;
   font-weight: 800;
   text-decoration: none;
   transition: background-color 160ms ease, transform 160ms ease;
@@ -736,7 +738,7 @@ section h2 {
 .rail-scroller {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(260px, 1fr);
+  grid-auto-columns: minmax(280px, 340px);
   gap: 14px;
   overflow-x: auto;
   padding-bottom: 10px;
@@ -752,7 +754,6 @@ section h2 {
 }
 
 .project-video-card.compact {
-  width: min(310px, 72vw);
   grid-template-columns: 1fr;
 }
 
@@ -819,8 +820,12 @@ section h2 {
   color: #fcd34d;
 }
 
-.all-projects-grid {
+.projects-grid.all-projects-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.all-projects-grid .project-video-card.compact {
+  width: 100%;
 }
 
 .projects-grid {
@@ -2355,7 +2360,13 @@ section h2 {
   .about-highlights,
   .bms-login-layout,
   .bms-stat-row,
+  .channel-stat-strip,
+  .embedded-proof-grid,
+  .featured-project-row .project-video-card,
+  .featured-upload,
   .projects-grid,
+  .project-video-card,
+  .roadmap-grid,
   .skills-grid,
   .detail-layout,
   .detail-stat-grid,
@@ -2374,6 +2385,14 @@ section h2 {
   .dashboard-visual-grid,
   .capture-list {
     grid-template-columns: 1fr;
+  }
+
+  .channel-profile,
+  .rail-heading,
+  .section-heading-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
   }
 
   .building-floorplan {
@@ -2414,7 +2433,30 @@ section h2 {
 
   .hero {
     min-height: auto;
-    padding: 92px 20px 84px;
+    padding: 24px 0 48px;
+  }
+
+  .channel-banner {
+    min-height: 180px;
+    padding: 28px;
+  }
+
+  .channel-avatar {
+    width: 104px;
+    border-width: 6px;
+  }
+
+  .detail-actions,
+  .section-heading-row > .project-link {
+    justify-content: flex-start;
+  }
+
+  .project-actions .project-link {
+    width: 100%;
+  }
+
+  .rail-heading > span {
+    width: fit-content;
   }
 }
 
@@ -2455,5 +2497,26 @@ section h2 {
   .login-panel-heading,
   .system-panel-heading {
     display: grid;
+  }
+
+  .channel-banner {
+    min-height: 156px;
+    padding: 22px;
+  }
+
+  .channel-banner strong {
+    font-size: clamp(2.4rem, 18vw, 4.4rem);
+  }
+
+  .channel-banner p {
+    letter-spacing: 0.08em;
+  }
+
+  .channel-actions .cta-button {
+    width: 100%;
+  }
+
+  .channel-tabs {
+    gap: 18px;
   }
 }
