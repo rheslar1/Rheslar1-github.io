@@ -143,16 +143,45 @@ const roomSchedules = [
 ];
 
 function Dashboard({ projects, onSelectProject }) {
+  const [activeNav, setActiveNav] = React.useState('Overview');
+  const [selectedAlarmId, setSelectedAlarmId] = React.useState(alarmEvents[0].id);
+
   const allDependencies = uniqueItems(projects, 'dependencies');
   const totalBemsUsage = energyZones.reduce((total, zone) => total + zone.kwh, 0);
   const peakUsage = Math.max(...usageTrend.map((point) => point.kwh));
   const activeAlarmCount = alarmEvents.filter((event) => event.status === 'Active').length;
+  const selectedAlarm = alarmEvents.find((event) => event.id === selectedAlarmId) || alarmEvents[0];
+  const isAlarmView = activeNav === 'Alarms';
+  const isBuildingView = activeNav === 'Building';
+
+  const jumpTargets = {
+    Overview: 'dashboard',
+    Zones: 'zone-status',
+    Floors: 'floor-status',
+    Rooms: 'room-schedules',
+    Schedules: 'room-schedules',
+    Energy: 'building-heatmap',
+    HVAC: 'equipment-health',
+    Lighting: 'equipment-health'
+  };
+
+  const jumpToDashboardContent = (item) => {
+    setActiveNav(item);
+
+    if (item === 'Alarms' || item === 'Building') {
+      return;
+    }
+
+    window.setTimeout(() => {
+      const target = document.getElementById(jumpTargets[item] || 'dashboard');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 0);
+  };
 
   const handleHeatmapScroll = () => {
-    const heatmap = document.getElementById('building-heatmap');
-    if (heatmap) {
-      heatmap.scrollIntoView({ behavior: 'smooth' });
-    }
+    jumpToDashboardContent('Energy');
   };
 
   const commandKpis = [
@@ -162,6 +191,49 @@ function Dashboard({ projects, onSelectProject }) {
     { label: 'Connected systems', value: '4', helper: 'HVAC, lighting, sensors, controls' }
   ];
 
+  const alarmKpis = [
+    { label: 'Active alarms', value: String(activeAlarmCount), helper: '1 high priority dispatch' },
+    { label: 'Acknowledged', value: String(alarmEvents.filter((event) => event.status === 'Acknowledged').length), helper: 'Floor 1 AHU under review' },
+    { label: 'Auto-clear queue', value: String(alarmEvents.filter((event) => event.status === 'Auto-clear').length), helper: 'Lobby lighting schedule pulse' },
+    { label: 'Response SLA', value: selectedAlarm.sla, helper: selectedAlarm.owner }
+  ];
+
+  const buildingKpis = [
+    { label: 'Building mode', value: 'Occupied', helper: 'Primary weekday schedule' },
+    { label: 'Floors monitored', value: String(floorSummaries.length), helper: 'Ground, Floor 1, Floor 2, Tower B' },
+    { label: 'Rooms scheduled', value: String(roomSchedules.length), helper: 'Critical rooms surfaced here' },
+    { label: 'Zone load', value: `${totalBemsUsage.toFixed(1)} kWh`, helper: 'Live sampled energy status' }
+  ];
+
+  const activeKpis = isAlarmView ? alarmKpis : isBuildingView ? buildingKpis : commandKpis;
+  const heroTitle = isAlarmView
+    ? 'Alarm queue, response ownership, and BMS troubleshooting details are available from the active console view.'
+    : isBuildingView
+      ? 'Building Summary provides a focused operational page for facility identity, floors, zones, rooms, and systems.'
+      : 'Monitor, manage, and optimize the simulated facility from one control view.';
+  const heroCopy = isAlarmView
+    ? 'Select an alarm to inspect its location, source point, current reading, threshold, likely cause, impact, response steps, and event history.'
+    : isBuildingView
+      ? 'Use this page when the operations team needs building-level context before drilling into alarms, floors, zones, schedules, or equipment.'
+      : 'Real-time energy zones, comfort risk, alarm state, equipment health, portfolio evidence, and AI-assisted BEMS recommendations are arranged like an operational building dashboard.';
+  const systemSummary = isAlarmView
+    ? [
+        { label: 'Alarm Console', value: 'Armed' },
+        { label: 'Selected Alarm', value: selectedAlarm.id },
+        { label: 'Priority', value: selectedAlarm.priority }
+      ]
+    : isBuildingView
+      ? [
+          { label: 'Building', value: 'Online' },
+          { label: 'Floors', value: `${floorSummaries.length} active` },
+          { label: 'Schedules', value: 'Synced' }
+        ]
+      : [
+          { label: 'Controller Status', value: 'Healthy' },
+          { label: 'Data Latency', value: '2.4 s' },
+          { label: 'Efficiency Index', value: '87%' }
+        ];
+
   return (
     <main className="dashboard-page ecostruxure-dashboard" id="dashboard">
       <aside className="eco-sidebar" aria-label="Building operation navigation">
@@ -170,8 +242,14 @@ function Dashboard({ projects, onSelectProject }) {
           <strong>Operations</strong>
         </div>
         <nav>
-          {operationNav.map((item, index) => (
-            <button className={index === 0 ? 'active' : ''} type="button" key={item}>
+          {operationNav.map((item) => (
+            <button
+              className={activeNav === item ? 'active' : ''}
+              type="button"
+              key={item}
+              onClick={() => jumpToDashboardContent(item)}
+              aria-current={activeNav === item ? 'page' : undefined}
+            >
               {item}
             </button>
           ))}
@@ -182,12 +260,19 @@ function Dashboard({ projects, onSelectProject }) {
         <section className="eco-topbar">
           <div>
             <p className="detail-kicker">EnergyBuildAI</p>
-            <h1>Building Operation Center</h1>
+            <h1>{isAlarmView ? 'Alarm Response Center' : isBuildingView ? 'Building Summary' : 'Building Operation Center'}</h1>
           </div>
           <div className="eco-topbar-actions">
             <span className="eco-live-pill">Live</span>
             <button type="button" className="cta-button" onClick={handleHeatmapScroll}>
               Building Energy Status
+            </button>
+            <button
+              type="button"
+              className="cta-button secondary-cta"
+              onClick={() => jumpToDashboardContent(isAlarmView ? 'Overview' : 'Alarms')}
+            >
+              {isAlarmView ? 'Overview' : 'Alarm Details'}
             </button>
             <a href="#projects" className="cta-button secondary-cta">
               Back to Projects
@@ -197,30 +282,21 @@ function Dashboard({ projects, onSelectProject }) {
 
         <section className="eco-command-hero">
           <div>
-            <h2>Monitor, manage, and optimize the simulated facility from one control view.</h2>
-            <p>
-              Real-time energy zones, comfort risk, alarm state, equipment health, portfolio evidence,
-              and AI-assisted BEMS recommendations are arranged like an operational building dashboard.
-            </p>
+            <h2>{heroTitle}</h2>
+            <p>{heroCopy}</p>
           </div>
           <div className="eco-system-summary" aria-label="System health summary">
-            <article>
-              <span>Controller Status</span>
-              <strong>Healthy</strong>
-            </article>
-            <article>
-              <span>Data Latency</span>
-              <strong>2.4 s</strong>
-            </article>
-            <article>
-              <span>Efficiency Index</span>
-              <strong>87%</strong>
-            </article>
+            {systemSummary.map((item) => (
+              <article key={item.label}>
+                <span>{item.label}</span>
+                <strong>{item.value}</strong>
+              </article>
+            ))}
           </div>
         </section>
 
         <section className="eco-kpi-grid" aria-label="Building dashboard KPIs">
-          {commandKpis.map((kpi) => (
+          {activeKpis.map((kpi) => (
             <article className="eco-kpi" key={kpi.label}>
               <span>{kpi.label}</span>
               <strong>{kpi.value}</strong>
