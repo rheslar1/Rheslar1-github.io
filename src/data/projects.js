@@ -38,17 +38,22 @@ const projects = [
       'main.py owns the command loop and routes user commands to focused functions such as show_users, add_user, and del_user.',
       'db.py isolates CSV file access so persistence can be replaced later without rewriting command-flow logic.',
       'Userclass.py defines the User model, equality behavior, and accessors used by the command workflow.',
+      'The data contract is intentionally small: each users.csv row stores user_name and user_id, giving the CLI a simple persistence boundary that can be tested with plain file fixtures.',
+      'The presentation layer, domain layer, and persistence layer are separated enough that a future SQLite, MySQL, PostgreSQL, or REST-backed adapter can replace CSV without changing the terminal menu.',
+      'The architecture doc identifies hardening work around malformed CSV rows, missing files, duplicate names, integer parsing, and clearer storage errors.',
       'The current structure is suitable for incremental upgrades such as input validation, unit tests, a MySQL storage adapter, or a Node.js/React front end.'
     ],
     features: [
       'Command menu for showing users, adding users, deleting users, and exiting the program.',
       'Dataclass-backed user model with equality behavior for duplicate detection.',
       'CSV-backed storage layer for simple persistence without a database dependency.',
+      'Case-insensitive user-name comparison that starts to encode a real domain rule instead of treating rows as anonymous strings.',
       'Separation between application flow, user model, and data access code.'
     ],
     outcomes: [
       '158-line starter application split across 3 Python modules plus CSV storage.',
       'CSV-backed workflow keeps the project runnable with no database server or external package installation.',
+      'Architecture notes define a clear growth path from CLI and CSV toward tests, repository interfaces, task-list objects, database storage, and a possible web-backed service.',
       'Provides a compact foundation for adding unit tests, validation, a MySQL storage adapter, or a React/Node.js UI.'
     ],
     resumeBullets: [
@@ -110,17 +115,22 @@ const projects = [
       'examples/cpp contains 12 C++ source examples covering RAII, strategy, observer, factory method, dependency inversion, startup cleanup, lock guards, and sanitizer practice.',
       'The CMake project supports local builds, test execution, clang-tidy, cppcheck, CodeChecker, and sanitizer smoke-test workflows.',
       'The diagrams folder includes 10 exported PNG diagrams with editable draw.io source files.',
+      'The modular edge-service examples separate configuration, logging, RAII handles, network probing, formatting strategies, worker-thread lifecycle, and hardware I/O interfaces.',
+      'The CI/analysis subsystem validates configure, build, CTest, smoke examples, clang-tidy, cppcheck, CodeChecker/Clang Static Analyzer, sanitizer runs, and artifact upload.',
+      'The repository keeps documentation contracts between README.md, ARCHITECTURE.md, examples/cpp/README.md, diagrams/README.md, the capstone plan, and senior engineering study notes.',
       'The repository also includes Yocto and ARM Linux deployment notes that connect study material back to embedded engineering practice.'
     ],
     features: [
       'C++17 examples for design patterns, resource management, lifecycle handling, and static-analysis practice.',
       'CI workflow for CMake builds, clang-tidy, cppcheck, CodeChecker, sanitizer smoke tests, and artifact upload.',
-      'UML/architecture diagrams exported from draw.io for visual review and portfolio support.'
+      'UML/architecture diagrams exported from draw.io for visual review and portfolio support.',
+      'Embedded deployment study notes for systemd units, Yocto image recipes, hardware path selection, reboot validation, and upgrade/rollback practice.'
     ],
     outcomes: [
       '12 C++17 example programs and 10 exported architecture/study diagrams are tracked in the repository.',
       'GitHub Actions validates build and analysis workflows for the C++ study examples.',
-      'Study notes connect C++ patterns, embedded Linux, Yocto deployment, and static-analysis tooling.'
+      'Study notes connect C++ patterns, embedded Linux, Yocto deployment, and static-analysis tooling.',
+      'The repo functions as a reusable engineering reference: a small example can be studied in isolation, then validated through the same build/test/analyzer path as larger C++ services.'
     ],
     resumeBullets: [
       'Maintained a study repository to capture technical research, implementation notes, and engineering experiments.',
@@ -182,6 +192,9 @@ const projects = [
       'Python modules cover energy prediction, occupancy prediction, occupancy-aware setpoint adjustment, digital twin rollout, closed-loop simulation, solar/battery optimization, power-grid optimization, and resource-advisor style insights.',
       'The simulation path now uses PpoBemsPolicy as the default AI controller, with RuleBasedBaselinePolicy preserved as a non-AI comparison baseline.',
       'The simulator can run deterministic scenario tests with the same 116-state and 12-action contracts used by training and deployment.',
+      'Forecast blocks cover weather, price, and occupancy horizons so the policy can reason about future outdoor temperature, irradiance, tariff pressure, and zone demand instead of only current telemetry.',
+      'The training/export flow saves PPO actor weights, exports an ONNX actor graph, validates ONNX inference, and preserves a C++ controller boundary for deployment-side integration.',
+      'The BMS integration contract is service-oriented: BMS UI calls Node API, Node calls the Python AI service over gRPC, and runtime paths consume BEMS-ai modules without importing training scripts.',
       'C++ modules provide action_decoder, controller, digital_twin, and state_builder source for deterministic deployment-side behavior.',
       'Tests cover cloud services, digital twin behavior, energy prediction, MDP/reward logic, occupancy prediction, simulation, training/export scaffolding, and C++ controller patterns.'
     ],
@@ -189,6 +202,8 @@ const projects = [
       'Multi-zone HVAC, battery, and thermal-storage control framing.',
       'Forecast-aware state, reward, PPO simulation, and digital-twin modules.',
       'Operator-approved fallback schedules and rule-based baseline simulation for non-AI comparison.',
+      'Grid-aware optimization for buy price, sell price, carbon intensity, grid stress, import limits, demand-response flags, battery behavior, and solar export/curtailment.',
+      'Fixed Python/C++/ONNX state and action contracts for safer deployment integration.',
       'Python research path with C++ deployment boundary and ONNX export/validation scaffolding.',
       'Architecture diagrams for system flow, RL control loop, and C++ deployment classes.'
     ],
@@ -196,6 +211,7 @@ const projects = [
       '116-dimensional state vector and 12-dimensional action vector define the BEMS control contract.',
       'Rebased master/debug branches now point to the PPO simulation update commit d6f09d1.',
       '36 Python/C++ source and test files provide about 2,900 lines of controller, simulation, prediction, export, and test code.',
+      'Deep architecture documentation maps the policy loop, forecasting, occupancy adjustment, digital twin, grid optimizer, simulation, ONNX export, and BMS service integration boundary.',
       'Python and C++ tests document expected behavior across control, prediction, simulation, and reward workflows.'
     ],
     resumeBullets: [
@@ -248,17 +264,22 @@ const projects = [
       'The application is split into focused React components for hero, about, experience, skills, projects, project details, contact, navigation, and footer.',
       'Project data lives in src/data/projects.js so summaries, deployment details, dependencies, features, and outcomes can be maintained in one place.',
       'Hash-based routes such as #project/bms keep project detail pages compatible with static GitHub Pages hosting.',
+      'Dashboard.js aggregates the project catalog into portfolio KPIs, BEMS energy heat map, architecture Markdown matrix, readiness cards, stack coverage tags, visual evidence board, and suggested content queue.',
+      'ProjectDetails.js renders each repo as a case study with problem, architecture, deployment model, numbered deep technical breakdown, visual gallery, features, measurable outcomes, stack matrix, and resume highlights.',
+      'BmsLogin.js provides a BMS secure-access concept page that links role-based access, facility telemetry, API readiness, and BEMS-ai optimization status.',
       'The GitHub Pages workflow uses Node.js 18, npm ci, npm run build, upload-pages-artifact, and deploy-pages.'
     ],
     features: [
       'Responsive portfolio layout with hero, about, professional experience, skills, projects, contact, and footer sections.',
       'Dark and light theme toggle persisted in localStorage.',
       'GitHub Pages workflow with npm ci, npm run build, artifact upload, and Pages deployment.',
-      'Project detail pages implemented inside the React single-page app with hash-based deep links.'
+      'Project detail pages implemented inside the React single-page app with hash-based deep links.',
+      'Architecture-document cards connect each project page to the Markdown files that explain its repo structure and runtime flow.'
     ],
     outcomes: [
       'Live portfolio is deployed at rheslar1.github.io/Rheslar1-github.io.',
       'Current resume positioning is visible: Embedded Engineer, Full Stack Developer, React, Node.js, and MySQL.',
+      'Project catalog now carries deep architecture and implementation details for every showcased repository.',
       'GitHub Actions deployment published the portfolio successfully to GitHub Pages.'
     ],
     resumeBullets: [
@@ -337,6 +358,8 @@ const projects = [
       'ui is a React/Vite dashboard that uses Recharts for operator-facing visualization, including BEMS-ai energy heat-map and usage overlays on a simulated building floorplan.',
       'The dashboard home page now includes a Deep Architecture Alignment panel that maps React/Vite UI, Node API, MySQL, BEMS-ai service, C++ edge core, and BACnet devices to live status and evidence rows.',
       'ai-service is the BEMS-ai/Python optimization layer with gRPC/protobuf dependencies, designed to connect predictive energy analysis into the system.',
+      'Runtime data flow runs from operator dashboard to Node API, MySQL telemetry lookup, BEMS-ai gRPC optimization, persisted optimization history, edge command publication, BACnet read/write response, and telemetry/status event feedback.',
+      'The API owns safety checks and coordination across session/auth, REST endpoints, MySQL persistence, AI optimization, edge commands, digital twin composition, schedules, alarms, and audit/event shaping.',
       'database/schema.sql provides the database foundation, while Docker files and Yocto meta-bems recipes support containerized and embedded Linux deployment.',
       'Root GitHub Actions workflows now run BEMS CI and BEMS CD from the repository root, including C++ tests, static analysis, Python checks, Node checks, UI build, Docker image build, and GHCR publishing.'
     ],
@@ -345,6 +368,7 @@ const projects = [
       'Node.js API service using Express, CORS, gRPC tooling, and mysql2 for database workflows.',
       'React/Vite UI with Recharts, architecture-alignment status, dashboard-style visualization, energy heat-map, and usage trends.',
       'BEMS-ai/Python optimization layer with gRPC/protobuf dependencies for predictive energy recommendations.',
+      'HTTP/JSON and SSE UI/API boundary, SQL database boundary, gRPC AI boundary, edge command/event boundary, and Docker health-check boundary.',
       'Docker deployment files, MySQL schema, GitHub Actions CI/CD, and Yocto recipes for embedded Linux packaging.'
     ],
     outcomes: [
@@ -405,17 +429,23 @@ const projects = [
       'helloworld.yml validates basic Ansible task execution with ansible.builtin.debug.',
       'ssh_renmote_login.yml demonstrates remote execution, fact gathering, privilege escalation, command registration, and debug output.',
       'test.yml provides a local ping workflow for quick connectivity and inventory checks.',
+      'playbooks/ansible.cfg defines the default inventory location, host-key checking behavior, retry-file behavior, and remote temporary directory.',
+      'The architecture separates the control node, inventory layer, playbook layer, and built-in module layer so host-specific values can move out of task definitions.',
+      'Security notes call out real IP addresses, usernames, SSH keys, topology-revealing logs, and privileged output as sensitive data that should be handled through inventory discipline or secret tooling.',
       'The repository can grow into provisioning, validation, deployment, and embedded Linux support automation.'
     ],
     features: [
       'Basic hello-world playbook for validating Ansible execution.',
       'Remote SSH command workflow with fact gathering, privilege escalation, command registration, and debug output.',
       'Local ping test playbook for checking baseline connectivity.',
+      'File-based inventory model for grouping local and development target hosts.',
+      'Configuration defaults for inventory, host-key checking, retry files, and remote temporary paths.',
       'Inventory folder and configuration file layout for future expansion.'
     ],
     outcomes: [
       '3 starter playbooks cover hello-world validation, local ping checks, and remote SSH command execution.',
       'Inventory and ansible.cfg examples establish a reusable structure for remote automation.',
+      'The architecture defines a practical growth path toward dev/stage/prod inventories, group_vars, host_vars, roles, Molecule tests, ansible-lint, syntax checks, and deployment playbooks.',
       'Repository can grow into provisioning, CI/CD support, and embedded Linux deployment automation.'
     ],
     resumeBullets: [
@@ -471,17 +501,24 @@ const projects = [
       'The capture path uses V4L2 ioctl calls including VIDIOC_QUERYCAP, VIDIOC_ENUM_FMT, VIDIOC_S_FMT, VIDIOC_REQBUFS, VIDIOC_QUERYBUF, VIDIOC_QBUF, and VIDIOC_STREAMON.',
       'BUFFER_COUNT is set to 4, giving the application a four-buffer mmap capture path for frame acquisition.',
       'frame_data_t records frame pointer, size, index, geometry, and capture timestamp for downstream processing or display.',
+      'buffer_t separates mmap buffer ownership from frame metadata, which keeps the capture layer flexible if frame processing, display, or file-output behavior grows.',
+      'display_t tracks file descriptor, dimensions, bytes per pixel, line length, mapped framebuffer pointer, and cached framebuffer state for framebuffer or DRM-style output paths.',
+      'The Makefile provides cross-compile, scp, ssh, run, clean, and debug workflows, with target IP, user, and path values overrideable from the command line.',
+      'Expected failure modes are documented for missing /dev/video0, unsupported formats, insufficient buffers, mmap failure, missing framebuffer/DRM devices, SSH problems, and missing cross-compiler tools.',
       'The Makefile targets aarch64-linux-gnu-gcc and includes scp, ssh, run, and debug targets for embedded target iteration.'
     ],
     features: [
       'V4L2 capability query, format enumeration, format setting, buffer request, mmap mapping, queueing, and streaming.',
       'Framebuffer/DRM display configuration hooks for HDMI or local display output.',
       'Optional PNG/movie frame export hooks behind compile-time support.',
+      'Four-buffer low-copy capture model using mmap for streaming camera data.',
+      'Target override support for TARGET_IP, TARGET_USER, and TARGET_PATH during make run.',
       'Cross-compile and deploy workflow for embedded Linux target testing.'
     ],
     outcomes: [
       'Native C application includes a 4-buffer mmap V4L2 capture path.',
       'Makefile automates cross-compilation plus SCP/SSH deployment and target execution.',
+      'Architecture documentation maps host build, target deployment, /dev/video0 capture, framebuffer/DRM display, optional frame files, validation sequence, and extension plan.',
       'Architecture diagram documents the /dev/video0 to framebuffer/DRM capture and display flow.'
     ],
     resumeBullets: [
