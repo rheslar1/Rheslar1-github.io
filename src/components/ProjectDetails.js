@@ -83,6 +83,35 @@ const detailStats = (project) => [
   }
 ];
 
+const reportSections = (project) => [
+  {
+    title: 'Hardware Stack',
+    items: [
+      ...(project.dependencies || []).filter((item) => (
+        /(C\+\+|C\+\+17|C$|CMake|V4L2|Framebuffer|DRM|mmap|aarch64|Linux|Yocto|BACnet|i\.MX93|STM32|ESP32|I2C|SPI|UART|CAN|BLE|MySQL|Docker)/i.test(item)
+      )),
+      ...((project.architectureDocs || []).length > 0 ? ['Architecture markdown linked'] : []),
+      ...((project.visuals || []).length > 0 ? ['Project visuals attached'] : [])
+    ]
+  },
+  {
+    title: 'The Challenge',
+    text: project.problem
+  },
+  {
+    title: 'The Solution',
+    text: `${project.architecture} ${project.deployment}`
+  },
+  {
+    title: 'Results And Artifacts',
+    items: [
+      ...(project.outcomes || []).slice(0, 3),
+      ...((project.architectureDocs || []).map((doc) => `${doc.title}: ${doc.path}`)),
+      ...((project.suggestedContent || []).slice(0, 2).map((item) => `Next capture: ${item}`))
+    ]
+  }
+];
+
 function ProjectDetails({ project, onBack }) {
   const [failedVisuals, setFailedVisuals] = React.useState({});
 
@@ -176,6 +205,29 @@ function ProjectDetails({ project, onBack }) {
                     ))}
                   </div>
                 )}
+              </article>
+
+              <article className="detail-panel engineering-report-panel">
+                <div className="detail-panel-heading">
+                  <p className="detail-kicker">Mini Engineering Report</p>
+                  <h2>Hardware, Firmware, Architecture, And Artifacts</h2>
+                </div>
+                <div className="engineering-report-grid">
+                  {reportSections(project).map((section) => (
+                    <section key={section.title}>
+                      <h3>{section.title}</h3>
+                      {section.text ? (
+                        <p>{section.text}</p>
+                      ) : (
+                        <ul>
+                          {(section.items.length > 0 ? section.items : ['Artifact not yet documented']).map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </section>
+                  ))}
+                </div>
               </article>
 
               {project.databaseDetails && (

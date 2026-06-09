@@ -1,5 +1,126 @@
 import React, { useEffect } from 'react';
 
+const embeddedProofItems = [
+  {
+    title: 'Clean C/C++ Code',
+    detail: 'C, C++17, CMake, V4L2, mmap, controller interfaces, action decoding, and edge-service examples.',
+    signal: 'Firmware proof'
+  },
+  {
+    title: 'Architecture Reports',
+    detail: 'README and architecture markdown links stay attached to each project card and detail page.',
+    signal: 'Design proof'
+  },
+  {
+    title: 'Testing And CI/CD',
+    detail: 'CMake, CTest, pytest, static analysis, GitHub Actions, Docker health checks, and deployment runs.',
+    signal: 'Quality proof'
+  },
+  {
+    title: 'Hardware Evidence Queue',
+    detail: 'Schematics, PCB layout, logic analyzer traces, current draw, and HIL screenshots are tracked as next capture work when not yet present.',
+    signal: 'Artifact plan'
+  }
+];
+
+const projectRails = [
+  {
+    title: 'Firmware, C/C++ And Embedded Linux',
+    description: 'Low-level code, native capture, static analysis, CMake, and target deployment evidence.',
+    matcher: /(C\+\+|C\+\+17|CMake|C$|V4L2|Framebuffer|DRM|mmap|aarch64|Linux|Yocto|i\.MX93|clang|cppcheck|CodeChecker)/i
+  },
+  {
+    title: 'Systems, BMS And AI Control',
+    description: 'Building control, MySQL telemetry, optimization services, simulation, ONNX, and dashboards.',
+    matcher: /(BEMS|BMS|AI|PPO|ONNX|EnergyPlus|LightGBM|digital twin|BACnet|MySQL|Docker|React|Node\.js|gRPC)/i
+  },
+  {
+    title: 'Automation, Documentation And Deployment',
+    description: 'Architecture markdown, CI/CD, Ansible, GitHub Pages, Docker, test output, and capture backlog.',
+    matcher: /(Ansible|GitHub Actions|GitHub Pages|workflow|CI|Docker|YAML|SSH|SCP|pytest|CTest|Makefile|Draw\.io)/i
+  }
+];
+
+const getProjectText = (project) => [
+  project.title,
+  project.summary,
+  project.architecture,
+  project.deployment,
+  ...(project.dependencies || []),
+  ...(project.tags || [])
+].join(' ');
+
+const getEvidenceStatus = (project) => {
+  const hasNativeCode = /(C\+\+|C\+\+17|CMake|C$|V4L2|mmap|Linux|Yocto|BACnet|i\.MX93)/i.test(getProjectText(project));
+  const hasDocs = (project.architectureDocs || []).length > 0;
+  const hasVisuals = (project.visuals || []).length > 1;
+  const hasCi = /(GitHub Actions|CTest|pytest|CMake|Docker|CI|static analysis|cppcheck|clang-tidy)/i.test(getProjectText(project));
+
+  return [
+    { label: 'C/C++', state: hasNativeCode ? 'ready' : 'planned' },
+    { label: 'Docs', state: hasDocs ? 'ready' : 'planned' },
+    { label: 'Visuals', state: hasVisuals ? 'ready' : 'planned' },
+    { label: 'CI/Test', state: hasCi ? 'ready' : 'planned' }
+  ];
+};
+
+function ProjectVideoCard({ project, onSelectProject, compact = false }) {
+  const evidence = getEvidenceStatus(project);
+  const duration = `${project.deepDetails?.length || 0}:${String(project.features?.length || 0).padStart(2, '0')}`;
+
+  return (
+    <article className={compact ? 'project-video-card compact' : 'project-video-card'}>
+      <button
+        type="button"
+        className="project-thumbnail"
+        onClick={() => onSelectProject(project.id)}
+        aria-label={`Open ${project.title} engineering report`}
+      >
+        <img src={project.preview || project.visuals?.[0]?.src} alt={`${project.title} project preview`} />
+        <span>{duration}</span>
+      </button>
+      <div className="project-video-body">
+        <div>
+          <p className="project-channel-label">{project.tags.slice(0, 3).join(' / ')}</p>
+          <h3>{project.title}</h3>
+          <p>{project.summary}</p>
+        </div>
+        <div className="evidence-pills">
+          {evidence.map((item) => (
+            <span className={`evidence-pill ${item.state}`} key={item.label}>
+              {item.label}
+            </span>
+          ))}
+        </div>
+        {!compact && (
+          <div className="project-card-section">
+            <h4>Engineering Focus</h4>
+            <p>{project.problem}</p>
+          </div>
+        )}
+        <div className="project-actions">
+          <button
+            type="button"
+            className="project-link"
+            onClick={() => onSelectProject(project.id)}
+          >
+            Engineering Report
+          </button>
+          <a
+            href={project.repository}
+            className="project-link secondary-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`View ${project.title} on GitHub`}
+          >
+            Repository
+          </a>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 function Projects({ projects, onSelectProject }) {
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -24,61 +145,64 @@ function Projects({ projects, onSelectProject }) {
   return (
     <section id="projects" className="projects">
       <div className="container">
-        <h2>Selected GitHub Projects</h2>
-        <div className="projects-grid">
-          {projects.map((project, index) => (
-            <div key={index} className="project-card">
-              <h3>{project.title}</h3>
-              <div className="project-card-section">
-                <h4>Project Summary</h4>
-                <p>{project.summary}</p>
-              </div>
-              <div className="project-card-section">
-                <h4>Deployment Details</h4>
-                <p>{project.deployment}</p>
-              </div>
-              {project.suggestedContent?.length > 0 && (
-                <div className="project-card-section project-suggested-content">
-                  <h4>Suggested Content</h4>
-                  <ul>
-                    {project.suggestedContent.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
+        <div className="section-heading-row">
+          <div>
+            <p className="detail-kicker">Engineering Library</p>
+            <h2>Project Reports, Not Beginner Tutorials</h2>
+          </div>
+          <a href="#dashboard" className="project-link secondary-link">
+            Dashboard
+          </a>
+        </div>
+
+        <div className="embedded-proof-grid">
+          {embeddedProofItems.map((item) => (
+            <article key={item.title}>
+              <span>{item.signal}</span>
+              <h3>{item.title}</h3>
+              <p>{item.detail}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="featured-project-row">
+          <ProjectVideoCard project={projects.find((project) => project.id === 'bems') || projects[0]} onSelectProject={onSelectProject} />
+        </div>
+
+        <div className="project-rails">
+          {projectRails.map((rail) => {
+            const railProjects = projects.filter((project) => rail.matcher.test(getProjectText(project)));
+            if (railProjects.length === 0) {
+              return null;
+            }
+
+            return (
+              <section className="project-rail" key={rail.title} aria-label={rail.title}>
+                <div className="rail-heading">
+                  <div>
+                    <h3>{rail.title}</h3>
+                    <p>{rail.description}</p>
+                  </div>
+                  <span>{railProjects.length} projects</span>
                 </div>
-              )}
-              <div className="project-tags">
-                {project.tags.map((tag, tagIndex) => (
-                  <span key={tagIndex} className="tag">{tag}</span>
-                ))}
-              </div>
-              <div className="project-actions">
-                <button
-                  type="button"
-                  className="project-link"
-                  onClick={() => onSelectProject(project.id)}
-                >
-                  View Details
-                </button>
-                <a
-                  href={project.repository}
-                  className="project-link secondary-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`View ${project.title} on GitHub`}
-                >
-                  Repository
-                </a>
-                {project.loginRoute && (
-                  <a
-                    href={project.loginRoute}
-                    className="project-link secondary-link"
-                  >
-                    {project.loginLabel || 'Login Page'}
-                  </a>
-                )}
-              </div>
-            </div>
+                <div className="rail-scroller">
+                  {railProjects.map((project) => (
+                    <ProjectVideoCard
+                      project={project}
+                      onSelectProject={onSelectProject}
+                      compact
+                      key={`${rail.title}-${project.id}`}
+                    />
+                  ))}
+                </div>
+              </section>
+            );
+          })}
+        </div>
+
+        <div className="projects-grid all-projects-grid">
+          {projects.map((project) => (
+            <ProjectVideoCard project={project} onSelectProject={onSelectProject} key={project.id} compact />
           ))}
         </div>
       </div>
