@@ -75,6 +75,11 @@ const detailStats = (project) => [
     label: 'Docs Linked',
     value: String(project.architectureDocs?.length || 0),
     helper: 'architecture references'
+  },
+  {
+    label: 'Proof Points',
+    value: String(project.proofPoints?.length || 0),
+    helper: 'portfolio evidence'
   }
 ];
 
@@ -160,6 +165,17 @@ function ProjectDetails({ project, onBack }) {
                     <p>{project.deployment}</p>
                   </section>
                 </div>
+                {project.proofPoints?.length > 0 && (
+                  <div className="proof-point-grid">
+                    {project.proofPoints.map((point) => (
+                      <section key={point.title}>
+                        <span>{point.label}</span>
+                        <h3>{point.title}</h3>
+                        <p>{point.detail}</p>
+                      </section>
+                    ))}
+                  </div>
+                )}
               </article>
 
               {project.databaseDetails && (

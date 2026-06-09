@@ -34,6 +34,26 @@ const projects = [
       'Create a small Python application that can model users, persist user records, and provide a simple command workflow for viewing and adding data.',
     architecture:
       'A command-line Python app organized around main.py for menu flow, db.py for CSV persistence, Userclass.py for the user model, and users.csv as lightweight storage.',
+    proofPoints: [
+      {
+        label: 'Separation Of Concerns',
+        title: 'Small App, Real Boundaries',
+        detail:
+          'The command loop, user object, and CSV persistence are split into separate modules, proving the project can grow from a terminal exercise into a tested service without rewriting every layer.'
+      },
+      {
+        label: 'Data Modeling',
+        title: 'Persistence Contract Is Explicit',
+        detail:
+          'The CSV row shape, user-name comparison behavior, and ID handling make the storage contract visible, which is the first step toward replacing flat files with SQLite, MySQL, PostgreSQL, or a REST data source.'
+      },
+      {
+        label: 'Maintainability',
+        title: 'Upgrade Path Is Clear',
+        detail:
+          'The architecture notes call out validation, malformed rows, duplicate handling, and storage errors, showing the project is documented around practical hardening work rather than just happy-path execution.'
+      }
+    ],
     deepDetails: [
       'main.py owns the command loop and routes user commands to focused functions such as show_users, add_user, and del_user.',
       'db.py isolates CSV file access so persistence can be replaced later without rewriting command-flow logic.',
@@ -111,6 +131,26 @@ const projects = [
       'Keep engineering notes, C++ examples, diagrams, static-analysis workflows, and embedded Linux deployment references organized for reuse.',
     architecture:
       'A documentation and examples repository with examples/cpp for CMake-based C++17 code, diagrams for draw.io source and exported PNGs, and GitHub Actions for build/static-analysis validation.',
+    proofPoints: [
+      {
+        label: 'C++ Discipline',
+        title: 'Patterns Are Demonstrated In Code',
+        detail:
+          'The examples cover RAII, strategy, observer, factory, dependency inversion, lock guards, and lifecycle cleanup, proving the study material is tied to runnable C++ instead of being only written notes.'
+      },
+      {
+        label: 'Quality System',
+        title: 'Validation Is Part Of The Study',
+        detail:
+          'CMake, CTest, clang-tidy, cppcheck, CodeChecker, sanitizer smoke tests, and GitHub Actions form a repeatable verification path that mirrors professional embedded and systems workflows.'
+      },
+      {
+        label: 'Architecture Literacy',
+        title: 'Diagrams And Markdown Stay Connected',
+        detail:
+          'The UML images, draw.io sources, README files, and architecture documents create a traceable index from concepts to examples, which makes the repository useful as both a portfolio artifact and a reusable reference.'
+      }
+    ],
     deepDetails: [
       'examples/cpp contains 12 C++ source examples covering RAII, strategy, observer, factory method, dependency inversion, startup cleanup, lock guards, and sanitizer practice.',
       'The CMake project supports local builds, test execution, clang-tidy, cppcheck, CodeChecker, and sanitizer smoke-test workflows.',
@@ -187,6 +227,26 @@ const projects = [
       'Explore how reinforcement learning, forecasting, occupancy prediction, and digital-twin simulation can improve building energy management decisions.',
     architecture:
       'Python package for state layout, prediction, closed-loop simulation, digital twin logic, PPO training, and ONNX export; C++ source for action decoding, state building, controller behavior, and deployment-oriented tests.',
+    proofPoints: [
+      {
+        label: 'AI Control Contract',
+        title: 'State And Action Shape Are Deployment-Ready',
+        detail:
+          'The 116-state and 12-action contracts give the controller a stable interface across Python simulation, PPO training, ONNX export, and C++ deployment checks.'
+      },
+      {
+        label: 'Simulation Depth',
+        title: 'Policy Decisions Can Be Compared',
+        detail:
+          'The simulator keeps a rule-based baseline beside the PPO policy, making it possible to compare comfort, energy cost, demand response, battery behavior, and grid-aware decisions in representative scenarios.'
+      },
+      {
+        label: 'Production Boundary',
+        title: 'Research Code Has A Service Path',
+        detail:
+          'The architecture maps BEMS UI to Node API, Node API to the Python AI service over gRPC, and the AI service back to persisted optimization history, proving the model can be consumed by the BMS stack.'
+      }
+    ],
     deepDetails: [
       'The project defines a 116-dimensional state contract and 12-dimensional action contract for multi-zone HVAC, battery, and thermal storage control.',
       'Python modules cover energy prediction, occupancy prediction, occupancy-aware setpoint adjustment, digital twin rollout, closed-loop simulation, solar/battery optimization, power-grid optimization, and resource-advisor style insights.',
@@ -260,6 +320,26 @@ const projects = [
       'Create a public portfolio that communicates embedded engineering, full-stack development, MySQL, automation, and GitHub project experience.',
     architecture:
       'Create React App project built by Node.js tooling. GitHub Actions installs dependencies, runs the production build, uploads the build artifact, and deploys it to GitHub Pages.',
+    proofPoints: [
+      {
+        label: 'Communication System',
+        title: 'Projects Become Case Studies',
+        detail:
+          'The portfolio turns raw repositories into structured case studies with problem statements, architecture, deployment model, evidence, outcomes, stack matrix, resume bullets, and documentation links.'
+      },
+      {
+        label: 'Static Deployment',
+        title: 'GitHub Pages Constraints Are Handled',
+        detail:
+          'Hash routing, React build output, static assets, and GitHub Actions deployment are aligned so deep project links work on a static host without a custom server.'
+      },
+      {
+        label: 'Data-Driven UI',
+        title: 'One Project Catalog Drives Multiple Views',
+        detail:
+          'The same project data powers dashboard cards, detail pages, architecture-document links, visual galleries, evidence backlog, and resume-ready highlights, reducing drift between portfolio sections.'
+      }
+    ],
     deepDetails: [
       'The application is split into focused React components for hero, about, experience, skills, projects, project details, contact, navigation, and footer.',
       'Project data lives in src/data/projects.js so summaries, deployment details, dependencies, features, and outcomes can be maintained in one place.',
@@ -352,6 +432,83 @@ const projects = [
       'Model an enterprise-style building energy management platform that connects edge data, BEMS-ai optimization, APIs, database storage, and operator-facing dashboards.',
     architecture:
       'Public repository structure includes edge-core C++, node-api Express service using mysql2 and gRPC packages, React/Vite UI with Recharts, BEMS-ai/Python optimization service, database/schema.sql, Docker deployment files, protobuf definitions, and Yocto meta-bems layers.',
+    proofPoints: [
+      {
+        label: 'Enterprise Architecture',
+        title: 'Full Stack And Edge Are Connected',
+        detail:
+          'The project proves an end-to-end BEMS shape: React/Vite dashboard, Node/Express API, MySQL data model, BEMS-ai optimization service, C++ edge core, Docker runtime, observability services, and Yocto packaging.'
+      },
+      {
+        label: 'Runtime Evidence',
+        title: 'The Stack Runs As Services',
+        detail:
+          'The Docker deployment brings up UI, API, AI service, edge-core, MySQL, Kafka, RabbitMQ, Prometheus, Grafana, Alertmanager, and Watchtower together with health checks instead of describing an architecture that only exists on paper.'
+      },
+      {
+        label: 'Operator Workflow',
+        title: 'Dashboard Maps Building To Control Decisions',
+        detail:
+          'The dashboard shows building hierarchy, floors, rooms, zones, devices, telemetry values, alarms, schedules, digital twin status, heat colors, and optimization recommendations from seeded MySQL-backed data.'
+      },
+      {
+        label: 'AI Integration',
+        title: 'BEMS-ai Is A Real Optimization Layer',
+        detail:
+          'The BMS API treats BEMS-ai as a service boundary for optimization and recommendation workflows, then persists results so operators can review projected savings, actions, and control history.'
+      }
+    ],
+    databaseDetails: {
+      title: 'BEMS MySQL Schema And Seeded Runtime Data',
+      summary:
+        'The BEMS stack uses a MySQL database named bems as the system of record for tenants, sites, buildings, floors, rooms, zones, BACnet devices, users, roles, sessions, schedules, alarms, trends, optimization history, reports, maintenance, and firmware workflows.',
+      quickFacts: [
+        { label: 'Engine', value: 'MySQL 8', helper: 'Docker service db' },
+        { label: 'Database', value: 'bems', helper: 'MYSQL_DATABASE' },
+        { label: 'Driver', value: 'mysql2', helper: 'Node API persistence adapter' },
+        { label: 'Login', value: 'admin / admin', helper: 'seeded username and password' },
+        { label: 'Schema Files', value: '2', helper: 'database/schema.sql and docker/init/schema.sql' },
+        { label: 'Core Tables', value: '30+', helper: 'tenant, device, trend, auth, report, maintenance' }
+      ],
+      access: [
+        { label: 'Docker service', value: 'db' },
+        { label: 'Container port', value: '3306' },
+        { label: 'Root password', value: 'root' },
+        { label: 'Database name', value: 'bems' },
+        { label: 'Seed credential', value: 'admin / admin' },
+        { label: 'Schema path', value: 'BEMS_ENTERPRISE_COMPLETE/repo/database/schema.sql' },
+        { label: 'Docker init path', value: 'BEMS_ENTERPRISE_COMPLETE/repo/docker/init/schema.sql' }
+      ],
+      tableGroups: [
+        {
+          label: 'Tenant And Access',
+          tables: ['organizations', 'sites', 'roles', 'users', 'user_sessions', 'audit_events', 'feature_flags']
+        },
+        {
+          label: 'Building Model',
+          tables: ['buildings', 'floors', 'rooms', 'zones', 'devices']
+        },
+        {
+          label: 'Operations',
+          tables: ['alarms', 'alarm_logs', 'notification_outbox', 'schedules', 'holiday_schedules', 'special_events']
+        },
+        {
+          label: 'Telemetry And AI',
+          tables: ['trend_logs', 'analytics_events', 'building_optimization_runs', 'rl_q_values', 'optimization_history', 'fdd_findings']
+        },
+        {
+          label: 'Deployment And Service',
+          tables: ['firmware_artifacts', 'firmware_update_jobs', 'maintenance_tickets', 'maintenance_modes', 'report_schedules', 'report_exports', 'report_schedule_runs']
+        }
+      ],
+      dataFlows: [
+        'React/Vite dashboard signs in with username/password and stores a session token in localStorage under bems.session.',
+        'Node API validates X-Session-Token against user_sessions, resolves RBAC permissions from roles, and scopes requests by organization/site.',
+        'Dashboard API calls query MySQL through mysql2 for hierarchy, alarms, schedules, trends, reports, digital-twin inputs, heat-map samples, and building-footprint calculations.',
+        'The heat map joins zones to buildings, floors, rooms, and trend_logs, then normalizes average metric values into red, orange, green, and blue heat bands.',
+        'Optimization and FDD endpoints persist AI decisions, RL/Q values, maintenance tickets, and report executions back into MySQL for repeatable operator review.'
+      ]
+    },
     deepDetails: [
       'edge-core is the embedded/edge layer and is primarily C++, with BACnet-oriented integration and CMake-style structure.',
       'node-api is an Express service that depends on cors, @grpc/grpc-js, @grpc/proto-loader, and mysql2 for API, service, and database workflows.',
@@ -425,6 +582,26 @@ const projects = [
       'Capture repeatable infrastructure automation examples for local and remote host workflows instead of relying on manual command execution.',
     architecture:
       'Ansible repository with playbooks including a hello-world debug playbook, SSH remote login command example, local ping test, ansible.cfg, and inventory structure.',
+    proofPoints: [
+      {
+        label: 'Automation Practice',
+        title: 'Manual Commands Become Playbooks',
+        detail:
+          'The repository converts common checks such as ping, command execution, fact gathering, and debug output into repeatable Ansible workflows.'
+      },
+      {
+        label: 'Inventory Discipline',
+        title: 'Host Configuration Is Separated From Tasks',
+        detail:
+          'The inventory and ansible.cfg structure proves the playbooks can grow toward dev/stage/prod host grouping, variables, roles, secret handling, and deployment validation.'
+      },
+      {
+        label: 'Security Awareness',
+        title: 'Sensitive Operational Data Is Called Out',
+        detail:
+          'The architecture notes identify IP addresses, usernames, SSH keys, privileged output, and topology logs as data that need masking, inventory controls, or secret tooling.'
+      }
+    ],
     deepDetails: [
       'helloworld.yml validates basic Ansible task execution with ansible.builtin.debug.',
       'ssh_renmote_login.yml demonstrates remote execution, fact gathering, privilege escalation, command registration, and debug output.',
@@ -497,6 +674,26 @@ const projects = [
       'Provide a small native utility for verifying camera device capability, capture formats, mmap buffers, timestamps, display output, and target deployment.',
     architecture:
       'main.c opens /dev/video0, queries V4L2 capabilities and formats, configures capture, requests four mmap buffers, queues frames, streams data, and routes output toward framebuffer/DRM or optional file export; the Makefile cross-compiles and deploys to an i.MX93-style target.',
+    proofPoints: [
+      {
+        label: 'Embedded Native I/O',
+        title: 'Linux Camera Bring-Up Is Concrete',
+        detail:
+          'The code exercises real V4L2 operations including capability query, format enumeration, format selection, buffer allocation, mmap, queueing, and stream start.'
+      },
+      {
+        label: 'Target Workflow',
+        title: 'Build And Deploy Steps Are Scripted',
+        detail:
+          'The Makefile includes cross-compile, SCP, SSH, run, clean, and debug targets, proving the demo is shaped for embedded target iteration instead of host-only experimentation.'
+      },
+      {
+        label: 'Display Path',
+        title: 'Capture Output Has A Hardware Route',
+        detail:
+          'The framebuffer/DRM hooks and optional file export path show how captured frames can move from /dev/video0 toward HDMI preview, local display, or saved evidence.'
+      }
+    ],
     deepDetails: [
       'The capture path uses V4L2 ioctl calls including VIDIOC_QUERYCAP, VIDIOC_ENUM_FMT, VIDIOC_S_FMT, VIDIOC_REQBUFS, VIDIOC_QUERYBUF, VIDIOC_QBUF, and VIDIOC_STREAMON.',
       'BUFFER_COUNT is set to 4, giving the application a four-buffer mmap capture path for frame acquisition.',

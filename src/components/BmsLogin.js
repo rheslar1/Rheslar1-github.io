@@ -21,7 +21,7 @@ const facilityStats = [
 
 function BmsLogin() {
   const [activeProfile, setActiveProfile] = React.useState(accessProfiles[0].id);
-  const [loginMessage, setLoginMessage] = React.useState('Demo mode: credentials are not sent to a server.');
+  const [loginMessage, setLoginMessage] = React.useState('Demo mode: username/password credentials are not sent to a server.');
 
   const selectedProfile = accessProfiles.find((profile) => profile.id === activeProfile);
 
@@ -78,13 +78,13 @@ function BmsLogin() {
             <p className="profile-scope">{selectedProfile.scope}</p>
 
             <label className="form-field">
-              <span>Email</span>
-              <input type="email" name="email" placeholder="rheslar@gmail.com" autoComplete="email" />
+              <span>Username</span>
+              <input type="text" name="username" placeholder="admin" autoComplete="username" />
             </label>
 
             <label className="form-field">
               <span>Password</span>
-              <input type="password" name="password" placeholder="Enter demo password" autoComplete="current-password" />
+              <input type="password" name="password" placeholder="admin" autoComplete="current-password" />
             </label>
 
             <div className="login-options">

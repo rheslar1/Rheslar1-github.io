@@ -1485,10 +1485,121 @@ section h2 {
 }
 
 .detail-story-grid section,
+.proof-point-grid section,
 .detail-two-column section {
   min-width: 0;
   padding-top: 16px;
   border-top: 1px solid var(--border);
+}
+
+.proof-point-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.proof-point-grid span,
+.database-meta-grid span,
+.database-access-list span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.database-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.database-meta-grid section,
+.database-access-list section {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.database-meta-grid strong,
+.database-access-list strong {
+  display: block;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.database-meta-grid small {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.database-group-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.database-group-grid section {
+  min-width: 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.database-group-grid div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.database-group-grid span {
+  display: inline-flex;
+  max-width: 100%;
+  padding: 6px 9px;
+  border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border));
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--accent) 9%, var(--surface));
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.data-flow-list,
+.database-access-list {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.data-flow-list li {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.data-flow-list span {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: color-mix(in srgb, #2563eb 14%, var(--surface));
+  color: #1d4ed8;
+  font-size: 0.82rem;
+  font-weight: 900;
 }
 
 .detail-two-column {
@@ -1745,7 +1856,9 @@ section h2 {
   .detail-layout,
   .detail-stat-grid,
   .detail-story-grid,
+  .proof-point-grid,
   .detail-two-column,
+  .database-group-grid,
   .project-detail-header,
   .dashboard-hero-grid,
   .dashboard-kpis,
