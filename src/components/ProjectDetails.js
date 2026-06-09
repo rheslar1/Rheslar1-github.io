@@ -15,11 +15,11 @@ const stackCategories = [
   },
   {
     label: 'AI / Simulation',
-    matcher: /(AI|BEMS-ai|Python|pytest|PPO|ONNX|EnergyPlus|LightGBM|digital twin|forecast)/i
+    matcher: /(AI|BEMS-ai|PPO|ONNX|EnergyPlus|LightGBM|digital twin|forecast|simulation)/i
   },
   {
     label: 'Embedded / Native',
-    matcher: /(C\+\+|CMake|C\+\+17|C,|V4L2|Framebuffer|DRM|mmap|aarch64|Yocto|Linux|BACnet|i\.MX93|clang|cppcheck|CodeChecker)/i
+    matcher: /(C\+\+|CMake|C\+\+17|V4L2|Framebuffer|DRM|mmap|aarch64|Yocto|Linux|BACnet|i\.MX93|clang|cppcheck|CodeChecker)/i
   },
   {
     label: 'Automation / Deployment',
