@@ -28,6 +28,7 @@ function BmsLogin() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setLoginMessage(`${selectedProfile.label} console preview unlocked for portfolio review.`);
+    window.location.hash = 'dashboard';
   };
 
   return (
