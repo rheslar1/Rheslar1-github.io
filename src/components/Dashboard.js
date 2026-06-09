@@ -136,7 +136,7 @@ function Dashboard({ projects, onSelectProject }) {
               <div>
                 <span>Energy Management</span>
                 <h2>Building Energy Status</h2>
-                <p>Floorplan zones are colored by energy intensity, comfort risk, and BEMS-ai action.</p>
+                <p>Simulated floorplan heatmap with zone-level kWh, temperature, comfort risk, occupancy, and recommended BEMS action.</p>
               </div>
               <strong>Demand response armed</strong>
             </div>
@@ -172,8 +172,24 @@ function Dashboard({ projects, onSelectProject }) {
                       <h3>{zone.name}</h3>
                       <strong>{zone.kwh} kWh</strong>
                     </div>
-                    <p>{zone.temp} | {zone.risk} risk | {zone.occupancy} occupied</p>
-                    <span>{zone.action}</span>
+                    <div className="zone-readings">
+                      <span>
+                        <small>Temperature</small>
+                        {zone.temp}
+                      </span>
+                      <span>
+                        <small>Comfort Risk</small>
+                        {zone.risk}
+                      </span>
+                      <span>
+                        <small>Occupancy</small>
+                        {zone.occupancy}
+                      </span>
+                    </div>
+                    <div className="zone-action">
+                      <small>Recommended BEMS Action</small>
+                      <span>{zone.action}</span>
+                    </div>
                   </article>
                 ))}
               </div>
@@ -217,7 +233,10 @@ function Dashboard({ projects, onSelectProject }) {
                     <strong>{event.zone}</strong>
                     <span>{event.type}</span>
                   </div>
-                  <small>{event.priority} | {event.status}</small>
+                  <small>
+                    <span className="eco-priority-badge">{event.priority}</span>
+                    {event.status}
+                  </small>
                 </section>
               ))}
             </div>
