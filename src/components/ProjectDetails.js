@@ -70,6 +70,11 @@ const detailStats = (project) => [
     label: 'Evidence Queue',
     value: String(project.suggestedContent?.length || 0),
     helper: 'next captures'
+  },
+  {
+    label: 'Docs Linked',
+    value: String(project.architectureDocs?.length || 0),
+    helper: 'architecture references'
   }
 ];
 
@@ -156,6 +161,45 @@ function ProjectDetails({ project, onBack }) {
                   </section>
                 </div>
               </article>
+
+              {project.databaseDetails && (
+                <article className="detail-panel detail-database-panel">
+                  <div className="detail-panel-heading">
+                    <p className="detail-kicker">MySQL Data Layer</p>
+                    <h2>{project.databaseDetails.title}</h2>
+                  </div>
+                  <p>{project.databaseDetails.summary}</p>
+                  <div className="database-meta-grid">
+                    {project.databaseDetails.quickFacts.map((fact) => (
+                      <section key={fact.label}>
+                        <span>{fact.label}</span>
+                        <strong>{fact.value}</strong>
+                        <small>{fact.helper}</small>
+                      </section>
+                    ))}
+                  </div>
+                  <div className="database-group-grid">
+                    {project.databaseDetails.tableGroups.map((group) => (
+                      <section key={group.label}>
+                        <h3>{group.label}</h3>
+                        <div>
+                          {group.tables.map((table) => (
+                            <span key={table}>{table}</span>
+                          ))}
+                        </div>
+                      </section>
+                    ))}
+                  </div>
+                  <ol className="data-flow-list">
+                    {project.databaseDetails.dataFlows.map((flow, index) => (
+                      <li key={flow}>
+                        <span>{String(index + 1).padStart(2, '0')}</span>
+                        <p>{flow}</p>
+                      </li>
+                    ))}
+                  </ol>
+                </article>
+              )}
 
               <article className="detail-panel">
                 <div className="detail-panel-heading">
@@ -273,6 +317,23 @@ function ProjectDetails({ project, onBack }) {
                         <span>{doc.path}</span>
                         <small>{doc.focus}</small>
                       </a>
+                    ))}
+                  </div>
+                </article>
+              )}
+
+              {project.databaseDetails && (
+                <article className="detail-panel">
+                  <div className="detail-panel-heading">
+                    <p className="detail-kicker">Database Access</p>
+                    <h2>MySQL Provided</h2>
+                  </div>
+                  <div className="database-access-list">
+                    {project.databaseDetails.access.map((item) => (
+                      <section key={item.label}>
+                        <span>{item.label}</span>
+                        <strong>{item.value}</strong>
+                      </section>
                     ))}
                   </div>
                 </article>
