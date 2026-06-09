@@ -630,24 +630,7 @@ function Dashboard({ projects, onSelectProject }) {
             </div>
           </article>
 
-          <article className="eco-card">
-            <div className="eco-card-heading">
-              <div>
-                <span>Building</span>
-                <h2>Building Summary</h2>
-              </div>
-            </div>
-            <div className="eco-building-list">
-              {buildingSummary.map((item) => (
-                <section key={item.label}>
-                  <span>{item.label}</span>
-                  <strong>{item.value}</strong>
-                </section>
-              ))}
-            </div>
-          </article>
-
-          <article className="eco-card">
+          <article className="eco-card" id="zone-status">
             <div className="eco-card-heading">
               <div>
                 <span>Zones</span>
@@ -667,7 +650,7 @@ function Dashboard({ projects, onSelectProject }) {
             </div>
           </article>
 
-          <article className="eco-card eco-card-wide">
+          <article className="eco-card eco-card-wide" id="floor-status">
             <div className="eco-card-heading">
               <div>
                 <span>Floors</span>
@@ -686,7 +669,7 @@ function Dashboard({ projects, onSelectProject }) {
             </div>
           </article>
 
-          <article className="eco-card eco-card-wide">
+          <article className="eco-card eco-card-wide" id="room-schedules">
             <div className="eco-card-heading">
               <div>
                 <span>Rooms And Schedules</span>
@@ -715,7 +698,7 @@ function Dashboard({ projects, onSelectProject }) {
             </div>
           </article>
 
-          <article className="eco-card">
+          <article className="eco-card" id="alarm-events">
             <div className="eco-card-heading">
               <div>
                 <span>Alarms</span>
@@ -738,7 +721,7 @@ function Dashboard({ projects, onSelectProject }) {
             </div>
           </article>
 
-          <article className="eco-card">
+          <article className="eco-card" id="equipment-health">
             <div className="eco-card-heading">
               <div>
                 <span>Equipment</span>
@@ -756,7 +739,7 @@ function Dashboard({ projects, onSelectProject }) {
             </div>
           </article>
 
-          <article className="eco-card">
+          <article className="eco-card" id="energy-distribution">
             <div className="eco-card-heading">
               <div>
                 <span>Energy</span>
@@ -796,6 +779,7 @@ function Dashboard({ projects, onSelectProject }) {
             <p className="eco-stack-note">{allDependencies.length} stack items tracked across the portfolio.</p>
           </article>
         </section>
+        )}
       </div>
     </main>
   );
