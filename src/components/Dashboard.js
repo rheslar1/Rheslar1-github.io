@@ -632,6 +632,26 @@ function Dashboard({ projects, onSelectProject }) {
             </div>
           </article>
 
+          <article className="eco-card eco-building-brief" id="building-summary-brief">
+            <div className="eco-card-heading">
+              <div>
+                <span>Building</span>
+                <h2>Brief Building Summary</h2>
+              </div>
+              <button type="button" className="eco-inline-action" onClick={() => jumpToDashboardContent('Building')}>
+                Full Building
+              </button>
+            </div>
+            <div className="eco-building-list">
+              {buildingSummary.slice(0, 4).map((item) => (
+                <section key={`${item.label}-brief`}>
+                  <span>{item.label}</span>
+                  <strong>{item.value}</strong>
+                </section>
+              ))}
+            </div>
+          </article>
+
           <article className="eco-card" id="zone-status">
             <div className="eco-card-heading">
               <div>
