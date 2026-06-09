@@ -899,7 +899,7 @@ section h2 {
 
 .dashboard-kpis {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 14px;
   margin-bottom: 18px;
 }
@@ -974,6 +974,114 @@ section h2 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
+}
+
+.architecture-doc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.architecture-doc-card {
+  min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: 18px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-tint);
+}
+
+.architecture-doc-card h3 {
+  margin: 10px 0 8px;
+  color: var(--text);
+  font-size: 1.15rem;
+  line-height: 1.25;
+}
+
+.architecture-doc-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.doc-status {
+  width: fit-content;
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 9px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.doc-status.ready {
+  background: color-mix(in srgb, #d1fae5 62%, var(--surface));
+  color: #047857;
+}
+
+.doc-status.missing {
+  background: color-mix(in srgb, #fee2e2 58%, var(--surface));
+  color: #b91c1c;
+}
+
+[data-theme='dark'] .doc-status.ready {
+  background: color-mix(in srgb, #064e3b 56%, var(--surface));
+  color: #a7f3d0;
+}
+
+[data-theme='dark'] .doc-status.missing {
+  background: color-mix(in srgb, #7f1d1d 56%, var(--surface));
+  color: #fecaca;
+}
+
+.architecture-doc-links {
+  display: grid;
+  gap: 10px;
+}
+
+.architecture-doc-links a {
+  display: grid;
+  gap: 5px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--muted);
+  text-decoration: none;
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.architecture-doc-links a:hover,
+.architecture-doc-links a:focus-visible {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.architecture-doc-links strong {
+  color: var(--primary-strong);
+  font-size: 0.96rem;
+}
+
+.architecture-doc-links span,
+.architecture-doc-links small {
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+
+.architecture-doc-links span {
+  color: var(--text);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.architecture-doc-links small {
+  color: var(--muted);
 }
 
 .energy-heatmap {
@@ -1645,6 +1753,7 @@ section h2 {
   .dashboard-layout,
   .energy-heatmap,
   .dashboard-project-grid,
+  .architecture-doc-grid,
   .dashboard-visual-grid,
   .capture-list {
     grid-template-columns: 1fr;

@@ -255,6 +255,29 @@ function ProjectDetails({ project, onBack }) {
                 </div>
               </article>
 
+              {project.architectureDocs?.length > 0 && (
+                <article className="detail-panel">
+                  <div className="detail-panel-heading">
+                    <p className="detail-kicker">Architecture Markdown</p>
+                    <h2>Project Docs</h2>
+                  </div>
+                  <div className="architecture-doc-links detail-doc-links">
+                    {project.architectureDocs.map((doc) => (
+                      <a
+                        href={doc.url}
+                        key={doc.path}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <strong>{doc.title}</strong>
+                        <span>{doc.path}</span>
+                        <small>{doc.focus}</small>
+                      </a>
+                    ))}
+                  </div>
+                </article>
+              )}
+
               <article className="detail-panel">
                 <div className="detail-panel-heading">
                   <p className="detail-kicker">Stack Matrix</p>

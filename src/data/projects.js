@@ -10,6 +10,14 @@ const projects = [
       'Runs locally with Python from the command line; data is stored in users.csv and can later be migrated to MySQL or an API-backed service.',
     dependencies: ['Python standard library', 'csv', 'os', 'dataclasses'],
     repository: 'https://github.com/rheslar1/pythonProject',
+    architectureDocs: [
+      {
+        title: 'Root Architecture',
+        path: 'ARCHITECTURE.md',
+        url: 'https://github.com/rheslar1/pythonProject/blob/main/ARCHITECTURE.md',
+        focus: 'CLI layers, CSV persistence, User model, runtime flow, extension plan'
+      }
+    ],
     preview: projectAsset('python-cli-simulated.svg'),
     visuals: [
       {
@@ -64,6 +72,20 @@ const projects = [
       'Documentation/reference repository hosted on GitHub; published by repository browsing rather than an application runtime.',
     dependencies: ['C++17', 'CMake', 'clang-tidy', 'cppcheck', 'CodeChecker', 'Draw.io', 'GitHub Actions'],
     repository: 'https://github.com/rheslar1/study',
+    architectureDocs: [
+      {
+        title: 'Study Architecture',
+        path: 'ARCHITECTURE.md',
+        url: 'https://github.com/rheslar1/study/blob/analysis/ARCHITECTURE.md',
+        focus: 'C++ examples, UML index, CI/static analysis, embedded deployment study flow'
+      },
+      {
+        title: 'C++ Examples README',
+        path: 'examples/cpp/README.md',
+        url: 'https://github.com/rheslar1/study/blob/analysis/examples/cpp/README.md',
+        focus: 'CMake, CTest, sanitizer, static-analysis, and edge-service examples'
+      }
+    ],
     preview: projectAsset('study-cpp-ci-simulated.svg'),
     visuals: [
       {
@@ -121,6 +143,20 @@ const projects = [
       'Supports Python research/training workflows and C++ controller deployment checks using CMake, pytest, EnergyPlus-oriented scaffolding, and an ONNX Runtime deployment boundary.',
     dependencies: ['Python', 'pytest', 'C++', 'CMake', 'EnergyPlus concepts', 'LightGBM concepts', 'PPO', 'ONNX Runtime'],
     repository: 'https://github.com/rheslar1/BEMS-ai',
+    architectureDocs: [
+      {
+        title: 'Controller Architecture',
+        path: 'ARCHITECTURE.md',
+        url: 'https://github.com/rheslar1/BEMS-ai/blob/master/ARCHITECTURE.md',
+        focus: '116-state contract, 12-action control, PPO, digital twin, ONNX boundary'
+      },
+      {
+        title: 'Deep Architecture',
+        path: 'docs/DEEP_ARCHITECTURE.md',
+        url: 'https://github.com/rheslar1/BEMS-ai/blob/master/docs/DEEP_ARCHITECTURE.md',
+        focus: 'Training pipeline, simulation loop, grid optimizer, C++ deployment interface'
+      }
+    ],
     preview: projectAsset('bems-ai-system-architecture.png'),
     visuals: [
       {
@@ -180,6 +216,14 @@ const projects = [
       'Deployed by GitHub Actions: npm ci, npm run build, upload the build artifact, and publish to GitHub Pages.',
     dependencies: ['React 18', 'Node.js', 'react-scripts', 'GitHub Actions', 'GitHub Pages'],
     repository: 'https://github.com/rheslar1/Rheslar1-github.io',
+    architectureDocs: [
+      {
+        title: 'Portfolio Architecture',
+        path: 'ARCHITECTURE.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/ARCHITECTURE.md',
+        focus: 'React SPA routing, project data model, dashboard/detail pages, Pages deployment'
+      }
+    ],
     preview: projectAsset('portfolio-home.png'),
     visuals: [
       {
@@ -235,6 +279,20 @@ const projects = [
       'Designed for containerized and embedded deployment with Docker services, a MySQL schema, Node.js API, React/Vite UI, BEMS-ai/Python optimization service, and Yocto meta-bems layers.',
     dependencies: ['BEMS-ai', 'C++', 'Node.js', 'Express', 'mysql2', 'React', 'Vite', 'Recharts', 'Python', 'gRPC', 'Docker', 'Yocto'],
     repository: 'https://github.com/rheslar1/BMS',
+    architectureDocs: [
+      {
+        title: 'System Architecture',
+        path: 'BEMS_ENTERPRISE_COMPLETE/repo/docs/architecture.md',
+        url: 'https://github.com/rheslar1/BMS/blob/bems/BEMS_ENTERPRISE_COMPLETE/repo/docs/architecture.md',
+        focus: 'Enterprise BMS layers, API, database, AI service, edge, Docker, Yocto'
+      },
+      {
+        title: 'Deep Architecture',
+        path: 'BEMS_ENTERPRISE_COMPLETE/repo/docs/deep-architecture.md',
+        url: 'https://github.com/rheslar1/BMS/blob/bems/BEMS_ENTERPRISE_COMPLETE/repo/docs/deep-architecture.md',
+        focus: 'BEMS-ai integration, service contracts, telemetry flow, deployment evidence model'
+      }
+    ],
     loginRoute: '#bms-login',
     loginLabel: 'BMS Login Page',
     preview: projectAsset('bms-detail.png'),
@@ -311,6 +369,14 @@ const projects = [
       'Executed with Ansible against local or remote inventory; playbooks support connectivity checks, command execution, and automation validation.',
     dependencies: ['Ansible', 'YAML', 'SSH', 'Inventory files', 'Linux shell commands'],
     repository: 'https://github.com/rheslar1/ansible',
+    architectureDocs: [
+      {
+        title: 'Automation Architecture',
+        path: 'ARCHITECTURE.md',
+        url: 'https://github.com/rheslar1/ansible/blob/main/ARCHITECTURE.md',
+        focus: 'Control node, inventory, playbooks, modules, security, validation workflow'
+      }
+    ],
     preview: projectAsset('ansible-playbook-simulated.svg'),
     visuals: [
       {
@@ -365,6 +431,14 @@ const projects = [
       'Built with an aarch64 cross-compiler Makefile and deployable to an embedded Linux target over SCP/SSH for camera bring-up and display validation.',
     dependencies: ['C', 'Linux V4L2', 'Framebuffer/DRM', 'mmap', 'aarch64-linux-gnu-gcc', 'SCP/SSH', 'Optional libpng'],
     repository: 'https://github.com/rheslar1/CameraDemo',
+    architectureDocs: [
+      {
+        title: 'Camera Architecture',
+        path: 'ARCHITECTURE.md',
+        url: 'https://github.com/rheslar1/CameraDemo/blob/main/ARCHITECTURE.md',
+        focus: 'V4L2 ioctls, mmap buffers, framebuffer/DRM display, Makefile target deployment'
+      }
+    ],
     preview: projectAsset('camera-architecture.svg'),
     visuals: [
       {

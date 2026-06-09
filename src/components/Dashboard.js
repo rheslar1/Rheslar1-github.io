@@ -26,10 +26,8 @@ function Dashboard({ projects, onSelectProject }) {
   const allDependencies = uniqueItems(projects, 'dependencies');
   const allTags = uniqueItems(projects, 'tags');
   const visualCount = projects.reduce((total, project) => total + (project.visuals?.length || 0), 0);
-  const simulatedVisualCount = projects.reduce(
-    (total, project) => total + (project.visuals || []).filter((visual) => /simulated/i.test(visual.caption)).length,
-    0
-  );
+  const architectureDocCount = projects.reduce((total, project) => total + (project.architectureDocs?.length || 0), 0);
+  const architectureProjectCount = projects.filter((project) => project.architectureDocs?.length > 0).length;
   const suggestedContentCount = projects.reduce(
     (total, project) => total + (project.suggestedContent?.length || 0),
     0
@@ -59,7 +57,7 @@ function Dashboard({ projects, onSelectProject }) {
             <h1>Project Command Center</h1>
             <p>
               A blue-themed project dashboard for reviewing Robert Heslar's GitHub work, simulated screenshots,
-              architecture evidence, measurable outcomes, and the next content to capture.
+              architecture Markdown, measurable outcomes, and the next content to capture.
             </p>
           </div>
           <a href="#projects" className="cta-button secondary-cta">
@@ -80,8 +78,12 @@ function Dashboard({ projects, onSelectProject }) {
               <strong>{visualCount}</strong>
             </article>
             <article className="dashboard-kpi">
-              <span>Simulated Views</span>
-              <strong>{simulatedVisualCount}</strong>
+              <span>Architecture Docs</span>
+              <strong>{architectureDocCount}</strong>
+            </article>
+            <article className="dashboard-kpi">
+              <span>Repos Documented</span>
+              <strong>{architectureProjectCount}</strong>
             </article>
             <article className="dashboard-kpi">
               <span>Stack Items</span>
@@ -94,6 +96,68 @@ function Dashboard({ projects, onSelectProject }) {
           </div>
 
           <div className="dashboard-layout">
+            <section className="dashboard-panel dashboard-panel-wide">
+              <div className="dashboard-panel-heading">
+                <div>
+                  <h2>Architecture Markdown Matrix</h2>
+                  <p>Project architecture documents are linked from the same dashboard used to review screenshots, stack coverage, and capture readiness.</p>
+                </div>
+              </div>
+              <div className="architecture-doc-grid">
+                {projects.map((project) => {
+                  const docs = project.architectureDocs || [];
+                  const primaryDoc = docs[0];
+
+                  return (
+                    <article className="architecture-doc-card" key={`${project.id}-architecture`}>
+                      <div>
+                        <span className={docs.length > 0 ? 'doc-status ready' : 'doc-status missing'}>
+                          {docs.length > 0 ? 'Documented' : 'Needs doc'}
+                        </span>
+                        <h3>{project.title}</h3>
+                        <p>{project.architecture}</p>
+                      </div>
+                      {docs.length > 0 && (
+                        <div className="architecture-doc-links">
+                          {docs.map((doc) => (
+                            <a
+                              href={doc.url}
+                              key={doc.path}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <strong>{doc.title}</strong>
+                              <span>{doc.path}</span>
+                              <small>{doc.focus}</small>
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                      <div className="project-actions dashboard-actions">
+                        <button
+                          type="button"
+                          className="project-link"
+                          onClick={() => onSelectProject(project.id)}
+                        >
+                          Details
+                        </button>
+                        {primaryDoc && (
+                          <a
+                            href={primaryDoc.url}
+                            className="project-link secondary-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Architecture
+                          </a>
+                        )}
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </section>
+
             <section className="dashboard-panel dashboard-panel-wide">
               <div className="dashboard-panel-heading">
                 <div>
@@ -174,7 +238,8 @@ function Dashboard({ projects, onSelectProject }) {
                 {projects.map((project) => {
                   const visualTotal = project.visuals?.length || 0;
                   const suggestedTotal = project.suggestedContent?.length || 0;
-                  const score = Math.min(100, 35 + visualTotal * 12 + suggestedTotal * 7);
+                  const docTotal = project.architectureDocs?.length || 0;
+                  const score = Math.min(100, 35 + visualTotal * 10 + suggestedTotal * 6 + docTotal * 10);
 
                   return (
                     <article className="dashboard-project" key={project.id}>
@@ -184,6 +249,7 @@ function Dashboard({ projects, onSelectProject }) {
                       </div>
                       <div className="dashboard-project-meta">
                         <span>{visualTotal} visuals</span>
+                        <span>{docTotal} architecture docs</span>
                         <span>{suggestedTotal} next captures</span>
                         <span>{project.tags.slice(0, 2).join(' + ')}</span>
                       </div>
