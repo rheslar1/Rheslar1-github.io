@@ -305,6 +305,242 @@ function Dashboard({ projects, onSelectProject }) {
           ))}
         </section>
 
+        {isAlarmView ? (
+          <section className="eco-dashboard-grid eco-alarm-page" aria-label="Alarm details dashboard">
+            <article className="eco-card eco-card-wide eco-alarm-detail-card">
+              <div className="eco-card-heading">
+                <div>
+                  <span>Selected Alarm</span>
+                  <h2>{selectedAlarm.type}</h2>
+                  <p>{selectedAlarm.cause}</p>
+                </div>
+                <strong>{selectedAlarm.status}</strong>
+              </div>
+              <div className={`eco-critical-strip ${selectedAlarm.priority.toLowerCase()}`}>
+                <strong>{selectedAlarm.priority} Priority</strong>
+                <span>{selectedAlarm.id} | {selectedAlarm.zone} | {selectedAlarm.sla}</span>
+              </div>
+              <div className="eco-alarm-detail-grid">
+                <section>
+                  <span>Current Reading</span>
+                  <strong>{selectedAlarm.reading}</strong>
+                  <small>Threshold: {selectedAlarm.threshold}</small>
+                </section>
+                <section>
+                  <span>Temperature</span>
+                  <strong>{selectedAlarm.temperature}</strong>
+                  <small>Occupancy: {selectedAlarm.occupancy}</small>
+                </section>
+                <section>
+                  <span>Trend</span>
+                  <strong>{selectedAlarm.trend}</strong>
+                  <small>Last seen {selectedAlarm.lastSeen}</small>
+                </section>
+                <section>
+                  <span>Equipment</span>
+                  <strong>{selectedAlarm.equipment}</strong>
+                  <small>Source: {selectedAlarm.source}</small>
+                </section>
+              </div>
+              <div className="eco-alarm-narrative">
+                <section>
+                  <span>Operational Impact</span>
+                  <p>{selectedAlarm.impact}</p>
+                </section>
+                <section>
+                  <span>Recommended BEMS Action</span>
+                  <p>{selectedAlarm.action}</p>
+                </section>
+              </div>
+            </article>
+
+            <article className="eco-card" id="alarm-events">
+              <div className="eco-card-heading">
+                <div>
+                  <span>Alarm Queue</span>
+                  <h2>Events And Acknowledgement</h2>
+                </div>
+              </div>
+              <div className="eco-alarm-queue">
+                {alarmEvents.map((event) => (
+                  <button
+                    type="button"
+                    className={`eco-alarm-ticket ${event.priority.toLowerCase()} ${selectedAlarm.id === event.id ? 'active' : ''}`}
+                    onClick={() => setSelectedAlarmId(event.id)}
+                    key={event.id}
+                  >
+                    <span>{event.id}</span>
+                    <strong>{event.zone}</strong>
+                    <small>{event.type} | {event.status}</small>
+                  </button>
+                ))}
+              </div>
+            </article>
+
+            <article className="eco-card">
+              <div className="eco-card-heading">
+                <div>
+                  <span>Location</span>
+                  <h2>Alarm Location Details</h2>
+                </div>
+              </div>
+              <div className="eco-alarm-location-grid">
+                <section>
+                  <span>Building</span>
+                  <strong>{selectedAlarm.building}</strong>
+                </section>
+                <section>
+                  <span>Floor</span>
+                  <strong>{selectedAlarm.floor}</strong>
+                </section>
+                <section>
+                  <span>Room</span>
+                  <strong>{selectedAlarm.room}</strong>
+                </section>
+                <section>
+                  <span>Zone</span>
+                  <strong>{selectedAlarm.zone}</strong>
+                </section>
+              </div>
+            </article>
+
+            <article className="eco-card">
+              <div className="eco-card-heading">
+                <div>
+                  <span>Response</span>
+                  <h2>Operator Steps</h2>
+                </div>
+                <strong>{selectedAlarm.owner}</strong>
+              </div>
+              <ol className="eco-response-list">
+                {selectedAlarm.steps.map((step) => (
+                  <li key={step}>{step}</li>
+                ))}
+              </ol>
+            </article>
+
+            <article className="eco-card">
+              <div className="eco-card-heading">
+                <div>
+                  <span>Timeline</span>
+                  <h2>Alarm History</h2>
+                </div>
+              </div>
+              <div className="eco-history-list">
+                {selectedAlarm.history.map((item) => (
+                  <section key={item}>{item}</section>
+                ))}
+              </div>
+            </article>
+          </section>
+        ) : isBuildingView ? (
+          <section className="eco-dashboard-grid eco-building-page" aria-label="Building summary dashboard">
+            <article className="eco-card eco-card-wide">
+              <div className="eco-card-heading">
+                <div>
+                  <span>Building</span>
+                  <h2>Building Summary</h2>
+                  <p>Focused facility status for the EnergyBuildAI Tower, including floors, zones, rooms, operating mode, and active controls context.</p>
+                </div>
+                <strong>Online</strong>
+              </div>
+              <div className="eco-building-detail-grid">
+                {buildingSummary.map((item) => (
+                  <section key={item.label}>
+                    <span>{item.label}</span>
+                    <strong>{item.value}</strong>
+                  </section>
+                ))}
+              </div>
+            </article>
+
+            <article className="eco-card eco-card-wide">
+              <div className="eco-card-heading">
+                <div>
+                  <span>Floors</span>
+                  <h2>Floor Summary</h2>
+                </div>
+              </div>
+              <div className="eco-floor-grid">
+                {floorSummaries.map((floor) => (
+                  <section className={floor.status.toLowerCase()} key={`${floor.name}-building-page`}>
+                    <span>{floor.name}</span>
+                    <strong>{floor.load}</strong>
+                    <small>{floor.rooms}</small>
+                    <em>{floor.schedule} | {floor.status}</em>
+                  </section>
+                ))}
+              </div>
+            </article>
+
+            <article className="eco-card">
+              <div className="eco-card-heading">
+                <div>
+                  <span>Zones</span>
+                  <h2>Zone Energy Status</h2>
+                </div>
+              </div>
+              <div className="eco-zone-list">
+                {energyZones.map((zone) => (
+                  <section className={`zone-${zone.heat}`} key={`${zone.name}-building-zone`}>
+                    <div>
+                      <strong>{zone.name}</strong>
+                      <span>{zone.kwh} kWh | {zone.temp}</span>
+                    </div>
+                    <small>{zone.risk} risk | {zone.occupancy} occupied | {zone.action}</small>
+                  </section>
+                ))}
+              </div>
+            </article>
+
+            <article className="eco-card">
+              <div className="eco-card-heading">
+                <div>
+                  <span>Systems</span>
+                  <h2>Connected Building Systems</h2>
+                </div>
+              </div>
+              <div className="eco-building-system-grid">
+                {equipmentSystems.map((system) => (
+                  <section className={system.state === 'Review' ? 'review' : ''} key={`${system.name}-building-system`}>
+                    <span>{system.name}</span>
+                    <strong>{system.value}</strong>
+                    <small>{system.label} | {system.state}</small>
+                  </section>
+                ))}
+              </div>
+            </article>
+
+            <article className="eco-card eco-card-wide">
+              <div className="eco-card-heading">
+                <div>
+                  <span>Rooms And Schedules</span>
+                  <h2>Room Schedule Summary</h2>
+                </div>
+              </div>
+              <div className="eco-schedule-table" role="table" aria-label="Building room schedule summary">
+                <div role="row">
+                  <span role="columnheader">Room</span>
+                  <span role="columnheader">Floor</span>
+                  <span role="columnheader">Zone</span>
+                  <span role="columnheader">Schedule</span>
+                  <span role="columnheader">Mode</span>
+                  <span role="columnheader">Setpoint</span>
+                </div>
+                {roomSchedules.map((room) => (
+                  <div role="row" key={`${room.room}-building-page`}>
+                    <strong role="cell">{room.room}</strong>
+                    <span role="cell">{room.floor}</span>
+                    <span role="cell">{room.zone}</span>
+                    <span role="cell">{room.schedule}</span>
+                    <span role="cell">{room.mode}</span>
+                    <span role="cell">{room.setpoint}</span>
+                  </div>
+                ))}
+              </div>
+            </article>
+          </section>
+        ) : (
         <section className="eco-dashboard-grid">
           <article className="eco-card eco-card-wide eco-heatmap-card" id="building-heatmap">
             <div className="eco-card-heading">
