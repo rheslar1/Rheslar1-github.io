@@ -2579,6 +2579,154 @@ section h2 {
   color: var(--eco-critical);
 }
 
+.eco-critical-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 12px;
+  border-left: 5px solid var(--eco-green);
+  border-radius: 6px;
+  background: var(--eco-field);
+  color: var(--muted);
+  font-weight: 900;
+}
+
+.eco-critical-strip.high {
+  border-left-color: var(--eco-critical);
+}
+
+.eco-critical-strip.medium {
+  border-left-color: var(--eco-warning);
+}
+
+.eco-critical-strip strong,
+.eco-alarm-ticket strong,
+.eco-alarm-detail-grid strong,
+.eco-alarm-location-grid strong,
+.eco-building-detail-grid strong,
+.eco-building-system-grid strong {
+  color: var(--eco-ink);
+}
+
+.eco-alarm-detail-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 10px;
+}
+
+.eco-alarm-location-grid,
+.eco-building-detail-grid,
+.eco-building-system-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.eco-alarm-detail-grid section,
+.eco-alarm-location-grid section,
+.eco-alarm-narrative section,
+.eco-building-detail-grid section,
+.eco-building-system-grid section,
+.eco-history-list section {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--eco-line);
+  border-radius: 6px;
+  background: var(--eco-field);
+}
+
+.eco-alarm-detail-grid span,
+.eco-alarm-location-grid span,
+.eco-alarm-narrative span,
+.eco-building-detail-grid span,
+.eco-building-system-grid span,
+.eco-alarm-ticket span,
+.eco-history-list section {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.eco-alarm-detail-grid strong,
+.eco-alarm-location-grid strong,
+.eco-building-detail-grid strong,
+.eco-building-system-grid strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 1.02rem;
+  line-height: 1.25;
+}
+
+.eco-alarm-detail-grid small,
+.eco-building-system-grid small,
+.eco-alarm-ticket small {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.eco-alarm-narrative {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 10px;
+}
+
+.eco-alarm-narrative p {
+  margin-top: 6px;
+}
+
+.eco-alarm-ticket {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--eco-line);
+  border-left: 5px solid var(--eco-green);
+  border-radius: 6px;
+  background: var(--eco-field);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.eco-alarm-ticket.medium {
+  border-left-color: var(--eco-warning);
+}
+
+.eco-alarm-ticket.high {
+  border-left-color: var(--eco-critical);
+}
+
+.eco-alarm-ticket.active,
+.eco-alarm-ticket:hover,
+.eco-alarm-ticket:focus-visible {
+  border-color: var(--eco-green);
+  border-left-color: var(--eco-green);
+  background: color-mix(in srgb, var(--eco-green) 10%, var(--eco-field));
+  outline: none;
+}
+
+.eco-response-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  font-weight: 800;
+  line-height: 1.55;
+}
+
+.eco-history-list {
+  display: grid;
+  gap: 8px;
+}
+
+.eco-building-system-grid section {
+  border-top: 4px solid var(--eco-green);
+}
+
+.eco-building-system-grid section.review {
+  border-top-color: var(--eco-warning);
+}
+
 .eco-building-list {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
