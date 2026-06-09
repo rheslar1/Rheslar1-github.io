@@ -23,7 +23,10 @@ function Navbar({ onThemeToggle, currentTheme }) {
   return (
     <nav className="navbar">
       <div className="nav-container">
-        <div className="logo">Robert Heslar Lab</div>
+        <div className="logo-block">
+          <div className="logo">Robert Heslar</div>
+          <span>Embedded systems and software portfolio</span>
+        </div>
         <button 
           className="theme-toggle" 
           onClick={onThemeToggle}

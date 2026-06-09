@@ -47,6 +47,12 @@ function Dashboard({ projects, onSelectProject }) {
   );
   const totalBemsUsage = energyZones.reduce((total, zone) => total + zone.kwh, 0);
   const peakUsage = Math.max(...usageTrend.map((point) => point.kwh));
+  const handleHeatmapScroll = () => {
+    const heatmap = document.getElementById('building-heatmap');
+    if (heatmap) {
+      heatmap.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <main className="dashboard-page" id="dashboard">
@@ -56,13 +62,18 @@ function Dashboard({ projects, onSelectProject }) {
             <p className="detail-kicker">Portfolio Dashboard</p>
             <h1>Project Command Center</h1>
             <p>
-              A blue-themed project dashboard for reviewing Robert Heslar's GitHub work, simulated screenshots,
-              architecture Markdown, measurable outcomes, and the next content to capture.
+              A project dashboard for reviewing Robert Heslar's GitHub work, building heatmap telemetry,
+              simulated screenshots, architecture Markdown, measurable outcomes, and the next content to capture.
             </p>
           </div>
-          <a href="#projects" className="cta-button secondary-cta">
-            Back to Projects
-          </a>
+          <div className="dashboard-hero-actions">
+            <button type="button" className="cta-button" onClick={handleHeatmapScroll}>
+              Building Heatmap
+            </button>
+            <a href="#projects" className="cta-button secondary-cta">
+              Back to Projects
+            </a>
+          </div>
         </div>
       </section>
 
@@ -158,11 +169,11 @@ function Dashboard({ projects, onSelectProject }) {
               </div>
             </section>
 
-            <section className="dashboard-panel dashboard-panel-wide">
+            <section className="dashboard-panel dashboard-panel-wide dashboard-heatmap-panel" id="building-heatmap">
               <div className="dashboard-panel-heading">
                 <div>
-                  <h2>BEMS Dashboard: Simulated Building Floorplan</h2>
-                  <p>Energy heat map and usage analytics over a simulated building floorplan, using the BEMS-ai optimization layer for comfort risk and control recommendations.</p>
+                  <h2>Building Heatmap Dashboard</h2>
+                  <p>Energy heatmap and usage analytics over a simulated building floorplan, using the BEMS-ai optimization layer for comfort risk and control recommendations.</p>
                 </div>
               </div>
               <div className="usage-kpis">
