@@ -122,6 +122,42 @@ const projects = [
         caption: 'C++ service lifecycle diagram from the study repository.'
       },
       {
+        src: projectAsset('study-diagram-raii-lifecycle.svg'),
+        caption: 'RAII ownership and cleanup diagram from the C++ study notes.'
+      },
+      {
+        src: projectAsset('study-diagram-strategy-formatting.svg'),
+        caption: 'Strategy pattern diagram for interchangeable formatting behavior.'
+      },
+      {
+        src: projectAsset('study-diagram-observer-event-flow.svg'),
+        caption: 'Observer event-flow diagram showing publisher/subscriber separation.'
+      },
+      {
+        src: projectAsset('study-diagram-factory-device.svg'),
+        caption: 'Factory method diagram for selecting hardware/device implementations.'
+      },
+      {
+        src: projectAsset('study-diagram-dependency-inversion.svg'),
+        caption: 'Dependency inversion diagram showing interfaces between services and hardware.'
+      },
+      {
+        src: projectAsset('study-diagram-lock-guard.svg'),
+        caption: 'Lock-guard concurrency diagram for scoped mutex ownership.'
+      },
+      {
+        src: projectAsset('study-diagram-startup-cleanup.svg'),
+        caption: 'Startup and cleanup sequence diagram for deterministic service lifecycle.'
+      },
+      {
+        src: projectAsset('study-diagram-sanitizer-analysis.svg'),
+        caption: 'Sanitizer and static-analysis workflow diagram for C++ validation.'
+      },
+      {
+        src: projectAsset('study-diagram-edge-service-architecture.svg'),
+        caption: 'Modular edge-service architecture diagram tying configuration, logging, network probing, workers, and hardware I/O together.'
+      },
+      {
         src: githubPreview('study'),
         caption: 'GitHub repository preview for the study notes and examples.'
       }
