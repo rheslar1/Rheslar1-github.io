@@ -82,7 +82,7 @@ function Dashboard({ projects, onSelectProject }) {
       <div className="eco-workspace">
         <section className="eco-topbar">
           <div>
-            <p className="detail-kicker">EnergyBuIldAI</p>
+            <p className="detail-kicker">EnergyBuildAI</p>
             <h1>Building Operation Center</h1>
           </div>
           <div className="eco-topbar-actions">
