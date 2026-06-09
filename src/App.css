@@ -3230,6 +3230,14 @@ section h2 {
   .usage-kpis,
   .dashboard-layout,
   .energy-heatmap,
+  .ecostruxure-dashboard,
+  .eco-command-hero,
+  .eco-system-summary,
+  .eco-kpi-grid,
+  .eco-dashboard-grid,
+  .eco-building-list,
+  .eco-floor-grid,
+  .eco-equipment-grid,
   .dashboard-project-grid,
   .architecture-doc-grid,
   .dashboard-visual-grid,
@@ -3256,6 +3264,29 @@ section h2 {
   }
 
   .dashboard-hero-actions {
+    justify-content: flex-start;
+  }
+
+  .eco-sidebar {
+    padding: 14px;
+  }
+
+  .eco-sidebar nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .eco-workspace {
+    padding: 16px;
+  }
+
+  .eco-topbar,
+  .eco-card-heading,
+  .eco-zone-list section > div {
+    display: grid;
+    justify-content: stretch;
+  }
+
+  .eco-topbar-actions {
     justify-content: flex-start;
   }
 
