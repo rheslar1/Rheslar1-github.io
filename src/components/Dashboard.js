@@ -45,7 +45,6 @@ const energyBreakdown = [
 
 function Dashboard({ projects, onSelectProject }) {
   const allDependencies = uniqueItems(projects, 'dependencies');
-  const architectureDocCount = projects.reduce((total, project) => total + (project.architectureDocs?.length || 0), 0);
   const totalBemsUsage = energyZones.reduce((total, zone) => total + zone.kwh, 0);
   const peakUsage = Math.max(...usageTrend.map((point) => point.kwh));
   const activeAlarmCount = alarmEvents.filter((event) => event.status === 'Active').length;
@@ -61,7 +60,7 @@ function Dashboard({ projects, onSelectProject }) {
     { label: 'Live building load', value: `${totalBemsUsage.toFixed(1)} kWh`, helper: 'Sampled across 5 zones' },
     { label: 'Peak demand', value: `${peakUsage.toFixed(1)} kWh`, helper: 'Tower B Floor 1' },
     { label: 'Active alarms', value: String(activeAlarmCount), helper: '1 high priority' },
-    { label: 'Architecture docs', value: String(architectureDocCount), helper: 'Project evidence linked' }
+    { label: 'Connected systems', value: '4', helper: 'HVAC, lighting, sensors, controls' }
   ];
 
   return (
@@ -89,7 +88,7 @@ function Dashboard({ projects, onSelectProject }) {
           <div className="eco-topbar-actions">
             <span className="eco-live-pill">Live</span>
             <button type="button" className="cta-button" onClick={handleHeatmapScroll}>
-              Building Heatmap
+              Building Energy Status
             </button>
             <a href="#projects" className="cta-button secondary-cta">
               Back to Projects
@@ -136,7 +135,7 @@ function Dashboard({ projects, onSelectProject }) {
             <div className="eco-card-heading">
               <div>
                 <span>Energy Management</span>
-                <h2>Building Heatmap</h2>
+                <h2>Building Energy Status</h2>
                 <p>Floorplan zones are colored by energy intensity, comfort risk, and BEMS-ai action.</p>
               </div>
               <strong>Demand response armed</strong>
