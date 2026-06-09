@@ -1912,7 +1912,7 @@ section h2 {
 
 .zone-readings {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(76px, 1fr));
   gap: 7px;
 }
 
@@ -1938,6 +1938,11 @@ section h2 {
 
 .zone-action span {
   display: block;
+}
+
+.zone-readings span,
+.zone-action span {
+  overflow-wrap: anywhere;
 }
 
 .energy-zone-cold {
@@ -2145,6 +2150,10 @@ section h2 {
     linear-gradient(180deg, rgba(17, 24, 39, 0.05) 1px, transparent 1px),
     #eef2ef;
   background-size: 36px 36px, 36px 36px, auto;
+}
+
+.ecostruxure-dashboard section {
+  padding: 0;
 }
 
 [data-theme='dark'] .ecostruxure-dashboard {
