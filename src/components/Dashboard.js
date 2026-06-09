@@ -4,7 +4,7 @@ function uniqueItems(projects, key) {
   return Array.from(new Set(projects.flatMap((project) => project[key] || [])));
 }
 
-const operationNav = ['Overview', 'Alarms', 'Energy', 'HVAC', 'Lighting', 'Trends'];
+const operationNav = ['Overview', 'Alarms', 'Building', 'Zones', 'Floors', 'Rooms', 'Schedules', 'Energy', 'HVAC', 'Lighting'];
 
 const energyZones = [
   { name: 'Lobby', area: 'lobby', kwh: 8.4, temp: '21.9 C', risk: 'Low', action: 'Hold setpoint', heat: 'normal', occupancy: '42%' },
@@ -41,6 +41,30 @@ const energyBreakdown = [
   { name: 'Lighting', value: 19 },
   { name: 'Plug Load', value: 23 },
   { name: 'Controls', value: 12 }
+];
+
+const buildingSummary = [
+  { label: 'Building', value: 'EnergyBuildAI Tower' },
+  { label: 'Floors', value: '3 active' },
+  { label: 'Zones', value: '5 monitored' },
+  { label: 'Rooms', value: '18 scheduled' },
+  { label: 'Mode', value: 'Occupied' },
+  { label: 'Outdoor Air', value: '64 F' }
+];
+
+const floorSummaries = [
+  { name: 'Ground Floor', load: '14.0 kWh', rooms: 'Lobby, Security, Mechanical', schedule: '06:00-20:00', status: 'Normal' },
+  { name: 'Floor 1', load: '18.7 kWh', rooms: 'Open Office, Conference 101, Lab 1A', schedule: '07:00-19:00', status: 'Elevated' },
+  { name: 'Floor 2', load: '11.2 kWh', rooms: 'Engineering, Quiet Rooms, Storage', schedule: '07:30-18:30', status: 'Normal' },
+  { name: 'Tower B', load: '29.7 kWh', rooms: 'Tower Lobby, Tower Office, Server Room', schedule: '24/7 partial', status: 'High' }
+];
+
+const roomSchedules = [
+  { room: 'Lobby', floor: 'Ground', zone: 'Lobby', schedule: '06:00-20:00', mode: 'Occupied', setpoint: '72 F' },
+  { room: 'Conference 101', floor: 'Floor 1', zone: 'Floor 1', schedule: '08:30-17:30', mode: 'Reserved', setpoint: '71 F' },
+  { room: 'Engineering Lab', floor: 'Floor 2', zone: 'Floor 2', schedule: '07:30-18:30', mode: 'Occupied', setpoint: '72 F' },
+  { room: 'Server Room', floor: 'Tower B', zone: 'Tower B Floor 1', schedule: '24/7', mode: 'Cooling priority', setpoint: '68 F' },
+  { room: 'Tower Office', floor: 'Tower B', zone: 'Tower B Floor 1', schedule: '07:00-19:00', mode: 'Demand response', setpoint: '73 F' }
 ];
 
 function Dashboard({ projects, onSelectProject }) {
@@ -216,6 +240,91 @@ function Dashboard({ projects, onSelectProject }) {
                   <span className="energy-zone-hot">Hot</span>
                 </div>
               </aside>
+            </div>
+          </article>
+
+          <article className="eco-card">
+            <div className="eco-card-heading">
+              <div>
+                <span>Building</span>
+                <h2>Building Summary</h2>
+              </div>
+            </div>
+            <div className="eco-building-list">
+              {buildingSummary.map((item) => (
+                <section key={item.label}>
+                  <span>{item.label}</span>
+                  <strong>{item.value}</strong>
+                </section>
+              ))}
+            </div>
+          </article>
+
+          <article className="eco-card">
+            <div className="eco-card-heading">
+              <div>
+                <span>Zones</span>
+                <h2>Zone Status</h2>
+              </div>
+            </div>
+            <div className="eco-zone-list">
+              {energyZones.map((zone) => (
+                <section className={`zone-${zone.heat}`} key={`${zone.name}-status`}>
+                  <div>
+                    <strong>{zone.name}</strong>
+                    <span>{zone.kwh} kWh | {zone.temp}</span>
+                  </div>
+                  <small>{zone.risk} risk | {zone.occupancy} occupied</small>
+                </section>
+              ))}
+            </div>
+          </article>
+
+          <article className="eco-card eco-card-wide">
+            <div className="eco-card-heading">
+              <div>
+                <span>Floors</span>
+                <h2>Floor Status</h2>
+              </div>
+            </div>
+            <div className="eco-floor-grid">
+              {floorSummaries.map((floor) => (
+                <section className={floor.status.toLowerCase()} key={floor.name}>
+                  <span>{floor.name}</span>
+                  <strong>{floor.load}</strong>
+                  <small>{floor.rooms}</small>
+                  <em>{floor.schedule} | {floor.status}</em>
+                </section>
+              ))}
+            </div>
+          </article>
+
+          <article className="eco-card eco-card-wide">
+            <div className="eco-card-heading">
+              <div>
+                <span>Rooms And Schedules</span>
+                <h2>Room Schedules</h2>
+              </div>
+            </div>
+            <div className="eco-schedule-table" role="table" aria-label="Room schedules">
+              <div role="row">
+                <span role="columnheader">Room</span>
+                <span role="columnheader">Floor</span>
+                <span role="columnheader">Zone</span>
+                <span role="columnheader">Schedule</span>
+                <span role="columnheader">Mode</span>
+                <span role="columnheader">Setpoint</span>
+              </div>
+              {roomSchedules.map((room) => (
+                <div role="row" key={room.room}>
+                  <strong role="cell">{room.room}</strong>
+                  <span role="cell">{room.floor}</span>
+                  <span role="cell">{room.zone}</span>
+                  <span role="cell">{room.schedule}</span>
+                  <span role="cell">{room.mode}</span>
+                  <span role="cell">{room.setpoint}</span>
+                </div>
+              ))}
             </div>
           </article>
 
