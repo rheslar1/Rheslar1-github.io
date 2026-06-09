@@ -79,7 +79,7 @@ function BmsLogin() {
 
             <label className="form-field">
               <span>Email</span>
-              <input type="email" name="email" placeholder="rheslat@gmail.com" autoComplete="email" />
+              <input type="email" name="email" placeholder="rheslar@gmail.com" autoComplete="email" />
             </label>
 
             <label className="form-field">

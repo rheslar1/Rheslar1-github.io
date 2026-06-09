@@ -20,6 +20,6 @@
   <text x="520" y="418" fill="#f8fafc" font-family="monospace" font-size="21">email</text>
   <text x="132" y="462" fill="#a7f3d0" font-family="monospace" font-size="21">001</text>
   <text x="270" y="462" fill="#e5e7eb" font-family="monospace" font-size="21">Robert</text>
-  <text x="520" y="462" fill="#e5e7eb" font-family="monospace" font-size="21">rheslar@example.com</text>
+  <text x="520" y="462" fill="#e5e7eb" font-family="monospace" font-size="21">rheslar@gmail.com</text>
   <text x="100" y="546" fill="#fbbf24" font-family="Arial, sans-serif" font-size="22" font-weight="700">Simulated view: CSV-backed user workflow from main.py, db.py, and Userclass.py</text>
 </svg>

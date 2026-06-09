@@ -13,8 +13,8 @@ function Contact() {
           <a href="https://www.linkedin.com/in/robert-h-2343bb21/" target="_blank" rel="noopener noreferrer" className="contact-link">
             LinkedIn
           </a>
-          <a href="mailto:rheslat@gmail.com" className="contact-link">
-            rheslat@gmail.com
+          <a href="mailto:rheslar@gmail.com" className="contact-link">
+            rheslar@gmail.com
           </a>
         </div>
       </div>
