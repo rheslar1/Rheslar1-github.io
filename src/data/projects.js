@@ -111,11 +111,11 @@ const projects = [
         focus: 'CMake, CTest, sanitizer, static-analysis, and edge-service examples'
       }
     ],
-    preview: projectAsset('study-cpp-ci-simulated.svg'),
+    preview: projectAsset('study-workbench-actual.svg'),
     visuals: [
       {
-        src: projectAsset('study-cpp-ci-simulated.svg'),
-        caption: 'Simulated study workbench showing CMake builds, static analysis, CI, and diagram review.'
+        src: projectAsset('study-workbench-actual.svg'),
+        caption: 'Actual study workbench showing CMake builds, static analysis, CI, and diagram review.'
       },
       {
         src: projectAsset('study-cpp-service-lifecycle.png'),
@@ -178,7 +178,7 @@ const projects = [
       'Used GitHub as a repeatable knowledge-management workflow.'
     ],
     screenshotCaption:
-      'Simulated view summarizes the C++/CI study workflow. Repository diagrams are real exported assets from the study repo.',
+      'Actual study workbench summarizes the C++/CI workflow with CMake builds, static analysis, CI, and diagram review.',
     suggestedContent: [
       'Capture GitHub Actions passing for the C++ CI workflow.',
       'Add screenshots of selected C++ examples running locally.',
@@ -398,8 +398,8 @@ const projects = [
         focus: 'BEMS-ai integration, service contracts, telemetry flow, deployment evidence model'
       }
     ],
-    loginRoute: '#bms-login',
-    loginLabel: 'BMS Login Page',
+    loginRoute: '#dashboard',
+    loginLabel: 'BEMS Dashboard',
     preview: projectAsset('bms-detail.png'),
     visuals: [
       {
