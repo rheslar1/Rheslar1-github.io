@@ -51,9 +51,8 @@ function BmsLogin() {
     }));
     setLoginMessage({
       tone: 'success',
-      text: `${selectedProfile.label} console access granted. Opening dashboard...`
+      text: `${selectedProfile.label} session recorded. Use Dashboard navigation for the public console.`
     });
-    window.location.hash = 'dashboard';
   };
 
   return (

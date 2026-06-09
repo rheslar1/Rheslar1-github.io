@@ -2754,6 +2754,10 @@ section h2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.eco-building-brief {
+  align-self: start;
+}
+
 .eco-building-list section,
 .eco-zone-list section,
 .eco-floor-grid section {
