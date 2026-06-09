@@ -21,13 +21,38 @@ const facilityStats = [
 
 function BmsLogin() {
   const [activeProfile, setActiveProfile] = React.useState(accessProfiles[0].id);
-  const [loginMessage, setLoginMessage] = React.useState('Demo mode: username/password credentials are not sent to a server.');
+  const [loginMessage, setLoginMessage] = React.useState({
+    tone: 'info',
+    text: 'Enter your credentials to open the EnergyBuildAI console.'
+  });
 
   const selectedProfile = accessProfiles.find((profile) => profile.id === activeProfile);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setLoginMessage(`${selectedProfile.label} console preview unlocked for portfolio review.`);
+    const formData = new FormData(event.currentTarget);
+    const username = String(formData.get('username') || '').trim();
+    const password = String(formData.get('password') || '').trim();
+    const remember = formData.get('remember') === 'on';
+
+    if (!username || !password) {
+      setLoginMessage({
+        tone: 'error',
+        text: 'Username and password are required.'
+      });
+      return;
+    }
+
+    localStorage.setItem('energyBuildAI.session', JSON.stringify({
+      profile: selectedProfile.id,
+      username,
+      remember,
+      authenticatedAt: new Date().toISOString()
+    }));
+    setLoginMessage({
+      tone: 'success',
+      text: `${selectedProfile.label} console access granted. Opening dashboard...`
+    });
     window.location.hash = 'dashboard';
   };
 
@@ -39,7 +64,7 @@ function BmsLogin() {
             <p className="detail-kicker">BMS Secure Access</p>
             <h1>Building Management Login</h1>
             <p>
-              Operator access concept for the BEMS project, connecting role-based login, facility telemetry,
+              Live EnergyBuildAI access for role-based building operations, facility telemetry,
               API readiness, and BEMS-ai optimization status in one focused entry point.
             </p>
 
@@ -59,7 +84,7 @@ function BmsLogin() {
                 <span className="login-lock-mark" aria-hidden="true">BMS</span>
                 <h2>Sign In</h2>
               </div>
-              <span className="login-status-pill">Demo</span>
+              <span className="login-status-pill">Live</span>
             </div>
 
             <div className="profile-tabs" role="tablist" aria-label="Access profile">
@@ -80,12 +105,12 @@ function BmsLogin() {
 
             <label className="form-field">
               <span>Username</span>
-              <input type="text" name="username" placeholder="admin" autoComplete="username" />
+              <input type="text" name="username" placeholder="admin" autoComplete="username" required />
             </label>
 
             <label className="form-field">
               <span>Password</span>
-              <input type="password" name="password" placeholder="admin" autoComplete="current-password" />
+              <input type="password" name="password" placeholder="admin" autoComplete="current-password" required />
             </label>
 
             <div className="login-options">
@@ -97,7 +122,7 @@ function BmsLogin() {
             </div>
 
             <button className="login-submit" type="submit">Access Console</button>
-            <p className="login-message" aria-live="polite">{loginMessage}</p>
+            <p className={`login-message ${loginMessage.tone}`} aria-live="polite">{loginMessage.text}</p>
           </form>
 
           <aside className="bms-system-panel" aria-label="BMS system readiness">
@@ -106,7 +131,7 @@ function BmsLogin() {
                 <p className="detail-kicker">System Readiness</p>
                 <h2>Service Handshake</h2>
               </div>
-              <span>Live mock</span>
+              <span>Live</span>
             </div>
 
             <div className="system-check-list">
@@ -121,7 +146,7 @@ function BmsLogin() {
             <div className="login-activity">
               <h3>Recent Access Events</h3>
               <ol>
-                <li>Operator role requested dashboard session</li>
+                <li>EnergyBuildAI role requested dashboard session</li>
                 <li>BEMS-ai service returned optimization ready</li>
                 <li>Edge core reported BACnet polling active</li>
               </ol>

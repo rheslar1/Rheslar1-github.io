@@ -1443,9 +1443,37 @@ section h2 {
   font-weight: 800;
 }
 
+.login-message.info {
+  border-color: color-mix(in srgb, var(--primary) 30%, var(--border));
+  background: color-mix(in srgb, var(--primary) 9%, var(--surface));
+  color: var(--primary-strong);
+}
+
+.login-message.error {
+  border-color: color-mix(in srgb, #dc2626 38%, var(--border));
+  background: color-mix(in srgb, #fee2e2 60%, var(--surface));
+  color: #991b1b;
+}
+
+.login-message.success {
+  border-color: color-mix(in srgb, #047857 34%, var(--border));
+  background: color-mix(in srgb, #d1fae5 45%, var(--surface));
+  color: color-mix(in srgb, #064e3b 72%, var(--text));
+}
+
 [data-theme='dark'] .login-message {
   background: color-mix(in srgb, #064e3b 42%, var(--surface));
   color: #d1fae5;
+}
+
+[data-theme='dark'] .login-message.info {
+  background: color-mix(in srgb, var(--primary) 15%, var(--surface));
+  color: var(--primary-strong);
+}
+
+[data-theme='dark'] .login-message.error {
+  background: color-mix(in srgb, #7f1d1d 46%, var(--surface));
+  color: #fecaca;
 }
 
 .bms-system-panel {
