@@ -850,7 +850,7 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }) {
             <div className="eco-card-heading">
               <div>
                 <span>Portfolio Evidence</span>
-                <h2>BMS Project Links</h2>
+                <h2>Project Links</h2>
               </div>
             </div>
             <div className="eco-project-list">
