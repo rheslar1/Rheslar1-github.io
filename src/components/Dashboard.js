@@ -4,7 +4,7 @@ function uniqueItems(projects, key) {
   return Array.from(new Set(projects.flatMap((project) => project[key] || [])));
 }
 
-const operationNav = ['Overview', 'Alarms', 'Building', 'Zones', 'Floors', 'Rooms', 'Energy', 'HVAC', 'Lighting'];
+const operationNav = ['Overview', 'Alarms', 'Building', 'Zones', 'Floors', 'Rooms', 'Schedules', 'Energy', 'HVAC', 'Lighting'];
 
 const energyZones = [
   { name: 'Lobby', area: 'lobby', kwh: 8.4, temp: '21.9 C', risk: 'Low', action: 'Hold setpoint', heat: 'normal', occupancy: '42%' },
