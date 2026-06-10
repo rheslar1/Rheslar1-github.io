@@ -309,6 +309,15 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }) {
             <button type="button" className="cta-button" onClick={handleHeatmapScroll}>
               Building Energy Status
             </button>
+            {!isScheduleView && (
+              <button
+                type="button"
+                className="cta-button secondary-cta"
+                onClick={() => jumpToDashboardContent('Schedules')}
+              >
+                Room Schedules
+              </button>
+            )}
             <button
               type="button"
               className="cta-button secondary-cta"
