@@ -157,6 +157,16 @@ function ProjectDetails({ project, onBack }) {
                   {project.loginLabel || 'Login Page'}
                 </a>
               )}
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  className="project-link secondary-link detail-repo-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {project.liveLabel || 'Open Live Project'}
+                </a>
+              )}
             </div>
           </div>
           <div className="detail-stat-grid" aria-label={`${project.title} project detail metrics`}>
@@ -362,6 +372,16 @@ function ProjectDetails({ project, onBack }) {
                       className="project-link secondary-link detail-repo-link"
                     >
                       {project.loginLabel || 'Login Page'}
+                    </a>
+                  )}
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      className="project-link secondary-link detail-repo-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {project.liveLabel || 'Open Live Project'}
                     </a>
                   )}
                 </div>

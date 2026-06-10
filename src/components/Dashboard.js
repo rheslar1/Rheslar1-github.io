@@ -827,7 +827,7 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }) {
               </div>
             </div>
             <div className="eco-project-list">
-              {projects.slice(0, 5).map((project) => (
+              {projects.slice(0, 6).map((project) => (
                 <button type="button" onClick={() => onSelectProject(project.id)} key={project.id}>
                   <strong>{project.title}</strong>
                   <span>{project.tags.slice(0, 2).join(' + ')}</span>

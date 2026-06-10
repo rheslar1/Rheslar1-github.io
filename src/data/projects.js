@@ -412,6 +412,96 @@ const projects = [
     ]
   },
   {
+    id: 'bms-portfolio-dashboard',
+    aliases: ['bms-portfolio', 'bms-dashboard-portfolio'],
+    title: 'BMS Portfolio Dashboard',
+    summary: 'Live BMS portfolio dashboard page hosted through GitHub Pages for the Building Management System project.',
+    deployment:
+      'Published as a GitHub Pages dashboard route at https://rheslar1.github.io/BMS/portfolio for direct portfolio review of the BMS work.',
+    dependencies: ['BMS', 'React', 'GitHub Pages', 'Dashboard UI', 'Building Operations'],
+    repository: 'https://github.com/rheslar1/BMS',
+    liveUrl: 'https://rheslar1.github.io/BMS/portfolio',
+    liveLabel: 'Open Live BMS Portfolio',
+    architectureDocs: [
+      {
+        title: 'BMS Repository',
+        path: 'BMS project source',
+        url: 'https://github.com/rheslar1/BMS',
+        focus: 'BMS portfolio dashboard, enterprise BMS source, dashboard evidence, and project review'
+      }
+    ],
+    preview: projectAsset('bms-dashboard-simulated.svg'),
+    visuals: [
+      {
+        src: projectAsset('bms-dashboard-simulated.svg'),
+        caption: 'BMS portfolio dashboard visual used as the live project preview.'
+      },
+      {
+        src: projectAsset('bems-energy-heat-map.svg'),
+        caption: 'Building energy heat map visual that supports the BMS dashboard portfolio story.'
+      },
+      {
+        src: projectAsset('bms-detail.png'),
+        caption: 'Portfolio BMS project detail screenshot used as supporting dashboard evidence.'
+      }
+    ],
+    tags: ['BMS', 'Dashboard', 'GitHub Pages', 'Portfolio'],
+    problem:
+      'Provide a direct public portfolio dashboard entry for the BMS project so reviewers can jump straight from the portfolio catalog into the hosted BMS dashboard work.',
+    architecture:
+      'A GitHub Pages-hosted BMS portfolio route connected to the BMS repository and represented as a dedicated project card in this React portfolio catalog.',
+    proofPoints: [
+      {
+        label: 'Live Evidence',
+        title: 'Hosted BMS Work Is Directly Accessible',
+        detail:
+          'The project entry exposes the BMS portfolio route as a live review target instead of requiring reviewers to infer the dashboard from repository links alone.'
+      },
+      {
+        label: 'Dashboard Focus',
+        title: 'Operations UI Is The Primary Artifact',
+        detail:
+          'The portfolio entry is framed around the BMS dashboard experience, including building operations, energy status, and portfolio evidence visuals.'
+      },
+      {
+        label: 'Portfolio Integration',
+        title: 'BMS Link Appears In The Project Catalog',
+        detail:
+          'The same project data model now carries the BMS hosted portfolio route into project cards, detail pages, and dashboard evidence shortcuts.'
+      }
+    ],
+    deepDetails: [
+      'The live route is tracked exactly as https://rheslar1.github.io/BMS/portfolio.',
+      'The project links back to the BMS source repository for implementation context.',
+      'The portfolio entry uses existing BMS dashboard and heat-map visuals to keep the project catalog consistent with the broader BMS case study.',
+      'The project is intentionally dashboard-focused so it can sit beside repository-centered projects as a hosted review artifact.',
+      'The entry supports reviewers who want to evaluate the BMS portfolio route without navigating through the full BMS case-study page first.'
+    ],
+    features: [
+      'Dedicated portfolio card for the hosted BMS dashboard route.',
+      'Direct live-project link from project detail pages.',
+      'BMS repository link retained for source review.',
+      'Dashboard and energy heat-map visuals attached as supporting evidence.'
+    ],
+    outcomes: [
+      'The hosted BMS portfolio route is now represented as a portfolio project.',
+      'The project catalog can route reviewers from the main portfolio into the live BMS dashboard work.',
+      'Dashboard evidence shortcuts can surface the BMS portfolio project alongside repository case studies.'
+    ],
+    resumeBullets: [
+      'Published and linked a live BMS portfolio dashboard route for public project review.',
+      'Connected hosted dashboard evidence to a React portfolio project catalog.',
+      'Presented BMS dashboard work as both a live page and a source-backed case study.'
+    ],
+    screenshotCaption:
+      'BMS portfolio dashboard entry uses existing BMS dashboard visuals and links to the live GitHub Pages portfolio route.',
+    suggestedContent: [
+      'Capture a fresh screenshot from https://rheslar1.github.io/BMS/portfolio once the route is serving the final page.',
+      'Add a deployment or Pages screenshot for the BMS repository.',
+      'Add mobile and desktop captures of the hosted BMS portfolio dashboard.'
+    ]
+  },
+  {
     id: 'bems',
     aliases: ['bms', 'nms'],
     title: 'BEMS',
