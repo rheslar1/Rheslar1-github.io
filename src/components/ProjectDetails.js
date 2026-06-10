@@ -15,11 +15,11 @@ const stackCategories = [
   },
   {
     label: 'AI / Simulation',
-    matcher: /(AI|BEMS-ai|PPO|ONNX|EnergyPlus|LightGBM|digital twin|forecast|simulation)/i
+    matcher: /(AI|BEMS-ai|PPO|ONNX|EnergyPlus|LightGBM|digital twin|forecast|simulation|Deep Learning|CNN|LSTM|Transformers|GNN|Knowledge Distillation)/i
   },
   {
     label: 'Embedded / Native',
-    matcher: /(C\+\+|CMake|C\+\+17|V4L2|Framebuffer|DRM|mmap|aarch64|Yocto|Linux|BACnet|i\.MX93|clang|cppcheck|CodeChecker)/i
+    matcher: /(C\+\+|CMake|C\+\+17|V4L2|Framebuffer|DRM|mmap|aarch64|Yocto|Linux|BACnet|i\.MX93|clang|cppcheck|CodeChecker|EEG|ECoG|iEEG|Edge AI|Neural Sensors)/i
   },
   {
     label: 'Automation / Deployment',
@@ -88,7 +88,7 @@ const reportSections = (project) => [
     title: 'Hardware Stack',
     items: [
       ...(project.dependencies || []).filter((item) => (
-        /(C\+\+|C\+\+17|C$|CMake|V4L2|Framebuffer|DRM|mmap|aarch64|Linux|Yocto|BACnet|i\.MX93|STM32|ESP32|I2C|SPI|UART|CAN|BLE|MySQL|Docker)/i.test(item)
+        /(C\+\+|C\+\+17|C$|CMake|V4L2|Framebuffer|DRM|mmap|aarch64|Linux|Yocto|BACnet|i\.MX93|STM32|ESP32|I2C|SPI|UART|CAN|BLE|MySQL|Docker|EEG|ECoG|iEEG|Edge AI|Neural Sensors)/i.test(item)
       )),
       ...((project.architectureDocs || []).length > 0 ? ['Architecture markdown linked'] : []),
       ...((project.visuals || []).length > 0 ? ['Project visuals attached'] : [])
@@ -147,7 +147,7 @@ function ProjectDetails({ project, onBack }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                View Repository
+                {project.repositoryLabel || 'View Repository'}
               </a>
               {project.loginRoute && (
                 <a
@@ -364,7 +364,7 @@ function ProjectDetails({ project, onBack }) {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    View Repository
+                    {project.repositoryLabel || 'View Repository'}
                   </a>
                   {project.loginRoute && (
                     <a

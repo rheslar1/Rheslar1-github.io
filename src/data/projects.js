@@ -327,6 +327,96 @@ const baseProjects = [
     ]
   },
   {
+    id: 'neural-seizure-ai-analysis',
+    title: 'Predictive AI Neural Seizure Analysis',
+    summary: 'Research and architecture project for early seizure forecasting using high-bandwidth neural sensors, predictive AI, knowledge distillation, and edge inference.',
+    deployment:
+      'Document-backed research artifact prepared as a portfolio case study; future implementation targets include synthetic EEG/ECoG preprocessing notebooks, model-comparison scripts, and edge-inference budget analysis.',
+    dependencies: ['Python', 'Deep Learning', 'CNN', 'LSTM', 'Transformers', 'GNN', 'EEG', 'ECoG', 'iEEG', 'Edge AI', 'Knowledge Distillation'],
+    repository: 'https://github.com/rheslar1/Rheslar1-github.io',
+    repositoryLabel: 'View Portfolio Source',
+    architectureDocs: [
+      {
+        title: 'Project Brief',
+        path: 'docs/neural-seizure-ai-analysis.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/neural-seizure-ai-analysis.md',
+        focus: 'High-bandwidth neural sensing, seizure prediction AI, edge deployment, and safety review boundaries'
+      }
+    ],
+    preview: projectAsset('neural-seizure-ai-pipeline.svg'),
+    visuals: [
+      {
+        src: projectAsset('neural-seizure-ai-pipeline.svg'),
+        caption: 'Architecture visual derived from the seizure prediction research paper: sensors, AI models, distillation, edge inference, and closed-loop review.'
+      }
+    ],
+    tags: ['AI', 'Neural Sensors', 'EEG', 'Edge AI', 'Research'],
+    problem:
+      'Explore how high-resolution neural data and predictive AI can identify pre-ictal seizure signatures earlier than conventional low-resolution monitoring workflows.',
+    architecture:
+      'The project maps a pipeline from EEG, ECoG, iEEG, and microelectrode-array data into time-frequency features, spatial maps, temporal models, graph representations, model distillation, and edge inference review.',
+    proofPoints: [
+      {
+        label: 'Neural Signal Pipeline',
+        title: 'Sensor Modalities Are Compared',
+        detail:
+          'The project separates EEG, ECoG, iEEG, and microelectrode arrays by invasiveness, signal fidelity, spatial coverage, and clinical constraints so model choices are grounded in sensor reality.'
+      },
+      {
+        label: 'AI Architecture Review',
+        title: 'Model Families Match Signal Structure',
+        detail:
+          'CNNs, LSTMs, transformers, and graph neural networks are mapped to spectrograms, temporal dependencies, long-range forecasting, and functional connectivity patterns.'
+      },
+      {
+        label: 'Embedded AI Boundary',
+        title: 'Edge Deployment Is Part Of The Design',
+        detail:
+          'Knowledge distillation is included as the path from high-capacity teacher models to smaller student models that could fit wearable or implantable neurotechnology constraints.'
+      }
+    ],
+    deepDetails: [
+      'The source paper frames seizure prediction around pre-ictal biomarkers that may be difficult to detect through conventional EEG analysis alone.',
+      'High-bandwidth neural sensing is described across EEG, ECoG, iEEG, and microelectrode arrays, each with different tradeoffs in safety, signal fidelity, invasiveness, and spatial precision.',
+      'Candidate features include high-frequency oscillations, phase-amplitude coupling, micro-seizure activity, time-frequency spectrograms, wavelet transforms, and spatial electrode maps.',
+      'CNNs are positioned for localized spatial and time-frequency features, while LSTM-style recurrent models target sequential dependencies between interictal and pre-ictal states.',
+      'Transformer models are included for long-range temporal forecasting and scalable attention over large neural time-series windows.',
+      'Graph neural networks are included for connectivity-aware modeling where brain regions are treated as nodes with synchronization and functional connectivity patterns.',
+      'Multimodal fusion is considered across neural signals, behavioral data, heart rate, oxygen levels, and other physiological context.',
+      'Knowledge distillation is identified as a deployment strategy for reducing compute cost, latency, and power draw while preserving model behavior.',
+      'Closed-loop neuromodulation is framed as a future review workflow involving signal acquisition, real-time AI analysis, pre-ictal detection, and controlled intervention decisions.',
+      'The project explicitly calls out privacy, neural data security, interpretability, false-positive and false-negative risk, informed consent, limited datasets, patient variability, and hardware constraints.'
+    ],
+    features: [
+      'Research brief summarizing the neural sensing and predictive AI architecture.',
+      'Sensor modality comparison across EEG, ECoG, iEEG, and microelectrode arrays.',
+      'Model-family map covering CNNs, recurrent networks, transformers, and graph neural networks.',
+      'Embedded AI deployment path using teacher-to-student knowledge distillation.',
+      'Closed-loop neuromodulation workflow review with safety and ethics boundaries.',
+      'Portfolio visual showing sensor, feature, model, edge inference, and intervention review stages.'
+    ],
+    outcomes: [
+      'Converted a full research paper into a structured portfolio project with technical scope, proof points, evidence backlog, and visual architecture.',
+      'Connected computational neuroscience concepts to embedded AI deployment concerns such as latency, power, model size, and edge inference.',
+      'Documented a future implementation path for preprocessing, model comparison, distillation, and safety-review artifacts.',
+      'Preserved the project as a research architecture artifact rather than representing it as a deployed clinical medical device.'
+    ],
+    resumeBullets: [
+      'Authored research architecture for predictive AI seizure analysis using high-bandwidth neural sensing and deep learning model families.',
+      'Mapped CNN, LSTM, transformer, and graph neural network approaches to neural time-series and spatial-connectivity data.',
+      'Evaluated edge AI deployment concerns including knowledge distillation, latency, power, safety, privacy, and closed-loop review constraints.'
+    ],
+    screenshotCaption:
+      'Pipeline visual summarizes the project architecture. The current artifact is a research and design case study, not a deployed clinical system.',
+    suggestedContent: [
+      'Add a synthetic EEG/ECoG preprocessing notebook or script.',
+      'Add a model-comparison table for CNN, LSTM, transformer, and GNN approaches.',
+      'Add an edge-inference estimate for memory, latency, and power.',
+      'Add a safety review matrix for false positives, false negatives, privacy, consent, and interpretability.',
+      'Add a closed-loop workflow prototype diagram with human-review and intervention boundaries.'
+    ]
+  },
+  {
     id: 'portfolio',
     title: 'Rheslar1-github.io',
     summary: 'React portfolio built with Node.js tooling and deployed through GitHub Pages.',
