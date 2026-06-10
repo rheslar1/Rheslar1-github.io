@@ -2512,33 +2512,86 @@ section h2 {
 }
 
 .ecostruxure-dashboard .building-floorplan {
-  min-height: 360px;
-  gap: 8px;
-  padding: 10px;
+  min-height: 280px;
+  grid-template-columns: 1fr 0.58fr 1fr 1fr;
+  grid-template-rows: repeat(2, minmax(118px, 1fr));
+  grid-template-areas:
+    "lobby floor-one floor-one tower-floor"
+    "floor-two corridor tower-lobby tower-floor";
+  gap: 6px;
+  padding: 8px;
 }
 
 .ecostruxure-dashboard .floorplan-zone {
+  gap: 6px;
+  padding: 9px;
+}
+
+.ecostruxure-dashboard .floorplan-zone > div:first-child {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
   gap: 8px;
-  padding: 12px;
+}
+
+.ecostruxure-dashboard .floorplan-zone h3 {
+  font-size: 0.92rem;
+  line-height: 1.1;
 }
 
 .ecostruxure-dashboard .floorplan-zone strong {
-  margin-top: 6px;
-  font-size: clamp(1.45rem, 3vw, 2.05rem);
+  flex: 0 0 auto;
+  margin-top: 0;
+  font-size: clamp(1.08rem, 2vw, 1.45rem);
+  text-align: right;
+}
+
+.ecostruxure-dashboard .zone-readings {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.ecostruxure-dashboard .zone-readings span,
+.ecostruxure-dashboard .zone-action {
+  padding: 5px 6px;
+}
+
+.ecostruxure-dashboard .zone-readings small,
+.ecostruxure-dashboard .zone-action small {
+  margin-bottom: 2px;
+  font-size: 0.54rem;
+}
+
+.ecostruxure-dashboard .zone-action span {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 0.76rem;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .ecostruxure-dashboard .energy-readout {
-  padding: 14px;
+  padding: 12px;
+}
+
+.ecostruxure-dashboard .energy-readout h3 {
+  margin-bottom: 8px;
+}
+
+.ecostruxure-dashboard .energy-readout ul {
+  gap: 6px;
+  line-height: 1.35;
 }
 
 .ecostruxure-dashboard .usage-chart {
-  height: 94px;
-  margin-top: 12px;
-  padding-top: 10px;
+  height: 76px;
+  margin-top: 10px;
+  padding-top: 8px;
 }
 
 .ecostruxure-dashboard .heatmap-legend {
-  margin: 14px 0 4px;
+  margin: 10px 0 2px;
 }
 
 .eco-alarm {
@@ -3594,7 +3647,7 @@ section h2 {
   .floorplan-zone,
   .floorplan-corridor {
     grid-area: auto;
-    min-height: 150px;
+    min-height: 118px;
   }
 
   .bms-login-layout {
