@@ -166,6 +166,7 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }) {
   const isAlarmView = activeNav === 'Alarms';
   const isBuildingView = activeNav === 'Building';
   const isScheduleView = activeNav === 'Rooms' || activeNav === 'Schedules';
+  const embeddedSystemsProjects = projects.filter((project) => project.collection === 'embedded-systems');
 
   const jumpTargets = {
     Overview: 'dashboard',
@@ -845,6 +846,26 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }) {
             </div>
             <p className="eco-stack-note">{allDependencies.length} stack items tracked across the portfolio.</p>
           </article>
+
+          {embeddedSystemsProjects.length > 0 && (
+            <article className="eco-card eco-card-wide" id="embedded-systems-projects">
+              <div className="eco-card-heading">
+                <div>
+                  <span>Portfolio Repos</span>
+                  <h2>Embedded Systems Projects</h2>
+                </div>
+                <strong>{embeddedSystemsProjects.length} repo designs</strong>
+              </div>
+              <div className="eco-embedded-project-list">
+                {embeddedSystemsProjects.map((project) => (
+                  <button type="button" onClick={() => onSelectProject(project.id)} key={project.id}>
+                    <strong>{project.title}</strong>
+                    <span>{project.tags.slice(0, 3).join(' + ')}</span>
+                  </button>
+                ))}
+              </div>
+            </article>
+          )}
         </section>
         )}
       </div>

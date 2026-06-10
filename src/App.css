@@ -2345,6 +2345,7 @@ section h2 {
 .eco-equipment-grid,
 .eco-distribution-list,
 .eco-project-list,
+.eco-embedded-project-list,
 .eco-alarm-list {
   display: grid;
   gap: 10px;
@@ -2616,7 +2617,8 @@ section h2 {
 .eco-alarm strong,
 .eco-equipment-grid strong,
 .eco-distribution-list strong,
-.eco-project-list strong {
+.eco-project-list strong,
+.eco-embedded-project-list strong {
   display: block;
   color: var(--eco-ink);
 }
@@ -2992,7 +2994,8 @@ section h2 {
 
 .eco-equipment-grid section,
 .eco-distribution-list section,
-.eco-project-list button {
+.eco-project-list button,
+.eco-embedded-project-list button {
   min-width: 0;
   padding: 13px;
   border: 1px solid var(--eco-line);
@@ -3014,7 +3017,8 @@ section h2 {
 }
 
 .eco-equipment-grid small,
-.eco-project-list span {
+.eco-project-list span,
+.eco-embedded-project-list span {
   display: block;
   margin-top: 6px;
   color: var(--muted);
@@ -3037,7 +3041,30 @@ section h2 {
   font-weight: 900;
 }
 
-.eco-project-list button {
+.eco-embedded-project-list {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 8px;
+  max-height: 372px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.eco-embedded-project-list button {
+  padding: 10px;
+}
+
+.eco-embedded-project-list strong {
+  font-size: 0.92rem;
+  line-height: 1.2;
+}
+
+.eco-embedded-project-list span {
+  font-size: 0.76rem;
+  line-height: 1.3;
+}
+
+.eco-project-list button,
+.eco-embedded-project-list button {
   cursor: pointer;
   font: inherit;
   text-align: left;
@@ -3045,7 +3072,9 @@ section h2 {
 }
 
 .eco-project-list button:hover,
-.eco-project-list button:focus-visible {
+.eco-project-list button:focus-visible,
+.eco-embedded-project-list button:hover,
+.eco-embedded-project-list button:focus-visible {
   border-color: var(--eco-green);
   transform: translateY(-1px);
   outline: none;

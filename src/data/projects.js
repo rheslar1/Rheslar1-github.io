@@ -1,7 +1,9 @@
+import embeddedSystemsProjects from './embeddedSystemsProjects';
+
 const githubPreview = (repo) => `https://opengraph.githubassets.com/1/rheslar1/${repo}`;
 const projectAsset = (name) => `${process.env.PUBLIC_URL}/assets/projects/${name}`;
 
-const projects = [
+const baseProjects = [
   {
     id: 'pythonProject',
     title: 'pythonProject',
@@ -859,5 +861,7 @@ const projects = [
     ]
   }
 ];
+
+const projects = [...baseProjects, ...embeddedSystemsProjects];
 
 export default projects;
