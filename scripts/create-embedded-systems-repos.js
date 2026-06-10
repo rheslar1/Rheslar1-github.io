@@ -14,6 +14,16 @@ if (!specsMatch) {
 }
 
 const specs = Function(`return ${specsMatch[1]}`)();
+const selectedIds = new Set(process.argv.slice(2));
+const selectedSpecs = selectedIds.size > 0
+  ? specs.filter((spec) => selectedIds.has(spec.id))
+  : specs;
+
+if (selectedIds.size > 0 && selectedSpecs.length !== selectedIds.size) {
+  const knownIds = new Set(specs.map((spec) => spec.id));
+  const missingIds = [...selectedIds].filter((id) => !knownIds.has(id));
+  throw new Error(`Unknown embedded systems project id(s): ${missingIds.join(', ')}`);
+}
 
 const run = (command, args, cwd) => {
   const result = spawnSync(command, args, {
@@ -336,7 +346,7 @@ fs.mkdirSync(outputRoot, { recursive: true });
 
 let generatedCount = 0;
 
-for (const spec of specs) {
+for (const spec of selectedSpecs) {
   if (spec.id === 'nrf52840-bacnet-field-node') {
     continue;
   }
@@ -353,7 +363,7 @@ for (const spec of specs) {
   writeFile(path.join(repoDir, 'tests', 'ProfileTests.cpp'), cppTestFor(spec));
   writeFile(path.join(repoDir, '.github', 'workflows', 'ci.yml'), workflowFor());
 
-  run('git', ['rm', '-r', '--ignore-unmatch', 'tests/__pycache__'], repoDir);
+  fs.rmSync(path.join(repoDir, 'tests', '__pycache__'), { recursive: true, force: true });
 
   for (const stalePath of ['src/main.c', 'tests/test_repo_smoke.py']) {
     const absoluteStalePath = path.join(repoDir, stalePath);

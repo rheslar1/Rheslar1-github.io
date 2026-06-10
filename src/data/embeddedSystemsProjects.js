@@ -134,6 +134,14 @@ const embeddedSystemsSpecs = [
     proof: 'Factory-style serial telemetry ingestion, secure cloud publishing, and BBB-specific hardened image deployment.'
   },
   {
+    id: 'bbb-yocto-ekg-sensor-monitor',
+    title: 'BBB Yocto EKG Sensor Monitor',
+    summary: 'BeagleBone Black medical-sensor project using a custom Yocto image, ADC-connected EKG/ECG front end, systemd acquisition service, and local waveform logging.',
+    label: 'BeagleBone Black intermediate',
+    tags: ['BeagleBone Black', 'Yocto', 'EKG/ECG', 'ADC', 'IIO', 'Systemd', 'Signal filtering'],
+    proof: 'Custom Linux image ownership, analog biosignal acquisition, timestamped waveform capture, filtering evidence, and board-level validation boundaries.'
+  },
+  {
     id: 'mjpeg-video-streaming-hardware-ui',
     title: 'MJPEG Video Streaming Server with Hardware UI',
     summary: 'V4L2 camera project that captures snapshots, records raw video, streams MJPEG over a local HTTP server, and maps physical buttons into UI actions.',

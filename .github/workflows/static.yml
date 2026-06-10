@@ -42,6 +42,9 @@ jobs:
         run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        with:
+          # Enabling Pages requires an admin token; this workflow deploys after Pages is configured.
+          enablement: false
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
