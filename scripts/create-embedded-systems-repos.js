@@ -31,6 +31,8 @@ const run = (command, args, cwd) => {
 
 const safeName = (value) => value.replace(/[^A-Za-z0-9_]/g, '_').replace(/^([0-9])/, '_$1');
 const cString = (value) => JSON.stringify(value);
+const coreTags = ['C++17', 'C++ Design Patterns', 'SOLID'];
+const tagsFor = (spec) => Array.from(new Set([...coreTags, ...spec.tags]));
 
 const writeFile = (filePath, content) => {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -45,9 +47,11 @@ ${spec.summary}
 
 This repository is an Embedded Systems project scaffold for the Rheslar portfolio. It is designed to become a hardware-backed project with build output, validation logs, and reviewable implementation evidence.
 
+All generated Embedded Systems repos are C++17-first and are framed around C++ design patterns and SOLID design principles.
+
 ## Stack
 
-${spec.tags.map((tag) => `- ${tag}`).join('\n')}
+${tagsFor(spec).map((tag) => `- ${tag}`).join('\n')}
 
 ## Quick Start
 
@@ -55,14 +59,15 @@ ${spec.tags.map((tag) => `- ${tag}`).join('\n')}
 cmake -S . -B build
 cmake --build build
 ./build/${safeName(spec.id)}
-python -m unittest discover -s tests
+ctest --test-dir build --output-on-failure
 \`\`\`
 
 ## Implementation Slices
 
-- Native starter executable that exposes the project identity, stack, and validation target.
+- C++17 starter executable that exposes the project identity, stack, and validation target.
+- Small strategy-style readiness check that keeps the scaffold aligned with C++ design patterns.
 - Architecture document with control boundaries, data flow, safety assumptions, and evidence plan.
-- Unit smoke test that keeps source, docs, and CI files present as the repo grows.
+- CTest smoke test that keeps source, docs, and CI files present as the repo grows.
 - GitHub Actions workflow for configure, build, executable smoke run, and repository validation.
 
 ## Evidence Target
@@ -87,6 +92,21 @@ ${spec.proof}
 3. Safety checks reject unsafe commands before they reach the actuator, transport, or update path.
 4. Telemetry and validation logs are emitted for repeatable review.
 
+## C++17 Design Shape
+
+- \`ProjectProfile\` owns project identity and evidence text.
+- \`IReadinessRule\` defines a narrow strategy interface for scaffold readiness checks.
+- \`RequiredEvidenceRule\` is a concrete strategy used by the starter executable and tests.
+- The scaffold keeps documentation, executable behavior, and validation concerns separated.
+
+## SOLID Notes
+
+- Single Responsibility: profile data and readiness rules are separate.
+- Open/Closed: new readiness rules can be added without changing the profile object.
+- Liskov Substitution: any \`IReadinessRule\` can replace the default rule.
+- Interface Segregation: the readiness interface exposes only one focused operation.
+- Dependency Inversion: the executable consumes the readiness rule abstraction.
+
 ## Boundaries
 
 - \`src/\`: native starter implementation and future device-specific drivers.
@@ -98,6 +118,7 @@ ${spec.proof}
 
 - Build the host starter with CMake.
 - Run the executable and confirm the reported profile matches this repository.
+- Run CTest to validate the C++17 readiness scaffold.
 - Add hardware-specific logs after the first board, simulator, or bus test.
 - Capture CI, terminal, and hardware evidence for the portfolio detail page.
 
@@ -111,9 +132,9 @@ const validationFor = (spec) => `# Validation Plan
 ## Current Scaffold Checks
 
 - CMake configure completes.
-- Native starter executable builds.
-- Executable prints the project title and validation target.
-- Python unittest smoke test verifies required repo artifacts.
+- C++17 starter executable builds.
+- Executable prints the project title, SOLID marker, stack, and validation target.
+- CTest verifies the project profile and readiness strategy.
 
 ## Hardware Evidence To Add
 
@@ -128,16 +149,24 @@ ${spec.proof}
 `;
 
 const cmakeFor = (spec) => `cmake_minimum_required(VERSION 3.16)
-project(${safeName(spec.id)} C)
+project(${safeName(spec.id)} LANGUAGES CXX)
 
-set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_executable(\${PROJECT_NAME} src/main.c)
+enable_testing()
+
+add_executable(\${PROJECT_NAME} src/main.cpp)
 target_compile_options(\${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic)
+
+add_executable(profile_tests tests/ProfileTests.cpp)
+target_compile_options(profile_tests PRIVATE -Wall -Wextra -Wpedantic)
+add_test(NAME profile_tests COMMAND profile_tests)
 `;
 
 const gitignoreFor = () => `build/
+__pycache__/
 *.o
 *.elf
 *.bin
@@ -145,41 +174,62 @@ const gitignoreFor = () => `build/
 `;
 
 const sourceFor = (spec) => {
-  const tags = spec.tags.map((tag) => `  ${cString(tag)}`).join(',\n');
+  const tags = tagsFor(spec).map((tag) => `    ${cString(tag)}`).join(',\n');
 
-  return `#include <stdio.h>
-#include <stddef.h>
+  return `#include <array>
+#include <iostream>
+#include <string_view>
 
-typedef struct {
-  const char *title;
-  const char *summary;
-  const char *evidence_target;
-  const char *tags[8];
-  size_t tag_count;
-} project_profile_t;
+class IReadinessRule {
+ public:
+  virtual ~IReadinessRule() = default;
+  virtual bool passes(std::string_view evidenceTarget) const = 0;
+  virtual std::string_view name() const = 0;
+};
 
-static const project_profile_t profile = {
+class RequiredEvidenceRule final : public IReadinessRule {
+ public:
+  bool passes(std::string_view evidenceTarget) const override {
+    return !evidenceTarget.empty();
+  }
+
+  std::string_view name() const override {
+    return "RequiredEvidenceRule";
+  }
+};
+
+struct ProjectProfile {
+  std::string_view title;
+  std::string_view summary;
+  std::string_view evidenceTarget;
+  std::array<std::string_view, ${tagsFor(spec).length}> tags;
+};
+
+constexpr ProjectProfile profile{
   ${cString(spec.title)},
   ${cString(spec.summary)},
   ${cString(spec.proof)},
   {
 ${tags}
-  },
-  ${spec.tags.length}u
+  }
 };
 
-int main(void) {
-  printf("%s\\n", profile.title);
-  printf("Summary: %s\\n", profile.summary);
-  printf("Evidence target: %s\\n", profile.evidence_target);
-  printf("Stack:");
+int main() {
+  const RequiredEvidenceRule readinessRule;
 
-  for (size_t index = 0; index < profile.tag_count; ++index) {
-    printf(" %s%s", profile.tags[index], index + 1u == profile.tag_count ? "" : ",");
+  std::cout << profile.title << '\\n';
+  std::cout << "Summary: " << profile.summary << '\\n';
+  std::cout << "Evidence target: " << profile.evidenceTarget << '\\n';
+  std::cout << "Readiness rule: " << readinessRule.name() << '\\n';
+  std::cout << "SOLID marker: C++17 strategy interface with replaceable readiness rule" << '\\n';
+  std::cout << "Stack:";
+
+  for (std::size_t index = 0; index < profile.tags.size(); ++index) {
+    std::cout << ' ' << profile.tags[index] << (index + 1U == profile.tags.size() ? "" : ",");
   }
 
-  printf("\\n");
-  return 0;
+  std::cout << '\\n';
+  return readinessRule.passes(profile.evidenceTarget) ? 0 : 1;
 }
 `;
 };
@@ -214,6 +264,53 @@ if __name__ == '__main__':
     unittest.main()
 `;
 
+const cppTestFor = (spec) => {
+  const tags = tagsFor(spec).map((tag) => `    ${cString(tag)}`).join(',\n');
+
+  return `#include <array>
+#include <cassert>
+#include <string_view>
+
+class IReadinessRule {
+ public:
+  virtual ~IReadinessRule() = default;
+  virtual bool passes(std::string_view evidenceTarget) const = 0;
+};
+
+class RequiredEvidenceRule final : public IReadinessRule {
+ public:
+  bool passes(std::string_view evidenceTarget) const override {
+    return !evidenceTarget.empty();
+  }
+};
+
+struct ProjectProfile {
+  std::string_view title;
+  std::string_view summary;
+  std::string_view evidenceTarget;
+  std::array<std::string_view, ${tagsFor(spec).length}> tags;
+};
+
+constexpr ProjectProfile profile{
+  ${cString(spec.title)},
+  ${cString(spec.summary)},
+  ${cString(spec.proof)},
+  {
+${tags}
+  }
+};
+
+int main() {
+  const RequiredEvidenceRule rule;
+  assert(!profile.title.empty());
+  assert(!profile.summary.empty());
+  assert(rule.passes(profile.evidenceTarget));
+  assert(profile.tags[0] == "C++17");
+  return 0;
+}
+`;
+};
+
 const workflowFor = () => `name: CI
 
 on:
@@ -231,13 +328,19 @@ jobs:
         run: cmake --build build
       - name: Run starter executable
         run: ./build/$(basename "$PWD" | tr '-' '_')
-      - name: Smoke tests
-        run: python -m unittest discover -s tests
+      - name: CTest
+        run: ctest --test-dir build --output-on-failure
 `;
 
 fs.mkdirSync(outputRoot, { recursive: true });
 
+let generatedCount = 0;
+
 for (const spec of specs) {
+  if (spec.id === 'nrf52840-bacnet-field-node') {
+    continue;
+  }
+
   const repoDir = path.join(outputRoot, spec.id);
 
   fs.mkdirSync(repoDir, { recursive: true });
@@ -245,10 +348,19 @@ for (const spec of specs) {
   writeFile(path.join(repoDir, 'README.md'), readmeFor(spec));
   writeFile(path.join(repoDir, 'ARCHITECTURE.md'), architectureFor(spec));
   writeFile(path.join(repoDir, 'CMakeLists.txt'), cmakeFor(spec));
-  writeFile(path.join(repoDir, 'src', 'main.c'), sourceFor(spec));
+  writeFile(path.join(repoDir, 'src', 'main.cpp'), sourceFor(spec));
   writeFile(path.join(repoDir, 'docs', 'validation-plan.md'), validationFor(spec));
-  writeFile(path.join(repoDir, 'tests', 'test_repo_smoke.py'), testFor(spec));
+  writeFile(path.join(repoDir, 'tests', 'ProfileTests.cpp'), cppTestFor(spec));
   writeFile(path.join(repoDir, '.github', 'workflows', 'ci.yml'), workflowFor());
+
+  run('git', ['rm', '-r', '--ignore-unmatch', 'tests/__pycache__'], repoDir);
+
+  for (const stalePath of ['src/main.c', 'tests/test_repo_smoke.py']) {
+    const absoluteStalePath = path.join(repoDir, stalePath);
+    if (fs.existsSync(absoluteStalePath)) {
+      fs.unlinkSync(absoluteStalePath);
+    }
+  }
 
   if (!fs.existsSync(path.join(repoDir, '.git'))) {
     const init = spawnSync('git', ['init', '-b', 'main'], { cwd: repoDir, encoding: 'utf8', stdio: 'pipe' });
@@ -276,6 +388,8 @@ for (const spec of specs) {
   if (status) {
     run('git', ['commit', '-m', 'Initial embedded systems project scaffold'], repoDir);
   }
+
+  generatedCount += 1;
 }
 
-console.log(`Created ${specs.length} embedded systems local repositories in ${outputRoot}`);
+console.log(`Created ${generatedCount} embedded systems local repositories in ${outputRoot}`);

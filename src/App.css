@@ -2831,8 +2831,16 @@ section h2 {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
+.eco-schedule-path {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
 .eco-building-list section,
 .eco-room-summary-grid section,
+.eco-schedule-path section,
 .eco-zone-list section,
 .eco-floor-grid section {
   min-width: 0;
@@ -2843,6 +2851,8 @@ section h2 {
 }
 
 .eco-building-list span,
+.eco-schedule-path span,
+.eco-schedule-path small,
 .eco-room-summary-grid span,
 .eco-room-summary-grid small,
 .eco-zone-list span,
@@ -2855,6 +2865,7 @@ section h2 {
 }
 
 .eco-building-list strong,
+.eco-schedule-path strong,
 .eco-room-summary-grid strong,
 .eco-zone-list strong,
 .eco-floor-grid strong,
@@ -2871,6 +2882,23 @@ section h2 {
 
 .eco-room-summary-grid section {
   border-top: 4px solid var(--eco-green);
+}
+
+.eco-schedule-path section {
+  border-left: 5px solid var(--eco-green);
+}
+
+.eco-schedule-path strong {
+  margin-top: 6px;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.eco-schedule-path small {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.78rem;
+  line-height: 1.35;
 }
 
 .eco-room-summary-grid strong {
@@ -2960,9 +2988,9 @@ section h2 {
 }
 
 .eco-schedule-table [role='row'] {
-  min-width: 760px;
+  min-width: 980px;
   display: grid;
-  grid-template-columns: minmax(150px, 1.25fr) repeat(5, minmax(110px, 1fr));
+  grid-template-columns: minmax(170px, 1.15fr) minmax(130px, 1fr) minmax(120px, 0.85fr) minmax(150px, 1.1fr) minmax(115px, 0.8fr) minmax(130px, 0.9fr) minmax(100px, 0.75fr);
   gap: 0;
   border-bottom: 1px solid var(--eco-line);
 }
@@ -3595,6 +3623,7 @@ section h2 {
   .eco-building-detail-grid,
   .eco-building-list,
   .eco-building-system-grid,
+  .eco-schedule-path,
   .eco-room-summary-grid,
   .eco-zone-list,
   .eco-floor-grid,

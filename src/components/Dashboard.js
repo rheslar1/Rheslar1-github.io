@@ -237,6 +237,12 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }) {
     { label: '24/7 spaces', value: String(roomSchedules.filter((room) => room.schedule === '24/7').length), helper: 'Critical operations' },
     { label: 'Cooling priority', value: '1', helper: 'Server Room setpoint protected' }
   ];
+  const scheduleHierarchy = [
+    { label: 'Building', value: 'EnergyBuildAI Tower', helper: 'Schedule root' },
+    { label: 'Zones', value: `${energyZones.length} monitored`, helper: 'Energy and comfort groups' },
+    { label: 'Floors', value: `${floorSummaries.length} schedule groups`, helper: 'Ground, Floor 1, Floor 2, Tower B' },
+    { label: 'Rooms', value: `${roomSchedules.length} scheduled`, helper: 'Mode, setpoint, and active window' }
+  ];
 
   const activeKpis = isAlarmView ? alarmKpis : isBuildingView ? buildingKpis : isScheduleView ? scheduleKpis : commandKpis;
   const heroTitle = isAlarmView
@@ -244,14 +250,14 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }) {
     : isBuildingView
       ? 'Brief Building Summary opens as a dedicated dashboard subpage for core facility status.'
       : isScheduleView
-        ? 'Room Schedules are separated into a dedicated dashboard subpage.'
+        ? 'Schedules follow the building hierarchy: Building > Zone > Floor > Room Schedules.'
       : '';
   const heroCopy = isAlarmView
     ? 'Select an alarm to inspect its location, source point, current reading, threshold, likely cause, impact, response steps, and event history.'
     : isBuildingView
       ? 'Use the Building tab for a concise view of the building, floors, zones, rooms, and connected systems.'
       : isScheduleView
-        ? 'Review rooms, floors, zones, active schedules, operating modes, and setpoints without crowding the main dashboard.'
+        ? 'Start at the building, inspect zone grouping, confirm the floor, then review each room schedule, operating mode, and setpoint.'
       : 'Real-time energy zones, comfort risk, alarm state, equipment health, portfolio evidence, and AI-assisted BEMS recommendations are arranged like an operational building dashboard.';
   const systemSummary = isAlarmView
     ? [
@@ -303,7 +309,7 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }) {
         <section className="eco-topbar">
           <div>
             <p className="detail-kicker">EnergyBuildAI</p>
-            <h1>{isAlarmView ? 'Alarm Response Center' : isBuildingView ? 'Brief Building Summary' : isScheduleView ? 'Room Schedules' : 'Building Operation Center'}</h1>
+            <h1>{isAlarmView ? 'Alarm Response Center' : isBuildingView ? 'Brief Building Summary' : isScheduleView ? 'Building > Zone > Floor > Room Schedules' : 'Building Operation Center'}</h1>
           </div>
           <div className="eco-topbar-actions">
             <span className="eco-live-pill">Live</span>
@@ -567,22 +573,31 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }) {
 
           </section>
         ) : isScheduleView ? (
-          <section className="eco-dashboard-grid eco-schedule-page" aria-label="Room schedules subpage">
+          <section className="eco-dashboard-grid eco-schedule-page" aria-label="Building zone floor room schedules subpage">
             <article className="eco-card eco-card-wide">
               <div className="eco-card-heading">
                 <div>
-                  <span>Rooms And Schedules</span>
-                  <h2>Room Schedules</h2>
-                  <p>Dedicated schedule view for room operating mode, floor assignment, zone, setpoint, and active schedule window.</p>
+                  <span>Building Hierarchy</span>
+                  <h2>Building > Zone > Floor > Room Schedules</h2>
+                  <p>Dedicated schedule view organized from building to zone, floor, and room-level operating windows.</p>
                 </div>
                 <strong>{roomSchedules.length} rooms</strong>
+              </div>
+              <div className="eco-schedule-path" aria-label="Schedule hierarchy">
+                {scheduleHierarchy.map((item) => (
+                  <section key={item.label}>
+                    <span>{item.label}</span>
+                    <strong>{item.value}</strong>
+                    <small>{item.helper}</small>
+                  </section>
+                ))}
               </div>
               <div className="eco-room-summary-grid">
                 {roomSchedules.map((room) => (
                   <section key={`${room.room}-summary`}>
                     <span>{room.room}</span>
                     <strong>{room.mode}</strong>
-                    <small>{room.floor} | {room.zone} | {room.schedule}</small>
+                    <small>EnergyBuildAI Tower | {room.zone} | {room.floor} | {room.schedule}</small>
                   </section>
                 ))}
               </div>
@@ -592,23 +607,25 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }) {
               <div className="eco-card-heading">
                 <div>
                   <span>Schedule Table</span>
-                  <h2>Room Schedule Details</h2>
+                  <h2>Building Zone Floor Room Schedule Details</h2>
                 </div>
               </div>
-              <div className="eco-schedule-table" role="table" aria-label="Room schedule details">
+              <div className="eco-schedule-table" role="table" aria-label="Building zone floor room schedule details">
                 <div role="row">
-                  <span role="columnheader">Room</span>
-                  <span role="columnheader">Floor</span>
+                  <span role="columnheader">Building</span>
                   <span role="columnheader">Zone</span>
+                  <span role="columnheader">Floor</span>
+                  <span role="columnheader">Room</span>
                   <span role="columnheader">Schedule</span>
                   <span role="columnheader">Mode</span>
                   <span role="columnheader">Setpoint</span>
                 </div>
                 {roomSchedules.map((room) => (
                   <div role="row" key={`${room.room}-schedule-page`}>
-                    <strong role="cell">{room.room}</strong>
-                    <span role="cell">{room.floor}</span>
+                    <strong role="cell">EnergyBuildAI Tower</strong>
                     <span role="cell">{room.zone}</span>
+                    <span role="cell">{room.floor}</span>
+                    <span role="cell">{room.room}</span>
                     <span role="cell">{room.schedule}</span>
                     <span role="cell">{room.mode}</span>
                     <span role="cell">{room.setpoint}</span>

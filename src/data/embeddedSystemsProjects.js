@@ -1,6 +1,9 @@
 const githubPreview = (repo) => `https://opengraph.githubassets.com/embedded-systems/rheslar1/${repo}`;
 const githubRepo = (repo) => `https://github.com/rheslar1/${repo}`;
 
+const embeddedSystemsCoreTags = ['C++17', 'C++ Design Patterns', 'SOLID'];
+const withCoreTags = (tags) => Array.from(new Set([...embeddedSystemsCoreTags, ...tags]));
+
 const embeddedSystemsSpecs = [
   {
     id: 'bems-edge-ai-gateway',
@@ -275,7 +278,7 @@ const buildEmbeddedSystemsProject = (spec) => ({
   summary: spec.summary,
   deployment:
     'Starter repository scaffolded for public GitHub review with source code, CMake build flow, architecture notes, smoke tests, and CI validation.',
-  dependencies: spec.tags,
+  dependencies: withCoreTags(spec.tags),
   repository: githubRepo(spec.id),
   architectureDocs: [
     {
@@ -292,7 +295,7 @@ const buildEmbeddedSystemsProject = (spec) => ({
       caption: `${spec.title} repository preview for the embedded systems project scaffold.`
     }
   ],
-  tags: spec.tags.slice(0, 6),
+  tags: withCoreTags(spec.tags).slice(0, 6),
   problem:
     `Create a portfolio-ready ${spec.label.toLowerCase()} project that demonstrates ${spec.proof.toLowerCase()}`,
   architecture:
@@ -319,7 +322,7 @@ const buildEmbeddedSystemsProject = (spec) => ({
   deepDetails: [
     `Repository target: ${githubRepo(spec.id)}.`,
     `Primary project focus: ${spec.summary}`,
-    `Initial stack: ${spec.tags.join(', ')}.`,
+    `Initial stack: ${withCoreTags(spec.tags).join(', ')}.`,
     'The scaffold includes CMake build metadata, a native source stub, README documentation, architecture notes, smoke-test expectations, and GitHub Actions CI.',
     'The README is written for reviewer scanning: purpose, stack, quick start, implementation slices, validation evidence, and next hardware-backed captures.',
     'ARCHITECTURE.md documents control boundaries, data flow, runtime safety, validation plan, and the evidence needed to mature the starter into a senior portfolio repo.',
