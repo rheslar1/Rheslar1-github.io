@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "zephyr-rtos-iot-sensor-node",
+    "title": "Zephyr RTOS IoT Sensor Node",
+    "summary": "Edge sensor node with Zephyr threads, Wi-Fi/BLE provisioning, power-mode profiling, encrypted telemetry, and signed OTA firmware updates.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "Zephyr RTOS",
+      "BLE",
+      "Wi-Fi",
+      "MCUboot",
+      "TLS",
+      "Power profiling"
+    ]
+  },
+  "model": {
+    "domain": "Software Workflow",
+    "primaryMetric": "Checks Passed",
+    "secondaryMetric": "Runtime s",
+    "units": "checks",
+    "baseline": 82,
+    "amplitude": 12,
+    "accent": "#be123c"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 84.36,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 84.22,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 85.55,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 86.71,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 88.22,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 89.21,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 90.59,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 91.56,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 91.95,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 91.97,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 90.65,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 89.23,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 86.79,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 83.84,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 80.08,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 77.16,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 75,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 73.78,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 71.97,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 71.6,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 72.89,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 73.16,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 75.22,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 76.76,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 76.76,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 67.53,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 81.16,
+      "note": "control path returned to range"
+    }
+  ]
+}

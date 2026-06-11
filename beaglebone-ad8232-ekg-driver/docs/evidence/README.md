@@ -19,6 +19,8 @@ python3 -m ad8232_bbb_driver.cli \
 - `ad8232_report.json`: heart-rate, peak count, HRV, lead-off fraction, and signal-quality summary.
 - `ad8232-waveform.svg`: dependency-free plotted waveform evidence emitted by the Python driver.
 - `ad8232-waveform.png`: screenshot capture of the SVG for portfolio and document review.
+- `../schematics/ad8232-beaglebone-wiring.svg`: AD8232-to-BeagleBone wiring and ADC protection schematic.
+- `../schematics/ad8232-beaglebone-wiring.png`: rendered schematic screenshot for portfolio review.
 
 ## Provenance
 

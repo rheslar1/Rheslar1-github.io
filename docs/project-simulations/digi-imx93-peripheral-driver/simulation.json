@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "digi-imx93-peripheral-driver",
+    "title": "Digi ConnectCore i.MX93 Peripheral Driver",
+    "summary": "Hardware peripheral driver for the Digi ConnectCore i.MX93 EVK, covering an on-chip SPI or PWM block, application layer, and test boundary.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "i.MX93",
+      "Digi ConnectCore",
+      "SPI/PWM",
+      "Device tree",
+      "Linux driver",
+      "Unit tests"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 73.97,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 76.99,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 80.44,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 82.8,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 85.4,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 87.13,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 87.84,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 88.97,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 88.93,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 87.28,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 86.31,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 85.18,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 81.83,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 79.59,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 76.23,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 73.1,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 71.24,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 69.9,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 67.23,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 66.6,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 66.07,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 67.02,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 69.1,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 72.42,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 72.42,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 62.95,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 76.4,
+      "note": "control path returned to range"
+    }
+  ]
+}

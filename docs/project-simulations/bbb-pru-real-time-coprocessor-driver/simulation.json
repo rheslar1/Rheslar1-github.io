@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "bbb-pru-real-time-coprocessor-driver",
+    "title": "BBB Real-Time PRU Co-Processor Driver",
+    "summary": "BeagleBone Black PRU project that runs timing-critical firmware on the 200MHz PRUs and exchanges high-speed sensor or encoder data with Linux through rpmsg.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "BeagleBone Black",
+      "PRU",
+      "rpmsg",
+      "Kernel driver",
+      "Real-time control",
+      "Encoder input"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 79.8,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 79.98,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 81.35,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 82.94,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 86.21,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 88.07,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 89.39,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 90.05,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 89.46,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 88.66,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 86.52,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 83.62,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 80.75,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 78.09,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 75.01,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 73.08,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 70.55,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 68.22,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 67.69,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 66.51,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 66.08,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 68.28,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 71.06,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 73.57,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 73.57,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 65.36,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 75.36,
+      "note": "control path returned to range"
+    }
+  ]
+}

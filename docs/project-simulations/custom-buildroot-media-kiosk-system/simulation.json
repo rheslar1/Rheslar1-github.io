@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "custom-buildroot-media-kiosk-system",
+    "title": "Custom Buildroot Media/Kiosk System",
+    "summary": "Lightweight fast-booting Linux distribution built with Buildroot and configured to launch a single headless or kiosk-style application.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "Buildroot",
+      "Rootfs",
+      "Kernel config",
+      "Fast boot",
+      "Raspberry Pi",
+      "BeagleBone"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 80.05,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 80.39,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 82.14,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 84.47,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 86.2,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 88.23,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 89.18,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 90.62,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 90.89,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 88.75,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 87.75,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 84.92,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 82.86,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 78.55,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 75.57,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 73.17,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 71.25,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 69.62,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 66.95,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 67.19,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 68.3,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 69.55,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 70.35,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 73.78,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 73.78,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 61.27,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 76.36,
+      "note": "control path returned to range"
+    }
+  ]
+}

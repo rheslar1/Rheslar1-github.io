@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "can-bus-ecu-simulation",
+    "title": "CAN Bus ECU Simulation",
+    "summary": "Automotive or industrial CAN network simulator with communicating nodes, arbitration IDs, filters, periodic frames, diagnostics, and bus error handling.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "CAN",
+      "SocketCAN",
+      "STM32",
+      "DBC",
+      "Filters",
+      "Fault injection"
+    ]
+  },
+  "model": {
+    "domain": "Software Workflow",
+    "primaryMetric": "Checks Passed",
+    "secondaryMetric": "Runtime s",
+    "units": "checks",
+    "baseline": 82,
+    "amplitude": 12,
+    "accent": "#be123c"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 83.9,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 83.7,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 85.48,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 86.83,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 89.49,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 90.61,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 91.99,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 91.91,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 91.14,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 89.84,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 88.46,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 87.29,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 84.79,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 82.89,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 79.77,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 76.98,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 75.27,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 73.78,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 72.65,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 72.73,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 72.35,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 73.16,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 74.88,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 76.68,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 76.68,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 72.15,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 79.98,
+      "note": "control path returned to range"
+    }
+  ]
+}

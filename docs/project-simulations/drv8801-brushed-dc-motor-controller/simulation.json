@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "drv8801-brushed-dc-motor-controller",
+    "title": "DRV8801 Brushed DC Motor Controller",
+    "summary": "Single-phase brushed DC motor control app using a DRV8801 driver, encoder feedback, and velocity or position control modes.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "DRV8801",
+      "PWM",
+      "Quadrature encoder",
+      "PID",
+      "Velocity mode",
+      "Position mode"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 81.61,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 82.3,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 83.5,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 85.76,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 88.04,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 88.39,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 89.84,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 91.14,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 89.96,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 88.24,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 87.55,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 84.42,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 82.22,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 79.01,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 76.69,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 72.52,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 70.34,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 68.55,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 67.92,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 66.92,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 66.74,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 68.28,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 69.23,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 72.52,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 72.52,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 63.44,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 77.28,
+      "note": "control path returned to range"
+    }
+  ]
+}

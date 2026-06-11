@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "bbb-modbus-industrial-iot-gateway",
+    "title": "BBB Modbus Industrial IoT Gateway",
+    "summary": "BeagleBone Black gateway built on a hardened Yocto image that reads Modbus data over UART and publishes secure MQTT telemetry over Ethernet or Wi-Fi.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "BeagleBone Black",
+      "Yocto",
+      "Modbus",
+      "UART",
+      "MQTT/TLS",
+      "Industrial IoT"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 79.39,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 80.24,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 81.77,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 83.3,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 85.36,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 87.82,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 89.44,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 90.6,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 90.17,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 88.23,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 87.17,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 84.48,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 81.78,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 78.36,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 75.75,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 72.35,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 70.33,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 67.48,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 65.6,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 65.9,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 65.88,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 66.66,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 68.09,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 71.75,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 71.75,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 64.24,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 77.01,
+      "note": "control path returned to range"
+    }
+  ]
+}

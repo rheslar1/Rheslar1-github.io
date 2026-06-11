@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "connected-iot-device",
+    "title": "Connected IoT Device",
+    "summary": "RTOS-based sensor node with MQTT cloud integration, signed OTA updates, low-power operating modes, and TLS-backed device identity.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "FreeRTOS/Zephyr",
+      "MQTT",
+      "TLS",
+      "OTA",
+      "Low power modes",
+      "Device identity"
+    ]
+  },
+  "model": {
+    "domain": "Software Workflow",
+    "primaryMetric": "Checks Passed",
+    "secondaryMetric": "Runtime s",
+    "units": "checks",
+    "baseline": 82,
+    "amplitude": 12,
+    "accent": "#be123c"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 80.27,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 82.43,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 84.23,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 85.59,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 87.32,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 89.96,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 92.07,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 92.1,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 91.38,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 91.12,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 89.74,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 88.1,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 85.05,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 82.28,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 79.63,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 77.96,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 76.19,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 74.86,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 73.01,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 72.9,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 73.11,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 73.94,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 75.55,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 78.29,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 78.29,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 72.51,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 82.75,
+      "note": "control path returned to range"
+    }
+  ]
+}

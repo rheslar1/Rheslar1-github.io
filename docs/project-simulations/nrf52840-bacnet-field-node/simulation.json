@@ -1,0 +1,167 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "nrf52840-bacnet-field-node",
+    "title": "nRF52840 BACnet Field Node",
+    "summary": "Battery-aware field device profile with persistent setpoint storage, commissioning evidence, and BACnet object mapping.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "nRF52840",
+      "C",
+      "EEPROM",
+      "BACnet",
+      "BLE-ready"
+    ]
+  },
+  "model": {
+    "domain": "Building Systems",
+    "primaryMetric": "Energy kWh",
+    "secondaryMetric": "Comfort Risk",
+    "units": "kWh",
+    "baseline": 32,
+    "amplitude": 9,
+    "accent": "#0f766e"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 33.42,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 33.15,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 34.19,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 35.78,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 36.58,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 38.55,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 39.85,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 40.4,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 39.85,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 39.21,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 38.46,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 37.15,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 35.28,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 32.54,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 30.24,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 29.08,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 27.12,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 26.05,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 24.5,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 24.04,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 24.34,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 25.21,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 26.48,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 28.19,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 28.19,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 20.36,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 30.07,
+      "note": "control path returned to range"
+    }
+  ]
+}

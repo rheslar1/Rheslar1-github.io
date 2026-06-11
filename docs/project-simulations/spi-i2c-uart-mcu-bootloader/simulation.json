@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "spi-i2c-uart-mcu-bootloader",
+    "title": "SPI/I2C/UART MCU Bootloader",
+    "summary": "Bootloader that reprograms an MCU over UART, SPI, or I2C with packet framing, CRC checks, flash erase/write control, image validation, and recovery mode.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "Bare metal C",
+      "UART",
+      "SPI",
+      "I2C",
+      "CRC32",
+      "Flash driver"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 80.41,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 81.79,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 83.45,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 84.4,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 86.89,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 88.47,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 90.09,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 90.81,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 89.47,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 87.98,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 87.15,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 85.64,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 81.98,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 78.6,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 74.65,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 71.96,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 69.72,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 68.54,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 66.18,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 65.22,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 65.21,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 67.45,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 70.4,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 73.69,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 73.69,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 61.67,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 78.23,
+      "note": "control path returned to range"
+    }
+  ]
+}

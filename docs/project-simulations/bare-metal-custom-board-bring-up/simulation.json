@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "bare-metal-custom-board-bring-up",
+    "title": "Bare-Metal Custom Board Bring-Up",
+    "summary": "Custom PCB bring-up path with low-level device drivers, board diagnostics, register checks, and a UART or USB CDC CLI for validation.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "Custom PCB",
+      "Bare metal C",
+      "Device drivers",
+      "UART CLI",
+      "USB CDC",
+      "Board diagnostics"
+    ]
+  },
+  "model": {
+    "domain": "Software Workflow",
+    "primaryMetric": "Checks Passed",
+    "secondaryMetric": "Runtime s",
+    "units": "checks",
+    "baseline": 82,
+    "amplitude": 12,
+    "accent": "#be123c"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 82.73,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 83.65,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 85.84,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 87.36,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 88.64,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 89.61,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 91.11,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 92.52,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 92.56,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 91.09,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 89.21,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 87.14,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 84.8,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 82.02,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 80.29,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 77.11,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 74.71,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 73.94,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 73.26,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 72.65,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 72.35,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 73.73,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 74.74,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 76.68,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 76.68,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 71.32,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 78.04,
+      "note": "control path returned to range"
+    }
+  ]
+}

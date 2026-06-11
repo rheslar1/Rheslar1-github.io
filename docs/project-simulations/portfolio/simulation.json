@@ -1,0 +1,166 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "portfolio",
+    "title": "Rheslar1-github.io",
+    "summary": "React portfolio built with Node.js tooling and deployed through GitHub Pages.",
+    "deployment": "Deployed by GitHub Actions: npm ci, npm run build, upload the build artifact, and publish to GitHub Pages.",
+    "tags": [
+      "React",
+      "Node.js",
+      "GitHub Actions",
+      "GitHub Pages"
+    ]
+  },
+  "model": {
+    "domain": "Software Workflow",
+    "primaryMetric": "Checks Passed",
+    "secondaryMetric": "Runtime s",
+    "units": "checks",
+    "baseline": 82,
+    "amplitude": 12,
+    "accent": "#be123c"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 84.48,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 85.42,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 86.11,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 87.97,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 89.71,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 91.57,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 92.33,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 92.02,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 92.68,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 91.09,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 90.07,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 88.05,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 86,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 82.91,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 79.64,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 78.08,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 76.56,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 73.75,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 72.91,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 72.83,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 73.54,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 74.75,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 76.33,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 78.77,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 78.77,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 73.8,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 83.36,
+      "note": "control path returned to range"
+    }
+  ]
+}

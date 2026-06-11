@@ -1,0 +1,167 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "bems-edge-ai-gateway",
+    "title": "BEMS Edge AI Gateway",
+    "summary": "C++ edge runtime coordinating BACnet polling, local safety rules, RabbitMQ command transport, and cloud-ready telemetry.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "C++",
+      "BACnet/IP",
+      "RabbitMQ",
+      "Docker",
+      "i.MX93"
+    ]
+  },
+  "model": {
+    "domain": "Building Systems",
+    "primaryMetric": "Energy kWh",
+    "secondaryMetric": "Comfort Risk",
+    "units": "kWh",
+    "baseline": 32,
+    "amplitude": 9,
+    "accent": "#0f766e"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 34.32,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 34.02,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 34.7,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 36,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 37.59,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 39.04,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 39.64,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 40.28,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 40.08,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 39.72,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 38.02,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 36.62,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 34.52,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 32.46,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 30,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 28.38,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 26.57,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 24.94,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 24.62,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 23.92,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 24.84,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 25.08,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 26.83,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 28.05,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 28.05,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 24.07,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 30.79,
+      "note": "control path returned to range"
+    }
+  ]
+}

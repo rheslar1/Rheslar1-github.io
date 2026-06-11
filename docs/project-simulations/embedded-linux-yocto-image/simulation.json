@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "embedded-linux-yocto-image",
+    "title": "Embedded Linux / Yocto Image",
+    "summary": "Custom Linux image for Raspberry Pi, BeagleBone, or i.MX-class hardware with Yocto recipes, kernel config, service units, and rootfs notes.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "Yocto",
+      "BitBake",
+      "Kernel config",
+      "Systemd",
+      "Device tree",
+      "Rootfs"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 82.86,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 81.58,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 82.22,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 84.61,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 87.3,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 89.47,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 89.46,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 90.43,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 90.31,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 88.68,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 87.49,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 85.29,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 82.54,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 80.25,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 76.84,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 73.84,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 70.66,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 69.3,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 67.11,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 66.06,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 67.56,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 68.39,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 70.14,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 72.84,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 72.84,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 67.42,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 75.04,
+      "note": "control path returned to range"
+    }
+  ]
+}

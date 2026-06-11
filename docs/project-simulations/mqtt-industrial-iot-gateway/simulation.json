@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "mqtt-industrial-iot-gateway",
+    "title": "MQTT-Based Industrial IoT Gateway",
+    "summary": "Yocto-generated gateway image that polls serial telemetry from Modbus or CAN simulation, parses frames, and publishes cloud updates over MQTT/TLS.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "Yocto",
+      "MQTT",
+      "TLS",
+      "Modbus",
+      "CAN",
+      "Serial telemetry"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 77.98,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 78.36,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 81.29,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 84.52,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 85.83,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 87.12,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 87.78,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 89.14,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 90.12,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 90.06,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 87.06,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 84.22,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 81.05,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 77.43,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 75.44,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 72.82,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 70.19,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 68.52,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 66.24,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 66.28,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 66.45,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 67.62,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 70.72,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 72.15,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 72.15,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 67.91,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 74.55,
+      "note": "control path returned to range"
+    }
+  ]
+}

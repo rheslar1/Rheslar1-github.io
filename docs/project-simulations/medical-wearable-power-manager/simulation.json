@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "medical-wearable-power-manager",
+    "title": "Medical Wearable Power Manager",
+    "summary": "RTOS power-management thread for a battery wearable that schedules sensor reads, enters deep sleep, and uses DMA for autonomous sampling.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "RTOS",
+      "Sleep states",
+      "DMA",
+      "Sensor sampling",
+      "Battery telemetry",
+      "Wake sources"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 72.87,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 75.44,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 77.81,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 80.25,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 84.09,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 85.98,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 88.66,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 89.25,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 88.51,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 88.42,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 86.99,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 85.09,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 82.12,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 78.2,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 75.55,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 72.64,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 70.3,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 68.14,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 66.49,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 65.98,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 66.68,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 68.29,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 69.58,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 72.86,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 72.86,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 62.39,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 75.21,
+      "note": "control path returned to range"
+    }
+  ]
+}

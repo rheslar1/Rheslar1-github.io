@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">AD8232 Single-Lead Heart Rate Monitor To BeagleBone Black ADC Schematic</title>
+  <desc id="desc">Engineering schematic for AD8232 OUT, lead-off pins, divider protection, and BeagleBone Black analog input wiring.</desc>
+  <style>
+    text { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #102033; }
+    .title { font-size: 34px; font-weight: 800; }
+    .label { font-size: 20px; font-weight: 800; }
+    .small { font-size: 16px; fill: #475569; }
+    .pin { font-size: 17px; font-weight: 700; }
+    .box { fill: #ffffff; stroke: #1e293b; stroke-width: 2; rx: 8; }
+    .safe { fill: #ecfeff; stroke: #0e7490; stroke-width: 2; rx: 8; }
+    .warn { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; rx: 8; }
+    .wire { fill: none; stroke: #0f766e; stroke-width: 5; stroke-linecap: round; }
+    .logic { fill: none; stroke: #2563eb; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 10 7; }
+    .ground { stroke: #334155; stroke-width: 4; }
+  </style>
+  <rect width="1280" height="720" fill="#f8fafc"/>
+  <text x="60" y="62" class="title">AD8232 To BeagleBone Black ADC Wiring Schematic</text>
+  <text x="60" y="94" class="small">Portfolio engineering evidence. The BeagleBone ADC pin must never exceed 1.8 V.</text>
+
+  <rect x="70" y="150" width="280" height="330" class="box"/>
+  <text x="105" y="196" class="label">AD8232 Module</text>
+  <text x="105" y="238" class="pin">3.3V</text>
+  <text x="105" y="288" class="pin">GND</text>
+  <text x="105" y="338" class="pin">OUT</text>
+  <text x="105" y="388" class="pin">LO+</text>
+  <text x="105" y="438" class="pin">LO-</text>
+  <circle cx="305" cy="232" r="8" fill="#0f766e"/>
+  <circle cx="305" cy="282" r="8" fill="#334155"/>
+  <circle cx="305" cy="332" r="8" fill="#0f766e"/>
+  <circle cx="305" cy="382" r="8" fill="#2563eb"/>
+  <circle cx="305" cy="432" r="8" fill="#2563eb"/>
+
+  <rect x="465" y="244" width="285" height="175" class="safe"/>
+  <text x="498" y="288" class="label">ADC Protection</text>
+  <text x="498" y="326" class="small">R1 10 kOhm high side</text>
+  <text x="498" y="354" class="small">R2 12 kOhm low side</text>
+  <text x="498" y="382" class="small">Ratio approx 1.8333</text>
+  <path d="M500 410 h210" stroke="#0e7490" stroke-width="3"/>
+  <path d="M538 410 l20 -24 l20 48 l20 -48 l20 48 l20 -48 l20 24" fill="none" stroke="#0e7490" stroke-width="3"/>
+
+  <rect x="880" y="150" width="320" height="330" class="box"/>
+  <text x="918" y="196" class="label">BeagleBone Black</text>
+  <text x="918" y="238" class="pin">P9_03 3.3V</text>
+  <text x="918" y="288" class="pin">P9_01 DGND</text>
+  <text x="918" y="338" class="pin">P9_39 AIN0</text>
+  <text x="918" y="388" class="pin">GPIO LO+</text>
+  <text x="918" y="438" class="pin">GPIO LO-</text>
+  <circle cx="895" cy="232" r="8" fill="#0f766e"/>
+  <circle cx="895" cy="282" r="8" fill="#334155"/>
+  <circle cx="895" cy="332" r="8" fill="#0f766e"/>
+  <circle cx="895" cy="382" r="8" fill="#2563eb"/>
+  <circle cx="895" cy="432" r="8" fill="#2563eb"/>
+
+  <path class="wire" d="M305 232 C410 232, 740 232, 895 232"/>
+  <path class="ground" d="M305 282 C430 282, 760 282, 895 282" fill="none"/>
+  <path class="wire" d="M305 332 C380 332, 420 332, 465 332"/>
+  <path class="wire" d="M750 332 C800 332, 842 332, 895 332"/>
+  <path class="logic" d="M305 382 C462 382, 735 382, 895 382"/>
+  <path class="logic" d="M305 432 C462 432, 735 432, 895 432"/>
+
+  <rect x="70" y="535" width="1130" height="118" class="warn"/>
+  <text x="105" y="580" class="label">Safety Notes</text>
+  <text x="105" y="614" class="small">Use an isolated lab setup and a reviewed analog front end before any body-connected testing.</text>
+  <text x="105" y="642" class="small">This schematic is for non-clinical portfolio evidence. It does not define a certified medical device design.</text>
+</svg>

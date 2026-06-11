@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "closed-loop-motor-control-platform",
+    "title": "Closed-Loop Motor Control Platform",
+    "summary": "PID or FOC motor driver with encoder feedback, IMU sensor fusion, current limiting, and deterministic control loops on STM32 or ESP32.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "STM32",
+      "FOC/PID",
+      "IMU",
+      "Encoders",
+      "PWM",
+      "Control theory"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 74.02,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 76.59,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 80.28,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 82.87,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 85.41,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 87.98,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 89.3,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 89.51,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 89.96,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 88.32,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 86.76,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 84.23,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 82.41,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 78.77,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 74.9,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 73.14,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 69.62,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 67.67,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 67.08,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 65.96,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 66.27,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 68.66,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 70.74,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 73.42,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 73.42,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 64.08,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 77.31,
+      "note": "control path returned to range"
+    }
+  ]
+}

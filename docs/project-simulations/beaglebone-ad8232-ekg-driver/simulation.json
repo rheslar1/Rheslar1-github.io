@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "beaglebone-ad8232-ekg-driver",
+    "title": "BeagleBone AD8232 EKG ADC Driver",
+    "summary": "Python BeagleBone Black driver for the AD8232 Single-Lead Heart Rate Monitor using Linux IIO ADC reads, protective divider scaling, optional LO+/LO- lead-off GPIOs, filtering, heart-rate extraction, simulation, and waveform evidence.",
+    "deployment": "Runs as a Python CLI on BeagleBone Black or in deterministic simulator mode; writes CSV waveform captures, JSON heart-rate reports, and SVG/PNG evidence for documentation review.",
+    "tags": [
+      "BeagleBone Black",
+      "AD8232",
+      "EKG/ECG",
+      "ADC",
+      "Linux IIO",
+      "Python"
+    ]
+  },
+  "model": {
+    "domain": "Software Workflow",
+    "primaryMetric": "Checks Passed",
+    "secondaryMetric": "Runtime s",
+    "units": "checks",
+    "baseline": 82,
+    "amplitude": 12,
+    "accent": "#be123c"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 82.48,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 83.41,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 84.16,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 86.43,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 88.98,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 90.2,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 91,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 92.11,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 92.31,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 90.65,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 90.14,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 88.07,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 86.16,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 83.8,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 80.5,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 77.64,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 74.58,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 73.88,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 72.26,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 72.8,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 73.32,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 74.27,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 75.77,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 78.16,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 78.16,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 70.92,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 80.4,
+      "note": "control path returned to range"
+    }
+  ]
+}

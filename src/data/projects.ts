@@ -504,6 +504,12 @@ const baseProjects: Project[] = [
         focus: 'AD8232 OUT to protected BeagleBone AIN path, 1.8V ADC limit, divider ratio, and lead-off pins'
       },
       {
+        title: 'Schematic',
+        path: 'beaglebone-ad8232-ekg-driver/docs/schematics/ad8232-beaglebone-wiring.svg',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/beaglebone-ad8232-ekg-driver/docs/schematics/ad8232-beaglebone-wiring.svg',
+        focus: 'AD8232 to BeagleBone Black wiring, lead-off pins, divider protection, and ADC safety boundary'
+      },
+      {
         title: 'Generated Evidence',
         path: 'beaglebone-ad8232-ekg-driver/docs/evidence/README.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/beaglebone-ad8232-ekg-driver/docs/evidence/README.md',
@@ -606,6 +612,54 @@ const baseProjects: Project[] = [
         path: 'docs/final-design-documentation-suggestions.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/final-design-documentation-suggestions.md',
         focus: 'Portfolio-wide and project-specific final design documentation, evidence, screenshots, and validation content'
+      },
+      {
+        title: 'Project Simulation Evidence',
+        path: 'docs/project-simulations/README.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/project-simulations/README.md',
+        focus: 'Generated JSON, SVG, and PNG simulation evidence for every portfolio project'
+      },
+      {
+        title: 'Screenshot Matrix',
+        path: 'docs/portfolio-screenshot-matrix.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/portfolio-screenshot-matrix.md',
+        focus: 'Desktop/mobile screenshots, BMS login redirect captures, dashboard captures, and simulation screenshot set'
+      },
+      {
+        title: 'Accessibility Report',
+        path: 'docs/portfolio-accessibility-keyboard-report.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/portfolio-accessibility-keyboard-report.md',
+        focus: 'Keyboard navigation and accessibility review for portfolio and dashboard routes'
+      },
+      {
+        title: 'Performance Summary',
+        path: 'docs/portfolio-performance-summary.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/portfolio-performance-summary.md',
+        focus: 'Lighthouse performance, accessibility, best-practices, SEO, and known PWA score'
+      },
+      {
+        title: 'GitHub Pages Runbook',
+        path: 'docs/github-pages-deployment-runbook.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/github-pages-deployment-runbook.md',
+        focus: 'Actions workflow, branch strategy, cache behavior, deployment commands, and rollback notes'
+      },
+      {
+        title: 'Content Governance',
+        path: 'docs/content-governance.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/content-governance.md',
+        focus: 'How project data feeds portfolio UI, documentation links, and simulation evidence generation'
+      },
+      {
+        title: 'Asset Provenance',
+        path: 'docs/asset-provenance.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/asset-provenance.md',
+        focus: 'Profile photo, generated screenshots, diagrams, schematics, simulations, and repository previews'
+      },
+      {
+        title: 'Suggested Updates',
+        path: 'docs/portfolio-suggested-updates.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/portfolio-suggested-updates.md',
+        focus: 'Prioritized implementation backlog for portfolio, BEMS, neural AI, AD8232, and embedded projects'
       }
     ],
     preview: projectAsset('portfolio-home.png'),
@@ -792,10 +846,40 @@ const baseProjects: Project[] = [
         focus: 'BEMS-ai integration, service contracts, telemetry flow, deployment evidence model'
       },
       {
-        title: 'EnergyBuildAI Schedule Details',
+        title: 'EnergyBuildAI Schedule Summary Details',
         path: 'docs/energybuildai-schedule-details.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/energybuildai-schedule-details.md',
         focus: 'Schedule route, building-zone-floor-room schedule rows, override rules, dampers, motors, fans, and final screenshot evidence'
+      },
+      {
+        title: 'BEMS Final Content Index',
+        path: 'docs/bems-final-content/README.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/bems-final-content/README.md',
+        focus: 'Final BEMS evidence package covering API, database, edge, AI, alarms, energy, deployment, operations, and CI'
+      },
+      {
+        title: 'API Contract',
+        path: 'docs/bems-final-content/api-contract.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/bems-final-content/api-contract.md',
+        focus: 'Endpoint table for auth, building hierarchy, telemetry, schedules, alarms, AI, edge, reports, and health'
+      },
+      {
+        title: 'Database ERD And Seed Data',
+        path: 'docs/bems-final-content/database-erd-seed-data.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/bems-final-content/database-erd-seed-data.md',
+        focus: 'ERD and seeded-data explanation for buildings, rooms, sensors, events, schedules, alarms, and energy records'
+      },
+      {
+        title: 'Operator Manual',
+        path: 'docs/bems-final-content/operator-manual.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/bems-final-content/operator-manual.md',
+        focus: 'Recurring login, building, room, alarm, Schedule Summary, reports, and system-health workflows'
+      },
+      {
+        title: 'CI And Deployment Evidence',
+        path: 'docs/bems-final-content/ci-deployment-evidence.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/bems-final-content/ci-deployment-evidence.md',
+        focus: 'Build commands, artifacts, GitHub Pages URL, Docker stack evidence, and known warnings'
       }
     ],
     loginRoute: '#dashboard',

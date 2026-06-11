@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "embedded-linux-secure-boot-ota-system",
+    "title": "Secure Boot and OTA Update System",
+    "summary": "Embedded Linux fleet-lifecycle project using U-Boot verified boot, signed FIT images, A/B partitions, and RAUC or Mender rollback-safe updates.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "U-Boot",
+      "Verified boot",
+      "FIT images",
+      "RAUC/Mender",
+      "A/B partition",
+      "OTA rollback"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 73.29,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 76.48,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 79.88,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 83.2,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 84.82,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 87.25,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 89.42,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 90.4,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 90.41,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 90.11,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 87.15,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 84.95,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 81.46,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 78.33,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 74.49,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 72.49,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 69.73,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 67.37,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 67.17,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 66.63,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 66.33,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 68.33,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 70.86,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 73.45,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 73.45,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 68.23,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 75.55,
+      "note": "control path returned to range"
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "custom-wifi-driver-network-integration",
+    "title": "Custom Wi-Fi Driver Compilation & Network Integration",
+    "summary": "Kernel-module and network-stack project that cross-compiles Wi-Fi driver support, updates device tree integration, and validates socket traffic with a host PC.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "Linux kernel",
+      "Wi-Fi driver",
+      "Kernel module",
+      "Device tree",
+      "Cross-compilation",
+      "Sockets"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 78.18,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 79.24,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 80.27,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 83,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 85.21,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 86.78,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 89,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 89.8,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 89.3,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 88.58,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 87.08,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 83.8,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 81.72,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 78.76,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 76.16,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 72.74,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 70.11,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 67.84,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 67.34,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 65.98,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 66.14,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 68.01,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 70.32,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 72.01,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 72.01,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 66.75,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 74.35,
+      "note": "control path returned to range"
+    }
+  ]
+}

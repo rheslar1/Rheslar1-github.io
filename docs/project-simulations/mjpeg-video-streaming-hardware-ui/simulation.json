@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "mjpeg-video-streaming-hardware-ui",
+    "title": "MJPEG Video Streaming Server with Hardware UI",
+    "summary": "V4L2 camera project that captures snapshots, records raw video, streams MJPEG over a local HTTP server, and maps physical buttons into UI actions.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "V4L2",
+      "MJPEG",
+      "HTTP server",
+      "CSI camera",
+      "GPIO buttons",
+      "Hardware UI"
+    ]
+  },
+  "model": {
+    "domain": "Media Pipeline",
+    "primaryMetric": "Frame Rate",
+    "secondaryMetric": "Dropped Frames",
+    "units": "fps",
+    "baseline": 28,
+    "amplitude": 4,
+    "accent": "#2563eb"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 28.73,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 28.56,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 28.9,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 29.58,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 30.36,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 30.72,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 31.23,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 31.33,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 31.2,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 30.74,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 30.3,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 30,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 28.95,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 28.18,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 27.46,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 26.77,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 25.82,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 25.22,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 24.87,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 24.46,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 24.53,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 24.85,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 25.28,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 26.32,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 26.32,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 24.56,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 26.87,
+      "note": "control path returned to range"
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "edge-ai-tinyml-microcontroller",
+    "title": "Edge AI / TinyML Microcontroller",
+    "summary": "TensorFlow Lite for Microcontrollers model deployed on an MCU with quantization, memory profiling, inference timing, and RAM/flash optimization notes.",
+    "deployment": "Starter repository scaffolded for public GitHub review with source code, CMake build flow, architecture notes, smoke tests, and CI validation.",
+    "tags": [
+      "TFLite Micro",
+      "Cortex-M",
+      "Quantization",
+      "Memory profiling",
+      "CMSIS-NN",
+      "Edge inference"
+    ]
+  },
+  "model": {
+    "domain": "AI Inference",
+    "primaryMetric": "Probability",
+    "secondaryMetric": "Latency ms",
+    "units": "p",
+    "baseline": 0.62,
+    "amplitude": 0.28,
+    "accent": "#7c3aed"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 0.61,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 0.65,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 0.7,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 0.76,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 0.78,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 0.83,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 0.85,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 0.85,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 0.86,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 0.84,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 0.8,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 0.74,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 0.69,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 0.64,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 0.57,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 0.5,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 0.44,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 0.42,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 0.38,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 0.38,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 0.38,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 0.41,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 0.45,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 0.49,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 0.49,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 0.38,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 0.57,
+      "note": "control path returned to range"
+    }
+  ]
+}

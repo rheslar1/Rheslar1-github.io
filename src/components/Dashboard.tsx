@@ -5,6 +5,19 @@ const operationNav = ['Overview', 'Alarms', 'Building', 'Zones', 'Floors', 'Room
 
 type OperationNavItem = typeof operationNav[number];
 
+const operationNavLabels: Record<OperationNavItem, string> = {
+  Overview: 'Overview',
+  Alarms: 'Alarms',
+  Building: 'Building',
+  Zones: 'Zones',
+  Floors: 'Floors',
+  Rooms: 'Rooms',
+  Schedules: 'Schedule Summary',
+  Energy: 'Energy',
+  HVAC: 'HVAC',
+  Lighting: 'Lighting'
+};
+
 const energyZones = [
   { name: 'Lobby', area: 'lobby', kwh: 8.4, temp: '21.9 C', risk: 'Low', action: 'Hold setpoint', heat: 'normal', occupancy: '42%' },
   { name: 'Floor 1', area: 'floor-one', kwh: 18.7, temp: '23.4 C', risk: 'Elevated', action: 'Trim VAV airflow', heat: 'mid', occupancy: '71%' },
@@ -338,7 +351,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
   ];
 
   const scheduleKpis = [
-    { label: 'Rooms scheduled', value: String(roomSchedules.length), helper: 'Dedicated room schedule page' },
+    { label: 'Rooms scheduled', value: String(roomSchedules.length), helper: 'Dedicated Schedule Summary page' },
     { label: 'Occupied rooms', value: String(roomSchedules.filter((room) => room.mode === 'Occupied').length), helper: 'Live occupied mode' },
     { label: '24/7 spaces', value: String(roomSchedules.filter((room) => room.schedule === '24/7').length), helper: 'Critical operations' },
     { label: 'Overrides', value: String(roomSchedules.filter((room) => room.override !== 'None').length), helper: 'Auto-clear, locked, and AI trim states' }
@@ -353,10 +366,10 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
   const activeKpis = isAlarmView ? alarmKpis : isBuildingView ? buildingKpis : isScheduleView ? scheduleKpis : commandKpis;
   const heroTitle = isAlarmView
     ? 'Alarm queue, response ownership, and BMS troubleshooting details are available from the active console view.'
-    : isBuildingView
-      ? 'Building Summary opens as a dedicated dashboard subpage for core facility status.'
+      : isBuildingView
+        ? 'Building Summary opens as a dedicated dashboard subpage for core facility status.'
       : isScheduleView
-        ? 'Schedules'
+        ? 'Schedule Summary'
       : '';
   const heroCopy = isAlarmView
     ? 'Select an alarm to inspect its location, source point, current reading, threshold, likely cause, impact, response steps, and event history.'
@@ -375,11 +388,11 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
       ? [
           { label: 'Building', value: 'Online' },
           { label: 'Floors', value: `${floorSummaries.length} active` },
-          { label: 'Schedules', value: 'Synced' }
+          { label: 'Schedule Summary', value: 'Synced' }
         ]
       : isScheduleView
         ? [
-            { label: 'Schedule Page', value: 'Active' },
+            { label: 'Schedule Summary', value: 'Active' },
             { label: 'Rooms', value: `${roomSchedules.length} listed` },
             { label: 'Sync State', value: 'Current' }
           ]
@@ -405,7 +418,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
               onClick={() => jumpToDashboardContent(item)}
               aria-current={activeNav === item ? 'page' : undefined}
             >
-              {item}
+              {operationNavLabels[item]}
             </button>
           ))}
         </nav>
@@ -415,7 +428,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
         <section className="eco-topbar">
           <div>
             <p className="detail-kicker">EnergyBuildAI</p>
-            <h1>{isAlarmView ? 'Alarm Response Center' : isBuildingView ? 'Building Summary' : isScheduleView ? 'Schedules' : 'Building Operation Center'}</h1>
+            <h1>{isAlarmView ? 'Alarm Response Center' : isBuildingView ? 'Building Summary' : isScheduleView ? 'Schedule Summary' : 'Building Operation Center'}</h1>
           </div>
           <div className="eco-topbar-actions">
             <span className="eco-live-pill">Live</span>
@@ -428,7 +441,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
                 className="cta-button secondary-cta"
                 onClick={() => jumpToDashboardContent('Schedules')}
               >
-                Room Schedules
+                Schedule Summary
               </button>
             )}
             <button
@@ -681,12 +694,12 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
 
           </section>
         ) : isScheduleView ? (
-          <section className="eco-dashboard-grid eco-schedule-page" aria-label="Building zone floor room schedules subpage">
+          <section className="eco-dashboard-grid eco-schedule-page" aria-label="Building zone floor room schedule summary subpage">
             <article className="eco-card eco-card-wide">
               <div className="eco-card-heading">
                 <div>
                   <span>Building Hierarchy</span>
-                  <h2>Schedules</h2>
+                  <h2>Schedule Summary</h2>
                   <p>Dedicated schedule view organized from building to zone, floor, and room-level operating windows.</p>
                 </div>
                 <strong>{roomSchedules.length} rooms</strong>

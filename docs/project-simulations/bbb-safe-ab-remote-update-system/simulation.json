@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "bbb-safe-ab-remote-update-system",
+    "title": "BBB Safe A/B Remote Update System",
+    "summary": "BeagleBone Black update project that partitions eMMC into A/B OS slots, coordinates U-Boot health checks, and uses RAUC or Mender for rollback-safe remote updates.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "BeagleBone Black",
+      "A/B partition",
+      "U-Boot",
+      "RAUC/Mender",
+      "eMMC",
+      "Rollback"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 77.39,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 79.42,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 82.29,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 84.43,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 85.83,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 87.02,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 88.45,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 89.5,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 89.97,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 88.93,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 86.52,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 84.36,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 80.82,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 77.88,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 75.78,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 72.94,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 69.66,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 67.79,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 65.69,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 66.44,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 66.31,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 68.67,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 70.57,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 73.3,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 73.3,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 69.09,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 78.63,
+      "note": "control path returned to range"
+    }
+  ]
+}

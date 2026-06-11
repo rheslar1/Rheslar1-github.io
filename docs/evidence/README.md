@@ -1,13 +1,30 @@
 # Portfolio Evidence
 
-Generated evidence captured from the local production build.
+Generated evidence captured from the local production build and deterministic project simulations.
 
 ## EnergyBuildAI Dashboard
 
-- `energybuildai-schedules-desktop.png`: desktop capture of `#dashboard/schedules` with building-zone-floor-room schedule details, schedule source, next event, override state, and control intent.
-- `energybuildai-schedules-mobile.png`: mobile capture of `#dashboard/schedules`.
+- `energybuildai-schedules-desktop.png`: desktop capture of `#dashboard/schedules` with the Schedule Summary view, building-zone-floor-room details, schedule source, next event, override state, and control intent.
+- `energybuildai-schedules-mobile.png`: mobile capture of the Schedule Summary route at `#dashboard/schedules`.
 - `energybuildai-building-summary-desktop.png`: desktop capture of `#dashboard/building` after renaming the page to Building Summary and adding expanded systems context.
 - `energybuildai-equipment-systems-desktop.png`: desktop capture focused on fans, dampers, motors, pump motor, and lighting relay system health.
+
+## Login And Portfolio QA
+
+- `bms-login-01-sign-in.png`: desktop capture of the BMS login page before redirect.
+- `bms-login-02-dashboard-landing.png`: desktop capture after login redirect to the EnergyBuildAI dashboard.
+- `bms-login-01-sign-in-mobile.png`: mobile capture of the login page.
+- `bms-login-02-dashboard-landing-mobile.png`: mobile capture after redirect.
+- `portfolio-home-desktop.png` and `portfolio-home-mobile.png`: portfolio home captures.
+- `portfolio-project-bems-desktop.png` and `portfolio-project-bems-mobile.png`: BEMS project detail captures.
+- `portfolio-projects-section-desktop.png` and `portfolio-projects-section-mobile.png`: project grid entry captures.
+- `lighthouse-home.json`: Lighthouse report generated against the local production build.
+
+## All-Project Simulations
+
+- `project-simulations/*.png`: 44 generated screenshots, one for every project in `src/data/projects.ts` and `src/data/embeddedSystemsProjects.ts`.
+- Source data and SVG evidence live under `docs/project-simulations/`.
+- Regenerate with `npm run simulate:projects`.
 
 ## Capture Command Pattern
 
@@ -23,4 +40,4 @@ google-chrome --headless=new --no-sandbox --disable-gpu \
 
 ## Provenance
 
-These screenshots are generated from the portfolio React production build and seeded dashboard data in `src/components/Dashboard.tsx`. They are portfolio evidence, not live building telemetry captures.
+These screenshots are generated from the portfolio React production build, seeded dashboard data in `src/components/Dashboard.tsx`, and deterministic simulation code in `scripts/generate-project-simulations.js`. They are portfolio evidence, not live building telemetry or live hardware captures unless a project-specific evidence note says otherwise.

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">nRF52840 BACnet Field Node Simulation Evidence</title>
+  <desc id="desc">Deterministic synthetic simulation trace and scenario checks for nRF52840 BACnet Field Node.</desc>
+  <style>
+    text { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+    .eyebrow { fill: #475569; font-size: 18px; font-weight: 700; letter-spacing: 0; }
+    .title { fill: #0f172a; font-size: 42px; font-weight: 800; letter-spacing: 0; }
+    .header-eyebrow { fill: #a7f3d0; font-size: 18px; font-weight: 800; letter-spacing: 0; }
+    .header-title { fill: #ffffff; font-size: 36px; font-weight: 800; letter-spacing: 0; }
+    .header-meta { fill: #e2e8f0; font-size: 15px; }
+    .body { fill: #334155; font-size: 18px; }
+    .small { fill: #475569; font-size: 15px; }
+    .mini { fill: #64748b; font-size: 12px; }
+    .value { fill: #0f172a; font-size: 16px; font-weight: 800; }
+    .tag { fill: #e2e8f0; font-size: 14px; font-weight: 700; }
+    .footer-body { fill: #ffffff; font-size: 18px; }
+    .footer-small { fill: #cbd5e1; font-size: 15px; }
+    .panel { fill: #ffffff; stroke: #dbe3ef; stroke-width: 1.5; }
+  </style>
+  <rect width="1280" height="720" fill="#f8fafc"/>
+  <rect x="38" y="34" width="1204" height="652" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="38" y="34" width="1204" height="86" rx="8" fill="#0f172a"/>
+  <text x="78" y="76" class="header-eyebrow">Building Systems Simulation</text>
+  <text x="78" y="111" class="header-title">nRF52840 BACnet Field Node</text>
+  <text x="1015" y="78" class="header-eyebrow" text-anchor="end">PASS</text>
+  <text x="1015" y="105" class="header-meta" text-anchor="end">2026-06-11T12:00:00-04:00</text>
+
+  <text x="78" y="158" class="body">Battery-aware field device profile with persistent setpoint storage, commissioning evidence, and BACnet object ma...</text>
+  <rect x="70" y="188" width="820" height="326" rx="8" class="panel"/>
+  <text x="92" y="222" class="eyebrow">Energy kWh Trace</text>
+  <line x1="90" y1="470" x2="860" y2="470" stroke="#cbd5e1"/>
+  <line x1="90" y1="200" x2="90" y2="470" stroke="#cbd5e1"/>
+  
+        <line x1="290.9" y1="185" x2="290.9" y2="470" stroke="#94a3b8" stroke-dasharray="6 7"/>
+        <text x="290.9" y="178" text-anchor="middle" class="mini">stimulus</text>
+        <line x1="558.7" y1="185" x2="558.7" y2="470" stroke="#94a3b8" stroke-dasharray="6 7"/>
+        <text x="558.7" y="178" text-anchor="middle" class="mini">fault-injection</text>
+        <line x1="759.6" y1="185" x2="759.6" y2="470" stroke="#94a3b8" stroke-dasharray="6 7"/>
+        <text x="759.6" y="178" text-anchor="middle" class="mini">recovery</text>
+  <path d="M 90.0 308.8 L 123.5 313.0 L 157.0 296.8 L 190.4 272.0 L 223.9 259.5 L 257.4 228.8 L 290.9 208.6 L 324.3 200.0 L 357.8 208.6 L 391.3 218.5 L 424.8 230.2 L 458.3 250.7 L 491.7 279.8 L 525.2 322.5 L 558.7 358.4 L 592.2 376.4 L 625.7 407.0 L 659.1 423.7 L 692.6 447.8 L 726.1 455.0 L 759.6 450.3 L 793.0 436.8 L 826.5 417.0 L 860.0 390.3" fill="none" stroke="#0f766e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="90.0" cy="308.8" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="123.5" cy="313.0" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="157.0" cy="296.8" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="190.4" cy="272.0" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="223.9" cy="259.5" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="257.4" cy="228.8" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="290.9" cy="208.6" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="324.3" cy="200.0" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="357.8" cy="208.6" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="391.3" cy="218.5" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="424.8" cy="230.2" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="458.3" cy="250.7" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="491.7" cy="279.8" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="525.2" cy="322.5" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="558.7" cy="358.4" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="592.2" cy="376.4" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="625.7" cy="407.0" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="659.1" cy="423.7" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="692.6" cy="447.8" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="726.1" cy="455.0" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="759.6" cy="450.3" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="793.0" cy="436.8" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="826.5" cy="417.0" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/><circle cx="860.0" cy="390.3" r="4" fill="#ffffff" stroke="#0f766e" stroke-width="3"/>
+  <text x="92" y="494" class="small">24-step deterministic run | average 32.49 kWh</text>
+
+  <rect x="916" y="188" width="294" height="326" rx="8" class="panel"/>
+  <text x="940" y="222" class="eyebrow">Scenario Checks</text>
+  
+      <g>
+        <rect x="940" y="359.6" width="54" height="140.4" rx="5" fill="#0f766e" opacity="0.72"/>
+        <text x="967" y="525" text-anchor="middle" class="mini">nominal</text>
+        <text x="967" y="347.6" text-anchor="middle" class="value">28.19</text>
+      </g>
+      <g>
+        <rect x="1032" y="458.0" width="54" height="42.0" rx="5" fill="#0f766e" opacity="0.7999999999999999"/>
+        <text x="1059" y="525" text-anchor="middle" class="mini">fault injection</text>
+        <text x="1059" y="446.0" text-anchor="middle" class="value">20.36</text>
+      </g>
+      <g>
+        <rect x="1124" y="336.0" width="54" height="164.0" rx="5" fill="#0f766e" opacity="0.88"/>
+        <text x="1151" y="525" text-anchor="middle" class="mini">recovery</text>
+        <text x="1151" y="324.0" text-anchor="middle" class="value">30.07</text>
+      </g>
+  <text x="940" y="566" class="small">3/3 scenario checks passed</text>
+  <text x="940" y="594" class="mini">Comfort Risk bounded by checks</text>
+
+  <rect x="70" y="548" width="1140" height="88" rx="8" fill="#111827"/>
+  
+    <text x="80" y="620" class="tag">nRF52840</text>
+  
+    <text x="230" y="620" class="tag">C</text>
+  
+    <text x="380" y="620" class="tag">EEPROM</text>
+  
+    <text x="530" y="620" class="tag">BACnet</text>
+  
+    <text x="680" y="620" class="tag">BLE-ready</text>
+  
+  <text x="80" y="580" class="footer-body">Artifacts: simulation.json, simulation.svg, simulation.png</text>
+  <text x="80" y="606" class="footer-small">Generated by scripts/generate-project-simulations.js from project catalog data.</text>
+</svg>

@@ -1,0 +1,166 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "CameraDemo",
+    "title": "CameraDemo",
+    "summary": "Native C camera capture demo for Linux V4L2, mmap buffers, framebuffer/DRM display hooks, and i.MX93-style target deployment.",
+    "deployment": "Built with an aarch64 cross-compiler Makefile and deployable to an embedded Linux target over SCP/SSH for camera bring-up and display validation.",
+    "tags": [
+      "C",
+      "V4L2",
+      "Embedded Linux",
+      "i.MX93"
+    ]
+  },
+  "model": {
+    "domain": "Media Pipeline",
+    "primaryMetric": "Frame Rate",
+    "secondaryMetric": "Dropped Frames",
+    "units": "fps",
+    "baseline": 28,
+    "amplitude": 4,
+    "accent": "#2563eb"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 28.62,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 28.55,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 28.94,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 29.79,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 30.37,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 30.89,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 31.08,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 31.25,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 31.4,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 31,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 30.54,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 29.94,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 28.95,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 28.19,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 27.43,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 26.69,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 25.62,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 24.82,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 24.48,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 24.25,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 24.27,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 25.08,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 25.81,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 26.44,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 26.44,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 24.23,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 28.01,
+      "note": "control path returned to range"
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "multi-sensor-i2c-spi-data-logger",
+    "title": "Multi-Sensor Data Logger over I2C/SPI",
+    "summary": "Multi-threaded C/C++ Linux data logger that reads temperature, pressure, and humidity sensors through /dev/i2c-* or /dev/spidev* and stores records in SQLite.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "I2C",
+      "SPI",
+      "POSIX threads",
+      "SQLite",
+      "C/C++",
+      "Sensor logging"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 74.5,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 76.67,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 79.92,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 82.72,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 84.55,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 86.17,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 88.5,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 89.08,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 88.53,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 88.31,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 86.73,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 84.01,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 82.36,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 80.04,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 76.53,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 73.4,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 71.52,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 69.26,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 67.27,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 67.64,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 67.48,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 67.79,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 69.44,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 72.01,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 72.01,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 61.1,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 75.71,
+      "note": "control path returned to range"
+    }
+  ]
+}

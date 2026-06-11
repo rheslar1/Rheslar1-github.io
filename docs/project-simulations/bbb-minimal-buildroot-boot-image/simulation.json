@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "bbb-minimal-buildroot-boot-image",
+    "title": "BBB Minimal Buildroot Boot Image",
+    "summary": "BeagleBone Black AM335x project that builds U-Boot, Linux kernel, and a tiny root filesystem with Buildroot for a sub-5-second login prompt.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "BeagleBone Black",
+      "AM335x",
+      "Buildroot",
+      "U-Boot",
+      "Kernel build",
+      "microSD boot"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 76.31,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 78.92,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 80.94,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 83.4,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 84.72,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 86.05,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 87.38,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 89,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 88.44,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 87.98,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 86.15,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 84.28,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 82.37,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 79.45,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 75.68,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 72.85,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 71.23,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 69.19,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 68.13,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 68.2,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 68.44,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 69.42,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 70.84,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 73.13,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 73.13,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 63.9,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 77.6,
+      "note": "control path returned to range"
+    }
+  ]
+}

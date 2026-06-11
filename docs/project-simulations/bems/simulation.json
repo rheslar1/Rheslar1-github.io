@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "bems",
+    "title": "BEMS",
+    "summary": "Building energy management system that uses BEMS-ai as the optimization layer with edge C++, Node.js API, React/Vite dashboard, MySQL, Docker, GitHub Actions, and Yocto integration.",
+    "deployment": "Verified with the local Docker stack: UI, API, BEMS-ai service, edge-core, MySQL, Kafka, RabbitMQ, Prometheus, Grafana, Alertmanager, and Watchtower run together with healthy container checks.",
+    "tags": [
+      "BEMS-ai",
+      "C++",
+      "Node.js",
+      "React",
+      "MySQL",
+      "Yocto"
+    ]
+  },
+  "model": {
+    "domain": "Building Systems",
+    "primaryMetric": "Energy kWh",
+    "secondaryMetric": "Comfort Risk",
+    "units": "kWh",
+    "baseline": 32,
+    "amplitude": 9,
+    "accent": "#0f766e"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 28.46,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 30.51,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 32.53,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 34.02,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 36.01,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 36.93,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 37.74,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 38.95,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 39.4,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 38.47,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 38.03,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 36.39,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 34.27,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 32.28,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 29.89,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 27.68,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 26.94,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 25.31,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 24.54,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 24.81,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 24.53,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 25.09,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 27.13,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 29.04,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 29.04,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 24.12,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 31.36,
+      "note": "control path returned to range"
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "bare-metal-rtos-scheduling",
+    "title": "Bare-Metal RTOS Scheduling",
+    "summary": "Multi-threaded FreeRTOS or Zephyr application with queues, mutexes, semaphores, interrupt handoff, and priority inversion notes.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "FreeRTOS",
+      "Zephyr",
+      "IPC",
+      "Mutexes",
+      "Semaphores",
+      "Priority inheritance"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 77.36,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 78.97,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 80.5,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 83.87,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 85.13,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 87.27,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 88.06,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 89.48,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 90.17,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 88.17,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 86.02,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 84,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 80.65,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 77.52,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 74.04,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 71.21,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 69.61,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 67.05,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 66.38,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 66.32,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 66.73,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 68.7,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 69.68,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 71.5,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 71.5,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 65.32,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 73.28,
+      "note": "control path returned to range"
+    }
+  ]
+}

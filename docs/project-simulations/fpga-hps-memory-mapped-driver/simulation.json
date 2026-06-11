@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "fpga-hps-memory-mapped-driver",
+    "title": "FPGA to HPS Memory-Mapped Hardware Driver",
+    "summary": "Intel SoC project that maps FPGA logic into Linux user space through the HPS-to-FPGA bridge and toggles hardware registers with mmap().",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "FPGA",
+      "HPS bridge",
+      "mmap",
+      "Verilog",
+      "SystemVerilog",
+      "Register map"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 82.85,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 82.72,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 83.3,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 85.85,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 86.79,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 89.23,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 90.07,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 90.31,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 89.85,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 88.82,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 87.51,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 85.87,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 82.14,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 79.74,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 77.16,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 73.28,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 70.15,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 67.92,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 67.29,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 67.02,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 66.65,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 67.24,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 69.27,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 72.29,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 72.29,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 67.73,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 74.96,
+      "note": "control path returned to range"
+    }
+  ]
+}

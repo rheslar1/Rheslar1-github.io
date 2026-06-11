@@ -1,0 +1,165 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "ansible",
+    "title": "ansible",
+    "summary": "Infrastructure automation repository with Ansible playbooks and inventory examples.",
+    "deployment": "Executed with Ansible against local or remote inventory; playbooks support connectivity checks, command execution, and automation validation.",
+    "tags": [
+      "Ansible",
+      "Automation",
+      "Infrastructure"
+    ]
+  },
+  "model": {
+    "domain": "Software Workflow",
+    "primaryMetric": "Checks Passed",
+    "secondaryMetric": "Runtime s",
+    "units": "checks",
+    "baseline": 82,
+    "amplitude": 12,
+    "accent": "#be123c"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 84.28,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 83.97,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 85.92,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 86.64,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 88.24,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 89.79,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 91.84,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 91.53,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 91.23,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 91.05,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 89.91,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 88.47,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 86.6,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 83.58,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 81.51,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 79.31,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 77.09,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 75.45,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 73.66,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 72.12,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 73.04,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 74.02,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 74.81,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 77.55,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 77.55,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 71.63,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 80.39,
+      "note": "control path returned to range"
+    }
+  ]
+}

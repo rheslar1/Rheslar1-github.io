@@ -1,0 +1,166 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "BEMS-ai",
+    "title": "BEMS-ai",
+    "summary": "PPO-based BEMS controller with Python training, closed-loop simulation, digital twin logic, forecasting, ONNX export, and C++ deployment code.",
+    "deployment": "Supports Python research/training workflows and C++ controller deployment checks using CMake, pytest, EnergyPlus-oriented scaffolding, a deterministic simulation harness, and an ONNX Runtime deployment boundary.",
+    "tags": [
+      "AI",
+      "BEMS",
+      "Python",
+      "Automation"
+    ]
+  },
+  "model": {
+    "domain": "Building Systems",
+    "primaryMetric": "Energy kWh",
+    "secondaryMetric": "Comfort Risk",
+    "units": "kWh",
+    "baseline": 32,
+    "amplitude": 9,
+    "accent": "#0f766e"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 29.95,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 31.71,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 33.06,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 34.28,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 35.87,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 37.39,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 38.53,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 39.6,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 39.61,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 39.55,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 37.95,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 36.51,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 34.98,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 32.85,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 31.03,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 28.63,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 26.94,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 26.19,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 24.84,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 24.55,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 25.15,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 26.1,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 26.85,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 28.62,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 28.62,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 21.18,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 31.25,
+      "note": "control path returned to range"
+    }
+  ]
+}

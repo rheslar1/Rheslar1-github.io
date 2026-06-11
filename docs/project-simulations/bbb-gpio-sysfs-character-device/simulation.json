@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "bbb-gpio-sysfs-character-device",
+    "title": "BBB GPIO Controller Using Sysfs and Character Devices",
+    "summary": "BeagleBone Black GPIO project that toggles LEDs and buttons through /sys/class/gpio, then upgrades the workflow into a custom /dev LED character driver.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "BeagleBone Black",
+      "GPIO",
+      "Sysfs",
+      "Character driver",
+      "P8/P9 headers",
+      "C"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 81.58,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 81.99,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 83.08,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 85.48,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 88.03,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 88.31,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 89.52,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 89.8,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 90.29,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 88.59,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 87,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 85.53,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 82.12,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 79.85,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 75.98,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 72.23,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 70.29,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 68.48,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 67.02,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 66.24,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 66.75,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 68.49,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 69.59,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 72.1,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 72.1,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 64.68,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 75.06,
+      "note": "control path returned to range"
+    }
+  ]
+}

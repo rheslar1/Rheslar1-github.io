@@ -1,0 +1,167 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "production-flash-test-rig",
+    "title": "Production Flash and Test Rig",
+    "summary": "Repeatable board flashing, update-cycle validation, and long-run soak checks for deployment confidence.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "SWUpdate",
+      "Yocto",
+      "Shell",
+      "QA logs",
+      "Hardware lab"
+    ]
+  },
+  "model": {
+    "domain": "Software Workflow",
+    "primaryMetric": "Checks Passed",
+    "secondaryMetric": "Runtime s",
+    "units": "checks",
+    "baseline": 82,
+    "amplitude": 12,
+    "accent": "#be123c"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 79.68,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 82.32,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 83.44,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 85.2,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 87.55,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 89.02,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 91.06,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 91.46,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 91.19,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 91.29,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 89.11,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 88,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 85.06,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 82.03,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 80.44,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 78.53,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 75.96,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 73.33,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 71.69,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 72.25,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 72.84,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 73.81,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 76.25,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 77.69,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 77.69,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 69.54,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 80.9,
+      "note": "control path returned to range"
+    }
+  ]
+}

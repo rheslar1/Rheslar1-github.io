@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "bbb-yocto-ekg-sensor-monitor",
+    "title": "BBB Yocto EKG Sensor Monitor",
+    "summary": "BeagleBone Black medical-sensor project using a custom Yocto image, ADC-connected EKG/ECG front end, systemd acquisition service, and local waveform logging.",
+    "deployment": "Simulated local evidence run.",
+    "tags": [
+      "BeagleBone Black",
+      "Yocto",
+      "EKG/ECG",
+      "ADC",
+      "IIO",
+      "Systemd"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 80.49,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 81.4,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 82.97,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 84.63,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 87.24,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 89.62,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 91.33,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 91.27,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 89.79,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 89.65,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 88.27,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 84.96,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 81.29,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 77.75,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 74.21,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 71.98,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 69.81,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 68.18,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 66.63,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 65.41,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 65.17,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 67.44,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 69.83,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 73.28,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 73.28,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 63.02,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 78.46,
+      "note": "control path returned to range"
+    }
+  ]
+}

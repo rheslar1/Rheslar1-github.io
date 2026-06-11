@@ -1,0 +1,166 @@
+{
+  "generatedAt": "2026-06-11T12:00:00-04:00",
+  "project": {
+    "id": "study",
+    "title": "study",
+    "summary": "Engineering study repository with C++17 examples, static-analysis workflows, diagrams, and embedded Linux notes.",
+    "deployment": "Documentation/reference repository hosted on GitHub; published by repository browsing rather than an application runtime.",
+    "tags": [
+      "C++17",
+      "Static Analysis",
+      "UML",
+      "Yocto Notes"
+    ]
+  },
+  "model": {
+    "domain": "Embedded Target",
+    "primaryMetric": "Health Score",
+    "secondaryMetric": "Loop Latency us",
+    "units": "score",
+    "baseline": 78,
+    "amplitude": 14,
+    "accent": "#ca8a04"
+  },
+  "series": [
+    {
+      "step": 0,
+      "value": 77.88,
+      "event": ""
+    },
+    {
+      "step": 1,
+      "value": 79.71,
+      "event": ""
+    },
+    {
+      "step": 2,
+      "value": 81.69,
+      "event": ""
+    },
+    {
+      "step": 3,
+      "value": 84.71,
+      "event": ""
+    },
+    {
+      "step": 4,
+      "value": 85.76,
+      "event": ""
+    },
+    {
+      "step": 5,
+      "value": 87.33,
+      "event": ""
+    },
+    {
+      "step": 6,
+      "value": 87.96,
+      "event": "stimulus"
+    },
+    {
+      "step": 7,
+      "value": 88.07,
+      "event": ""
+    },
+    {
+      "step": 8,
+      "value": 88.6,
+      "event": ""
+    },
+    {
+      "step": 9,
+      "value": 88.58,
+      "event": ""
+    },
+    {
+      "step": 10,
+      "value": 87.51,
+      "event": ""
+    },
+    {
+      "step": 11,
+      "value": 85.03,
+      "event": ""
+    },
+    {
+      "step": 12,
+      "value": 81.46,
+      "event": ""
+    },
+    {
+      "step": 13,
+      "value": 79.44,
+      "event": ""
+    },
+    {
+      "step": 14,
+      "value": 76.57,
+      "event": "fault-injection"
+    },
+    {
+      "step": 15,
+      "value": 72.86,
+      "event": ""
+    },
+    {
+      "step": 16,
+      "value": 70.1,
+      "event": ""
+    },
+    {
+      "step": 17,
+      "value": 68.69,
+      "event": ""
+    },
+    {
+      "step": 18,
+      "value": 67.6,
+      "event": ""
+    },
+    {
+      "step": 19,
+      "value": 66.39,
+      "event": ""
+    },
+    {
+      "step": 20,
+      "value": 66.14,
+      "event": "recovery"
+    },
+    {
+      "step": 21,
+      "value": 67.75,
+      "event": ""
+    },
+    {
+      "step": 22,
+      "value": 70.55,
+      "event": ""
+    },
+    {
+      "step": 23,
+      "value": 72.05,
+      "event": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "status": "PASS",
+      "metric": 72.05,
+      "note": "steady-state path accepted"
+    },
+    {
+      "name": "fault injection",
+      "status": "PASS",
+      "metric": 62.34,
+      "note": "fault detected and bounded"
+    },
+    {
+      "name": "recovery",
+      "status": "PASS",
+      "metric": 75.59,
+      "note": "control path returned to range"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Edge AI / TinyML Microcontroller Simulation Evidence</title>
+  <desc id="desc">Deterministic synthetic simulation trace and scenario checks for Edge AI / TinyML Microcontroller.</desc>
+  <style>
+    text { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+    .eyebrow { fill: #475569; font-size: 18px; font-weight: 700; letter-spacing: 0; }
+    .title { fill: #0f172a; font-size: 42px; font-weight: 800; letter-spacing: 0; }
+    .header-eyebrow { fill: #a7f3d0; font-size: 18px; font-weight: 800; letter-spacing: 0; }
+    .header-title { fill: #ffffff; font-size: 36px; font-weight: 800; letter-spacing: 0; }
+    .header-meta { fill: #e2e8f0; font-size: 15px; }
+    .body { fill: #334155; font-size: 18px; }
+    .small { fill: #475569; font-size: 15px; }
+    .mini { fill: #64748b; font-size: 12px; }
+    .value { fill: #0f172a; font-size: 16px; font-weight: 800; }
+    .tag { fill: #e2e8f0; font-size: 14px; font-weight: 700; }
+    .footer-body { fill: #ffffff; font-size: 18px; }
+    .footer-small { fill: #cbd5e1; font-size: 15px; }
+    .panel { fill: #ffffff; stroke: #dbe3ef; stroke-width: 1.5; }
+  </style>
+  <rect width="1280" height="720" fill="#f8fafc"/>
+  <rect x="38" y="34" width="1204" height="652" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="38" y="34" width="1204" height="86" rx="8" fill="#0f172a"/>
+  <text x="78" y="76" class="header-eyebrow">AI Inference Simulation</text>
+  <text x="78" y="111" class="header-title">Edge AI / TinyML Microcontroller</text>
+  <text x="1015" y="78" class="header-eyebrow" text-anchor="end">PASS</text>
+  <text x="1015" y="105" class="header-meta" text-anchor="end">2026-06-11T12:00:00-04:00</text>
+
+  <text x="78" y="158" class="body">TensorFlow Lite for Microcontrollers model deployed on an MCU with quantization, memory profiling, inference timi...</text>
+  <rect x="70" y="188" width="820" height="326" rx="8" class="panel"/>
+  <text x="92" y="222" class="eyebrow">Probability Trace</text>
+  <line x1="90" y1="470" x2="860" y2="470" stroke="#cbd5e1"/>
+  <line x1="90" y1="200" x2="90" y2="470" stroke="#cbd5e1"/>
+  
+        <line x1="290.9" y1="185" x2="290.9" y2="470" stroke="#94a3b8" stroke-dasharray="6 7"/>
+        <text x="290.9" y="178" text-anchor="middle" class="mini">stimulus</text>
+        <line x1="558.7" y1="185" x2="558.7" y2="470" stroke="#94a3b8" stroke-dasharray="6 7"/>
+        <text x="558.7" y="178" text-anchor="middle" class="mini">fault-injection</text>
+        <line x1="759.6" y1="185" x2="759.6" y2="470" stroke="#94a3b8" stroke-dasharray="6 7"/>
+        <text x="759.6" y="178" text-anchor="middle" class="mini">recovery</text>
+  <path d="M 90.0 396.4 L 123.5 386.1 L 157.0 373.4 L 190.4 358.1 L 223.9 353.0 L 257.4 340.3 L 290.9 335.1 L 324.3 335.1 L 357.8 332.6 L 391.3 337.7 L 424.8 347.9 L 458.3 363.2 L 491.7 376.0 L 525.2 388.7 L 558.7 406.6 L 592.2 424.4 L 625.7 439.7 L 659.1 444.8 L 692.6 455.0 L 726.1 455.0 L 759.6 455.0 L 793.0 447.4 L 826.5 437.1 L 860.0 426.9" fill="none" stroke="#7c3aed" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="90.0" cy="396.4" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="123.5" cy="386.1" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="157.0" cy="373.4" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="190.4" cy="358.1" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="223.9" cy="353.0" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="257.4" cy="340.3" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="290.9" cy="335.1" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="324.3" cy="335.1" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="357.8" cy="332.6" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="391.3" cy="337.7" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="424.8" cy="347.9" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="458.3" cy="363.2" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="491.7" cy="376.0" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="525.2" cy="388.7" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="558.7" cy="406.6" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="592.2" cy="424.4" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="625.7" cy="439.7" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="659.1" cy="444.8" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="692.6" cy="455.0" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="726.1" cy="455.0" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="759.6" cy="455.0" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="793.0" cy="447.4" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="826.5" cy="437.1" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/><circle cx="860.0" cy="426.9" r="4" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/>
+  <text x="92" y="494" class="small">24-step deterministic run | average 0.63 p</text>
+
+  <rect x="916" y="188" width="294" height="326" rx="8" class="panel"/>
+  <text x="940" y="222" class="eyebrow">Scenario Checks</text>
+  
+      <g>
+        <rect x="940" y="444.6" width="54" height="55.4" rx="5" fill="#7c3aed" opacity="0.72"/>
+        <text x="967" y="525" text-anchor="middle" class="mini">nominal</text>
+        <text x="967" y="432.6" text-anchor="middle" class="value">0.49</text>
+      </g>
+      <g>
+        <rect x="1032" y="458.0" width="54" height="42.0" rx="5" fill="#7c3aed" opacity="0.7999999999999999"/>
+        <text x="1059" y="525" text-anchor="middle" class="mini">fault injection</text>
+        <text x="1059" y="446.0" text-anchor="middle" class="value">0.38</text>
+      </g>
+      <g>
+        <rect x="1124" y="434.8" width="54" height="65.2" rx="5" fill="#7c3aed" opacity="0.88"/>
+        <text x="1151" y="525" text-anchor="middle" class="mini">recovery</text>
+        <text x="1151" y="422.8" text-anchor="middle" class="value">0.57</text>
+      </g>
+  <text x="940" y="566" class="small">3/3 scenario checks passed</text>
+  <text x="940" y="594" class="mini">Latency ms bounded by checks</text>
+
+  <rect x="70" y="548" width="1140" height="88" rx="8" fill="#111827"/>
+  
+    <text x="80" y="620" class="tag">TFLite Micro</text>
+  
+    <text x="230" y="620" class="tag">Cortex-M</text>
+  
+    <text x="380" y="620" class="tag">Quantization</text>
+  
+    <text x="530" y="620" class="tag">Memory profiling</text>
+  
+    <text x="680" y="620" class="tag">CMSIS-NN</text>
+  
+    <text x="830" y="620" class="tag">Edge inference</text>
+  
+  <text x="80" y="580" class="footer-body">Artifacts: simulation.json, simulation.svg, simulation.png</text>
+  <text x="80" y="606" class="footer-small">Generated by scripts/generate-project-simulations.js from project catalog data.</text>
+</svg>
