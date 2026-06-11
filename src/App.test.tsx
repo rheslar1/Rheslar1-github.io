@@ -207,6 +207,10 @@ test('renders alarms dashboard without the removed helper copy', () => {
   expect(container.querySelector('.eco-command-hero h2')).toBeNull();
   expect(container.querySelector('.eco-command-hero p')).toBeNull();
   expect(container.textContent).not.toContain('Secure BMS Access');
+  expect(container.textContent).not.toContain('Operator Steps');
+  expect(container.textContent).not.toContain('Acknowledge alarm in BMS console');
+  expect(container.textContent).not.toContain('Trim Tower B VAV airflow by 8%');
+  expect(container.textContent).not.toContain('Verify load drops below 18.0 kWh target');
 
   act(() => {
     root?.unmount();
