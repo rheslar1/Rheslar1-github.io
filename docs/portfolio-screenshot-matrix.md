@@ -9,7 +9,7 @@ Screenshots were captured from the production build served locally on port `4173
 | BEMS project detail | `docs/evidence/portfolio-project-bems-desktop.png` | `docs/evidence/portfolio-project-bems-mobile.png` |
 | BMS login | `docs/evidence/bms-login-01-sign-in.png` | `docs/evidence/bms-login-01-sign-in-mobile.png` |
 | Dashboard landing | `docs/evidence/bms-login-02-dashboard-landing.png` | `docs/evidence/bms-login-02-dashboard-landing-mobile.png` |
-| EnergyBuildAI Schedule Details | `docs/evidence/energybuildai-schedules-desktop.png` | `docs/evidence/energybuildai-schedules-mobile.png` |
+| EnergyBuildAI Building Schedules | `docs/evidence/energybuildai-schedules-desktop.png` | `docs/evidence/energybuildai-schedules-mobile.png` |
 | Building Summary and equipment | `docs/evidence/energybuildai-equipment-systems-desktop.png` | Add mobile detail capture after next UI pass. |
 
 ## Simulation Screenshot Set

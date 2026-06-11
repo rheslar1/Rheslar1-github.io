@@ -27,7 +27,7 @@
 3. Review source, current reading, threshold, likely cause, impact, and action.
 4. Acknowledge or clear in the BMS UI/API workflow when connected to backend data.
 
-## Schedule Details Review
+## Building Schedules Review
 
 1. Open `#dashboard/schedules`.
 2. Review building, zone, floor, room, schedule, mode, setpoint, source, next event, override, and control intent.

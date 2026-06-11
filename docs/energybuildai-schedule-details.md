@@ -1,6 +1,6 @@
-# EnergyBuildAI Schedule Details
+# EnergyBuildAI Building Schedules
 
-This document describes the Schedule Details view shown in the portfolio dashboard at `#dashboard/schedules`.
+This document describes the Building Schedules view shown in the portfolio dashboard at `#dashboard/schedules`.
 
 ## Dashboard Route
 
@@ -45,8 +45,8 @@ The dashboard also surfaces equipment that influences schedule execution:
 
 ## Captured Evidence
 
-- `docs/evidence/energybuildai-schedules-desktop.png`: desktop screenshot of the Schedule Details route at `#dashboard/schedules`.
-- `docs/evidence/energybuildai-schedules-mobile.png`: mobile screenshot of the Schedule Details route at `#dashboard/schedules`.
+- `docs/evidence/energybuildai-schedules-desktop.png`: desktop screenshot of the Building Schedules route at `#dashboard/schedules`.
+- `docs/evidence/energybuildai-schedules-mobile.png`: mobile screenshot of the Building Schedules route at `#dashboard/schedules`.
 - `docs/evidence/energybuildai-building-summary-desktop.png`: screenshot of the Building Summary view after the wording update.
 - `docs/evidence/energybuildai-equipment-systems-desktop.png`: screenshot of fans, dampers, motors, pump motor, and lighting relay system details.
 - `docs/energybuildai-schedule-api-seed-evidence.md`: seeded schedule rows and future BEMS API mapping.
