@@ -291,6 +291,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
   const [activeNav, setActiveNav] = React.useState<OperationNavItem>(activeView);
   const [selectedAlarmId, setSelectedAlarmId] = React.useState(alarmEvents[0].id);
   const [acknowledgedAlarmIds, setAcknowledgedAlarmIds] = React.useState<string[]>([]);
+  const [alarmNavigationTarget, setAlarmNavigationTarget] = React.useState<'detail' | 'acknowledge'>('detail');
 
   React.useEffect(() => {
     setActiveNav(activeView);
@@ -352,6 +353,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
 
   const openActiveAlarmDetails = () => {
     setSelectedAlarmId(activeAlarm.id);
+    setAlarmNavigationTarget('detail');
     jumpToDashboardContent('Alarms');
 
     window.setTimeout(() => {
@@ -362,7 +364,20 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
     }, 0);
   };
 
+  const openAlarmAcknowledgePage = () => {
+    setAlarmNavigationTarget('acknowledge');
+    jumpToDashboardContent('Alarms');
+
+    window.setTimeout(() => {
+      const target = document.getElementById('alarm-acknowledge-page');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 0);
+  };
+
   const acknowledgeSelectedAlarm = () => {
+    setAlarmNavigationTarget('acknowledge');
     setAcknowledgedAlarmIds((currentIds) =>
       currentIds.includes(selectedAlarm.id) ? currentIds : [...currentIds, selectedAlarm.id]
     );
@@ -564,7 +579,17 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
                   <h2>{selectedAlarm.type}</h2>
                   <p>{selectedAlarm.cause}</p>
                 </div>
-                <strong>{selectedAlarmDisplayStatus}</strong>
+                <div className="eco-card-heading-actions">
+                  <strong className="eco-status-pill">{selectedAlarmDisplayStatus}</strong>
+                  <button
+                    type="button"
+                    className="eco-inline-action eco-alarm-nav-button"
+                    onClick={openAlarmAcknowledgePage}
+                    aria-controls="alarm-acknowledge-page"
+                  >
+                    Acknowledge Page
+                  </button>
+                </div>
               </div>
               <div className={`eco-critical-strip ${selectedAlarm.priority.toLowerCase()}`}>
                 <strong>{selectedAlarm.priority} Priority</strong>
@@ -604,7 +629,11 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
               </div>
             </article>
 
-            <article className="eco-card eco-card-wide eco-alarm-ack-card" id="alarm-acknowledge-page">
+            <article
+              className={`eco-card eco-card-wide eco-alarm-ack-card ${alarmNavigationTarget === 'acknowledge' ? 'is-navigation-target' : ''}`}
+              id="alarm-acknowledge-page"
+              data-navigation-target={alarmNavigationTarget === 'acknowledge' ? 'true' : undefined}
+            >
               <div className="eco-card-heading">
                 <div>
                   <span>Alarm Acknowledge Page</span>
@@ -652,7 +681,10 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
                   <button
                     type="button"
                     className={`eco-alarm-ticket ${event.priority.toLowerCase()} ${selectedAlarm.id === event.id ? 'active' : ''}`}
-                    onClick={() => setSelectedAlarmId(event.id)}
+                    onClick={() => {
+                      setSelectedAlarmId(event.id);
+                      setAlarmNavigationTarget('detail');
+                    }}
                     key={event.id}
                   >
                     <span>{event.id}</span>
