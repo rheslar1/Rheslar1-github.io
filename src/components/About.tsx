@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 
 function About() {
+  const profilePhoto = `${process.env.PUBLIC_URL}/assets/robert-heslar-photo.jpg`;
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -26,12 +28,18 @@ function About() {
       <div className="container">
         <h2>About Me</h2>
         <div className="about-content">
-          <p>
-            I'm a Senior Embedded Software Engineer with 15+ years of experience building reliable software for
-            embedded Linux, medical devices, automation systems, and production hardware. I also build full-stack
-            React and Node.js applications with MySQL-backed data workflows and Python automation that help teams
-            test, deploy, and maintain complex systems.
-          </p>
+          <div className="about-profile">
+            <figure className="about-photo-frame">
+              <img src={profilePhoto} alt="Robert Heslar" />
+              <figcaption>Senior Embedded Software Engineer</figcaption>
+            </figure>
+            <p>
+              I'm a Senior Embedded Software Engineer with 15+ years of experience building reliable software for
+              embedded Linux, medical devices, automation systems, and production hardware. I also build full-stack
+              React and Node.js applications with MySQL-backed data workflows and Python automation that help teams
+              test, deploy, and maintain complex systems.
+            </p>
+          </div>
           <div className="about-highlights">
             <div className="highlight">
               <h3>Education</h3>
