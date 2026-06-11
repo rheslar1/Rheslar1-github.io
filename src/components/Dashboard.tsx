@@ -716,12 +716,6 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
             </article>
 
             <article className="eco-card eco-card-wide">
-              <div className="eco-card-heading">
-                <div>
-                  <span>Schedule Table</span>
-                  <h2>Building Zone Floor Room Schedules</h2>
-                </div>
-              </div>
               <div className="eco-schedule-table" role="table" aria-label="Building zone floor room schedule details">
                 <div role="row">
                   <span role="columnheader">Building</span>
