@@ -397,6 +397,18 @@ const baseProjects: Project[] = [
         path: 'neural-seizure-ai-analysis/docs/ieee-11031450-paper-to-code-traceability.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/neural-seizure-ai-analysis/docs/ieee-11031450-paper-to-code-traceability.md',
         focus: 'Structured strategy map from IEEE Access review methods to Python modules, artifacts, validation, and future upgrade path'
+      },
+      {
+        title: 'Artifact Schema Validation',
+        path: 'neural-seizure-ai-analysis/docs/artifact-schema-validation.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/neural-seizure-ai-analysis/docs/artifact-schema-validation.md',
+        focus: 'Dependency-free validation for generated demo-report JSON, neural feature CSV, and EKG feature CSV artifacts'
+      },
+      {
+        title: 'Notebook Visualization',
+        path: 'neural-seizure-ai-analysis/notebooks/neural-seizure-feature-visualization.ipynb',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/neural-seizure-ai-analysis/notebooks/neural-seizure-feature-visualization.ipynb',
+        focus: 'Executable notebook for sample traces, HFO ratio, PAC proxy, connectivity curves, schema validation, and C export'
       }
     ],
     preview: projectAsset('neural-seizure-ai-pipeline.svg'),
@@ -412,6 +424,10 @@ const baseProjects: Project[] = [
       {
         src: 'https://raw.githubusercontent.com/rheslar1/Rheslar1-github.io/main/neural-seizure-ai-analysis/docs/evidence/feature-trajectories.png',
         caption: 'Generated evidence plot: HFO ratio, PAC proxy, connectivity, and energy feature trajectories used by the teacher/student pipeline.'
+      },
+      {
+        src: 'https://raw.githubusercontent.com/rheslar1/Rheslar1-github.io/main/neural-seizure-ai-analysis/docs/evidence/biomarker-feature-curves.png',
+        caption: 'Generated evidence plot: dedicated HFO ratio, PAC proxy, and connectivity curves over time.'
       },
       {
         src: 'https://raw.githubusercontent.com/rheslar1/Rheslar1-github.io/main/neural-seizure-ai-analysis/docs/evidence/algorithm-coverage-map.png',
@@ -463,6 +479,9 @@ const baseProjects: Project[] = [
       'The CNN-style teacher scores localized time-frequency activity; the LSTM-style teacher accumulates temporal risk; the transformer-style teacher acts as a strongest-biomarker attention proxy; the GNN-style teacher scores connectivity and spatial concentration.',
       'Knowledge distillation trains a threshold-calibrated logistic student from teacher probabilities, producing feature names, weights, bias, final loss, and decision threshold for review.',
       'The CLI writes demo-report.json, window-features.csv, bbb-ekg-features.csv, SVG/PNG plots, distilled_student.c/.h, and timing reports so the project has inspectable artifacts beyond Markdown.',
+      'Artifact schema validation checks report keys, CSV columns, non-empty rows, non-empty cells, and time-window ordering before JSON/CSV outputs are accepted as evidence.',
+      'The visualization notebook reruns the demo, validates artifacts, exports the C student, writes timing evidence, and displays synthetic traces plus dedicated HFO/PAC/connectivity curves.',
+      'Feature reducers can use optional NumPy acceleration when available while preserving the dependency-free pure-Python fallback for embedded and review environments.',
       'Unit tests cover synthetic label generation, biomarker extraction, BeagleBone ADC conversion, EKG feature extraction, dataset provenance guardrails, C export, timing evidence, and end-to-end teacher/student evaluation.',
       'GitHub Actions runs the unit tests, demo CLI, and artifact validation in the standalone project repo.',
       'Closed-loop neuromodulation remains a documented review boundary only; the code does not authorize stimulation, medication, diagnosis, or patient monitoring.',
@@ -477,6 +496,9 @@ const baseProjects: Project[] = [
       'BeagleBone IIO ADC EKG capture path with signal quality, heart rate, HRV, and bounded fusion.',
       'Public-dataset adapter with de-identification, citation, license, source, and patient-split guardrails.',
       'Paper-to-code traceability module that renders the IEEE source, DOI, strategy map, evidence artifact list, verification checks, safety boundary, and future upgrade path.',
+      'Notebook visualization for sample traces plus HFO ratio, PAC proxy, and connectivity curves.',
+      'Dependency-free schema validation for generated JSON and CSV artifacts.',
+      'Optional NumPy acceleration path with pure-Python fallback.',
       'Evaluation metrics, edge inference budget, C export, timing evidence, safety case, CLI artifacts, tests, and GitHub Actions CI.'
     ],
     outcomes: [
@@ -484,6 +506,7 @@ const baseProjects: Project[] = [
       'Connected computational neuroscience concepts to embedded AI deployment concerns such as latency, power, model size, calibrated thresholds, and edge inference.',
       'Added deep documentation for architecture, pipeline contract, model comparison, BeagleBone EKG integration, dataset provenance, C export, edge budget, safety, validation, generated evidence, and implementation roadmap.',
       'Added IEEE 11031450 implementation evidence that links the IEEE Access review, extracted PDF, algorithms, code modules, generated images, tests, and future upgrade path.',
+      'Added a notebook visualization, dedicated biomarker curve plot, JSON/CSV schema validation, and optional NumPy acceleration boundary.',
       'Added unit tests and CI workflow so the project can be validated independently of the portfolio site.',
       'Preserved the project as a research architecture artifact rather than representing it as a deployed clinical medical device.'
     ],
@@ -502,8 +525,7 @@ const baseProjects: Project[] = [
       'Add calibration, uncertainty, and patient-specific thresholding.',
       'Run the timing evidence on real BeagleBone hardware and commit the target report.',
       'Add a fixed-point student inference path for MCU-class targets.',
-      'Add optional NumPy acceleration while preserving the pure-Python fallback.',
-      'Add schema validation for generated JSON and CSV artifacts.'
+      'Add notebook execution output snapshots after the next evidence refresh.'
     ]
   },
   {

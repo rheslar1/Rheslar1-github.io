@@ -17,7 +17,9 @@ Current tests cover:
 - BeagleBone IIO ADC raw-count conversion to millivolts.
 - Synthetic EKG feature extraction and autonomic context.
 - Public dataset manifest provenance guard.
-- Plot, C export, and timing evidence generation.
+- Plot, C export, timing evidence generation, and JSON/CSV artifact schema validation.
+- Optional NumPy acceleration backend reporting with pure-Python fallback.
+- IEEE 11031450 source, DOI, algorithm-to-code mapping, artifact links, and future upgrade path.
 
 ## Artifact Validation
 
@@ -40,6 +42,7 @@ Inspect:
 - `bbb-ekg-features.csv`
 - `synthetic-neural-ekg-traces.svg/png`
 - `feature-trajectories.svg/png`
+- `biomarker-feature-curves.svg/png`
 - `distilled_student.c/.h`
 - `hil-timing-report.json/.md`
 
@@ -47,7 +50,6 @@ Inspect:
 
 - Add golden feature fixtures for deterministic windows.
 - Add threshold-regression tests for alert timing.
-- Add CLI artifact schema checks.
 - Add fixed-point or quantized student inference tests.
 - Add performance budget tests for feature extraction runtime.
 - Add hardware-in-the-loop profiling for target edge devices.

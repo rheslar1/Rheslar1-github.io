@@ -64,23 +64,23 @@
       "channel_energy_iqr"
     ],
     "weights": [
-      0.20648413841137073,
+      0.2064841384113707,
       0.038638434830703,
-      0.0854096113378213,
+      0.08540961133782131,
       0.2541962624974411,
       0.006217088605927787,
-      -0.007886345419211719,
-      0.004274706839036343,
-      0.052840555031452414,
-      0.003823712466339949,
-      0.004274706839036343,
-      0.020376587133679278,
-      0.06616904634288447,
-      -0.0915090530792651,
-      -0.00016859205885018017,
-      0.01118037074763106
+      -0.00788634541921172,
+      0.004274706839036334,
+      0.05284055503145239,
+      0.003823712466339933,
+      0.004274706839036334,
+      0.020376587133679264,
+      0.0661690463428845,
+      -0.09150905307926503,
+      -0.0001685920588501773,
+      0.011180370747631035
     ],
-    "bias": 0.004655041586613007
+    "bias": 0.004655041586613004
   },
   "teacher_budget": {
     "model_name": "teacher_ensemble_proxy",
@@ -1416,7 +1416,7 @@
     },
     {
       "model": "teacher_ensemble",
-      "probability": 0.5117850699620728,
+      "probability": 0.511785069962073,
       "predicted_preictal": false,
       "rationale": "ensemble blend [cnn_spectrogram_teacher:0.46, lstm_temporal_teacher:0.30, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.39, wavelet_entropy_teacher:0.84, statistical_complexity_teacher:0.63]"
     },
@@ -1554,13 +1554,13 @@
     },
     {
       "model": "teacher_ensemble",
-      "probability": 0.49695298792711085,
+      "probability": 0.4969529879271109,
       "predicted_preictal": false,
       "rationale": "ensemble blend [cnn_spectrogram_teacher:0.38, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.38, wavelet_entropy_teacher:0.84, statistical_complexity_teacher:0.62]"
     },
     {
       "model": "teacher_ensemble",
-      "probability": 0.5035224372578218,
+      "probability": 0.5035224372578216,
       "predicted_preictal": false,
       "rationale": "ensemble blend [cnn_spectrogram_teacher:0.40, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.39, wavelet_entropy_teacher:0.84, statistical_complexity_teacher:0.63]"
     },
@@ -1602,7 +1602,7 @@
     },
     {
       "model": "teacher_ensemble",
-      "probability": 0.5145121487877574,
+      "probability": 0.5145121487877575,
       "predicted_preictal": false,
       "rationale": "ensemble blend [cnn_spectrogram_teacher:0.47, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.40, wavelet_entropy_teacher:0.84, statistical_complexity_teacher:0.62]"
     },
@@ -1620,7 +1620,7 @@
     },
     {
       "model": "teacher_ensemble",
-      "probability": 0.5190469456473553,
+      "probability": 0.5190469456473552,
       "predicted_preictal": false,
       "rationale": "ensemble blend [cnn_spectrogram_teacher:0.48, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.41, wavelet_entropy_teacher:0.84, statistical_complexity_teacher:0.63]"
     },
@@ -1734,7 +1734,7 @@
     },
     {
       "model": "teacher_ensemble",
-      "probability": 0.5345114108607953,
+      "probability": 0.5345114108607952,
       "predicted_preictal": false,
       "rationale": "ensemble blend [cnn_spectrogram_teacher:0.56, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.40, wavelet_entropy_teacher:0.84, statistical_complexity_teacher:0.63]"
     },
@@ -1824,7 +1824,7 @@
     },
     {
       "model": "teacher_ensemble",
-      "probability": 0.6422775388871206,
+      "probability": 0.6422775388871205,
       "predicted_preictal": true,
       "rationale": "ensemble blend [cnn_spectrogram_teacher:0.76, lstm_temporal_teacher:0.38, transformer_attention_teacher:0.79, gnn_connectivity_teacher:0.39, wavelet_entropy_teacher:0.87, statistical_complexity_teacher:0.66]"
     },
@@ -1872,7 +1872,7 @@
     },
     {
       "model": "teacher_ensemble",
-      "probability": 0.6795813718596392,
+      "probability": 0.679581371859639,
       "predicted_preictal": true,
       "rationale": "ensemble blend [cnn_spectrogram_teacher:0.74, lstm_temporal_teacher:0.56, transformer_attention_teacher:0.63, gnn_connectivity_teacher:0.68, wavelet_entropy_teacher:0.85, statistical_complexity_teacher:0.62]"
     },
@@ -1890,19 +1890,19 @@
     },
     {
       "model": "teacher_ensemble",
-      "probability": 0.6887060243695574,
+      "probability": 0.6887060243695576,
       "predicted_preictal": true,
       "rationale": "ensemble blend [cnn_spectrogram_teacher:0.76, lstm_temporal_teacher:0.62, transformer_attention_teacher:0.62, gnn_connectivity_teacher:0.65, wavelet_entropy_teacher:0.85, statistical_complexity_teacher:0.63]"
     },
     {
       "model": "teacher_ensemble",
-      "probability": 0.6908556823684086,
+      "probability": 0.6908556823684088,
       "predicted_preictal": true,
       "rationale": "ensemble blend [cnn_spectrogram_teacher:0.77, lstm_temporal_teacher:0.63, transformer_attention_teacher:0.63, gnn_connectivity_teacher:0.65, wavelet_entropy_teacher:0.85, statistical_complexity_teacher:0.62]"
     },
     {
       "model": "teacher_ensemble",
-      "probability": 0.6875511647228518,
+      "probability": 0.6875511647228517,
       "predicted_preictal": true,
       "rationale": "ensemble blend [cnn_spectrogram_teacher:0.75, lstm_temporal_teacher:0.64, transformer_attention_teacher:0.63, gnn_connectivity_teacher:0.65, wavelet_entropy_teacher:0.85, statistical_complexity_teacher:0.61]"
     },
@@ -2072,7 +2072,7 @@
     },
     {
       "model": "distilled_edge_student",
-      "probability": 0.5361719735667013,
+      "probability": 0.5361719735667014,
       "predicted_preictal": false,
       "rationale": "distilled logistic edge model"
     },
@@ -2114,7 +2114,7 @@
     },
     {
       "model": "distilled_edge_student",
-      "probability": 0.5370545642125765,
+      "probability": 0.5370545642125764,
       "predicted_preictal": false,
       "rationale": "distilled logistic edge model"
     },
@@ -2126,7 +2126,7 @@
     },
     {
       "model": "distilled_edge_student",
-      "probability": 0.5324541231301552,
+      "probability": 0.5324541231301553,
       "predicted_preictal": false,
       "rationale": "distilled logistic edge model"
     },
@@ -2144,7 +2144,7 @@
     },
     {
       "model": "distilled_edge_student",
-      "probability": 0.5347730883538736,
+      "probability": 0.5347730883538737,
       "predicted_preictal": false,
       "rationale": "distilled logistic edge model"
     },
@@ -2330,7 +2330,7 @@
     },
     {
       "model": "distilled_edge_student",
-      "probability": 0.5832141093567794,
+      "probability": 0.5832141093567793,
       "predicted_preictal": true,
       "rationale": "distilled logistic edge model"
     },
@@ -2360,7 +2360,7 @@
     },
     {
       "model": "distilled_edge_student",
-      "probability": 0.6053289084510712,
+      "probability": 0.6053289084510713,
       "predicted_preictal": true,
       "rationale": "distilled logistic edge model"
     },
@@ -2408,7 +2408,7 @@
     },
     {
       "model": "distilled_edge_student",
-      "probability": 0.64126130276475,
+      "probability": 0.6412613027647501,
       "predicted_preictal": true,
       "rationale": "distilled logistic edge model"
     },
@@ -2420,13 +2420,13 @@
     },
     {
       "model": "distilled_edge_student",
-      "probability": 0.641861371300737,
+      "probability": 0.6418613713007371,
       "predicted_preictal": true,
       "rationale": "distilled logistic edge model"
     },
     {
       "model": "distilled_edge_student",
-      "probability": 0.6393663765819311,
+      "probability": 0.6393663765819309,
       "predicted_preictal": true,
       "rationale": "distilled logistic edge model"
     },
@@ -2438,7 +2438,7 @@
     },
     {
       "model": "distilled_edge_student",
-      "probability": 0.6431553516454707,
+      "probability": 0.6431553516454708,
       "predicted_preictal": true,
       "rationale": "distilled logistic edge model"
     },
@@ -2608,7 +2608,7 @@
     },
     {
       "model": "student_plus_beaglebone_ekg_context",
-      "probability": 0.5431719735667013,
+      "probability": 0.5431719735667014,
       "predicted_preictal": false,
       "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=68.2 bpm, rmssd=0.0 ms, quality=1.00"
     },
@@ -2650,7 +2650,7 @@
     },
     {
       "model": "student_plus_beaglebone_ekg_context",
-      "probability": 0.5440545642125765,
+      "probability": 0.5440545642125764,
       "predicted_preictal": true,
       "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=70.4 bpm, rmssd=0.0 ms, quality=1.00"
     },
@@ -2662,7 +2662,7 @@
     },
     {
       "model": "student_plus_beaglebone_ekg_context",
-      "probability": 0.5394541231301552,
+      "probability": 0.5394541231301553,
       "predicted_preictal": false,
       "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=71.8 bpm, rmssd=0.0 ms, quality=1.00"
     },
@@ -2680,7 +2680,7 @@
     },
     {
       "model": "student_plus_beaglebone_ekg_context",
-      "probability": 0.5599730883538726,
+      "probability": 0.5599730883538727,
       "predicted_preictal": true,
       "rationale": "distilled logistic edge model; EKG context boost=0.025, hr=73.9 bpm, rmssd=8.0 ms, quality=1.00"
     },
@@ -2866,7 +2866,7 @@
     },
     {
       "model": "student_plus_beaglebone_ekg_context",
-      "probability": 0.5974538883623036,
+      "probability": 0.5974538883623035,
       "predicted_preictal": true,
       "rationale": "distilled logistic edge model; EKG context boost=0.014, hr=82.9 bpm, rmssd=0.0 ms, quality=1.00"
     },
@@ -2896,7 +2896,7 @@
     },
     {
       "model": "student_plus_beaglebone_ekg_context",
-      "probability": 0.6515186609478176,
+      "probability": 0.6515186609478177,
       "predicted_preictal": true,
       "rationale": "distilled logistic edge model; EKG context boost=0.046, hr=91.2 bpm, rmssd=4.0 ms, quality=1.00"
     },
@@ -2944,7 +2944,7 @@
     },
     {
       "model": "student_plus_beaglebone_ekg_context",
-      "probability": 0.6891184456218915,
+      "probability": 0.6891184456218916,
       "predicted_preictal": true,
       "rationale": "distilled logistic edge model; EKG context boost=0.048, hr=92.3 bpm, rmssd=4.0 ms, quality=1.00"
     },
@@ -2956,13 +2956,13 @@
     },
     {
       "model": "student_plus_beaglebone_ekg_context",
-      "probability": 0.689040592079952,
+      "probability": 0.6890405920799522,
       "predicted_preictal": true,
       "rationale": "distilled logistic edge model; EKG context boost=0.047, hr=90.9 bpm, rmssd=0.0 ms, quality=1.00"
     },
     {
       "model": "student_plus_beaglebone_ekg_context",
-      "probability": 0.6839287961443447,
+      "probability": 0.6839287961443444,
       "predicted_preictal": true,
       "rationale": "distilled logistic edge model; EKG context boost=0.045, hr=90.1 bpm, rmssd=4.0 ms, quality=1.00"
     },
@@ -2974,7 +2974,7 @@
     },
     {
       "model": "student_plus_beaglebone_ekg_context",
-      "probability": 0.6661377692278879,
+      "probability": 0.666137769227888,
       "predicted_preictal": true,
       "rationale": "distilled logistic edge model; EKG context boost=0.023, hr=88.8 bpm, rmssd=0.0 ms, quality=1.00"
     },
@@ -3053,8 +3053,8 @@
       },
       {
         "feature": "connectivity_spread",
-        "mean_abs_contribution": 0.07054905764498122,
-        "signed_mean_contribution": -0.07054905764498122,
+        "mean_abs_contribution": 0.07054905764498118,
+        "signed_mean_contribution": -0.07054905764498118,
         "direction": "lowers_risk"
       },
       {
@@ -3065,32 +3065,32 @@
       },
       {
         "feature": "wavelet_entropy",
-        "mean_abs_contribution": 0.035842879714303146,
-        "signed_mean_contribution": 0.035842879714303146,
+        "mean_abs_contribution": 0.03584287971430313,
+        "signed_mean_contribution": 0.03584287971430313,
         "direction": "raises_risk"
       },
       {
         "feature": "zero_crossing_rate",
-        "mean_abs_contribution": 0.03524359156663321,
-        "signed_mean_contribution": 0.03524359156663321,
+        "mean_abs_contribution": 0.03524359156663322,
+        "signed_mean_contribution": 0.03524359156663322,
         "direction": "raises_risk"
       },
       {
         "feature": "mean_abs_connectivity",
-        "mean_abs_contribution": 0.02729632765771259,
-        "signed_mean_contribution": 0.02729632765771259,
+        "mean_abs_contribution": 0.027296327657712605,
+        "signed_mean_contribution": 0.027296327657712605,
         "direction": "raises_risk"
       },
       {
         "feature": "higuchi_fractal_dimension",
-        "mean_abs_contribution": 0.009275662730764762,
-        "signed_mean_contribution": 0.009275662730764762,
+        "mean_abs_contribution": 0.009275662730764755,
+        "signed_mean_contribution": 0.009275662730764755,
         "direction": "raises_risk"
       },
       {
         "feature": "wavelet_detail_energy",
-        "mean_abs_contribution": 0.004274706839036343,
-        "signed_mean_contribution": 0.004274706839036343,
+        "mean_abs_contribution": 0.004274706839036334,
+        "signed_mean_contribution": 0.004274706839036334,
         "direction": "raises_risk"
       }
     ],

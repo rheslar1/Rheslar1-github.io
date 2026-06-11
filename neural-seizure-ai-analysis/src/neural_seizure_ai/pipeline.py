@@ -5,6 +5,7 @@ import json
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
+from .artifact_schema import validate_demo_report_dict, validate_ekg_feature_rows, validate_window_feature_rows, validate_written_artifacts
 from .config import SimulationConfig
 from .distillation import DistillationReport, StudentLogisticModel, distill_student
 from .edge_budget import EdgeBudget, estimate_student_budget, estimate_teacher_budget
@@ -184,18 +185,24 @@ def _write_outputs(output_dir: Path, result: DemoResult) -> None:
     report_path = output_dir / "demo-report.json"
     feature_path = output_dir / "window-features.csv"
     ekg_path = output_dir / "bbb-ekg-features.csv"
-    report_path.write_text(json.dumps(result.to_dict(), indent=2), encoding="utf-8")
+    report = result.to_dict()
+    validate_demo_report_dict(report)
+    report_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
 
     if result.feature_rows:
         rows = [row.to_dict() for row in result.feature_rows]
+        validate_window_feature_rows(rows)
         with feature_path.open("w", newline="", encoding="utf-8") as handle:
-            writer = csv.DictWriter(handle, fieldnames=list(rows[0].keys()))
+            writer = csv.DictWriter(handle, fieldnames=list(rows[0].keys()), lineterminator="\n")
             writer.writeheader()
             writer.writerows(rows)
 
     if result.ekg_feature_rows:
         rows = [row.to_dict() for row in result.ekg_feature_rows]
+        validate_ekg_feature_rows(rows)
         with ekg_path.open("w", newline="", encoding="utf-8") as handle:
-            writer = csv.DictWriter(handle, fieldnames=list(rows[0].keys()))
+            writer = csv.DictWriter(handle, fieldnames=list(rows[0].keys()), lineterminator="\n")
             writer.writeheader()
             writer.writerows(rows)
+
+    validate_written_artifacts(output_dir)

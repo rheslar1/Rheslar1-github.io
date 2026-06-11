@@ -41,7 +41,8 @@ SimulationConfig
 | `config.py` | Sensor profiles, simulation timing, brain-state labels. |
 | `signals.py` | Synthetic EEG/ECoG/iEEG/microarray signal generation with pre-ictal cues. |
 | `preprocessing.py` | Baseline removal, z-score normalization, labeled window creation. |
-| `features.py` | Bandpower, HFO ratio, PAC proxy, line length, connectivity, spatial concentration. |
+| `features.py` | Bandpower, HFO ratio, PAC proxy, line length, connectivity, spatial concentration, and optional NumPy acceleration with pure-Python fallback. |
+| `artifact_schema.py` | Dependency-free JSON/CSV artifact validation for generated evidence. |
 | `models.py` | CNN-like, LSTM-like, transformer-like, and GNN-like teacher heuristics. |
 | `distillation.py` | Logistic student trained from teacher soft probabilities. |
 | `evaluation.py` | Sensitivity, specificity, precision, false predictions per hour, lead time. |
@@ -51,7 +52,7 @@ SimulationConfig
 | `datasets.py` | Provenance-guarded public dataset CSV adapter. |
 | `export.py` | C export for the distilled student. |
 | `hil.py` | Host or target timing evidence for the distilled student. |
-| `plots.py` | SVG plot generation for trace and feature evidence. |
+| `plots.py` | SVG plot generation for trace, biomarker curves, feature trajectories, risk timeline, and IEEE coverage evidence. |
 | `safety.py` | Research boundary, required gates, and hazard mitigation register. |
 | `pipeline.py` | End-to-end orchestration and artifact writing. |
 | `cli.py` | Command-line interface for repeatable demo runs. |

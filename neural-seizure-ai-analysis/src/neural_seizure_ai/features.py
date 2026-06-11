@@ -8,6 +8,11 @@ from statistics import fmean
 from .config import BrainState
 from .preprocessing import SignalWindow
 
+try:  # Optional acceleration; the project remains dependency-free without NumPy.
+    import numpy as _np
+except ImportError:  # pragma: no cover - exercised in environments without NumPy.
+    _np = None
+
 
 BANDS_HZ: dict[str, tuple[float, float]] = {
     "delta": (1.0, 4.0),
@@ -106,6 +111,10 @@ class FeatureExtractor:
         )
 
 
+def numeric_backend() -> str:
+    return "numpy" if _np is not None else "pure-python"
+
+
 def feature_vector(features: WindowFeatures) -> list[float]:
     return [
         _cap(features.avg_energy / 3.0),
@@ -153,18 +162,32 @@ def _transpose(rows: list[tuple[float, ...]]) -> list[list[float]]:
 
 
 def _energy(values: list[float]) -> float:
+    if _np is not None and values:
+        array = _np.asarray(values, dtype=float)
+        return float(_np.mean(array * array))
     return fmean(value * value for value in values)
 
 
 def _line_length(values: list[float]) -> float:
     if len(values) < 2:
         return 0.0
+    if _np is not None:
+        return float(_np.mean(_np.abs(_np.diff(_np.asarray(values, dtype=float)))))
     return sum(abs(values[index] - values[index - 1]) for index in range(1, len(values))) / (len(values) - 1)
 
 
 def _zero_crossing_rate(values: list[float]) -> float:
     if len(values) < 2:
         return 0.0
+    if _np is not None:
+        array = _np.asarray(values, dtype=float)
+        previous = array[:-1]
+        current = array[1:]
+        crossings = _np.logical_or(
+            _np.logical_and(previous <= 0.0, current > 0.0),
+            _np.logical_and(previous >= 0.0, current < 0.0),
+        )
+        return float(_np.mean(crossings))
     crossings = sum(1 for index in range(1, len(values)) if (values[index - 1] <= 0.0 < values[index]) or (values[index - 1] >= 0.0 > values[index]))
     return crossings / (len(values) - 1)
 
@@ -195,6 +218,16 @@ def _goertzel_power(values: list[float], sampling_rate_hz: int, target_hz: float
 
 
 def _pearson(left: list[float], right: list[float]) -> float:
+    if _np is not None:
+        left_array = _np.asarray(left, dtype=float)
+        right_array = _np.asarray(right, dtype=float)
+        if left_array.size == 0 or right_array.size == 0:
+            return 0.0
+        left_std = float(_np.std(left_array))
+        right_std = float(_np.std(right_array))
+        if left_std == 0.0 or right_std == 0.0:
+            return 0.0
+        return float(_np.corrcoef(left_array, right_array)[0, 1])
     left_mean = fmean(left)
     right_mean = fmean(right)
     numerator = sum((a - left_mean) * (b - right_mean) for a, b in zip(left, right))

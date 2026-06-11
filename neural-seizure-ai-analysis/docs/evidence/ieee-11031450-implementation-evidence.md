@@ -18,7 +18,7 @@ Implemented in this repository as runnable Python code, generated artifacts, and
 | --- | --- | --- |
 | EEG/ECoG/iEEG/microarray acquisition profiles | `src/neural_seizure_ai/config.py`, `src/neural_seizure_ai/signals.py` | `synthetic-neural-ekg-traces.svg/png` |
 | Preprocessing and windowing | `src/neural_seizure_ai/preprocessing.py` | `window-features.csv` |
-| Time-frequency analysis | `src/neural_seizure_ai/features.py` bandpower, HFO, Goertzel power | `feature-trajectories.svg/png` |
+| Time-frequency analysis | `src/neural_seizure_ai/features.py` bandpower, HFO, Goertzel power, optional NumPy reducers | `feature-trajectories.svg/png`, `biomarker-feature-curves.svg/png` |
 | Wavelet feature extraction | `src/neural_seizure_ai/features.py` Haar detail energy and wavelet entropy | `demo-report.json`, `window-features.csv` |
 | Nonlinear complexity analysis | `src/neural_seizure_ai/features.py` sample entropy, Katz FD, Higuchi FD | `window-features.csv` |
 | Connectivity/channel analysis | `src/neural_seizure_ai/features.py` Pearson graph, connectivity spread, spatial concentration, channel energy IQR | `time-frequency-image-map.svg/png`, `algorithm-coverage-map.svg/png` |
@@ -29,6 +29,8 @@ Implemented in this repository as runnable Python code, generated artifacts, and
 | EKG/ECG multimodal context | `src/neural_seizure_ai/ekg.py`, `src/neural_seizure_ai/fusion.py` | `bbb-ekg-features.csv`, fused metrics in `demo-report.json` |
 | Post-processing and false-warning control | `src/neural_seizure_ai/postprocessing.py` | `risk-warning-timeline.svg/png`, `demo-report.json` |
 | Explainability/XAI | `src/neural_seizure_ai/explainability.py` | `demo-report.json` top feature contributions |
+| Notebook visualization | `notebooks/neural-seizure-feature-visualization.ipynb` | sample traces, HFO ratio, PAC proxy, connectivity curves, artifact validation, C export |
+| Artifact schema validation | `src/neural_seizure_ai/artifact_schema.py`, `src/neural_seizure_ai/pipeline.py` | validated `demo-report.json`, `window-features.csv`, `bbb-ekg-features.csv` |
 | Edge deployment evidence | `src/neural_seizure_ai/export.py`, `src/neural_seizure_ai/hil.py` | C export and `hil-timing-report.md/json` |
 | Paper-to-code traceability | `src/neural_seizure_ai/paper_traceability.py` | `docs/ieee-11031450-paper-to-code-traceability.md` |
 
@@ -73,6 +75,7 @@ Observed summary from the regenerated evidence run:
 | `time-frequency-image-map.svg/png` | Implements the image-based EEG/scalogram-style branch with synthetic bandpower windows. |
 | `risk-warning-timeline.svg/png` | Shows teacher, student, EKG-fused risk, hysteresis threshold, SPH/SOH post-processing, and warnings. |
 | `feature-trajectories.svg/png` | Shows HFO, PAC, connectivity, and energy feature trajectories. |
+| `biomarker-feature-curves.svg/png` | Dedicated HFO ratio, PAC proxy, and connectivity curves over time. |
 | `synthetic-neural-ekg-traces.svg/png` | Shows neural trace plus BeagleBone AD8232-compatible EKG/ECG context. |
 
 ## Test Evidence
@@ -84,7 +87,7 @@ PYTHONPATH=neural-seizure-ai-analysis/src \
 python3 -m unittest discover neural-seizure-ai-analysis/tests -v
 ```
 
-Result: 8 tests passed.
+Result: 9 tests passed.
 
 Coverage includes:
 
@@ -97,6 +100,8 @@ Coverage includes:
 - strict public dataset provenance,
 - plots, C export, and timing artifacts.
 - IEEE 11031450 source, DOI, algorithm-to-code mapping, artifact links, and future upgrade path.
+- JSON/CSV artifact schema validation.
+- optional NumPy acceleration backend reporting with pure-Python fallback.
 
 ## Future Upgrade Path
 

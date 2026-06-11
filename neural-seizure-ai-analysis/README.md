@@ -20,7 +20,10 @@ The IEEE Access review mapping is documented in
 - Edge budget estimates for memory, multiply-accumulate count, latency, and power.
 - Safety controls that separate research analysis from clinical or closed-loop intervention use.
 - BeagleBone Black EKG/ECG auxiliary context through Linux IIO ADC reads.
+- Optional NumPy acceleration for numeric reducers while preserving the dependency-free pure-Python fallback.
+- JSON/CSV artifact schema validation for report, neural feature, and EKG feature evidence.
 - Generated evidence package with plots, PNG screenshots, CSV/JSON artifacts, C export, and timing report.
+- Notebook visualization for synthetic traces, HFO ratio, PAC proxy, and connectivity curves.
 
 ## Quick Start
 
@@ -51,6 +54,7 @@ The demo emits:
 - `bbb-ekg-features.csv`: EKG/ECG context features from synthetic or BeagleBone ADC input.
 - `synthetic-neural-ekg-traces.svg/png`: trace evidence and screenshot capture.
 - `feature-trajectories.svg/png`: feature trajectory evidence and screenshot capture.
+- `biomarker-feature-curves.svg/png`: dedicated HFO ratio, PAC proxy, and connectivity curve evidence.
 - `distilled_student.c/.h`: C export for embedded review.
 - `hil-timing-report.md`: timing evidence for the student inference path.
 
@@ -87,6 +91,8 @@ The implementation uses deterministic synthetic data. It does not train on patie
 - [BeagleBone EKG integration](docs/beaglebone-ekg-integration.md)
 - [Public dataset adapter](docs/public-dataset-adapter.md)
 - [Distilled student export](docs/distilled-student-export.md)
+- [Artifact schema validation](docs/artifact-schema-validation.md)
+- [Notebook visualization](docs/notebook-visualization.md)
 - [IEEE 11031450 paper-to-code traceability](docs/ieee-11031450-paper-to-code-traceability.md)
 - [IEEE 11031450 implementation evidence](docs/evidence/ieee-11031450-implementation-evidence.md)
 - [Generated evidence package](docs/evidence/README.md)

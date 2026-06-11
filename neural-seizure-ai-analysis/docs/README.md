@@ -12,5 +12,7 @@
 | [BeagleBone EKG integration](beaglebone-ekg-integration.md) | ADC/IIO EKG sensor capture path and multimodal fusion boundary. |
 | [Public dataset adapter](public-dataset-adapter.md) | Provenance-guarded adapter for approved deidentified datasets. |
 | [Distilled student export](distilled-student-export.md) | Plain C export for embedded review. |
+| [Artifact schema validation](artifact-schema-validation.md) | JSON/CSV artifact contracts, validation checks, and failure boundary. |
+| [Notebook visualization](notebook-visualization.md) | Notebook workflow for traces, HFO/PAC/connectivity curves, generated artifacts, and schema validation. |
 | [IEEE 11031450 paper-to-code traceability](ieee-11031450-paper-to-code-traceability.md) | IEEE Access review source, DOI, code modules, evidence images, tests, safety boundary, and future upgrade path. |
 | [Generated evidence](evidence/README.md) | Plots, screenshots, CSV/JSON artifacts, timing report, and C export. |

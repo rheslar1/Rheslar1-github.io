@@ -16,7 +16,7 @@ Project: Predictive AI Neural Seizure Analysis
 | --- | --- | --- | --- |
 | High-bandwidth EEG/ECoG/iEEG sensing | `src/neural_seizure_ai/config.py`, `src/neural_seizure_ai/signals.py` define modality profiles, sampling rates, channels, noise, and HFO visibility. | `synthetic-neural-ekg-traces.png`, `window-features.csv` | `test_synthetic_generator_produces_expected_labels` |
 | Preprocessing and labeled windowing | `src/neural_seizure_ai/preprocessing.py`, `src/neural_seizure_ai/pipeline.py` normalize channels and create labeled sliding windows. | `window-features.csv`, `demo-report.json` | `test_feature_extractor_exposes_paper_backed_biomarkers` |
-| Time-frequency biomarkers | `src/neural_seizure_ai/features.py` computes bandpower, HFO ratios, line length, and PAC-style markers. | `feature-trajectories.png`, `window-features.csv` | `test_feature_extractor_exposes_paper_backed_biomarkers` |
+| Time-frequency biomarkers | `src/neural_seizure_ai/features.py` computes bandpower, HFO ratios, line length, and PAC-style markers. | `feature-trajectories.png`, `biomarker-feature-curves.png`, `window-features.csv` | `test_feature_extractor_exposes_paper_backed_biomarkers` |
 | Wavelet and nonlinear complexity biomarkers | `src/neural_seizure_ai/features.py` adds Haar detail energy, wavelet entropy, sample entropy, Katz FD, and Higuchi FD. | `algorithm-coverage-map.png`, `window-features.csv` | `test_feature_extractor_exposes_paper_backed_biomarkers` |
 | Image-style EEG representation | `src/neural_seizure_ai/representations.py`, `src/neural_seizure_ai/plots.py` build time-frequency and connectivity matrices without GPU dependencies. | `time-frequency-image-map.png` | `test_evidence_outputs_include_plots_c_export_and_timing` |
 | CNN, LSTM, transformer, and GNN model-family comparison | `src/neural_seizure_ai/models.py` implements deterministic teacher proxies for spectrogram, temporal, attention, and connectivity views. | `demo-report.json`, `algorithm-coverage-map.png` | `test_demo_runs_teacher_student_edge_budget_and_safety_case` |
@@ -24,6 +24,8 @@ Project: Predictive AI Neural Seizure Analysis
 | EKG/ECG multimodal context on BeagleBone | `src/neural_seizure_ai/ekg.py`, `src/neural_seizure_ai/fusion.py` read AD8232-compatible Linux IIO ADC context and bound fusion impact. | `bbb-ekg-features.csv`, `synthetic-neural-ekg-traces.png` | `test_beaglebone_iio_reader_converts_raw_adc_to_millivolts`, `test_synthetic_ekg_features_provide_autonomic_context` |
 | Post-processing and false-warning control | `src/neural_seizure_ai/postprocessing.py`, `src/neural_seizure_ai/pipeline.py` apply EMA smoothing, hysteresis, SPH, and SOH checks. | `risk-warning-timeline.png`, `demo-report.json` | `test_demo_runs_teacher_student_edge_budget_and_safety_case` |
 | Explainability and reviewable outputs | `src/neural_seizure_ai/explainability.py` ranks normalized feature contributions from the distilled student. | `demo-report.json` | `test_demo_runs_teacher_student_edge_budget_and_safety_case` |
+| Notebook trace and feature visualization | `notebooks/neural-seizure-feature-visualization.ipynb`, `src/neural_seizure_ai/plots.py` run the demo, validate artifacts, export C, and display traces plus feature curves. | `synthetic-neural-ekg-traces.png`, `biomarker-feature-curves.png`, `feature-trajectories.png` | `test_evidence_outputs_include_plots_c_export_and_timing` |
+| Generated artifact schema validation | `src/neural_seizure_ai/artifact_schema.py`, `src/neural_seizure_ai/pipeline.py` validate JSON and CSV report/feature contracts. | `demo-report.json`, `window-features.csv`, `bbb-ekg-features.csv` | `test_artifact_schema_rejects_missing_fields_and_reports_numeric_backend`, `test_evidence_outputs_include_plots_c_export_and_timing` |
 | Dataset provenance and validation boundary | `src/neural_seizure_ai/datasets.py`, `src/neural_seizure_ai/safety.py` require source, citation, license, consent/public basis, de-identification, and patient split. | `public-dataset-adapter.md`, `safety-review.md` | `test_public_dataset_adapter_requires_strict_provenance` |
 | Hardware and timing evidence | `src/neural_seizure_ai/hil.py`, `src/neural_seizure_ai/export.py`, `src/neural_seizure_ai/cli.py` produce host/target timing reports and C export. | `hil-timing-report.md`, `hil-timing-report.json` | `test_evidence_outputs_include_plots_c_export_and_timing` |
 
@@ -47,6 +49,7 @@ Key exports:
 - `docs/evidence/time-frequency-image-map.png`: shows the image-style time-frequency branch for CNN/pretrained-model review.
 - `docs/evidence/risk-warning-timeline.png`: shows teacher, student, EKG-fused risk, smoothing, hysteresis threshold, SPH/SOH logic, and warning timing.
 - `docs/evidence/feature-trajectories.png`: shows HFO, PAC, connectivity, and energy trajectories.
+- `docs/evidence/biomarker-feature-curves.png`: isolates HFO ratio, PAC proxy, and connectivity over time.
 - `docs/evidence/synthetic-neural-ekg-traces.png`: shows synthetic neural trace and BeagleBone AD8232-compatible EKG context.
 
 ## Future Upgrade Path

@@ -3,11 +3,12 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from neural_seizure_ai.artifact_schema import validate_demo_report_dict, validate_written_artifacts, validate_window_feature_rows
 from neural_seizure_ai.config import BrainState, SimulationConfig
 from neural_seizure_ai.datasets import CsvPublicDatasetAdapter, PublicDatasetManifest
 from neural_seizure_ai.ekg import BeagleBoneEkgConfig, BeagleBoneIioAnalogReader, SyntheticEkgGenerator, extract_ekg_feature_windows
 from neural_seizure_ai.export import export_student_to_c
-from neural_seizure_ai.features import FeatureExtractor, feature_names
+from neural_seizure_ai.features import FeatureExtractor, feature_names, numeric_backend
 from neural_seizure_ai.hil import benchmark_student
 from neural_seizure_ai.paper_traceability import (
     FUTURE_UPGRADE_PATH,
@@ -113,10 +114,11 @@ class NeuralSeizurePipelineTests(unittest.TestCase):
 
     def test_evidence_outputs_include_plots_c_export_and_timing(self):
         config = SimulationConfig(sensor="eeg", duration_seconds=12.0, preictal_start_seconds=4.0, ictal_start_seconds=9.0, seed=5)
-        result = run_demo(config)
 
         with tempfile.TemporaryDirectory() as tmp:
             output_dir = Path(tmp)
+            result = run_demo(config, output_dir=output_dir)
+            validate_written_artifacts(output_dir)
             plot_paths = write_plot_evidence(config, result, output_dir)
             c_paths = export_student_to_c(result.distillation, output_dir)
             timing = benchmark_student(result.feature_rows, result.distillation, output_dir=output_dir, iterations=1)
@@ -130,6 +132,7 @@ class NeuralSeizurePipelineTests(unittest.TestCase):
         self.assertGreater(timing.average_inference_us, 0.0)
         self.assertEqual(timing_json["windows"], result.window_count)
         self.assertIn("algorithm-coverage-map.svg", plot_names)
+        self.assertIn("biomarker-feature-curves.svg", plot_names)
         self.assertIn("risk-warning-timeline.svg", plot_names)
         self.assertIn("time-frequency-image-map.svg", plot_names)
 
@@ -156,6 +159,23 @@ class NeuralSeizurePipelineTests(unittest.TestCase):
 
         for upgrade in FUTURE_UPGRADE_PATH:
             self.assertIn(upgrade, rendered)
+
+    def test_artifact_schema_rejects_missing_fields_and_reports_numeric_backend(self):
+        self.assertIn(numeric_backend(), {"pure-python", "numpy"})
+
+        with self.assertRaises(ValueError):
+            validate_demo_report_dict({"sample_count": 1, "window_count": 1})
+
+        with self.assertRaises(ValueError):
+            validate_window_feature_rows(
+                [
+                    {
+                        "start_seconds": "1.0",
+                        "end_seconds": "1.0",
+                        "label": "interictal",
+                    }
+                ]
+            )
 
 
 if __name__ == "__main__":

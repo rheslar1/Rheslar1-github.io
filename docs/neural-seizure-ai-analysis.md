@@ -19,6 +19,8 @@ The project is not a deployed clinical system. It is a research and engineering 
 - Distilled logistic student model with calibrated threshold, inspectable weights, and edge-budget estimates.
 - BeagleBone Black EKG/ECG capture through Linux IIO ADC files for auxiliary autonomic context.
 - Generated plot screenshots, CSV/JSON artifacts, C export, and host timing report.
+- Notebook visualization for synthetic traces, HFO ratio, PAC proxy, and connectivity over time.
+- JSON/CSV artifact schema validation and optional NumPy acceleration with pure-Python fallback.
 - Safety review covering false positives, false negatives, privacy, explainability, consent, and human-in-the-loop gates.
 
 ## Code Evidence
@@ -26,6 +28,7 @@ The project is not a deployed clinical system. It is a research and engineering 
 - `src/neural_seizure_ai/signals.py`: deterministic synthetic neural signal generator.
 - `src/neural_seizure_ai/preprocessing.py`: baseline removal, normalization, and window labeling.
 - `src/neural_seizure_ai/features.py`: biomarker feature extraction.
+- `src/neural_seizure_ai/artifact_schema.py`: JSON/CSV artifact validation for generated evidence.
 - `src/neural_seizure_ai/models.py`: CNN/LSTM/transformer/GNN-inspired teacher ensemble.
 - `src/neural_seizure_ai/distillation.py`: threshold-calibrated distilled edge student.
 - `src/neural_seizure_ai/evaluation.py`: sensitivity, specificity, precision, false prediction rate, and lead-time metrics.
@@ -54,6 +57,9 @@ The project is not a deployed clinical system. It is a research and engineering 
 - `docs/beaglebone-ekg-integration.md`: BeagleBone ADC/IIO EKG sensor integration.
 - `docs/public-dataset-adapter.md`: provenance and patient-split guardrails.
 - `docs/distilled-student-export.md`: C export documentation.
+- `docs/artifact-schema-validation.md`: JSON/CSV artifact contracts and validation checks.
+- `docs/notebook-visualization.md`: notebook workflow for traces, HFO/PAC/connectivity curves, artifact validation, and C export.
+- `notebooks/neural-seizure-feature-visualization.ipynb`: executable visualization notebook.
 - `docs/ieee-11031450-paper-to-code-traceability.md`: IEEE Access review-to-code strategy map with evidence images, tests, safety boundary, and future upgrade path.
 - `docs/evidence/ieee-11031450-implementation-evidence.md`: implementation evidence for IEEE 11031450, generated run summary, and algorithm coverage artifacts.
 - `docs/evidence/README.md`: generated screenshots, plots, artifacts, C export, and timing evidence.
@@ -94,8 +100,11 @@ python3 -m neural_seizure_ai.cli \
 
 - Plotted screenshots of synthetic neural and BeagleBone EKG traces.
 - Plotted screenshots of HFO, PAC, connectivity, and energy feature trajectories.
+- Dedicated biomarker plot for HFO ratio, PAC proxy, and connectivity over time.
 - Strict public-dataset adapter with de-identification, source, citation, license, consent basis, and patient-level split checks.
 - C export for the distilled student model.
+- JSON/CSV schema validation for generated report, feature, and EKG artifacts.
+- Optional NumPy acceleration with dependency-free pure-Python fallback.
 - Host timing evidence that can be rerun on BeagleBone or embedded Linux targets.
 - JSON/CSV report artifacts for metrics, predictions, neural features, and EKG features.
 - IEEE 11031450 paper-to-code traceability, including the IEEE URL, DOI, local extracted PDF, code modules, evidence artifacts, verification tests, and clinical safety boundary.

@@ -22,6 +22,8 @@ python3 -m neural_seizure_ai.cli \
 - `synthetic-neural-ekg-traces.png`: screenshot capture of the trace SVG for portfolio/document review.
 - `feature-trajectories.svg`: generated SVG showing HFO ratio, PAC proxy, connectivity, and energy trajectories used by the teacher/student pipeline.
 - `feature-trajectories.png`: screenshot capture of the feature trajectory SVG for portfolio/document review.
+- `biomarker-feature-curves.svg`: generated SVG dedicated to HFO ratio, PAC proxy, and connectivity curves over time.
+- `biomarker-feature-curves.png`: screenshot capture of the dedicated biomarker curve SVG for portfolio/document review.
 
 ## Data And Model Evidence
 
@@ -33,6 +35,12 @@ python3 -m neural_seizure_ai.cli \
 - `hil-timing-report.json`: machine-readable timing evidence.
 - `hil-timing-report.md`: human-readable timing evidence for embedded Linux or host review.
 - `ieee-11031450-implementation-evidence.md`: IEEE Access review source mapping, algorithm coverage, generated run summary, test evidence, and future upgrade path.
+
+## Validation Evidence
+
+- `src/neural_seizure_ai/artifact_schema.py` validates `demo-report.json`, `window-features.csv`, and `bbb-ekg-features.csv`.
+- `src/neural_seizure_ai/features.py` reports `numeric_backend()` as `numpy` when NumPy is available and `pure-python` otherwise.
+- `notebooks/neural-seizure-feature-visualization.ipynb` runs the demo, writes plots, validates artifacts, exports C, and displays sample traces plus feature curves.
 
 ## Provenance
 

@@ -19,10 +19,12 @@
 - Public dataset adapter with strict provenance validation.
 - C export for the distilled student.
 - Host/target timing evidence generator.
+- Notebook visualization for sample traces and HFO/PAC/connectivity curves.
+- Dedicated biomarker feature curve plot evidence.
+- Schema validation for JSON/CSV artifacts.
+- Optional NumPy acceleration while preserving pure-Python fallback.
 
 ## Next
 
-- Add schema validation for JSON/CSV artifacts.
-- Add optional NumPy acceleration while preserving pure-Python fallback.
 - Add fixed-point or quantized student inference tests.
 - Run timing evidence on real BeagleBone hardware and commit the target report.

@@ -2,6 +2,7 @@
 
 from .config import BrainState, SENSOR_PROFILES, SensorProfile, SimulationConfig
 from .ekg import BeagleBoneEkgConfig, BeagleBoneEkgSensor, EkgFeatureWindow, EkgSample
+from .features import numeric_backend
 from .paper_traceability import (
     FUTURE_UPGRADE_PATH,
     IEEE_11031450_LOCAL_SOURCE,
@@ -29,6 +30,7 @@ __all__ = [
     "SensorProfile",
     "SimulationConfig",
     "build_ieee_11031450_traceability",
+    "numeric_backend",
     "render_ieee_11031450_markdown",
     "run_demo",
 ]

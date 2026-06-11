@@ -22,15 +22,17 @@ def write_plot_evidence(config: SimulationConfig, result: DemoResult, output_dir
 
     trace_path = output_dir / "synthetic-neural-ekg-traces.svg"
     feature_path = output_dir / "feature-trajectories.svg"
+    biomarker_path = output_dir / "biomarker-feature-curves.svg"
     risk_path = output_dir / "risk-warning-timeline.svg"
     algorithm_path = output_dir / "algorithm-coverage-map.svg"
     image_path = output_dir / "time-frequency-image-map.svg"
     trace_path.write_text(_trace_svg(neural_samples, ekg_samples, config), encoding="utf-8")
     feature_path.write_text(_feature_svg(result.feature_rows), encoding="utf-8")
+    biomarker_path.write_text(_biomarker_curve_svg(result.feature_rows), encoding="utf-8")
     risk_path.write_text(_risk_svg(result, config), encoding="utf-8")
     algorithm_path.write_text(_algorithm_svg(), encoding="utf-8")
     image_path.write_text(_image_representation_svg(build_time_frequency_image(result.feature_rows)), encoding="utf-8")
-    return [trace_path, feature_path, risk_path, algorithm_path, image_path]
+    return [trace_path, feature_path, biomarker_path, risk_path, algorithm_path, image_path]
 
 
 def _trace_svg(neural_samples, ekg_samples, config: SimulationConfig) -> str:
@@ -101,6 +103,47 @@ def _feature_svg(features: list[WindowFeatures]) -> str:
   {''.join(lines)}
   <line x1="{margin}" y1="620" x2="{width - margin}" y2="620" stroke="#cbd5e1"/>
   <text x="{margin}" y="642" font-family="Arial" font-size="12" fill="#64748b">window time</text>
+</svg>
+"""
+
+
+def _biomarker_curve_svg(features: list[WindowFeatures]) -> str:
+    width = 1120
+    height = 560
+    margin = 70
+    chart_top = 108
+    chart_bottom = 420
+    x_max = max((row.end_seconds for row in features), default=1.0)
+    curves = [
+        ("HFO ratio", [(row.start_seconds, min(row.hfo_to_total, 1.0)) for row in features], "#075fc6"),
+        ("PAC proxy", [(row.start_seconds, min(row.pac_proxy, 1.0)) for row in features], "#7c3aed"),
+        ("Connectivity", [(row.start_seconds, min(row.mean_abs_connectivity, 1.0)) for row in features], "#0f766e"),
+    ]
+    curve_lines = []
+    legend = []
+    for index, (label, points, color) in enumerate(curves):
+        curve_lines.append(
+            f'<polyline points="{_polyline(points, margin, chart_bottom, width - margin, chart_top, 0.0, x_max, 0.0, 1.0)}" fill="none" stroke="{color}" stroke-width="3"/>'
+        )
+        x = margin + index * 170
+        legend.append(f'<circle cx="{x}" cy="470" r="7" fill="{color}"/><text x="{x + 14}" y="475" font-family="Arial" font-size="14" fill="#334155">{label}</text>')
+
+    grid_lines = []
+    for fraction in [0.0, 0.25, 0.5, 0.75, 1.0]:
+        y = _scale(fraction, 0.0, 1.0, chart_bottom, chart_top)
+        grid_lines.append(f'<line x1="{margin}" y1="{y:.1f}" x2="{width - margin}" y2="{y:.1f}" stroke="#e2e8f0"/>')
+        grid_lines.append(f'<text x="28" y="{y + 4:.1f}" font-family="Arial" font-size="12" fill="#64748b">{fraction:.2f}</text>')
+
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="HFO PAC and connectivity feature curves">
+  <rect width="100%" height="100%" fill="#f8fafc"/>
+  <text x="{margin}" y="40" font-family="Arial" font-size="24" fill="#0f172a">HFO Ratio, PAC Proxy, And Connectivity Over Time</text>
+  <text x="{margin}" y="64" font-family="Arial" font-size="13" fill="#475569">Named biomarker curves exported for IEEE 11031450 implementation evidence and notebook review.</text>
+  <rect x="{margin}" y="{chart_top}" width="{width - 2 * margin}" height="{chart_bottom - chart_top}" fill="#ffffff" stroke="#cbd5e1"/>
+  {''.join(grid_lines)}
+  {''.join(curve_lines)}
+  {''.join(legend)}
+  <line x1="{margin}" y1="438" x2="{width - margin}" y2="438" stroke="#cbd5e1"/>
+  <text x="{margin}" y="520" font-family="Arial" font-size="12" fill="#64748b">Synthetic features only. Curves support engineering review, not diagnosis or patient monitoring.</text>
 </svg>
 """
 

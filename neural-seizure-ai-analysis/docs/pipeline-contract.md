@@ -52,8 +52,11 @@ When `run_demo(..., output_dir=Path(...))` or the CLI is used, the project write
 | `bbb-ekg-features.csv` | Per-window EKG/ECG context features from synthetic or BeagleBone source. |
 | `synthetic-neural-ekg-traces.svg/png` | Trace plot evidence and screenshot-style capture. |
 | `feature-trajectories.svg/png` | Feature trajectory plot evidence and screenshot-style capture. |
+| `biomarker-feature-curves.svg/png` | Dedicated HFO ratio, PAC proxy, and connectivity curves over time. |
 | `distilled_student.c/.h` | Plain C export of the edge student. |
 | `hil-timing-report.json/.md` | Timing evidence for host or target inference runs. |
+
+`artifact_schema.py` validates the generated JSON and CSV files before they are accepted as evidence. The validator checks required report keys, CSV columns, non-empty rows, non-empty cells, and valid time-window ordering.
 
 ## CLI Contract
 
