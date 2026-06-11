@@ -2541,12 +2541,21 @@ section h2 {
   margin-bottom: 10px;
 }
 
+.eco-card-heading-actions {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
 .eco-card-heading h2 {
   margin-top: 3px;
   font-size: 1.24rem;
 }
 
-.eco-card-heading > strong {
+.eco-card-heading > strong,
+.eco-status-pill {
   flex: 0 0 auto;
   min-height: 30px;
   display: inline-flex;
@@ -2563,7 +2572,8 @@ section h2 {
   border-top: 4px solid var(--eco-critical);
 }
 
-.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-detail-card .eco-card-heading > strong {
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-detail-card .eco-card-heading > strong,
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-detail-card .eco-status-pill {
   background: color-mix(in srgb, var(--eco-critical) 14%, var(--eco-panel));
   color: var(--eco-critical);
 }
@@ -2587,6 +2597,13 @@ section h2 {
   border-color: var(--eco-green);
   background: color-mix(in srgb, var(--eco-green) 14%, var(--eco-panel));
   outline: none;
+}
+
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-nav-button:hover,
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-nav-button:focus-visible {
+  border-color: var(--eco-critical);
+  background: color-mix(in srgb, var(--eco-critical) 10%, var(--eco-panel));
+  color: var(--eco-critical);
 }
 
 .ecostruxure-dashboard .usage-kpis article {
@@ -2890,6 +2907,11 @@ section h2 {
 
 .eco-acknowledge-button {
   margin-top: 12px;
+}
+
+.eco-alarm-ack-card.is-navigation-target {
+  border-color: color-mix(in srgb, var(--eco-critical) 42%, var(--eco-line));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--eco-critical) 13%, transparent);
 }
 
 .eco-acknowledge-note {
