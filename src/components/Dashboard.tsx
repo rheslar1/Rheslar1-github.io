@@ -266,7 +266,7 @@ const roomSchedules = [
     floor: 'Tower B',
     zone: 'Tower B Floor 1',
     schedule: '07:00-19:00',
-    mode: 'Demand response',
+    mode: 'Peak guard',
     setpoint: '73 F',
     source: 'BEMS-ai peak guard',
     nextEvent: '15:00 load trim review',
@@ -898,7 +898,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
                 <h2>Building Energy Status</h2>
                 <p>Simulated floorplan heatmap with zone-level kWh, temperature, comfort risk, occupancy, and recommended BEMS action.</p>
               </div>
-              <strong>Demand response armed</strong>
+              <strong>Peak guard armed</strong>
             </div>
 
             <div className="usage-kpis">
@@ -962,7 +962,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
                 <ul>
                   <li>Peak zone: Tower B Floor 1</li>
                   <li>Total sampled load: 68.0 kWh</li>
-                  <li>Demand response target: 18 kWh</li>
+                  <li>Peak guard target: 18 kWh</li>
                   <li>Recommended action: shift load and trim peak airflow</li>
                 </ul>
                 <div className="usage-chart" aria-label="BEMS usage trend">
