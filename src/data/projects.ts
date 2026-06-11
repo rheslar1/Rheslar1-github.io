@@ -906,6 +906,30 @@ const baseProjects: Project[] = [
         focus: 'Qt Quick dashboard purpose, Digi/NXP target notes, build steps, EVK install, service behavior, and Yocto recipe use'
       },
       {
+        title: 'Deep Architecture',
+        path: 'docs/DEEP_ARCHITECTURE.md',
+        url: 'https://github.com/rheslar1/energybuildai-qt-dashboard/blob/main/docs/DEEP_ARCHITECTURE.md',
+        focus: 'Runtime layers, process model, QML module structure, alarm state model, visual system, embedded deployment boundary, and future live data integration'
+      },
+      {
+        title: 'Alarm Acknowledgement Workflow',
+        path: 'docs/ALARM_ACKNOWLEDGEMENT_WORKFLOW.md',
+        url: 'https://github.com/rheslar1/energybuildai-qt-dashboard/blob/main/docs/ALARM_ACKNOWLEDGEMENT_WORKFLOW.md',
+        focus: 'Active alarms KPI, Alarm Queue ticket behavior, acknowledgement state transition, and regression checks'
+      },
+      {
+        title: 'Digi ConnectCore Deployment',
+        path: 'docs/DIGI_CONNECTCORE_DEPLOYMENT.md',
+        url: 'https://github.com/rheslar1/energybuildai-qt-dashboard/blob/main/docs/DIGI_CONNECTCORE_DEPLOYMENT.md',
+        focus: 'Digi/NXP Yocto SDK build, target install, Qt platform plugin selection, systemd kiosk launch, and Yocto recipe integration'
+      },
+      {
+        title: 'Validation Matrix',
+        path: 'docs/VALIDATION_MATRIX.md',
+        url: 'https://github.com/rheslar1/energybuildai-qt-dashboard/blob/main/docs/VALIDATION_MATRIX.md',
+        focus: 'Host, EVK, Yocto, UI, service, and portfolio evidence checks'
+      },
+      {
         title: 'Qt Project Mirror',
         path: 'qt/energybuildai-dashboard/README.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/qt/energybuildai-dashboard/README.md',
@@ -918,8 +942,12 @@ const baseProjects: Project[] = [
         focus: 'cmake_qt6 recipe, Qt runtime dependencies, systemd unit installation, and pinned SRCREV guidance'
       }
     ],
-    preview: projectAsset('bms-dashboard-simulated.svg'),
+    preview: projectAsset('energybuildai-qt-dashboard-simulated.png'),
     visuals: [
+      {
+        src: projectAsset('energybuildai-qt-dashboard-simulated.png'),
+        caption: 'Simulated Qt Quick dashboard view for the Digi ConnectCore-class EVK operator console.'
+      },
       {
         src: projectAsset('bms-dashboard-simulated.svg'),
         caption: 'Qt dashboard mirrors the BMS operations layout, alarm KPIs, and EnergyBuildAI operator workflow.'
@@ -980,7 +1008,7 @@ const baseProjects: Project[] = [
       'Standalone GitHub repository target is wired to https://github.com/rheslar1/energybuildai-qt-dashboard.',
       'Portfolio mirror source exists under qt/energybuildai-dashboard for review with this site.',
       'The Qt app implements the active-alarm acknowledgement behavior requested for the dashboard.',
-      'Build, EVK install, platform plugin, and Yocto recipe notes are documented in the project README.'
+      'Build, EVK install, platform plugin, deep architecture, alarm workflow, validation, and Yocto recipe notes are documented in the project README and docs folder.'
     ],
     resumeBullets: [
       'Built a Qt Quick/C++17 BMS dashboard for Digi ConnectCore-class ARM64 Yocto EVK deployment.',
@@ -990,7 +1018,7 @@ const baseProjects: Project[] = [
     screenshotCaption:
       'Qt project currently reuses BMS dashboard portfolio visuals until a target EVK or desktop Qt runtime screenshot is captured.',
     suggestedContent: [
-      'Capture a desktop Qt runtime screenshot after installing Qt 6.5+ locally.',
+      'Capture a desktop Qt runtime screenshot after installing Qt 6.5+ locally and compare it against docs/evidence/energybuildai-qt-dashboard-simulated.png.',
       'Capture an EVK LCD photo after cross-building with the Digi/NXP Yocto SDK.',
       'Pin the Yocto recipe SRCREV after the first standalone repo commit.',
       'Add a boot log showing systemd launching energybuildai-dashboard on the target.'
