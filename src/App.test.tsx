@@ -222,6 +222,62 @@ test('renders alarms dashboard without the removed helper copy', () => {
   jest.useRealTimers();
 });
 
+test('clicking the active alarm queue ticket acknowledges it and clears active alarms', () => {
+  jest.useFakeTimers();
+  const container = document.createElement('div');
+  document.body.appendChild(container);
+  window.location.hash = '#dashboard/alarms';
+  let root: Root | undefined;
+
+  act(() => {
+    root = createRoot(container);
+    root.render(<App />);
+  });
+
+  act(() => {
+    jest.advanceTimersByTime(600);
+  });
+
+  const activeAlarmKpi = Array.from(container.querySelectorAll<HTMLButtonElement>('.eco-kpi-action')).find((node) =>
+    node.textContent?.includes('Active alarms')
+  );
+  const activeAlarmTicket = Array.from(container.querySelectorAll<HTMLButtonElement>('.eco-alarm-ticket')).find((node) =>
+    node.textContent?.includes('ALM-1042')
+  );
+
+  expect(activeAlarmKpi?.querySelector('strong')?.textContent).toBe('1');
+  expect(activeAlarmTicket).toBeDefined();
+  expect(activeAlarmTicket?.className).toContain('status-active');
+  expect(activeAlarmTicket?.textContent).toContain('Demand peak | Active');
+
+  act(() => {
+    activeAlarmTicket?.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+  });
+
+  act(() => {
+    jest.runOnlyPendingTimers();
+  });
+
+  const acknowledgedAlarmTicket = Array.from(container.querySelectorAll<HTMLButtonElement>('.eco-alarm-ticket')).find((node) =>
+    node.textContent?.includes('ALM-1042')
+  );
+
+  expect(activeAlarmKpi?.querySelector('strong')?.textContent).toBe('0');
+  expect(activeAlarmKpi?.textContent).toContain('No active alarms');
+  expect(acknowledgedAlarmTicket?.className).toContain('selected');
+  expect(acknowledgedAlarmTicket?.className).toContain('status-acknowledged');
+  expect(acknowledgedAlarmTicket?.className).not.toContain('status-active');
+  expect(acknowledgedAlarmTicket?.textContent).toContain('Demand peak | Acknowledged');
+  expect(container.querySelector('#alarm-detail-page')?.textContent).toContain('Acknowledged');
+
+  act(() => {
+    root?.unmount();
+  });
+  container.remove();
+  window.location.hash = '';
+  jest.useRealTimers();
+});
+
 test('opens alarm details and acknowledgement page from the active alarms KPI', () => {
   jest.useFakeTimers();
   const container = document.createElement('div');
@@ -283,6 +339,8 @@ test('opens alarm details and acknowledgement page from the active alarms KPI', 
   });
 
   expect(container.querySelector('#alarm-acknowledge-page')?.textContent).toContain('Acknowledgement Recorded');
+  expect(activeAlarmKpi?.querySelector('strong')?.textContent).toBe('0');
+  expect(activeAlarmKpi?.textContent).toContain('No active alarms');
 
   act(() => {
     alarmDetailsButton?.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
