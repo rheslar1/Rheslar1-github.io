@@ -2401,6 +2401,7 @@ section h2 {
 .eco-kpi-grid,
 .eco-dashboard-grid,
 .eco-alarm-detail-grid,
+.eco-acknowledge-grid,
 .eco-alarm-location-grid,
 .eco-alarm-narrative,
 .eco-alarm-queue,
@@ -2458,8 +2459,28 @@ section h2 {
   border-top: 4px solid var(--eco-green);
 }
 
+.eco-kpi-action {
+  width: 100%;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.eco-kpi-action:hover,
+.eco-kpi-action:focus-visible {
+  border-color: var(--eco-green);
+  background: color-mix(in srgb, var(--eco-green) 10%, var(--eco-panel));
+  outline: none;
+}
+
 .ecostruxure-dashboard.is-alarm-dashboard .eco-kpi {
   border-top-color: var(--eco-critical);
+}
+
+.ecostruxure-dashboard.is-alarm-dashboard .eco-kpi-action:hover,
+.ecostruxure-dashboard.is-alarm-dashboard .eco-kpi-action:focus-visible {
+  border-color: var(--eco-critical);
+  background: color-mix(in srgb, var(--eco-critical) 10%, var(--eco-panel));
 }
 
 .ecostruxure-dashboard.is-alarm-dashboard .eco-kpi strong {
@@ -2765,6 +2786,7 @@ section h2 {
 .eco-critical-strip strong,
 .eco-alarm-ticket strong,
 .eco-alarm-detail-grid strong,
+.eco-acknowledge-grid strong,
 .eco-alarm-location-grid strong,
 .eco-building-detail-grid strong,
 .eco-building-system-grid strong {
@@ -2776,6 +2798,10 @@ section h2 {
   margin-top: 10px;
 }
 
+.eco-acknowledge-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .eco-alarm-location-grid,
 .eco-building-detail-grid,
 .eco-building-system-grid {
@@ -2783,6 +2809,7 @@ section h2 {
 }
 
 .eco-alarm-detail-grid section,
+.eco-acknowledge-grid section,
 .eco-alarm-location-grid section,
 .eco-alarm-narrative section,
 .eco-building-detail-grid section,
@@ -2796,11 +2823,13 @@ section h2 {
 }
 
 .ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-detail-grid section,
+.ecostruxure-dashboard.is-alarm-dashboard .eco-acknowledge-grid section,
 .ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-narrative section {
   border-color: color-mix(in srgb, var(--eco-critical) 22%, var(--eco-line));
 }
 
 .eco-alarm-detail-grid span,
+.eco-acknowledge-grid span,
 .eco-alarm-location-grid span,
 .eco-alarm-narrative span,
 .eco-building-detail-grid span,
@@ -2814,6 +2843,7 @@ section h2 {
 }
 
 .eco-alarm-detail-grid strong,
+.eco-acknowledge-grid strong,
 .eco-alarm-location-grid strong,
 .eco-building-detail-grid strong,
 .eco-building-system-grid strong {
@@ -2824,6 +2854,7 @@ section h2 {
 }
 
 .eco-alarm-detail-grid small,
+.eco-acknowledge-grid small,
 .eco-building-system-grid small,
 .eco-alarm-ticket small {
   display: block;
@@ -2840,6 +2871,15 @@ section h2 {
 
 .eco-alarm-narrative p {
   margin-top: 6px;
+}
+
+.eco-acknowledge-button {
+  margin-top: 12px;
+}
+
+.eco-acknowledge-note {
+  max-width: 680px;
+  font-weight: 800;
 }
 
 .eco-alarm-ticket {
@@ -3710,6 +3750,7 @@ section h2 {
   .eco-kpi-grid,
   .eco-dashboard-grid,
   .eco-alarm-detail-grid,
+  .eco-acknowledge-grid,
   .eco-alarm-location-grid,
   .eco-alarm-narrative,
   .eco-building-detail-grid,
