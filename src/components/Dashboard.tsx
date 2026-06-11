@@ -698,9 +698,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
             <article className="eco-card eco-card-wide">
               <div className="eco-card-heading">
                 <div>
-                  <span>Building Hierarchy</span>
-                  <h2>Schedule Details</h2>
-                  <p>Dedicated schedule view organized from building to zone, floor, and room-level operating windows.</p>
+                  <h2>Building Schedules</h2>
                 </div>
                 <strong>{roomSchedules.length} rooms</strong>
               </div>
