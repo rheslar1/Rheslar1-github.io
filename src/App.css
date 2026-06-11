@@ -2771,10 +2771,10 @@ section h2 {
   gap: 7px;
 }
 
-.eco-alarm.high,
-.eco-alarm.high strong,
-.eco-alarm.high span,
-.eco-alarm.high small {
+.eco-alarm.status-active,
+.eco-alarm.status-active strong,
+.eco-alarm.status-active span,
+.eco-alarm.status-active small {
   color: var(--eco-critical);
 }
 
@@ -2946,7 +2946,7 @@ section h2 {
   border-left-color: var(--eco-critical);
 }
 
-.eco-alarm-ticket.active,
+.eco-alarm-ticket.selected,
 .eco-alarm-ticket:hover,
 .eco-alarm-ticket:focus-visible {
   border-color: var(--eco-green);
@@ -2955,7 +2955,7 @@ section h2 {
   outline: none;
 }
 
-.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-ticket.active,
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-ticket.selected,
 .ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-ticket:hover,
 .ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-ticket:focus-visible {
   border-color: var(--eco-critical);
@@ -2963,10 +2963,10 @@ section h2 {
   background: color-mix(in srgb, var(--eco-critical) 10%, var(--eco-field));
 }
 
-.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-ticket.active,
-.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-ticket.active span,
-.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-ticket.active strong,
-.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-ticket.active small {
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-ticket.status-active,
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-ticket.status-active span,
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-ticket.status-active strong,
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-ticket.status-active small {
   color: var(--eco-critical);
 }
 
