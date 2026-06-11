@@ -255,8 +255,7 @@ test('opens alarm details and acknowledgement page from the active alarms KPI', 
   expect(window.location.hash).toBe('#dashboard/alarms');
   expect(container.textContent).toContain('Alarm Center');
   expect(container.querySelector('#alarm-detail-page')?.textContent).toContain('Demand peak');
-  expect(container.querySelector('#alarm-acknowledge-page')?.textContent).toContain('Acknowledge Selected Alarm');
-  expect(container.querySelector('#alarm-acknowledge-page')?.textContent).toContain('Pending');
+  expect(container.querySelector('#alarm-acknowledge-page')).toBeNull();
   expect(container.textContent).not.toContain('Response SLA');
   expect(container.textContent).not.toContain('Operations lead');
 
@@ -274,7 +273,11 @@ test('opens alarm details and acknowledgement page from the active alarms KPI', 
     jest.runOnlyPendingTimers();
   });
 
-  expect(window.location.hash).toBe('#dashboard/alarms');
+  expect(window.location.hash).toBe('#dashboard/alarms/acknowledge');
+  expect(container.textContent).toContain('Alarm Acknowledge Page');
+  expect(container.querySelector('#alarm-detail-page')).toBeNull();
+  expect(container.querySelector('#alarm-acknowledge-page')?.textContent).toContain('Acknowledge Selected Alarm');
+  expect(container.querySelector('#alarm-acknowledge-page')?.textContent).toContain('Pending');
   expect(container.querySelector('#alarm-acknowledge-page')?.getAttribute('data-navigation-target')).toBe('true');
 
   const acknowledgeButton = Array.from(
@@ -292,7 +295,24 @@ test('opens alarm details and acknowledgement page from the active alarms KPI', 
   });
 
   expect(container.querySelector('#alarm-acknowledge-page')?.textContent).toContain('Acknowledgement Recorded');
+
+  const alarmDetailsButton = Array.from(
+    container.querySelectorAll<HTMLButtonElement>('#alarm-acknowledge-page button')
+  ).find((node) => node.textContent?.includes('Alarm Details'));
+
+  expect(alarmDetailsButton).toBeDefined();
+
+  act(() => {
+    alarmDetailsButton?.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+  });
+
+  act(() => {
+    jest.runOnlyPendingTimers();
+  });
+
+  expect(window.location.hash).toBe('#dashboard/alarms');
   expect(container.querySelector('#alarm-detail-page')?.textContent).toContain('Acknowledged');
+  expect(container.querySelector('#alarm-acknowledge-page')).toBeNull();
 
   act(() => {
     root?.unmount();
