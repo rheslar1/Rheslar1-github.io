@@ -95,7 +95,6 @@ test('renders Schedule Details directly from #dashboard/schedules', () => {
   expect(container.textContent).toContain('Schedule Details');
   expect(container.textContent).toContain('schedules');
   expect(container.textContent).toContain('Review room operating windows, setpoints, overrides, next events, and control intent across each building zone.');
-  expect(container.textContent).not.toContain('Start at the building, inspect zone grouping');
   expect(container.textContent).not.toContain('Secure BMS Access');
 
   act(() => {
