@@ -115,3 +115,32 @@ test('renders schedules directly from #dashboard/schedules without the removed i
   window.location.hash = '';
   jest.useRealTimers();
 });
+
+test('renders building dashboard without the removed helper copy', () => {
+  jest.useFakeTimers();
+  const container = document.createElement('div');
+  document.body.appendChild(container);
+  window.location.hash = '#dashboard/building';
+  let root: Root | undefined;
+
+  act(() => {
+    root = createRoot(container);
+    root.render(<App />);
+  });
+
+  act(() => {
+    jest.advanceTimersByTime(600);
+  });
+
+  expect(container.textContent).toContain('Building Summary');
+  expect(container.textContent).not.toContain('Building Summary opens as a dedicated dashboard subpage for core facility status.');
+  expect(container.textContent).not.toContain('Use the Building tab for a concise view of the building, floors, zones, rooms, and connected systems.');
+  expect(container.textContent).not.toContain('Secure BMS Access');
+
+  act(() => {
+    root?.unmount();
+  });
+  container.remove();
+  window.location.hash = '';
+  jest.useRealTimers();
+});

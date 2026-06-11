@@ -360,14 +360,14 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
   const heroTitle = isAlarmView
     ? 'Alarm queue, response ownership, and BMS troubleshooting details are available from the active console view.'
       : isBuildingView
-        ? 'Building Summary opens as a dedicated dashboard subpage for core facility status.'
+        ? ''
       : isScheduleView
         ? ''
       : '';
   const heroCopy = isAlarmView
     ? 'Select an alarm to inspect its location, source point, current reading, threshold, likely cause, impact, response steps, and event history.'
     : isBuildingView
-      ? 'Use the Building tab for a concise view of the building, floors, zones, rooms, and connected systems.'
+      ? ''
       : isScheduleView
         ? ''
       : 'Real-time energy zones, comfort risk, alarm state, equipment health, portfolio evidence, and AI-assisted BEMS recommendations are arranged like an operational building dashboard.';
@@ -452,10 +452,12 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
 
         {(isAlarmView || isBuildingView) && (
           <section className="eco-command-hero">
-            <div>
-              <h2>{heroTitle}</h2>
-              {heroCopy && <p>{heroCopy}</p>}
-            </div>
+            {(heroTitle || heroCopy) && (
+              <div>
+                {heroTitle && <h2>{heroTitle}</h2>}
+                {heroCopy && <p>{heroCopy}</p>}
+              </div>
+            )}
             <div className="eco-system-summary" aria-label="System health summary">
               {systemSummary.map((item) => (
                 <article key={item.label}>
