@@ -250,7 +250,7 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }) {
     : isBuildingView
       ? 'Brief Building Summary opens as a dedicated dashboard subpage for core facility status.'
       : isScheduleView
-        ? 'Schedules follow the building hierarchy: Building > Zone > Floor > Room Schedules.'
+        ? 'Schedules'
       : '';
   const heroCopy = isAlarmView
     ? 'Select an alarm to inspect its location, source point, current reading, threshold, likely cause, impact, response steps, and event history.'
@@ -309,7 +309,7 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }) {
         <section className="eco-topbar">
           <div>
             <p className="detail-kicker">EnergyBuildAI</p>
-            <h1>{isAlarmView ? 'Alarm Response Center' : isBuildingView ? 'Brief Building Summary' : isScheduleView ? 'Building > Zone > Floor > Room Schedules' : 'Building Operation Center'}</h1>
+            <h1>{isAlarmView ? 'Alarm Response Center' : isBuildingView ? 'Brief Building Summary' : isScheduleView ? 'Schedules' : 'Building Operation Center'}</h1>
           </div>
           <div className="eco-topbar-actions">
             <span className="eco-live-pill">Live</span>
@@ -578,7 +578,7 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }) {
               <div className="eco-card-heading">
                 <div>
                   <span>Building Hierarchy</span>
-                  <h2>Building > Zone > Floor > Room Schedules</h2>
+                  <h2>Schedules</h2>
                   <p>Dedicated schedule view organized from building to zone, floor, and room-level operating windows.</p>
                 </div>
                 <strong>{roomSchedules.length} rooms</strong>

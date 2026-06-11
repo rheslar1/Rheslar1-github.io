@@ -1,6 +1,8 @@
 import React from 'react';
 
 function Hero({ projects = [] }) {
+  const profilePhoto = `${process.env.PUBLIC_URL}/assets/robert-heslar-photo.jpg`;
+
   const handleScroll = (e) => {
     e.preventDefault();
     const element = document.getElementById('projects');
@@ -23,7 +25,10 @@ function Hero({ projects = [] }) {
   return (
     <section id="home" className="hero portfolio-hero">
       <div className="container">
-        <p className="detail-kicker">Robert Heslar</p>
+        <div className="hero-identity">
+          <img className="profile-photo" src={profilePhoto} alt="Robert Heslar" />
+          <p className="detail-kicker">Robert Heslar</p>
+        </div>
         <h1>Portfolio</h1>
         <p className="tagline">
           Embedded Linux, firmware, C/C++, BEMS energy systems, full-stack dashboards, and engineering
