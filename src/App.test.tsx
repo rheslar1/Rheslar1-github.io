@@ -222,6 +222,9 @@ test('renders alarms dashboard without the removed helper copy', () => {
 
 test('opens alarm details and acknowledgement page from the active alarms KPI', () => {
   jest.useFakeTimers();
+  const originalScrollIntoView = Element.prototype.scrollIntoView;
+  const scrollIntoViewMock = jest.fn();
+  Element.prototype.scrollIntoView = scrollIntoViewMock;
   const container = document.createElement('div');
   document.body.appendChild(container);
   window.location.hash = '#dashboard';
@@ -256,6 +259,24 @@ test('opens alarm details and acknowledgement page from the active alarms KPI', 
   expect(container.querySelector('#alarm-acknowledge-page')?.textContent).toContain('Acknowledge Selected Alarm');
   expect(container.querySelector('#alarm-acknowledge-page')?.textContent).toContain('Pending');
 
+  const acknowledgePageButton = Array.from(
+    container.querySelectorAll<HTMLButtonElement>('#alarm-detail-page button')
+  ).find((node) => node.textContent?.includes('Acknowledge Page'));
+
+  expect(acknowledgePageButton).toBeDefined();
+
+  act(() => {
+    acknowledgePageButton?.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+  });
+
+  act(() => {
+    jest.runOnlyPendingTimers();
+  });
+
+  expect(window.location.hash).toBe('#dashboard/alarms');
+  expect(container.querySelector('#alarm-acknowledge-page')?.getAttribute('data-navigation-target')).toBe('true');
+  expect(scrollIntoViewMock).toHaveBeenCalled();
+
   const acknowledgeButton = Array.from(
     container.querySelectorAll<HTMLButtonElement>('#alarm-acknowledge-page button')
   ).find((node) => node.textContent?.includes('Acknowledge Alarm'));
@@ -277,6 +298,7 @@ test('opens alarm details and acknowledgement page from the active alarms KPI', 
     root?.unmount();
   });
   container.remove();
+  Element.prototype.scrollIntoView = originalScrollIntoView;
   window.location.hash = '';
   jest.useRealTimers();
 });
