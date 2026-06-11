@@ -2934,16 +2934,6 @@ section h2 {
   background: color-mix(in srgb, var(--eco-critical) 10%, var(--eco-field));
 }
 
-.eco-response-list {
-  display: grid;
-  gap: 8px;
-  margin: 0;
-  padding-left: 20px;
-  color: var(--muted);
-  font-weight: 800;
-  line-height: 1.55;
-}
-
 .eco-history-list {
   display: grid;
   gap: 8px;

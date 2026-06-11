@@ -84,8 +84,7 @@ const alarmEvents = [
     action: 'Apply demand response trim, reduce VAV airflow in low-priority rooms, and shift noncritical plug load.',
     owner: 'Operations lead',
     sla: '4 min response',
-    history: ['14:08 BEMS-ai detected interval spike', '14:10 Demand response armed', '14:14 Awaiting operator acknowledgement'],
-    steps: ['Acknowledge alarm in BMS console', 'Trim Tower B VAV airflow by 8%', 'Verify load drops below 18.0 kWh target']
+    history: ['14:08 BEMS-ai detected interval spike', '14:10 Demand response armed', '14:14 Awaiting operator acknowledgement']
   },
   {
     id: 'ALM-1038',
@@ -110,8 +109,7 @@ const alarmEvents = [
     action: 'Review AHU static reset, inspect VAV damper positions, and confirm pressure sensor calibration.',
     owner: 'Controls technician',
     sla: '12 min review',
-    history: ['13:42 Pressure crossed warning threshold', '13:48 Technician acknowledged alarm', '14:12 Drift remains stable'],
-    steps: ['Review AHU static reset command', 'Inspect conference room VAV feedback', 'Log calibration check for next maintenance window']
+    history: ['13:42 Pressure crossed warning threshold', '13:48 Technician acknowledged alarm', '14:12 Drift remains stable']
   },
   {
     id: 'ALM-1029',
@@ -136,8 +134,7 @@ const alarmEvents = [
     action: 'Let the scheduler auto-clear unless the override remains active after the next pulse.',
     owner: 'Facilities operator',
     sla: 'Monitor only',
-    history: ['12:55 Manual override detected', '13:00 Scheduler pulse queued', '13:05 Auto-clear pending'],
-    steps: ['Confirm lobby is occupied', 'Allow next schedule pulse', 'Escalate only if override remains active']
+    history: ['12:55 Manual override detected', '13:00 Scheduler pulse queued', '13:05 Auto-clear pending']
   }
 ];
 
@@ -691,21 +688,6 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
                   <strong>{selectedAlarm.zone}</strong>
                 </section>
               </div>
-            </article>
-
-            <article className="eco-card">
-              <div className="eco-card-heading">
-                <div>
-                  <span>Response</span>
-                  <h2>Operator Steps</h2>
-                </div>
-                <strong>{selectedAlarm.owner}</strong>
-              </div>
-              <ol className="eco-response-list">
-                {selectedAlarm.steps.map((step) => (
-                  <li key={step}>{step}</li>
-                ))}
-              </ol>
             </article>
 
             <article className="eco-card">
