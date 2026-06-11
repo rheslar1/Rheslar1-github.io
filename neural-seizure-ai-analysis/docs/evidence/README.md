@@ -32,6 +32,7 @@ python3 -m neural_seizure_ai.cli \
 - `distilled_student.h`: C header for the distilled student model.
 - `hil-timing-report.json`: machine-readable timing evidence.
 - `hil-timing-report.md`: human-readable timing evidence for embedded Linux or host review.
+- `ieee-11031450-implementation-evidence.md`: IEEE Access review source mapping, algorithm coverage, generated run summary, test evidence, and future upgrade path.
 
 ## Provenance
 

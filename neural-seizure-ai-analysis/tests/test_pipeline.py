@@ -9,6 +9,13 @@ from neural_seizure_ai.ekg import BeagleBoneEkgConfig, BeagleBoneIioAnalogReader
 from neural_seizure_ai.export import export_student_to_c
 from neural_seizure_ai.features import FeatureExtractor, feature_names
 from neural_seizure_ai.hil import benchmark_student
+from neural_seizure_ai.paper_traceability import (
+    FUTURE_UPGRADE_PATH,
+    IEEE_11031450_METADATA,
+    IEEE_11031450_SOURCE,
+    build_ieee_11031450_traceability,
+    render_ieee_11031450_markdown,
+)
 from neural_seizure_ai.pipeline import run_demo
 from neural_seizure_ai.plots import write_plot_evidence
 from neural_seizure_ai.preprocessing import preprocess_samples, window_samples
@@ -125,6 +132,30 @@ class NeuralSeizurePipelineTests(unittest.TestCase):
         self.assertIn("algorithm-coverage-map.svg", plot_names)
         self.assertIn("risk-warning-timeline.svg", plot_names)
         self.assertIn("time-frequency-image-map.svg", plot_names)
+
+    def test_ieee_traceability_maps_review_strategies_to_code_and_artifacts(self):
+        mappings = build_ieee_11031450_traceability()
+        rendered = render_ieee_11031450_markdown(mappings)
+        strategies = {mapping.strategy for mapping in mappings}
+
+        self.assertGreaterEqual(len(mappings), 10)
+        self.assertIn("High-bandwidth EEG/ECoG/iEEG sensing", strategies)
+        self.assertIn("CNN, LSTM, transformer, and GNN model-family comparison", strategies)
+        self.assertIn("Knowledge distillation for edge deployment", strategies)
+        self.assertIn("EKG/ECG multimodal context on BeagleBone", strategies)
+        self.assertIn(IEEE_11031450_SOURCE, rendered)
+        self.assertIn("10.1109/ACCESS.2025.3578991", IEEE_11031450_METADATA)
+        self.assertIn("DOI 10.1109/ACCESS.2025.3578991", rendered)
+        self.assertIn("Future Upgrade Path", rendered)
+
+        for mapping in mappings:
+            self.assertTrue(mapping.code_modules, mapping.strategy)
+            self.assertTrue(mapping.evidence_artifacts, mapping.strategy)
+            self.assertTrue(mapping.verification, mapping.strategy)
+            self.assertGreater(len(mapping.safety_boundary), 20)
+
+        for upgrade in FUTURE_UPGRADE_PATH:
+            self.assertIn(upgrade, rendered)
 
 
 if __name__ == "__main__":

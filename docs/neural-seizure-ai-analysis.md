@@ -37,6 +37,7 @@ The project is not a deployed clinical system. It is a research and engineering 
 - `src/neural_seizure_ai/hil.py`: timing evidence generator.
 - `src/neural_seizure_ai/plots.py`: SVG plot evidence generator.
 - `src/neural_seizure_ai/safety.py`: research boundary and hazard register.
+- `src/neural_seizure_ai/paper_traceability.py`: IEEE 11031450 source, DOI, strategy-to-code map, evidence artifact references, verification checks, and future upgrade path.
 - `src/neural_seizure_ai/cli.py`: demo runner that writes JSON and CSV artifacts.
 - `tests/test_pipeline.py`: unit coverage for the runnable pipeline.
 
@@ -53,6 +54,8 @@ The project is not a deployed clinical system. It is a research and engineering 
 - `docs/beaglebone-ekg-integration.md`: BeagleBone ADC/IIO EKG sensor integration.
 - `docs/public-dataset-adapter.md`: provenance and patient-split guardrails.
 - `docs/distilled-student-export.md`: C export documentation.
+- `docs/ieee-11031450-paper-to-code-traceability.md`: IEEE Access review-to-code strategy map with evidence images, tests, safety boundary, and future upgrade path.
+- `docs/evidence/ieee-11031450-implementation-evidence.md`: implementation evidence for IEEE 11031450, generated run summary, and algorithm coverage artifacts.
 - `docs/evidence/README.md`: generated screenshots, plots, artifacts, C export, and timing evidence.
 - `docs/source-paper-extracted.md`: Markdown extraction from the source DOCX.
 
@@ -95,3 +98,12 @@ python3 -m neural_seizure_ai.cli \
 - C export for the distilled student model.
 - Host timing evidence that can be rerun on BeagleBone or embedded Linux targets.
 - JSON/CSV report artifacts for metrics, predictions, neural features, and EKG features.
+- IEEE 11031450 paper-to-code traceability, including the IEEE URL, DOI, local extracted PDF, code modules, evidence artifacts, verification tests, and clinical safety boundary.
+
+## Future Upgrade Path
+
+- Replace synthetic data with approved public datasets.
+- Add PyTorch dataset and dataloader boundaries.
+- Train CNN/LSTM/transformer/GNN baselines against the same `WindowFeatures` contract or raw windows.
+- Export a trained student to ONNX or C for embedded inference.
+- Add calibration, uncertainty, and patient-specific thresholding.

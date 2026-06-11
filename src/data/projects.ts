@@ -385,6 +385,18 @@ const baseProjects: Project[] = [
         path: 'docs/evidence/README.md',
         url: 'https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis/blob/main/docs/evidence/README.md',
         focus: 'Trace screenshots, feature screenshots, CSV/JSON artifacts, C export, and timing report'
+      },
+      {
+        title: 'IEEE 11031450 Implementation Evidence',
+        path: 'neural-seizure-ai-analysis/docs/evidence/ieee-11031450-implementation-evidence.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/neural-seizure-ai-analysis/docs/evidence/ieee-11031450-implementation-evidence.md',
+        focus: 'IEEE URL/PDF mapping, algorithm-to-code evidence, generated metrics, plots, tests, and clinical boundary'
+      },
+      {
+        title: 'IEEE 11031450 Paper-To-Code Traceability',
+        path: 'neural-seizure-ai-analysis/docs/ieee-11031450-paper-to-code-traceability.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/neural-seizure-ai-analysis/docs/ieee-11031450-paper-to-code-traceability.md',
+        focus: 'Structured strategy map from IEEE Access review methods to Python modules, artifacts, validation, and future upgrade path'
       }
     ],
     preview: projectAsset('neural-seizure-ai-pipeline.svg'),
@@ -400,6 +412,18 @@ const baseProjects: Project[] = [
       {
         src: 'https://raw.githubusercontent.com/rheslar1/Rheslar1-github.io/main/neural-seizure-ai-analysis/docs/evidence/feature-trajectories.png',
         caption: 'Generated evidence plot: HFO ratio, PAC proxy, connectivity, and energy feature trajectories used by the teacher/student pipeline.'
+      },
+      {
+        src: 'https://raw.githubusercontent.com/rheslar1/Rheslar1-github.io/main/neural-seizure-ai-analysis/docs/evidence/algorithm-coverage-map.png',
+        caption: 'IEEE 11031450 evidence plot: algorithm coverage map linking review strategies to implemented sensing, features, model families, fusion, post-processing, and safety controls.'
+      },
+      {
+        src: 'https://raw.githubusercontent.com/rheslar1/Rheslar1-github.io/main/neural-seizure-ai-analysis/docs/evidence/time-frequency-image-map.png',
+        caption: 'IEEE 11031450 evidence plot: time-frequency image representation for CNN-style and pretrained image-model review paths.'
+      },
+      {
+        src: 'https://raw.githubusercontent.com/rheslar1/Rheslar1-github.io/main/neural-seizure-ai-analysis/docs/evidence/risk-warning-timeline.png',
+        caption: 'IEEE 11031450 evidence plot: teacher, student, EKG-fused risk, hysteresis threshold, SPH/SOH logic, and warning timing.'
       },
       {
         src: githubPreview('Predictive_AI_Neural-_Seizure_Analysis'),
@@ -433,6 +457,7 @@ const baseProjects: Project[] = [
     ],
     deepDetails: [
       'The source paper frames seizure prediction around pre-ictal biomarkers that may be difficult to detect through conventional EEG analysis alone.',
+      'The IEEE 11031450 traceability layer maps the IEEE Access review URL, DOI 10.1109/ACCESS.2025.3578991, and the locally extracted PDF to runnable Python modules, generated evidence artifacts, verification tests, and explicit safety boundaries.',
       'High-bandwidth neural sensing is described across EEG, ECoG, iEEG, and microelectrode arrays, each with different tradeoffs in safety, signal fidelity, invasiveness, and spatial precision.',
       'Candidate features are implemented as energy, line length, zero-crossing rate, delta/theta/alpha/beta/gamma/HFO bandpower, HFO ratios, PAC proxy, channel connectivity, and spatial concentration.',
       'The CNN-style teacher scores localized time-frequency activity; the LSTM-style teacher accumulates temporal risk; the transformer-style teacher acts as a strongest-biomarker attention proxy; the GNN-style teacher scores connectivity and spatial concentration.',
@@ -451,12 +476,14 @@ const baseProjects: Project[] = [
       'Distilled edge student with calibrated decision threshold and inspectable weights.',
       'BeagleBone IIO ADC EKG capture path with signal quality, heart rate, HRV, and bounded fusion.',
       'Public-dataset adapter with de-identification, citation, license, source, and patient-split guardrails.',
+      'Paper-to-code traceability module that renders the IEEE source, DOI, strategy map, evidence artifact list, verification checks, safety boundary, and future upgrade path.',
       'Evaluation metrics, edge inference budget, C export, timing evidence, safety case, CLI artifacts, tests, and GitHub Actions CI.'
     ],
     outcomes: [
       'Converted a full research paper into a standalone Python project with runnable signal generation, preprocessing, feature extraction, model comparison, distillation, edge budgeting, and safety review.',
       'Connected computational neuroscience concepts to embedded AI deployment concerns such as latency, power, model size, calibrated thresholds, and edge inference.',
       'Added deep documentation for architecture, pipeline contract, model comparison, BeagleBone EKG integration, dataset provenance, C export, edge budget, safety, validation, generated evidence, and implementation roadmap.',
+      'Added IEEE 11031450 implementation evidence that links the IEEE Access review, extracted PDF, algorithms, code modules, generated images, tests, and future upgrade path.',
       'Added unit tests and CI workflow so the project can be validated independently of the portfolio site.',
       'Preserved the project as a research architecture artifact rather than representing it as a deployed clinical medical device.'
     ],
@@ -468,6 +495,11 @@ const baseProjects: Project[] = [
     screenshotCaption:
       'Pipeline visual summarizes the project architecture and is now backed by a standalone Python implementation. The artifact is a research and engineering demo, not a clinical system.',
     suggestedContent: [
+      'Replace synthetic data with approved public datasets.',
+      'Add PyTorch dataset and dataloader boundaries.',
+      'Train CNN/LSTM/transformer/GNN baselines against the same WindowFeatures contract or raw windows.',
+      'Export a trained student to ONNX or C for embedded inference.',
+      'Add calibration, uncertainty, and patient-specific thresholding.',
       'Run the timing evidence on real BeagleBone hardware and commit the target report.',
       'Add a fixed-point student inference path for MCU-class targets.',
       'Add optional NumPy acceleration while preserving the pure-Python fallback.',

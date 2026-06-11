@@ -5,6 +5,10 @@ Synthetic research and engineering project derived from the paper
 
 This is not a clinical device, diagnosis tool, or treatment recommendation. It is a portfolio-grade implementation that turns the paper's architecture into runnable code: synthetic high-bandwidth neural sensing, signal preprocessing, pre-ictal feature extraction, model-family comparison, teacher-to-student distillation, edge-inference budgeting, and safety review artifacts.
 
+The IEEE Access review mapping is documented in
+[`docs/ieee-11031450-paper-to-code-traceability.md`](docs/ieee-11031450-paper-to-code-traceability.md) and
+[`docs/evidence/ieee-11031450-implementation-evidence.md`](docs/evidence/ieee-11031450-implementation-evidence.md). These documents connect `https://ieeexplore.ieee.org/document/11031450/`, DOI `10.1109/ACCESS.2025.3578991`, the local extracted PDF, runnable Python modules, generated evidence images, tests, and the safety boundary.
+
 ## What The Code Demonstrates
 
 - Synthetic EEG/ECoG/iEEG-style multichannel neural signal generation.
@@ -83,4 +87,14 @@ The implementation uses deterministic synthetic data. It does not train on patie
 - [BeagleBone EKG integration](docs/beaglebone-ekg-integration.md)
 - [Public dataset adapter](docs/public-dataset-adapter.md)
 - [Distilled student export](docs/distilled-student-export.md)
+- [IEEE 11031450 paper-to-code traceability](docs/ieee-11031450-paper-to-code-traceability.md)
+- [IEEE 11031450 implementation evidence](docs/evidence/ieee-11031450-implementation-evidence.md)
 - [Generated evidence package](docs/evidence/README.md)
+
+## Future Upgrade Path
+
+- Replace synthetic data with approved public datasets.
+- Add PyTorch dataset and dataloader boundaries.
+- Train CNN/LSTM/transformer/GNN baselines against the same `WindowFeatures` contract or raw windows.
+- Export a trained student to ONNX or C for embedded inference.
+- Add calibration, uncertainty, and patient-specific thresholding.

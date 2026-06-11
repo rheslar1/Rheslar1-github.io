@@ -30,6 +30,7 @@ Implemented in this repository as runnable Python code, generated artifacts, and
 | Post-processing and false-warning control | `src/neural_seizure_ai/postprocessing.py` | `risk-warning-timeline.svg/png`, `demo-report.json` |
 | Explainability/XAI | `src/neural_seizure_ai/explainability.py` | `demo-report.json` top feature contributions |
 | Edge deployment evidence | `src/neural_seizure_ai/export.py`, `src/neural_seizure_ai/hil.py` | C export and `hil-timing-report.md/json` |
+| Paper-to-code traceability | `src/neural_seizure_ai/paper_traceability.py` | `docs/ieee-11031450-paper-to-code-traceability.md` |
 
 ## Generated Run Summary
 
@@ -83,7 +84,7 @@ PYTHONPATH=neural-seizure-ai-analysis/src \
 python3 -m unittest discover neural-seizure-ai-analysis/tests -v
 ```
 
-Result: 7 tests passed.
+Result: 8 tests passed.
 
 Coverage includes:
 
@@ -95,6 +96,15 @@ Coverage includes:
 - synthetic EKG feature extraction,
 - strict public dataset provenance,
 - plots, C export, and timing artifacts.
+- IEEE 11031450 source, DOI, algorithm-to-code mapping, artifact links, and future upgrade path.
+
+## Future Upgrade Path
+
+- Replace synthetic data with approved public datasets.
+- Add PyTorch dataset and dataloader boundaries.
+- Train CNN/LSTM/transformer/GNN baselines against the same `WindowFeatures` contract or raw windows.
+- Export a trained student to ONNX or C for embedded inference.
+- Add calibration, uncertainty, and patient-specific thresholding.
 
 ## Clinical And Ethical Boundary
 
