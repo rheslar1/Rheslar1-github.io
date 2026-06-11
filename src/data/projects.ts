@@ -804,6 +804,12 @@ const baseProjects: Project[] = [
         path: 'BMS project source',
         url: 'https://github.com/rheslar1/BMS',
         focus: 'BMS portfolio dashboard, enterprise BMS source, dashboard evidence, and project review'
+      },
+      {
+        title: 'BMS Portfolio Page Package',
+        path: 'docs/bms-portfolio-page/README.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/bms-portfolio-page/README.md',
+        focus: 'Static portfolio/index.html package, GitHub Pages publish path, visual assets, and verification commands'
       }
     ],
     preview: projectAsset('bms-dashboard-simulated.svg'),
@@ -848,6 +854,8 @@ const baseProjects: Project[] = [
     ],
     deepDetails: [
       'The live route is tracked exactly as https://rheslar1.github.io/BMS/portfolio.',
+      'A static page package now exists at public/BMS/portfolio/index.html so the page can be copied to the BMS repository as portfolio/index.html for direct GitHub Pages hosting.',
+      'The companion documentation at docs/bms-portfolio-page/README.md explains purpose, content structure, publish path, assets, deep docs, screenshots, and verification commands.',
       'The project links back to the BMS source repository for implementation context.',
       'The portfolio entry uses existing BMS dashboard and heat-map visuals to keep the project catalog consistent with the broader BMS case study.',
       'The project is intentionally dashboard-focused so it can sit beside repository-centered projects as a hosted review artifact.',
@@ -855,12 +863,15 @@ const baseProjects: Project[] = [
     ],
     features: [
       'Dedicated portfolio card for the hosted BMS dashboard route.',
+      'Standalone static HTML/CSS/JavaScript page package for the BMS GitHub Pages portfolio route.',
+      'Documentation page covering deployment shape, visual assets, deep docs, screenshot generation, and verification commands.',
       'Direct live-project link from project detail pages.',
       'BMS repository link retained for source review.',
       'Dashboard and energy heat-map visuals attached as supporting evidence.'
     ],
     outcomes: [
       'The hosted BMS portfolio route is now represented as a portfolio project.',
+      'The deployable page package is available in this repository for publication from the BMS Pages source.',
       'The project catalog can route reviewers from the main portfolio into the live BMS dashboard work.',
       'Dashboard evidence shortcuts can surface the BMS portfolio project alongside repository case studies.'
     ],
