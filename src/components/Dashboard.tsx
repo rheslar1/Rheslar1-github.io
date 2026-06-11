@@ -351,8 +351,8 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
   ];
   const scheduleHierarchy = [
     { label: 'Building', value: 'EnergyBuildAI Tower', helper: 'Schedule root' },
-    { label: 'Zones', value: `${energyZones.length} monitored`, helper: 'Energy and comfort groups' },
     { label: 'Floors', value: `${floorSummaries.length} schedule groups`, helper: 'Ground, Floor 1, Floor 2, Tower B' },
+    { label: 'Zones', value: `${energyZones.length} monitored`, helper: 'Energy and comfort groups' },
     { label: 'Rooms', value: `${roomSchedules.length} scheduled`, helper: 'Mode, setpoint, and active window' }
   ];
 
@@ -687,7 +687,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
 
           </section>
         ) : isScheduleView ? (
-          <section className="eco-dashboard-grid eco-schedule-page" aria-label="Building zone floor room schedule summary subpage">
+          <section className="eco-dashboard-grid eco-schedule-page" aria-label="Building floor zone room schedule summary subpage">
             <article className="eco-card eco-card-wide">
               <div className="eco-card-heading">
                 <div>
@@ -709,18 +709,18 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
                   <section key={`${room.room}-summary`}>
                     <span>{room.room}</span>
                     <strong>{room.mode}</strong>
-                    <small>EnergyBuildAI Tower | {room.zone} | {room.floor} | {room.schedule} | {room.nextEvent}</small>
+                    <small>EnergyBuildAI Tower | {room.floor} | {room.zone} | {room.schedule} | {room.nextEvent}</small>
                   </section>
                 ))}
               </div>
             </article>
 
             <article className="eco-card eco-card-wide">
-              <div className="eco-schedule-table" role="table" aria-label="Building zone floor room schedule details">
+              <div className="eco-schedule-table" role="table" aria-label="Building floor zone room schedule details">
                 <div role="row">
                   <span role="columnheader">Building</span>
-                  <span role="columnheader">Zone</span>
                   <span role="columnheader">Floor</span>
+                  <span role="columnheader">Zone</span>
                   <span role="columnheader">Room</span>
                   <span role="columnheader">Schedule</span>
                   <span role="columnheader">Mode</span>
@@ -733,8 +733,8 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
                 {roomSchedules.map((room) => (
                   <div role="row" key={`${room.room}-schedule-page`}>
                     <strong role="cell">EnergyBuildAI Tower</strong>
-                    <span role="cell">{room.zone}</span>
                     <span role="cell">{room.floor}</span>
+                    <span role="cell">{room.zone}</span>
                     <span role="cell">{room.room}</span>
                     <span role="cell">{room.schedule}</span>
                     <span role="cell">{room.mode}</span>
