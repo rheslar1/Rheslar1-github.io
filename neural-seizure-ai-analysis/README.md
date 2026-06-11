@@ -3,6 +3,10 @@
 Synthetic research and engineering project derived from the paper
 `Predictive AI Analysis of Brain Neurons Using High-Bandwidth Neural Sensors for Early Detection of Brain Seizures`.
 
+The 05/13/2026 DOCX manuscript is included as a source artifact under
+[`docs/source/`](docs/source/), with extraction and provenance documented in
+[`docs/source-paper-provenance.md`](docs/source-paper-provenance.md).
+
 This is not a clinical device, diagnosis tool, or treatment recommendation. It is a portfolio-grade implementation that turns the paper's architecture into runnable code: synthetic high-bandwidth neural sensing, signal preprocessing, pre-ictal feature extraction, model-family comparison, teacher-to-student distillation, edge-inference budgeting, and safety review artifacts.
 
 The IEEE Access review mapping is documented in
@@ -82,6 +86,8 @@ The implementation uses deterministic synthetic data. It does not train on patie
 ## Documentation
 
 - [Source paper extraction](docs/source-paper-extracted.md)
+- [Source manuscript artifacts](docs/source/README.md)
+- [Source paper provenance](docs/source-paper-provenance.md)
 - [Architecture](docs/deep-architecture.md)
 - [Pipeline contract](docs/pipeline-contract.md)
 - [Model comparison](docs/model-comparison.md)

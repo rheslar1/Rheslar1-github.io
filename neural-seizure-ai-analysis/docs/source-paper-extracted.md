@@ -4,6 +4,12 @@ Source DOCX: `Predictive AI Analysis of Brain Neurons Using High‑Bandwidth Neu
 
 This Markdown file was extracted from the user-provided DOCX and normalized into project documentation. Minor spacing artifacts from the source file are preserved where they were present in the DOCX XML.
 
+The canonical non-copy source manuscript is also included in this project under `docs/source/`:
+
+- `docs/source/predictive-ai-brain-neurons-high-bandwidth-neural-sensors-05-13-2026.docx`
+- `docs/source/predictive-ai-brain-neurons-high-bandwidth-neural-sensors-05-13-2026.md`
+- `docs/source-paper-provenance.md`
+
 # Predictive AI Analysis of Brain Neurons Using High‑Bandwidth Neural Sensors for Early Detection of Brain Seizures.
 Robert F. Heslar, Senior Firmware Engineer
 
@@ -210,4 +216,3 @@ Mansourian, A. M., Ahmadi, R., Ghafouri, M., Babaei, A. M., Golezani, E. B., Gha
 Perez-Sanchez, A. V., et al. (2025). Artificial Intelligence-Based Epileptic Seizure Prediction Strategies: A Review. AI, 6(10), 274. https://doi.org/10.3390/ai6100274
 
 Wu, Y. (2026). Neural networks for epilepsy detection and prediction with EEG signals: A systematic review. Artificial Intelligence Review, 59(1), Article 31. https://link.springer.com/article/10.1007/s10462-025-11441-1
-

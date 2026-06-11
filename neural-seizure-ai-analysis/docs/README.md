@@ -3,6 +3,8 @@
 | Document | Purpose |
 | --- | --- |
 | [Source paper extraction](source-paper-extracted.md) | Markdown extraction from the user-provided DOCX source. |
+| [Source manuscript artifacts](source/README.md) | Included DOCX manuscript and Markdown extraction for the 05/13/2026 source paper. |
+| [Source paper provenance](source-paper-provenance.md) | Source filename, project copy, SHA-256 checksums, DOCX metadata, and safety boundary. |
 | [Architecture](deep-architecture.md) | End-to-end system design, data flow, modules, and deployment boundary. |
 | [Pipeline contract](pipeline-contract.md) | Runtime inputs, outputs, feature schema, and generated artifact contracts. |
 | [Model comparison](model-comparison.md) | CNN, LSTM, transformer, GNN, teacher ensemble, and student model roles. |
