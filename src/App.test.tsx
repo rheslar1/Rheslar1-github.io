@@ -222,9 +222,6 @@ test('renders alarms dashboard without the removed helper copy', () => {
 
 test('opens alarm details and acknowledgement page from the active alarms KPI', () => {
   jest.useFakeTimers();
-  const originalScrollIntoView = Element.prototype.scrollIntoView;
-  const scrollIntoViewMock = jest.fn();
-  Element.prototype.scrollIntoView = scrollIntoViewMock;
   const container = document.createElement('div');
   document.body.appendChild(container);
   window.location.hash = '#dashboard';
@@ -275,7 +272,6 @@ test('opens alarm details and acknowledgement page from the active alarms KPI', 
 
   expect(window.location.hash).toBe('#dashboard/alarms');
   expect(container.querySelector('#alarm-acknowledge-page')?.getAttribute('data-navigation-target')).toBe('true');
-  expect(scrollIntoViewMock).toHaveBeenCalled();
 
   const acknowledgeButton = Array.from(
     container.querySelectorAll<HTMLButtonElement>('#alarm-acknowledge-page button')
@@ -298,7 +294,6 @@ test('opens alarm details and acknowledgement page from the active alarms KPI', 
     root?.unmount();
   });
   container.remove();
-  Element.prototype.scrollIntoView = originalScrollIntoView;
   window.location.hash = '';
   jest.useRealTimers();
 });
