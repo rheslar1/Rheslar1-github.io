@@ -691,7 +691,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
             <article className="eco-card eco-card-wide">
               <div className="eco-card-heading">
                 <div>
-                  <h2>Schedule Details</h2>
+                  <h2>Building Schedule Details</h2>
                 </div>
                 <strong>{roomSchedules.length} rooms</strong>
               </div>

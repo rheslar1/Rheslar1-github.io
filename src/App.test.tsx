@@ -94,6 +94,7 @@ test('renders schedules directly from #dashboard/schedules without the removed i
 
   expect(container.textContent).toContain('Schedules');
   expect(container.textContent).toContain('Schedule Details');
+  expect(container.textContent).toContain('Building Schedule Details');
   expect(container.textContent).not.toContain(['Building', 'Schedules'].join(' '));
   expect(container.textContent).not.toContain(['Building', 'Hierarchy'].join(' '));
   expect(container.textContent).not.toContain(['Building Zone', 'Floor Room', 'Schedules'].join(' '));
