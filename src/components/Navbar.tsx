@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
+import type { Theme } from '../types';
 
-function Navbar({ onThemeToggle, currentTheme }) {
+interface NavbarProps {
+  onThemeToggle: () => void;
+  currentTheme: Theme;
+}
+
+function Navbar({ onThemeToggle, currentTheme }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleScroll = (e, sectionId) => {
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
     const element = document.getElementById(sectionId);
     if (element) {

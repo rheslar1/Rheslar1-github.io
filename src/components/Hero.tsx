@@ -1,9 +1,14 @@
 import React from 'react';
+import type { Project } from '../types';
 
-function Hero({ projects = [] }) {
+interface HeroProps {
+  projects: Project[];
+}
+
+function Hero({ projects }: HeroProps) {
   const profilePhoto = `${process.env.PUBLIC_URL}/assets/robert-heslar-photo.jpg`;
 
-  const handleScroll = (e) => {
+  const handleScroll = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const element = document.getElementById('projects');
     if (element) {

@@ -4,7 +4,14 @@ const accessProfiles = [
   { id: 'operator', label: 'Operator', scope: 'Live dashboards, alarms, and schedules' },
   { id: 'engineer', label: 'Engineer', scope: 'Optimization, devices, and service diagnostics' },
   { id: 'admin', label: 'Admin', scope: 'Users, roles, audit trail, and integrations' }
-];
+] as const;
+
+type AccessProfileId = typeof accessProfiles[number]['id'];
+
+interface LoginMessage {
+  tone: 'info' | 'error' | 'success';
+  text: string;
+}
 
 const systemChecks = [
   { label: 'Node API', value: 'Online', tone: 'good' },
@@ -20,15 +27,15 @@ const facilityStats = [
 ];
 
 function BmsLogin() {
-  const [activeProfile, setActiveProfile] = React.useState(accessProfiles[0].id);
-  const [loginMessage, setLoginMessage] = React.useState({
+  const [activeProfile, setActiveProfile] = React.useState<AccessProfileId>(accessProfiles[0].id);
+  const [loginMessage, setLoginMessage] = React.useState<LoginMessage>({
     tone: 'info',
     text: 'Enter your credentials to open the EnergyBuildAI console.'
   });
 
-  const selectedProfile = accessProfiles.find((profile) => profile.id === activeProfile);
+  const selectedProfile = accessProfiles.find((profile) => profile.id === activeProfile) ?? accessProfiles[0];
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const username = String(formData.get('username') || '').trim();

@@ -1,9 +1,10 @@
 import embeddedSystemsProjects from './embeddedSystemsProjects';
+import type { Project } from '../types';
 
-const githubPreview = (repo) => `https://opengraph.githubassets.com/1/rheslar1/${repo}`;
-const projectAsset = (name) => `${process.env.PUBLIC_URL}/assets/projects/${name}`;
+const githubPreview = (repo: string) => `https://opengraph.githubassets.com/1/rheslar1/${repo}`;
+const projectAsset = (name: string) => `${process.env.PUBLIC_URL}/assets/projects/${name}`;
 
-const baseProjects = [
+const baseProjects: Project[] = [
   {
     id: 'pythonProject',
     title: 'pythonProject',
@@ -952,6 +953,6 @@ const baseProjects = [
   }
 ];
 
-const projects = [...baseProjects, ...embeddedSystemsProjects];
+const projects: Project[] = [...baseProjects, ...embeddedSystemsProjects];
 
 export default projects;

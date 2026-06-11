@@ -1,10 +1,13 @@
 import React from 'react';
+import type { DashboardView, Project, ProjectSelectHandler } from '../types';
 
-function uniqueItems(projects, key) {
+function uniqueItems(projects: Project[], key: 'dependencies' | 'tags'): string[] {
   return Array.from(new Set(projects.flatMap((project) => project[key] || [])));
 }
 
-const operationNav = ['Overview', 'Alarms', 'Building', 'Zones', 'Floors', 'Rooms', 'Schedules', 'Energy', 'HVAC', 'Lighting'];
+const operationNav = ['Overview', 'Alarms', 'Building', 'Zones', 'Floors', 'Rooms', 'Schedules', 'Energy', 'HVAC', 'Lighting'] as const;
+
+type OperationNavItem = typeof operationNav[number];
 
 const energyZones = [
   { name: 'Lobby', area: 'lobby', kwh: 8.4, temp: '21.9 C', risk: 'Low', action: 'Hold setpoint', heat: 'normal', occupancy: '42%' },
@@ -142,7 +145,7 @@ const roomSchedules = [
   { room: 'Tower Office', floor: 'Tower B', zone: 'Tower B Floor 1', schedule: '07:00-19:00', mode: 'Demand response', setpoint: '73 F' }
 ];
 
-const dashboardRoutes = {
+const dashboardRoutes: Record<DashboardView, string> = {
   Overview: '#dashboard',
   Alarms: '#dashboard/alarms',
   Building: '#dashboard/building',
@@ -150,8 +153,14 @@ const dashboardRoutes = {
   Schedules: '#dashboard/schedules'
 };
 
-function Dashboard({ projects, onSelectProject, activeView = 'Overview' }) {
-  const [activeNav, setActiveNav] = React.useState(activeView);
+interface DashboardProps {
+  projects: Project[];
+  onSelectProject: ProjectSelectHandler;
+  activeView?: DashboardView;
+}
+
+function Dashboard({ projects, onSelectProject, activeView = 'Overview' }: DashboardProps) {
+  const [activeNav, setActiveNav] = React.useState<OperationNavItem>(activeView);
   const [selectedAlarmId, setSelectedAlarmId] = React.useState(alarmEvents[0].id);
 
   React.useEffect(() => {
@@ -168,7 +177,7 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }) {
   const isScheduleView = activeNav === 'Rooms' || activeNav === 'Schedules';
   const embeddedSystemsProjects = projects.filter((project) => project.collection === 'embedded-systems');
 
-  const jumpTargets = {
+  const jumpTargets: Partial<Record<OperationNavItem, string>> = {
     Overview: 'dashboard',
     Zones: 'zone-status',
     Floors: 'floor-status',
@@ -177,7 +186,7 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }) {
     Lighting: 'equipment-health'
   };
 
-  const jumpToDashboardContent = (item) => {
+  const jumpToDashboardContent = (item: OperationNavItem) => {
     setActiveNav(item);
 
     if (item === 'Alarms' || item === 'Building' || item === 'Rooms' || item === 'Schedules') {

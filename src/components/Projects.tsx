@@ -1,8 +1,14 @@
 import React, { useEffect } from 'react';
+import type { Project, ProjectSelectHandler } from '../types';
 
-const getProjectPreview = (project) => project.preview || project.visuals?.[0]?.src;
+const getProjectPreview = (project: Project): string | undefined => project.preview || project.visuals?.[0]?.src;
 
-function PortfolioCard({ project, onSelectProject }) {
+interface PortfolioCardProps {
+  project: Project;
+  onSelectProject: ProjectSelectHandler;
+}
+
+function PortfolioCard({ project, onSelectProject }: PortfolioCardProps) {
   const preview = getProjectPreview(project);
   const tags = project.tags || [];
 
@@ -42,7 +48,12 @@ function PortfolioCard({ project, onSelectProject }) {
   );
 }
 
-function Projects({ projects, onSelectProject }) {
+interface ProjectsProps {
+  projects: Project[];
+  onSelectProject: ProjectSelectHandler;
+}
+
+function Projects({ projects, onSelectProject }: ProjectsProps) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {

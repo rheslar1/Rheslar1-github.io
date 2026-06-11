@@ -1,10 +1,21 @@
-const githubPreview = (repo) => `https://opengraph.githubassets.com/embedded-systems/rheslar1/${repo}`;
-const githubRepo = (repo) => `https://github.com/rheslar1/${repo}`;
+import type { Project } from '../types';
+
+const githubPreview = (repo: string) => `https://opengraph.githubassets.com/embedded-systems/rheslar1/${repo}`;
+const githubRepo = (repo: string) => `https://github.com/rheslar1/${repo}`;
 
 const embeddedSystemsCoreTags = ['C++17', 'C++ Design Patterns', 'SOLID'];
-const withCoreTags = (tags) => Array.from(new Set([...embeddedSystemsCoreTags, ...tags]));
+const withCoreTags = (tags: string[]) => Array.from(new Set([...embeddedSystemsCoreTags, ...tags]));
 
-const embeddedSystemsSpecs = [
+interface EmbeddedSystemsSpec {
+  id: string;
+  title: string;
+  summary: string;
+  label: string;
+  tags: string[];
+  proof: string;
+}
+
+const embeddedSystemsSpecs: EmbeddedSystemsSpec[] = [
   {
     id: 'bems-edge-ai-gateway',
     title: 'BEMS Edge AI Gateway',
@@ -279,7 +290,7 @@ const embeddedSystemsSpecs = [
   }
 ];
 
-const buildEmbeddedSystemsProject = (spec) => ({
+const buildEmbeddedSystemsProject = (spec: EmbeddedSystemsSpec): Project => ({
   id: spec.id,
   title: spec.title,
   collection: 'embedded-systems',

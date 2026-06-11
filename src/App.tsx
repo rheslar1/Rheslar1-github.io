@@ -11,15 +11,16 @@ import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import projects from './data/projects';
+import type { DashboardView, Theme } from './types';
 import './App.css';
 
-const getProjectIdFromHash = () => {
+const getProjectIdFromHash = (): string | null => {
   const match = window.location.hash.match(/^#project\/(.+)$/);
   return match ? decodeURIComponent(match[1]) : null;
 };
 
-const getDashboardFromHash = () => /^#dashboard(?:\/.*)?$/.test(window.location.hash);
-const getDashboardViewFromHash = () => {
+const getDashboardFromHash = (): boolean => /^#dashboard(?:\/.*)?$/.test(window.location.hash);
+const getDashboardViewFromHash = (): DashboardView => {
   const match = window.location.hash.match(/^#dashboard\/(.+)$/);
   const view = match ? match[1] : '';
 
@@ -41,10 +42,10 @@ const getDashboardViewFromHash = () => {
 
   return 'Overview';
 };
-const getBmsLoginFromHash = () => window.location.hash === '#bms-login';
+const getBmsLoginFromHash = (): boolean => window.location.hash === '#bms-login';
 
 function App() {
-  const [theme, setTheme] = React.useState('light');
+  const [theme, setTheme] = React.useState<Theme>('light');
   const [isLoading, setIsLoading] = React.useState(true);
   const [selectedProjectId, setSelectedProjectId] = React.useState(getProjectIdFromHash);
   const [isDashboard, setIsDashboard] = React.useState(getDashboardFromHash);
@@ -53,7 +54,7 @@ function App() {
 
   React.useEffect(() => {
     // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
     setTheme(savedTheme);
     document.documentElement.setAttribute('data-theme', savedTheme);
 
@@ -94,11 +95,13 @@ function App() {
     document.documentElement.setAttribute('data-theme', newTheme);
   };
 
-  const selectedProject = projects.find((project) => (
-    project.id === selectedProjectId || project.aliases?.includes(selectedProjectId)
-  ));
+  const selectedProject = selectedProjectId
+    ? projects.find((project) => (
+        project.id === selectedProjectId || project.aliases?.includes(selectedProjectId)
+      ))
+    : undefined;
 
-  const handleProjectSelect = (projectId) => {
+  const handleProjectSelect = (projectId: string) => {
     window.location.hash = `project/${encodeURIComponent(projectId)}`;
   };
 

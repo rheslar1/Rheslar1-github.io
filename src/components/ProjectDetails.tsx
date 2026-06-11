@@ -1,6 +1,34 @@
 import React from 'react';
+import type { Project } from '../types';
 
-const stackCategories = [
+interface StackCategory {
+  label: string;
+  matcher: RegExp;
+}
+
+interface StackGroup {
+  label: string;
+  items: string[];
+}
+
+interface DetailStat {
+  label: string;
+  value: string;
+  helper: string;
+}
+
+interface ReportSection {
+  title: string;
+  text?: string;
+  items?: string[];
+}
+
+interface ProjectDetailsProps {
+  project: Project;
+  onBack: () => void;
+}
+
+const stackCategories: StackCategory[] = [
   {
     label: 'Frontend / UI',
     matcher: /(React|Vite|Recharts|GitHub Pages|Pages|Node\.js tooling|react-scripts)/i
@@ -27,8 +55,8 @@ const stackCategories = [
   }
 ];
 
-const buildStackGroups = (dependencies = []) => {
-  const assigned = new Set();
+const buildStackGroups = (dependencies: string[] = []): StackGroup[] => {
+  const assigned = new Set<string>();
   const groups = stackCategories
     .map((category) => {
       const items = dependencies.filter((item) => {
@@ -50,7 +78,7 @@ const buildStackGroups = (dependencies = []) => {
   return groups;
 };
 
-const detailStats = (project) => [
+const detailStats = (project: Project): DetailStat[] => [
   {
     label: 'Stack Items',
     value: String(project.dependencies?.length || 0),
@@ -83,7 +111,7 @@ const detailStats = (project) => [
   }
 ];
 
-const reportSections = (project) => [
+const reportSections = (project: Project): ReportSection[] => [
   {
     title: 'Hardware Stack',
     items: [
@@ -112,8 +140,8 @@ const reportSections = (project) => [
   }
 ];
 
-function ProjectDetails({ project, onBack }) {
-  const [failedVisuals, setFailedVisuals] = React.useState({});
+function ProjectDetails({ project, onBack }: ProjectDetailsProps) {
+  const [failedVisuals, setFailedVisuals] = React.useState<Record<string, boolean>>({});
 
   if (!project) {
     return null;
@@ -204,7 +232,7 @@ function ProjectDetails({ project, onBack }) {
                     <p>{project.deployment}</p>
                   </section>
                 </div>
-                {project.proofPoints?.length > 0 && (
+                {project.proofPoints.length > 0 && (
                   <div className="proof-point-grid">
                     {project.proofPoints.map((point) => (
                       <section key={point.title}>
@@ -230,7 +258,7 @@ function ProjectDetails({ project, onBack }) {
                         <p>{section.text}</p>
                       ) : (
                         <ul>
-                          {(section.items.length > 0 ? section.items : ['Artifact not yet documented']).map((item) => (
+                          {((section.items ?? []).length > 0 ? section.items ?? [] : ['Artifact not yet documented']).map((item) => (
                             <li key={item}>{item}</li>
                           ))}
                         </ul>
@@ -387,7 +415,7 @@ function ProjectDetails({ project, onBack }) {
                 </div>
               </article>
 
-              {project.architectureDocs?.length > 0 && (
+              {project.architectureDocs.length > 0 && (
                 <article className="detail-panel">
                   <div className="detail-panel-heading">
                     <p className="detail-kicker">Architecture Markdown</p>
@@ -458,7 +486,7 @@ function ProjectDetails({ project, onBack }) {
                 </ul>
               </article>
 
-              {project.suggestedContent?.length > 0 && (
+              {project.suggestedContent.length > 0 && (
                 <article className="detail-panel">
                   <div className="detail-panel-heading">
                     <p className="detail-kicker">Evidence Backlog</p>
