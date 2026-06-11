@@ -152,6 +152,41 @@ test('renders building dashboard without the removed helper copy', () => {
   jest.useRealTimers();
 });
 
+test('maps dashboard occupancy colors to empty occupied and full states', () => {
+  jest.useFakeTimers();
+  const container = document.createElement('div');
+  document.body.appendChild(container);
+  window.location.hash = '#dashboard';
+  let root: Root | undefined;
+
+  act(() => {
+    root = createRoot(container);
+    root.render(<App />);
+  });
+
+  act(() => {
+    jest.advanceTimersByTime(600);
+  });
+
+  const legend = container.querySelector('.heatmap-legend');
+  expect(legend?.textContent).toContain('Empty');
+  expect(legend?.textContent).toContain('Occupied');
+  expect(legend?.textContent).toContain('Full');
+  expect(container.querySelector('.floorplan-zone.occupancy-empty')?.textContent).toContain('Tower B Lobby');
+  expect(container.querySelector('.floorplan-zone.occupancy-occupied')?.textContent).toContain('Lobby');
+  expect(container.querySelector('.floorplan-zone.occupancy-full')?.textContent).toContain('Tower B Floor 1');
+  expect(container.querySelector('.eco-zone-list .occupancy-empty .eco-occupancy-pill')?.textContent).toContain('18% Empty');
+  expect(container.querySelector('.eco-zone-list .occupancy-occupied .eco-occupancy-pill')?.textContent).toContain('42% Occupied');
+  expect(container.querySelector('.eco-zone-list .occupancy-full .eco-occupancy-pill')?.textContent).toContain('83% Full');
+
+  act(() => {
+    root?.unmount();
+  });
+  container.remove();
+  window.location.hash = '';
+  jest.useRealTimers();
+});
+
 test('renders alarms dashboard without the removed helper copy', () => {
   jest.useFakeTimers();
   const container = document.createElement('div');

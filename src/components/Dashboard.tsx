@@ -4,6 +4,7 @@ import type { DashboardView } from '../types';
 const operationNav = ['Overview', 'Alarms', 'Building', 'Floors', 'Zones', 'Rooms', 'Schedules', 'Energy', 'HVAC', 'Lighting'] as const;
 
 type OperationNavItem = typeof operationNav[number];
+type OccupancyState = 'empty' | 'occupied' | 'full';
 
 const operationNavLabels: Record<OperationNavItem, string> = {
   Overview: 'Overview',
@@ -16,6 +17,30 @@ const operationNavLabels: Record<OperationNavItem, string> = {
   Energy: 'Energy',
   HVAC: 'HVAC',
   Lighting: 'Lighting'
+};
+
+const occupancyLabels: Record<OccupancyState, string> = {
+  empty: 'Empty',
+  occupied: 'Occupied',
+  full: 'Full'
+};
+
+const getOccupancyState = (occupancy: string): OccupancyState => {
+  const percentage = Number.parseFloat(occupancy);
+
+  if (Number.isNaN(percentage)) {
+    return 'occupied';
+  }
+
+  if (percentage >= 80) {
+    return 'full';
+  }
+
+  if (percentage <= 25) {
+    return 'empty';
+  }
+
+  return 'occupied';
 };
 
 const energyZones = [
@@ -745,15 +770,25 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
                 </div>
               </div>
               <div className="eco-zone-list">
-                {energyZones.map((zone) => (
-                  <section className={`zone-${zone.heat}`} key={`${zone.name}-building-zone`}>
-                    <div>
-                      <strong>{zone.name}</strong>
-                      <span>{zone.kwh} kWh | {zone.temp}</span>
-                    </div>
-                    <small>{zone.risk} risk | {zone.occupancy} occupied | {zone.action}</small>
-                  </section>
-                ))}
+                {energyZones.map((zone) => {
+                  const occupancyState = getOccupancyState(zone.occupancy);
+
+                  return (
+                    <section className={`zone-${zone.heat} occupancy-${occupancyState}`} key={`${zone.name}-building-zone`}>
+                      <div>
+                        <strong>{zone.name}</strong>
+                        <span>{zone.kwh} kWh | {zone.temp}</span>
+                      </div>
+                      <small>
+                        {zone.risk} risk |{' '}
+                        <span className={`eco-occupancy-pill occupancy-${occupancyState}`}>
+                          {zone.occupancy} {occupancyLabels[occupancyState]}
+                        </span>{' '}
+                        | {zone.action}
+                      </small>
+                    </section>
+                  );
+                })}
               </div>
             </article>
 
@@ -874,35 +909,39 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
             <div className="energy-heatmap">
               <div className="building-floorplan" aria-label="Simulated building floorplan energy heat map">
                 <div className="floorplan-corridor">Mechanical Core / BACnet Trunk</div>
-                {energyZones.map((zone) => (
-                  <article
-                    className={`floorplan-zone floorplan-${zone.area} energy-zone-${zone.heat}`}
-                    key={zone.name}
-                  >
-                    <div>
-                      <h3>{zone.name}</h3>
-                      <strong>{zone.kwh} kWh</strong>
-                    </div>
-                    <div className="zone-readings">
-                      <span>
-                        <small>Temperature</small>
-                        {zone.temp}
-                      </span>
-                      <span>
-                        <small>Comfort Risk</small>
-                        {zone.risk}
-                      </span>
-                      <span>
-                        <small>Occupancy</small>
-                        {zone.occupancy}
-                      </span>
-                    </div>
-                    <div className="zone-action">
-                      <small>Recommended BEMS Action</small>
-                      <span>{zone.action}</span>
-                    </div>
-                  </article>
-                ))}
+                {energyZones.map((zone) => {
+                  const occupancyState = getOccupancyState(zone.occupancy);
+
+                  return (
+                    <article
+                      className={`floorplan-zone floorplan-${zone.area} occupancy-${occupancyState}`}
+                      key={zone.name}
+                    >
+                      <div>
+                        <h3>{zone.name}</h3>
+                        <strong>{zone.kwh} kWh</strong>
+                      </div>
+                      <div className="zone-readings">
+                        <span>
+                          <small>Temperature</small>
+                          {zone.temp}
+                        </span>
+                        <span>
+                          <small>Comfort Risk</small>
+                          {zone.risk}
+                        </span>
+                        <span className={`zone-occupancy-value occupancy-${occupancyState}`}>
+                          <small>Occupancy</small>
+                          {zone.occupancy} {occupancyLabels[occupancyState]}
+                        </span>
+                      </div>
+                      <div className="zone-action">
+                        <small>Recommended BEMS Action</small>
+                        <span>{zone.action}</span>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
               <aside className="energy-readout">
                 <h3>Optimization Readout</h3>
@@ -920,11 +959,10 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
                     </div>
                   ))}
                 </div>
-                <div className="heatmap-legend" aria-label="Energy heatmap legend">
-                  <span className="energy-zone-cold">Cold</span>
-                  <span className="energy-zone-normal">Normal</span>
-                  <span className="energy-zone-mid">Mid</span>
-                  <span className="energy-zone-hot">Hot</span>
+                <div className="heatmap-legend" aria-label="Occupancy color legend">
+                  <span className="occupancy-empty">Empty</span>
+                  <span className="occupancy-occupied">Occupied</span>
+                  <span className="occupancy-full">Full</span>
                 </div>
               </aside>
             </div>
@@ -958,15 +996,24 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
               </div>
             </div>
             <div className="eco-zone-list">
-              {energyZones.map((zone) => (
-                <section className={`zone-${zone.heat}`} key={`${zone.name}-status`}>
-                  <div>
-                    <strong>{zone.name}</strong>
-                    <span>{zone.kwh} kWh | {zone.temp}</span>
-                  </div>
-                  <small>{zone.risk} risk | {zone.occupancy} occupied</small>
-                </section>
-              ))}
+              {energyZones.map((zone) => {
+                const occupancyState = getOccupancyState(zone.occupancy);
+
+                return (
+                  <section className={`zone-${zone.heat} occupancy-${occupancyState}`} key={`${zone.name}-status`}>
+                    <div>
+                      <strong>{zone.name}</strong>
+                      <span>{zone.kwh} kWh | {zone.temp}</span>
+                    </div>
+                    <small>
+                      {zone.risk} risk |{' '}
+                      <span className={`eco-occupancy-pill occupancy-${occupancyState}`}>
+                        {zone.occupancy} {occupancyLabels[occupancyState]}
+                      </span>
+                    </small>
+                  </section>
+                );
+              })}
             </div>
           </article>
 

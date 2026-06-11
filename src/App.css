@@ -2022,6 +2022,21 @@ section h2 {
   background: #dc2626;
 }
 
+.floorplan-zone.occupancy-empty,
+.heatmap-legend .occupancy-empty {
+  background: #16a34a;
+}
+
+.floorplan-zone.occupancy-occupied,
+.heatmap-legend .occupancy-occupied {
+  background: #f59e0b;
+}
+
+.floorplan-zone.occupancy-full,
+.heatmap-legend .occupancy-full {
+  background: #dc2626;
+}
+
 .energy-readout {
   min-width: 0;
   padding: 20px;
@@ -3108,6 +3123,61 @@ section h2 {
 
 .eco-zone-list .zone-hot {
   border-left-color: var(--eco-critical);
+}
+
+.eco-zone-list .occupancy-empty {
+  border-left-color: #16a34a;
+}
+
+.eco-zone-list .occupancy-occupied {
+  border-left-color: var(--eco-warning);
+}
+
+.eco-zone-list .occupancy-full {
+  border-left-color: var(--eco-critical);
+}
+
+.eco-occupancy-pill {
+  display: inline-flex;
+  min-height: 21px;
+  align-items: center;
+  padding: 0 7px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 1000;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.eco-occupancy-pill.occupancy-empty {
+  background: color-mix(in srgb, #16a34a 13%, var(--eco-panel));
+  color: #15803d;
+}
+
+.eco-occupancy-pill.occupancy-occupied {
+  background: color-mix(in srgb, var(--eco-warning) 15%, var(--eco-panel));
+  color: #92400e;
+}
+
+.eco-occupancy-pill.occupancy-full {
+  background: color-mix(in srgb, var(--eco-critical) 14%, var(--eco-panel));
+  color: var(--eco-critical);
+}
+
+.zone-readings .zone-occupancy-value.occupancy-empty {
+  border-color: rgba(22, 163, 74, 0.86);
+  background: rgba(22, 163, 74, 0.26);
+}
+
+.zone-readings .zone-occupancy-value.occupancy-occupied {
+  border-color: rgba(245, 158, 11, 0.9);
+  background: rgba(245, 158, 11, 0.28);
+}
+
+.zone-readings .zone-occupancy-value.occupancy-full {
+  border-color: rgba(220, 38, 38, 0.9);
+  background: rgba(220, 38, 38, 0.28);
 }
 
 .eco-floor-grid {
