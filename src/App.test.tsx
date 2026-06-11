@@ -144,3 +144,32 @@ test('renders building dashboard without the removed helper copy', () => {
   window.location.hash = '';
   jest.useRealTimers();
 });
+
+test('renders alarms dashboard without the removed helper copy', () => {
+  jest.useFakeTimers();
+  const container = document.createElement('div');
+  document.body.appendChild(container);
+  window.location.hash = '#dashboard/alarms';
+  let root: Root | undefined;
+
+  act(() => {
+    root = createRoot(container);
+    root.render(<App />);
+  });
+
+  act(() => {
+    jest.advanceTimersByTime(600);
+  });
+
+  expect(container.textContent).toContain('Alarm Response Center');
+  expect(container.querySelector('.eco-command-hero h2')).toBeNull();
+  expect(container.querySelector('.eco-command-hero p')).toBeNull();
+  expect(container.textContent).not.toContain('Secure BMS Access');
+
+  act(() => {
+    root?.unmount();
+  });
+  container.remove();
+  window.location.hash = '';
+  jest.useRealTimers();
+});

@@ -358,14 +358,14 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
 
   const activeKpis = isAlarmView ? alarmKpis : isBuildingView ? buildingKpis : isScheduleView ? scheduleKpis : commandKpis;
   const heroTitle = isAlarmView
-    ? 'Alarm queue, response ownership, and BMS troubleshooting details are available from the active console view.'
+    ? ''
       : isBuildingView
         ? ''
       : isScheduleView
         ? ''
       : '';
   const heroCopy = isAlarmView
-    ? 'Select an alarm to inspect its location, source point, current reading, threshold, likely cause, impact, response steps, and event history.'
+    ? ''
     : isBuildingView
       ? ''
       : isScheduleView
