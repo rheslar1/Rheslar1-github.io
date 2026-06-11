@@ -6,9 +6,9 @@
 | Platform | `Linux 6.17.0-35-generic x86_64` |
 | Iterations | 200 |
 | Windows per iteration | 89 |
-| Total seconds | 0.055317 |
-| Average inference | 3.108 us |
-| Max observed window latency | 26.284 us |
+| Total seconds | 0.084931 |
+| Average inference | 4.771 us |
+| Max observed window latency | 22.845 us |
 
 ## Notes
 

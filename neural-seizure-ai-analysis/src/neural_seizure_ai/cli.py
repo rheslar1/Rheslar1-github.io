@@ -86,6 +86,9 @@ def main() -> int:
         "fused_specificity": result.fused_metrics.specificity if result.fused_metrics else None,
         "student_lead_time_seconds": result.student_metrics.lead_time_seconds,
         "student_memory_bytes": result.student_budget.memory_bytes,
+        "post_processed_warnings": result.post_processing.warning_count,
+        "post_processed_actionable_warnings": result.post_processing.actionable_warning_count,
+        "top_explainability_features": [row.feature for row in result.explainability.top_features[:5]],
     }
     print(json.dumps(summary, indent=2))
     return 0

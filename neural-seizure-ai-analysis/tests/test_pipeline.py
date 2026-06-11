@@ -41,6 +41,11 @@ class NeuralSeizurePipelineTests(unittest.TestCase):
         self.assertGreater(max(row.hfo_to_total for row in preictal_rows), 0.0)
         self.assertGreaterEqual(max(row.mean_abs_connectivity for row in features), 0.0)
         self.assertIn("hfo_to_beta", feature_names())
+        self.assertIn("wavelet_entropy", feature_names())
+        self.assertIn("sample_entropy", feature_names())
+        self.assertIn("katz_fractal_dimension", feature_names())
+        self.assertGreaterEqual(max(row.wavelet_detail_energy for row in features), 0.0)
+        self.assertGreaterEqual(max(row.channel_energy_iqr for row in features), 0.0)
 
     def test_demo_runs_teacher_student_edge_budget_and_safety_case(self):
         config = SimulationConfig(sensor="eeg", duration_seconds=34.0, preictal_start_seconds=14.0, ictal_start_seconds=25.0, seed=7)
@@ -54,6 +59,9 @@ class NeuralSeizurePipelineTests(unittest.TestCase):
         self.assertIn("Synthetic research pipeline only", result.safety_case.project_boundary)
         self.assertEqual(result.window_count, len(result.ekg_feature_rows))
         self.assertIsNotNone(result.fused_metrics)
+        self.assertGreaterEqual(result.post_processing.warning_count, result.post_processing.actionable_warning_count)
+        self.assertGreater(len(result.explainability.top_features), 0)
+        self.assertTrue(any("wavelet_entropy_teacher" in prediction.rationale for prediction in result.teacher_predictions))
 
     def test_beaglebone_iio_reader_converts_raw_adc_to_millivolts(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -110,9 +118,13 @@ class NeuralSeizurePipelineTests(unittest.TestCase):
                 self.assertTrue(path.exists(), path)
 
             timing_json = json.loads((output_dir / "hil-timing-report.json").read_text(encoding="utf-8"))
+            plot_names = {path.name for path in plot_paths}
 
         self.assertGreater(timing.average_inference_us, 0.0)
         self.assertEqual(timing_json["windows"], result.window_count)
+        self.assertIn("algorithm-coverage-map.svg", plot_names)
+        self.assertIn("risk-warning-timeline.svg", plot_names)
+        self.assertIn("time-frequency-image-map.svg", plot_names)
 
 
 if __name__ == "__main__":

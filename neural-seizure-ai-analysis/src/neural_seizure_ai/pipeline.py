@@ -10,9 +10,11 @@ from .distillation import DistillationReport, StudentLogisticModel, distill_stud
 from .edge_budget import EdgeBudget, estimate_student_budget, estimate_teacher_budget
 from .ekg import EkgFeatureWindow, EkgSample, SyntheticEkgGenerator, extract_ekg_feature_windows
 from .evaluation import EvaluationMetrics, evaluate_predictions
+from .explainability import ExplainabilityReport, explain_student_model
 from .features import FeatureExtractor, WindowFeatures, feature_names
 from .fusion import fuse_student_with_ekg
 from .models import Prediction, TeacherEnsemble
+from .postprocessing import PostProcessingReport, post_process_predictions
 from .preprocessing import preprocess_samples, window_samples
 from .safety import SafetyCase, build_safety_case
 from .signals import SyntheticNeuralSignalGenerator
@@ -35,6 +37,8 @@ class DemoResult:
     student_predictions: list[Prediction]
     fused_predictions: list[Prediction]
     fused_metrics: EvaluationMetrics | None
+    post_processing: PostProcessingReport
+    explainability: ExplainabilityReport
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -52,6 +56,8 @@ class DemoResult:
             "student_predictions": [asdict(prediction) for prediction in self.student_predictions],
             "fused_predictions": [asdict(prediction) for prediction in self.fused_predictions],
             "fused_metrics": self.fused_metrics.to_dict() if self.fused_metrics is not None else None,
+            "post_processing": self.post_processing.to_dict(),
+            "explainability": self.explainability.to_dict(),
         }
 
 
@@ -83,6 +89,14 @@ def run_demo(
 
     student, distillation = distill_student(feature_rows, teacher_probabilities)
     student_predictions = [student.predict(row) for row in feature_rows]
+    post_processing = post_process_predictions(
+        feature_rows,
+        student_predictions,
+        ictal_start_seconds=config.ictal_start_seconds,
+        duration_seconds=config.duration_seconds,
+        threshold=distillation.decision_threshold,
+    )
+    explainability = explain_student_model(feature_rows, distillation)
     ekg_feature_rows: list[EkgFeatureWindow] = []
     fused_predictions: list[Prediction] = []
     fused_metrics: EvaluationMetrics | None = None
@@ -124,7 +138,7 @@ def run_demo(
         duration_seconds=config.duration_seconds,
     )
 
-    teacher_budget = estimate_teacher_budget(feature_count=len(feature_names()), teacher_models=4)
+    teacher_budget = estimate_teacher_budget(feature_count=len(feature_names()), teacher_models=len(teacher.models))
     student_budget = estimate_student_budget(feature_count=len(feature_names()))
     safety_case = build_safety_case(student_metrics)
 
@@ -155,6 +169,8 @@ def run_demo(
         student_predictions=student_predictions,
         fused_predictions=fused_predictions,
         fused_metrics=fused_metrics,
+        post_processing=post_processing,
+        explainability=explainability,
     )
 
     if output_dir is not None:

@@ -84,6 +84,39 @@ class GnnConnectivityHeuristic:
         return Prediction(self.name, probability, probability >= 0.55, "connectivity and spatial concentration risk")
 
 
+class WaveletEntropyHeuristic:
+    name = "wavelet_entropy_teacher"
+
+    def reset(self) -> None:
+        return None
+
+    def predict(self, features: WindowFeatures) -> Prediction:
+        wavelet_signal = (
+            0.42 * _cap(features.wavelet_detail_energy / 1.35)
+            + 0.32 * _cap(features.wavelet_entropy / 0.9)
+            + 0.26 * _cap(features.sample_entropy / 1.25)
+        )
+        probability = _sigmoid(-1.25 + 3.25 * wavelet_signal + 0.35 * _cap(features.hfo_to_total / 0.35))
+        return Prediction(self.name, probability, probability >= 0.55, "wavelet detail energy plus entropy complexity risk")
+
+
+class StatisticalComplexityHeuristic:
+    name = "statistical_complexity_teacher"
+
+    def reset(self) -> None:
+        return None
+
+    def predict(self, features: WindowFeatures) -> Prediction:
+        complexity = (
+            0.30 * _cap((features.katz_fractal_dimension - 1.0) / 1.8)
+            + 0.30 * _cap((features.higuchi_fractal_dimension - 1.0) / 1.0)
+            + 0.24 * _cap(features.channel_energy_iqr / 0.85)
+            + 0.16 * _cap(features.connectivity_spread / 0.55)
+        )
+        probability = _sigmoid(-1.35 + 3.0 * complexity + 0.5 * _cap(features.avg_line_length / 4.5))
+        return Prediction(self.name, probability, probability >= 0.55, "nonlinear complexity, channel variance, and graph-spread risk")
+
+
 class TeacherEnsemble:
     name = "teacher_ensemble"
 
@@ -93,6 +126,8 @@ class TeacherEnsemble:
             LstmTemporalHeuristic(),
             TransformerAttentionHeuristic(),
             GnnConnectivityHeuristic(),
+            WaveletEntropyHeuristic(),
+            StatisticalComplexityHeuristic(),
         ]
 
     def reset(self) -> None:
