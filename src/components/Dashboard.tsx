@@ -602,7 +602,86 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
           })}
         </section>
 
-        {isAlarmView ? (
+        {isAlarmAcknowledgePage ? (
+          <section className="eco-dashboard-grid eco-alarm-ack-page" aria-label="Alarm acknowledgement page">
+            <article
+              className="eco-card eco-card-wide eco-alarm-ack-card is-navigation-target"
+              id="alarm-acknowledge-page"
+              data-navigation-target="true"
+            >
+              <div className="eco-card-heading">
+                <div>
+                  <span>Alarm Acknowledge Page</span>
+                  <h2>Acknowledge Selected Alarm</h2>
+                  <p>Operator acknowledgement records ownership for {selectedAlarm.id} before follow-up work continues.</p>
+                </div>
+                <div className="eco-card-heading-actions">
+                  <strong>{selectedAlarmAcknowledged ? 'Acknowledged' : 'Pending'}</strong>
+                  <button
+                    type="button"
+                    className="eco-inline-action"
+                    onClick={() => jumpToDashboardContent('Alarms')}
+                  >
+                    Alarm Details
+                  </button>
+                </div>
+              </div>
+              <div className="eco-acknowledge-grid">
+                <section>
+                  <span>Alarm</span>
+                  <strong>{selectedAlarm.id}</strong>
+                  <small>{selectedAlarm.type} | {selectedAlarm.priority} priority</small>
+                </section>
+                <section>
+                  <span>Owner</span>
+                  <strong>{selectedAlarm.owner}</strong>
+                  <small>{selectedAlarm.sla}</small>
+                </section>
+                <section>
+                  <span>Location</span>
+                  <strong>{selectedAlarm.zone}</strong>
+                  <small>{selectedAlarm.room}</small>
+                </section>
+              </div>
+              <button type="button" className="cta-button eco-acknowledge-button" onClick={acknowledgeSelectedAlarm}>
+                {selectedAlarmAcknowledged ? 'Acknowledgement Recorded' : 'Acknowledge Alarm'}
+              </button>
+              <p className="eco-acknowledge-note">
+                {selectedAlarmAcknowledged
+                  ? `Acknowledgement recorded for ${selectedAlarm.id} in this console session.`
+                  : 'Acknowledge before applying follow-up actions or closing the alarm.'}
+              </p>
+            </article>
+
+            <article className="eco-card">
+              <div className="eco-card-heading">
+                <div>
+                  <span>Selected Alarm</span>
+                  <h2>{selectedAlarm.type}</h2>
+                </div>
+                <strong>{selectedAlarmDisplayStatus}</strong>
+              </div>
+              <div className="eco-alarm-location-grid">
+                <section>
+                  <span>Building</span>
+                  <strong>{selectedAlarm.building}</strong>
+                </section>
+                <section>
+                  <span>Zone</span>
+                  <strong>{selectedAlarm.zone}</strong>
+                </section>
+                <section>
+                  <span>Equipment</span>
+                  <strong>{selectedAlarm.equipment}</strong>
+                </section>
+                <section>
+                  <span>Last Seen</span>
+                  <strong>{selectedAlarm.lastSeen}</strong>
+                </section>
+              </div>
+            </article>
+          </section>
+        ) : isAlarmView ? (
           <section className="eco-dashboard-grid eco-alarm-page" aria-label="Alarm details dashboard">
             <article className="eco-card eco-card-wide eco-alarm-detail-card" id="alarm-detail-page">
               <div className="eco-card-heading">
@@ -661,46 +740,6 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
               </div>
             </article>
 
-            <article
-              className={`eco-card eco-card-wide eco-alarm-ack-card ${alarmNavigationTarget === 'acknowledge' ? 'is-navigation-target' : ''}`}
-              id="alarm-acknowledge-page"
-              data-navigation-target={alarmNavigationTarget === 'acknowledge' ? 'true' : undefined}
-            >
-              <div className="eco-card-heading">
-                <div>
-                  <span>Alarm Acknowledge Page</span>
-                  <h2>Acknowledge Selected Alarm</h2>
-                  <p>Operator acknowledgement records ownership for {selectedAlarm.id} before follow-up work continues.</p>
-                </div>
-                <strong>{selectedAlarmAcknowledged ? 'Acknowledged' : 'Pending'}</strong>
-              </div>
-              <div className="eco-acknowledge-grid">
-                <section>
-                  <span>Alarm</span>
-                  <strong>{selectedAlarm.id}</strong>
-                  <small>{selectedAlarm.type} | {selectedAlarm.priority} priority</small>
-                </section>
-                <section>
-                  <span>Owner</span>
-                  <strong>{selectedAlarm.owner}</strong>
-                  <small>{selectedAlarm.sla}</small>
-                </section>
-                <section>
-                  <span>Location</span>
-                  <strong>{selectedAlarm.zone}</strong>
-                  <small>{selectedAlarm.room}</small>
-                </section>
-              </div>
-              <button type="button" className="cta-button eco-acknowledge-button" onClick={acknowledgeSelectedAlarm}>
-                {selectedAlarmAcknowledged ? 'Acknowledgement Recorded' : 'Acknowledge Alarm'}
-              </button>
-              <p className="eco-acknowledge-note">
-                {selectedAlarmAcknowledged
-                  ? `Acknowledgement recorded for ${selectedAlarm.id} in this console session.`
-                  : 'Acknowledge before applying follow-up actions or closing the alarm.'}
-              </p>
-            </article>
-
             <article className="eco-card" id="alarm-events">
               <div className="eco-card-heading">
                 <div>
@@ -715,7 +754,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
                     className={`eco-alarm-ticket ${event.priority.toLowerCase()} ${selectedAlarm.id === event.id ? 'active' : ''}`}
                     onClick={() => {
                       setSelectedAlarmId(event.id);
-                      setAlarmNavigationTarget('detail');
+                      setAlarmPage('details');
                     }}
                     key={event.id}
                   >
