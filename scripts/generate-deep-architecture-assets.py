@@ -78,9 +78,9 @@ def detect_source_boundary(repo: Path) -> str:
 
 def generated_links_block() -> str:
   return f"""{START}
-## Deep Architecture and UML
+## Design Architecture and UML
 
-- [Deep architecture](docs/deep-architecture.md)
+- [Design architecture](docs/deep-architecture.md)
 - [Full UML Draw.io source](docs/diagrams/{DRAWIO_NAME})
 - [Full UML PNG export](docs/diagrams/{PNG_NAME})
 {END}"""
@@ -103,7 +103,7 @@ def deep_architecture(repo: Path, title: str, summary: str, tags: list[str]) -> 
       str(path.relative_to(repo)) for path in sorted((repo / "tests").glob("*")) if path.is_file()
   ) or "tests to be added as hardware coverage expands"
 
-  return f"""# {title} Deep Architecture
+  return f"""# {title} Design Architecture
 
 ## Executive Overview
 
