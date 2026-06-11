@@ -1,7 +1,7 @@
 import React from 'react';
 import type { DashboardView } from '../types';
 
-const operationNav = ['Overview', 'Alarms', 'Building', 'Zones', 'Floors', 'Rooms', 'Schedules', 'Energy', 'HVAC', 'Lighting'] as const;
+const operationNav = ['Overview', 'Alarms', 'Building', 'Floors', 'Zones', 'Rooms', 'Schedules', 'Energy', 'HVAC', 'Lighting'] as const;
 
 type OperationNavItem = typeof operationNav[number];
 
