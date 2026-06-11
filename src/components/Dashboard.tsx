@@ -5,6 +5,7 @@ const operationNav = ['Overview', 'Alarms', 'Building', 'Floors', 'Zones', 'Room
 
 type OperationNavItem = typeof operationNav[number];
 type OccupancyState = 'empty' | 'occupied' | 'full';
+type AlarmPage = 'details' | 'acknowledge';
 
 const operationNavLabels: Record<OperationNavItem, string> = {
   Overview: 'Overview',
@@ -282,6 +283,10 @@ const dashboardRoutes: Record<DashboardView, string> = {
   Rooms: '#dashboard/rooms',
   Schedules: '#dashboard/schedules'
 };
+const alarmAcknowledgeRoute = '#dashboard/alarms/acknowledge';
+
+const getAlarmPageFromHash = (): AlarmPage =>
+  window.location.hash === alarmAcknowledgeRoute ? 'acknowledge' : 'details';
 
 interface DashboardProps {
   activeView?: DashboardView;
@@ -291,11 +296,21 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
   const [activeNav, setActiveNav] = React.useState<OperationNavItem>(activeView);
   const [selectedAlarmId, setSelectedAlarmId] = React.useState(alarmEvents[0].id);
   const [acknowledgedAlarmIds, setAcknowledgedAlarmIds] = React.useState<string[]>([]);
-  const [alarmNavigationTarget, setAlarmNavigationTarget] = React.useState<'detail' | 'acknowledge'>('detail');
+  const [alarmPage, setAlarmPage] = React.useState<AlarmPage>(getAlarmPageFromHash);
 
   React.useEffect(() => {
     setActiveNav(activeView);
   }, [activeView]);
+
+  React.useEffect(() => {
+    const syncAlarmPageFromHash = () => {
+      setAlarmPage(getAlarmPageFromHash());
+    };
+
+    syncAlarmPageFromHash();
+    window.addEventListener('hashchange', syncAlarmPageFromHash);
+    return () => window.removeEventListener('hashchange', syncAlarmPageFromHash);
+  }, []);
 
   const totalBemsUsage = energyZones.reduce((total, zone) => total + zone.kwh, 0);
   const peakUsage = Math.max(...usageTrend.map((point) => point.kwh));
@@ -311,6 +326,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
   const getAlarmDisplayStatus = (event: typeof alarmEvents[number]) =>
     acknowledgedAlarmSet.has(event.id) ? 'Acknowledged' : event.status;
   const isAlarmView = activeNav === 'Alarms';
+  const isAlarmAcknowledgePage = isAlarmView && alarmPage === 'acknowledge';
   const isBuildingView = activeNav === 'Building';
   const isScheduleView = activeNav === 'Rooms' || activeNav === 'Schedules';
   const jumpTargets: Partial<Record<OperationNavItem, string>> = {
@@ -326,6 +342,9 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
     setActiveNav(item);
 
     if (item === 'Alarms' || item === 'Building' || item === 'Rooms' || item === 'Schedules') {
+      if (item === 'Alarms') {
+        setAlarmPage('details');
+      }
       if (window.location.hash !== dashboardRoutes[item]) {
         window.location.hash = dashboardRoutes[item];
       }
@@ -353,7 +372,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
 
   const openActiveAlarmDetails = () => {
     setSelectedAlarmId(activeAlarm.id);
-    setAlarmNavigationTarget('detail');
+    setAlarmPage('details');
     jumpToDashboardContent('Alarms');
 
     window.setTimeout(() => {
@@ -365,11 +384,15 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
   };
 
   const openAlarmAcknowledgePage = () => {
-    setAlarmNavigationTarget('acknowledge');
-    jumpToDashboardContent('Alarms');
+    setActiveNav('Alarms');
+    setAlarmPage('acknowledge');
+
+    if (window.location.hash !== alarmAcknowledgeRoute) {
+      window.location.hash = alarmAcknowledgeRoute;
+    }
 
     window.setTimeout(() => {
-      const target = document.getElementById('alarm-acknowledge-page');
+      const target = document.getElementById('dashboard');
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
@@ -377,7 +400,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
   };
 
   const acknowledgeSelectedAlarm = () => {
-    setAlarmNavigationTarget('acknowledge');
+    setAlarmPage('acknowledge');
     setAcknowledgedAlarmIds((currentIds) =>
       currentIds.includes(selectedAlarm.id) ? currentIds : [...currentIds, selectedAlarm.id]
     );
@@ -493,7 +516,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
         <section className="eco-topbar">
           <div>
             <p className="detail-kicker">EnergyBuildAI</p>
-            <h1>{isAlarmView ? 'Alarm Center' : isBuildingView ? 'Building Summary' : isScheduleView ? 'Schedule Summary' : 'Building Operation Center'}</h1>
+            <h1>{isAlarmAcknowledgePage ? 'Alarm Acknowledge Page' : isAlarmView ? 'Alarm Center' : isBuildingView ? 'Building Summary' : isScheduleView ? 'Schedule Summary' : 'Building Operation Center'}</h1>
           </div>
           <div className="eco-topbar-actions">
             <span className="eco-live-pill">Live</span>
@@ -516,6 +539,15 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
             >
               {isAlarmView || isBuildingView || isScheduleView ? 'Overview' : 'Alarm Details'}
             </button>
+            {isAlarmAcknowledgePage && (
+              <button
+                type="button"
+                className="cta-button secondary-cta"
+                onClick={() => jumpToDashboardContent('Alarms')}
+              >
+                Alarm Details
+              </button>
+            )}
             <a href="#projects" className="cta-button secondary-cta">
               Back to Projects
             </a>
