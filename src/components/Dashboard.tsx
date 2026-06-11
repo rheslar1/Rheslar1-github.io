@@ -268,6 +268,7 @@ interface DashboardProps {
 function Dashboard({ activeView = 'Overview' }: DashboardProps) {
   const [activeNav, setActiveNav] = React.useState<OperationNavItem>(activeView);
   const [selectedAlarmId, setSelectedAlarmId] = React.useState(alarmEvents[0].id);
+  const [acknowledgedAlarmIds, setAcknowledgedAlarmIds] = React.useState<string[]>([]);
 
   React.useEffect(() => {
     setActiveNav(activeView);
@@ -276,7 +277,16 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
   const totalBemsUsage = energyZones.reduce((total, zone) => total + zone.kwh, 0);
   const peakUsage = Math.max(...usageTrend.map((point) => point.kwh));
   const activeAlarmCount = alarmEvents.filter((event) => event.status === 'Active').length;
+  const activeAlarm = alarmEvents.find((event) => event.status === 'Active') || alarmEvents[0];
+  const acknowledgedAlarmSet = new Set([
+    ...alarmEvents.filter((event) => event.status === 'Acknowledged').map((event) => event.id),
+    ...acknowledgedAlarmIds
+  ]);
   const selectedAlarm = alarmEvents.find((event) => event.id === selectedAlarmId) || alarmEvents[0];
+  const selectedAlarmAcknowledged = acknowledgedAlarmSet.has(selectedAlarm.id);
+  const selectedAlarmDisplayStatus = selectedAlarmAcknowledged ? 'Acknowledged' : selectedAlarm.status;
+  const getAlarmDisplayStatus = (event: typeof alarmEvents[number]) =>
+    acknowledgedAlarmSet.has(event.id) ? 'Acknowledged' : event.status;
   const isAlarmView = activeNav === 'Alarms';
   const isBuildingView = activeNav === 'Building';
   const isScheduleView = activeNav === 'Rooms' || activeNav === 'Schedules';
@@ -318,6 +328,31 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
     }, 0);
   };
 
+  const openActiveAlarmDetails = () => {
+    setSelectedAlarmId(activeAlarm.id);
+    jumpToDashboardContent('Alarms');
+
+    window.setTimeout(() => {
+      const target = document.getElementById('alarm-detail-page');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 0);
+  };
+
+  const acknowledgeSelectedAlarm = () => {
+    setAcknowledgedAlarmIds((currentIds) =>
+      currentIds.includes(selectedAlarm.id) ? currentIds : [...currentIds, selectedAlarm.id]
+    );
+
+    window.setTimeout(() => {
+      const target = document.getElementById('alarm-acknowledge-page');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }, 0);
+  };
+
   const handleHeatmapScroll = () => {
     jumpToDashboardContent('Energy');
   };
@@ -331,7 +366,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
 
   const alarmKpis = [
     { label: 'Active alarms', value: String(activeAlarmCount), helper: '1 high priority dispatch' },
-    { label: 'Acknowledged', value: String(alarmEvents.filter((event) => event.status === 'Acknowledged').length), helper: 'Floor 1 AHU under review' },
+    { label: 'Acknowledged', value: String(acknowledgedAlarmSet.size), helper: 'Operator-reviewed events' },
     { label: 'Auto-clear queue', value: String(alarmEvents.filter((event) => event.status === 'Auto-clear').length), helper: 'Lobby lighting schedule pulse' },
     { label: 'Response SLA', value: selectedAlarm.sla, helper: selectedAlarm.owner }
   ];
@@ -470,25 +505,44 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
         )}
 
         <section className="eco-kpi-grid" aria-label="Building dashboard KPIs">
-          {activeKpis.map((kpi) => (
-            <article className="eco-kpi" key={kpi.label}>
-              <span>{kpi.label}</span>
-              <strong>{kpi.value}</strong>
-              <small>{kpi.helper}</small>
-            </article>
-          ))}
+          {activeKpis.map((kpi) => {
+            const isActiveAlarmKpi = kpi.label === 'Active alarms';
+            const kpiContent = (
+              <>
+                <span>{kpi.label}</span>
+                <strong>{kpi.value}</strong>
+                <small>{kpi.helper}</small>
+              </>
+            );
+
+            return isActiveAlarmKpi ? (
+              <button
+                type="button"
+                className="eco-kpi eco-kpi-action"
+                key={kpi.label}
+                onClick={openActiveAlarmDetails}
+                aria-label="Open active alarm details and acknowledgement page"
+              >
+                {kpiContent}
+              </button>
+            ) : (
+              <article className="eco-kpi" key={kpi.label}>
+                {kpiContent}
+              </article>
+            );
+          })}
         </section>
 
         {isAlarmView ? (
           <section className="eco-dashboard-grid eco-alarm-page" aria-label="Alarm details dashboard">
-            <article className="eco-card eco-card-wide eco-alarm-detail-card">
+            <article className="eco-card eco-card-wide eco-alarm-detail-card" id="alarm-detail-page">
               <div className="eco-card-heading">
                 <div>
                   <span>Selected Alarm</span>
                   <h2>{selectedAlarm.type}</h2>
                   <p>{selectedAlarm.cause}</p>
                 </div>
-                <strong>{selectedAlarm.status}</strong>
+                <strong>{selectedAlarmDisplayStatus}</strong>
               </div>
               <div className={`eco-critical-strip ${selectedAlarm.priority.toLowerCase()}`}>
                 <strong>{selectedAlarm.priority} Priority</strong>
@@ -528,6 +582,42 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
               </div>
             </article>
 
+            <article className="eco-card eco-card-wide eco-alarm-ack-card" id="alarm-acknowledge-page">
+              <div className="eco-card-heading">
+                <div>
+                  <span>Alarm Acknowledge Page</span>
+                  <h2>Acknowledge Selected Alarm</h2>
+                  <p>Operator acknowledgement records ownership for {selectedAlarm.id} before response actions continue.</p>
+                </div>
+                <strong>{selectedAlarmAcknowledged ? 'Acknowledged' : 'Pending'}</strong>
+              </div>
+              <div className="eco-acknowledge-grid">
+                <section>
+                  <span>Alarm</span>
+                  <strong>{selectedAlarm.id}</strong>
+                  <small>{selectedAlarm.type} | {selectedAlarm.priority} priority</small>
+                </section>
+                <section>
+                  <span>Owner</span>
+                  <strong>{selectedAlarm.owner}</strong>
+                  <small>{selectedAlarm.sla}</small>
+                </section>
+                <section>
+                  <span>Location</span>
+                  <strong>{selectedAlarm.zone}</strong>
+                  <small>{selectedAlarm.room}</small>
+                </section>
+              </div>
+              <button type="button" className="cta-button eco-acknowledge-button" onClick={acknowledgeSelectedAlarm}>
+                {selectedAlarmAcknowledged ? 'Acknowledgement Recorded' : 'Acknowledge Alarm'}
+              </button>
+              <p className="eco-acknowledge-note">
+                {selectedAlarmAcknowledged
+                  ? `Acknowledgement recorded for ${selectedAlarm.id} in this console session.`
+                  : 'Acknowledge before applying response actions or closing the alarm.'}
+              </p>
+            </article>
+
             <article className="eco-card" id="alarm-events">
               <div className="eco-card-heading">
                 <div>
@@ -545,7 +635,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
                   >
                     <span>{event.id}</span>
                     <strong>{event.zone}</strong>
-                    <small>{event.type} | {event.status}</small>
+                    <small>{event.type} | {getAlarmDisplayStatus(event)}</small>
                   </button>
                 ))}
               </div>
