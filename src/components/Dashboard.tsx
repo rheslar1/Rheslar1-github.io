@@ -253,13 +253,6 @@ const roomSchedules = [
   }
 ];
 
-const schedulePolicies = [
-  { label: 'Resolution order', value: 'Safety > manual > AI > reservation > base', helper: 'Prevents lower-priority calendars from masking critical states' },
-  { label: 'Manual overrides', value: 'Auto-clear', helper: 'Lobby override clears on the next scheduler pulse' },
-  { label: 'Critical rooms', value: 'Never setback', helper: 'Server Room remains in 24/7 cooling priority' },
-  { label: 'Demand response', value: 'Active on Tower B', helper: 'BEMS-ai can trim noncritical load during peak intervals' }
-];
-
 const dashboardRoutes: Record<DashboardView, string> = {
   Overview: '#dashboard',
   Alarms: '#dashboard/alarms',
@@ -717,24 +710,6 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
                     <span>{room.room}</span>
                     <strong>{room.mode}</strong>
                     <small>EnergyBuildAI Tower | {room.zone} | {room.floor} | {room.schedule} | {room.nextEvent}</small>
-                  </section>
-                ))}
-              </div>
-            </article>
-
-            <article className="eco-card eco-card-wide">
-              <div className="eco-card-heading">
-                <div>
-                  <h2>Schedule Resolution Details</h2>
-                  <p>EnergyBuildAI resolves base calendars, room reservations, AI demand response, manual overrides, and critical-space rules before sending control commands.</p>
-                </div>
-              </div>
-              <div className="eco-schedule-policy-grid">
-                {schedulePolicies.map((policy) => (
-                  <section key={policy.label}>
-                    <span>{policy.label}</span>
-                    <strong>{policy.value}</strong>
-                    <small>{policy.helper}</small>
                   </section>
                 ))}
               </div>
