@@ -58,8 +58,9 @@ function BmsLogin() {
     }));
     setLoginMessage({
       tone: 'success',
-      text: `${selectedProfile.label} session recorded. Use Dashboard navigation for the public console.`
+      text: `${selectedProfile.label} session recorded. Opening dashboard...`
     });
+    window.location.hash = 'dashboard';
   };
 
   return (

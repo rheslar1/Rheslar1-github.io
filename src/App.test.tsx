@@ -1,6 +1,7 @@
 import { act } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import App from './App';
+import BmsLogin from './components/BmsLogin';
 
 const actEnvironment = globalThis as typeof globalThis & {
   IS_REACT_ACT_ENVIRONMENT: boolean;
@@ -24,4 +25,46 @@ test('renders the loading screen before the portfolio is ready', () => {
     root?.unmount();
   });
   container.remove();
+});
+
+test('redirects BMS login to the dashboard after successful credentials', () => {
+  const container = document.createElement('div');
+  document.body.appendChild(container);
+  window.location.hash = '#bms-login';
+  localStorage.clear();
+  let root: Root | undefined;
+
+  act(() => {
+    root = createRoot(container);
+    root.render(<BmsLogin />);
+  });
+
+  const username = container.querySelector<HTMLInputElement>('input[name="username"]');
+  const password = container.querySelector<HTMLInputElement>('input[name="password"]');
+  const form = container.querySelector<HTMLFormElement>('form');
+
+  expect(username).not.toBeNull();
+  expect(password).not.toBeNull();
+  expect(form).not.toBeNull();
+
+  if (!username || !password || !form) {
+    throw new Error('BMS login form did not render expected controls.');
+  }
+
+  username.value = 'admin';
+  password.value = 'admin';
+
+  act(() => {
+    form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+  });
+
+  expect(window.location.hash).toBe('#dashboard');
+  expect(localStorage.getItem('energyBuildAI.session')).toContain('"username":"admin"');
+
+  act(() => {
+    root?.unmount();
+  });
+  container.remove();
+  localStorage.clear();
+  window.location.hash = '';
 });
