@@ -24,7 +24,7 @@ const getDashboardViewFromHash = (): DashboardView => {
   const match = window.location.hash.match(/^#dashboard\/(.+)$/);
   const view = match ? match[1] : '';
 
-  if (view === 'alarms') {
+  if (view === 'alarms' || view.startsWith('alarms/')) {
     return 'Alarms';
   }
 
