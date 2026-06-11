@@ -31,7 +31,7 @@ interface ProjectDetailsProps {
 const stackCategories: StackCategory[] = [
   {
     label: 'Frontend / UI',
-    matcher: /(React|Vite|Recharts|GitHub Pages|Pages|Node\.js tooling|react-scripts)/i
+    matcher: /(React|Vite|Recharts|GitHub Pages|Pages|Node\.js tooling|react-scripts|Qt Quick|QML|Quick Controls)/i
   },
   {
     label: 'Backend / API',
@@ -47,7 +47,7 @@ const stackCategories: StackCategory[] = [
   },
   {
     label: 'Embedded / Native',
-    matcher: /(C\+\+|CMake|C\+\+17|V4L2|Framebuffer|DRM|mmap|aarch64|Yocto|Linux|BACnet|i\.MX93|clang|cppcheck|CodeChecker|EEG|ECoG|iEEG|Edge AI|Neural Sensors)/i
+    matcher: /(C\+\+|CMake|C\+\+17|Qt 6|QML|V4L2|Framebuffer|DRM|mmap|aarch64|Yocto|Linux|BACnet|i\.MX93|i\.MX94|i\.MX95|ConnectCore|clang|cppcheck|CodeChecker|EEG|ECoG|iEEG|Edge AI|Neural Sensors)/i
   },
   {
     label: 'Automation / Deployment',
@@ -116,7 +116,7 @@ const reportSections = (project: Project): ReportSection[] => [
     title: 'Hardware Stack',
     items: [
       ...(project.dependencies || []).filter((item) => (
-        /(C\+\+|C\+\+17|C$|CMake|V4L2|Framebuffer|DRM|mmap|aarch64|Linux|Yocto|BACnet|i\.MX93|STM32|ESP32|I2C|SPI|UART|CAN|BLE|MySQL|Docker|EEG|ECoG|iEEG|Edge AI|Neural Sensors)/i.test(item)
+        /(C\+\+|C\+\+17|C$|CMake|Qt 6|Qt Quick|QML|V4L2|Framebuffer|DRM|mmap|aarch64|Linux|Yocto|BACnet|i\.MX93|i\.MX94|i\.MX95|ConnectCore|STM32|ESP32|I2C|SPI|UART|CAN|BLE|MySQL|Docker|EEG|ECoG|iEEG|Edge AI|Neural Sensors)/i.test(item)
       )),
       ...((project.architectureDocs || []).length > 0 ? ['Architecture markdown linked'] : []),
       ...((project.visuals || []).length > 0 ? ['Project visuals attached'] : [])

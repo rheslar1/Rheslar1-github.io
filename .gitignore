@@ -1,5 +1,6 @@
 node_modules/
 build/
+backups/
 embedded-system-repos/
 .env
 .env.local
