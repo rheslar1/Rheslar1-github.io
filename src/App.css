@@ -2771,6 +2771,13 @@ section h2 {
   gap: 7px;
 }
 
+.eco-alarm.high,
+.eco-alarm.high strong,
+.eco-alarm.high span,
+.eco-alarm.high small {
+  color: var(--eco-critical);
+}
+
 .eco-priority-badge {
   display: inline-flex;
   min-height: 22px;
@@ -2954,6 +2961,13 @@ section h2 {
   border-color: var(--eco-critical);
   border-left-color: var(--eco-critical);
   background: color-mix(in srgb, var(--eco-critical) 10%, var(--eco-field));
+}
+
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-ticket.active,
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-ticket.active span,
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-ticket.active strong,
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-ticket.active small {
+  color: var(--eco-critical);
 }
 
 .eco-history-list {
