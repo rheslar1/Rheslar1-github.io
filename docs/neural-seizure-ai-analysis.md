@@ -2,7 +2,7 @@
 
 Canonical repo: https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis
 
-Source artifact: `Predictive AI Analysis of Brain Neurons Using High-Bandwidth Neural Sensors for Early Detection of Brain Seizures_05_13_2026 - Copy.docx`
+Source artifact: `Predictive AI Analysis of Brain Neurons Using High-Bandwidth Neural Sensors for Early Detection of Brain Seizures_05_13_2026.docx`
 
 ## Project Summary
 
@@ -60,6 +60,8 @@ The project is not a deployed clinical system. It is a research and engineering 
 - `docs/artifact-schema-validation.md`: JSON/CSV artifact contracts and validation checks.
 - `docs/notebook-visualization.md`: notebook workflow for traces, HFO/PAC/connectivity curves, artifact validation, and C export.
 - `notebooks/neural-seizure-feature-visualization.ipynb`: executable visualization notebook.
+- `docs/source/`: included DOCX source manuscript and Markdown extraction.
+- `docs/source-paper-provenance.md`: source filename, project copy, SHA-256 checksums, DOCX metadata, and safety boundary.
 - `docs/ieee-11031450-paper-to-code-traceability.md`: IEEE Access review-to-code strategy map with evidence images, tests, safety boundary, and future upgrade path.
 - `docs/evidence/ieee-11031450-implementation-evidence.md`: implementation evidence for IEEE 11031450, generated run summary, and algorithm coverage artifacts.
 - `docs/evidence/README.md`: generated screenshots, plots, artifacts, C export, and timing evidence.
@@ -108,6 +110,7 @@ python3 -m neural_seizure_ai.cli \
 - Host timing evidence that can be rerun on BeagleBone or embedded Linux targets.
 - JSON/CSV report artifacts for metrics, predictions, neural features, and EKG features.
 - IEEE 11031450 paper-to-code traceability, including the IEEE URL, DOI, local extracted PDF, code modules, evidence artifacts, verification tests, and clinical safety boundary.
+- Included the 05/13/2026 DOCX source manuscript, Markdown extraction, and provenance/checksum note inside the project documentation tree.
 
 ## Future Upgrade Path
 
