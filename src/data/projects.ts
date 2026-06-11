@@ -240,7 +240,7 @@ const baseProjects: Project[] = [
         focus: '116-state contract, 12-action control, PPO, digital twin, ONNX boundary'
       },
       {
-        title: 'Deep Architecture',
+        title: 'Architecture',
         path: 'docs/DEEP_ARCHITECTURE.md',
         url: 'https://github.com/rheslar1/BEMS-ai/blob/master/docs/DEEP_ARCHITECTURE.md',
         focus: 'Training pipeline, simulation loop, grid optimizer, C++ deployment interface'
@@ -310,7 +310,7 @@ const baseProjects: Project[] = [
       '116-dimensional state vector and 12-dimensional action vector define the BEMS control contract.',
       'Rebased master/debug branches now point to the PPO simulation update commit d6f09d1.',
       '36 Python/C++ source and test files provide about 2,900 lines of controller, simulation, prediction, export, and test code.',
-      'Deep architecture documentation maps the policy loop, forecasting, occupancy adjustment, digital twin, grid optimizer, simulation, ONNX export, and BMS service integration boundary.',
+      'Architecture documentation maps the policy loop, forecasting, occupancy adjustment, digital twin, grid optimizer, simulation, ONNX export, and BMS service integration boundary.',
       'Python and C++ tests document expected behavior across control, prediction, simulation, and reward workflows.'
     ],
     resumeBullets: [
@@ -330,10 +330,10 @@ const baseProjects: Project[] = [
   {
     id: 'neural-seizure-ai-analysis',
     title: 'Predictive AI Neural Seizure Analysis',
-    summary: 'Synthetic embedded AI project for seizure-forecasting research with high-bandwidth neural sensors, pre-ictal feature extraction, teacher/student distillation, edge budgeting, and safety review.',
+    summary: 'Synthetic embedded AI project for seizure-forecasting research with high-bandwidth neural sensors, BeagleBone EKG context, teacher/student distillation, C export, timing evidence, and safety review.',
     deployment:
       'Published as a standalone Python project with deterministic synthetic neural-signal generation, unit tests, demo CLI artifacts, and GitHub Actions CI.',
-    dependencies: ['Python 3.12', 'Synthetic EEG/ECoG/iEEG', 'Goertzel Bandpower', 'CNN/LSTM/Transformer/GNN Proxies', 'Knowledge Distillation', 'Edge AI Budgeting', 'unittest', 'GitHub Actions'],
+    dependencies: ['Python 3.12', 'Synthetic EEG/ECoG/iEEG', 'BeagleBone EKG/ECG', 'Linux IIO ADC', 'Goertzel Bandpower', 'CNN/LSTM/Transformer/GNN Proxies', 'Knowledge Distillation', 'C Export', 'Edge AI Budgeting', 'unittest', 'GitHub Actions'],
     repository: 'https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis',
     repositoryLabel: 'View Project Repo',
     collection: 'embedded-systems',
@@ -351,7 +351,7 @@ const baseProjects: Project[] = [
         focus: 'Quick start, project boundary, runnable code, and documentation index'
       },
       {
-        title: 'Deep Architecture',
+        title: 'Architecture',
         path: 'docs/deep-architecture.md',
         url: 'https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis/blob/main/docs/deep-architecture.md',
         focus: 'Sensor layer, synthetic data, preprocessing, features, teacher ensemble, distillation, edge budget, and safety case'
@@ -373,6 +373,18 @@ const baseProjects: Project[] = [
         path: 'docs/safety-review.md',
         url: 'https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis/blob/main/docs/safety-review.md',
         focus: 'Research-only boundary, hazard register, validation gates, privacy, and human-review controls'
+      },
+      {
+        title: 'BeagleBone EKG Integration',
+        path: 'docs/beaglebone-ekg-integration.md',
+        url: 'https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis/blob/main/docs/beaglebone-ekg-integration.md',
+        focus: 'ADC/IIO capture, EKG features, signal quality, and bounded multimodal fusion'
+      },
+      {
+        title: 'Generated Evidence',
+        path: 'docs/evidence/README.md',
+        url: 'https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis/blob/main/docs/evidence/README.md',
+        focus: 'Trace screenshots, feature screenshots, CSV/JSON artifacts, C export, and timing report'
       }
     ],
     preview: projectAsset('neural-seizure-ai-pipeline.svg'),
@@ -382,15 +394,23 @@ const baseProjects: Project[] = [
         caption: 'Architecture visual derived from the seizure prediction research paper: sensors, AI models, distillation, edge inference, and closed-loop review.'
       },
       {
+        src: 'https://raw.githubusercontent.com/rheslar1/Rheslar1-github.io/main/neural-seizure-ai-analysis/docs/evidence/synthetic-neural-ekg-traces.png',
+        caption: 'Generated evidence plot: synthetic neural trace with auxiliary BeagleBone EKG/ECG context and pre-ictal/ictal markers.'
+      },
+      {
+        src: 'https://raw.githubusercontent.com/rheslar1/Rheslar1-github.io/main/neural-seizure-ai-analysis/docs/evidence/feature-trajectories.png',
+        caption: 'Generated evidence plot: HFO ratio, PAC proxy, connectivity, and energy feature trajectories used by the teacher/student pipeline.'
+      },
+      {
         src: githubPreview('Predictive_AI_Neural-_Seizure_Analysis'),
         caption: 'GitHub repository preview for the standalone synthetic neural seizure AI implementation.'
       }
     ],
-    tags: ['Embedded AI', 'Neural Sensors', 'EEG/ECoG', 'Python', 'Edge AI', 'Safety'],
+    tags: ['Embedded AI', 'Neural Sensors', 'BeagleBone', 'EKG/ECG', 'Python', 'Edge AI', 'Safety'],
     problem:
       'Explore how high-resolution neural data and predictive AI can identify pre-ictal seizure signatures earlier than conventional low-resolution monitoring workflows.',
     architecture:
-      'The project maps a runnable Python pipeline from EEG, ECoG, iEEG, and microelectrode-array sensor profiles into synthetic neural samples, preprocessing, bandpower/PAC/connectivity features, teacher ensemble probabilities, distilled edge inference, metrics, and safety review.',
+      'The project maps a runnable Python pipeline from EEG, ECoG, iEEG, and microelectrode-array sensor profiles into synthetic neural samples, BeagleBone EKG context, preprocessing, bandpower/PAC/connectivity features, teacher ensemble probabilities, distilled edge inference, C export, timing evidence, metrics, and safety review.',
     proofPoints: [
       {
         label: 'Neural Signal Pipeline',
@@ -417,8 +437,8 @@ const baseProjects: Project[] = [
       'Candidate features are implemented as energy, line length, zero-crossing rate, delta/theta/alpha/beta/gamma/HFO bandpower, HFO ratios, PAC proxy, channel connectivity, and spatial concentration.',
       'The CNN-style teacher scores localized time-frequency activity; the LSTM-style teacher accumulates temporal risk; the transformer-style teacher acts as a strongest-biomarker attention proxy; the GNN-style teacher scores connectivity and spatial concentration.',
       'Knowledge distillation trains a threshold-calibrated logistic student from teacher probabilities, producing feature names, weights, bias, final loss, and decision threshold for review.',
-      'The CLI writes demo-report.json and window-features.csv so the project has inspectable artifacts beyond Markdown.',
-      'Unit tests cover synthetic label generation, biomarker extraction, end-to-end teacher/student evaluation, edge budget comparison, and safety-case creation.',
+      'The CLI writes demo-report.json, window-features.csv, bbb-ekg-features.csv, SVG/PNG plots, distilled_student.c/.h, and timing reports so the project has inspectable artifacts beyond Markdown.',
+      'Unit tests cover synthetic label generation, biomarker extraction, BeagleBone ADC conversion, EKG feature extraction, dataset provenance guardrails, C export, timing evidence, and end-to-end teacher/student evaluation.',
       'GitHub Actions runs the unit tests, demo CLI, and artifact validation in the standalone project repo.',
       'Closed-loop neuromodulation remains a documented review boundary only; the code does not authorize stimulation, medication, diagnosis, or patient monitoring.',
       'The project explicitly calls out privacy, neural data security, interpretability, false-positive and false-negative risk, informed consent, limited datasets, patient variability, and hardware constraints.'
@@ -429,12 +449,14 @@ const baseProjects: Project[] = [
       'Feature extraction for HFO ratio, PAC proxy, line length, bandpower, connectivity, and spatial concentration.',
       'Teacher ensemble with CNN, LSTM, transformer, and GNN-inspired risk models.',
       'Distilled edge student with calibrated decision threshold and inspectable weights.',
-      'Evaluation metrics, edge inference budget, safety case, CLI artifacts, tests, and GitHub Actions CI.'
+      'BeagleBone IIO ADC EKG capture path with signal quality, heart rate, HRV, and bounded fusion.',
+      'Public-dataset adapter with de-identification, citation, license, source, and patient-split guardrails.',
+      'Evaluation metrics, edge inference budget, C export, timing evidence, safety case, CLI artifacts, tests, and GitHub Actions CI.'
     ],
     outcomes: [
       'Converted a full research paper into a standalone Python project with runnable signal generation, preprocessing, feature extraction, model comparison, distillation, edge budgeting, and safety review.',
       'Connected computational neuroscience concepts to embedded AI deployment concerns such as latency, power, model size, calibrated thresholds, and edge inference.',
-      'Added deep documentation for architecture, pipeline contract, model comparison, edge budget, safety, validation, and implementation roadmap.',
+      'Added deep documentation for architecture, pipeline contract, model comparison, BeagleBone EKG integration, dataset provenance, C export, edge budget, safety, validation, generated evidence, and implementation roadmap.',
       'Added unit tests and CI workflow so the project can be validated independently of the portfolio site.',
       'Preserved the project as a research architecture artifact rather than representing it as a deployed clinical medical device.'
     ],
@@ -446,10 +468,122 @@ const baseProjects: Project[] = [
     screenshotCaption:
       'Pipeline visual summarizes the project architecture and is now backed by a standalone Python implementation. The artifact is a research and engineering demo, not a clinical system.',
     suggestedContent: [
-      'Add plotted screenshots of synthetic traces, HFO ratio, PAC proxy, and connectivity over time.',
-      'Add a public-dataset adapter only after documenting dataset provenance and patient-level train/test separation.',
-      'Add an ONNX or C export path for the distilled student model.',
-      'Add hardware-in-the-loop timing evidence for an embedded Linux or MCU target.'
+      'Run the timing evidence on real BeagleBone hardware and commit the target report.',
+      'Add a fixed-point student inference path for MCU-class targets.',
+      'Add optional NumPy acceleration while preserving the pure-Python fallback.',
+      'Add schema validation for generated JSON and CSV artifacts.'
+    ]
+  },
+  {
+    id: 'beaglebone-ad8232-ekg-driver',
+    title: 'BeagleBone AD8232 EKG ADC Driver',
+    summary: 'Python BeagleBone Black driver for the AD8232 Single-Lead Heart Rate Monitor using Linux IIO ADC reads, protective divider scaling, optional LO+/LO- lead-off GPIOs, filtering, heart-rate extraction, simulation, and waveform evidence.',
+    deployment:
+      'Runs as a Python CLI on BeagleBone Black or in deterministic simulator mode; writes CSV waveform captures, JSON heart-rate reports, and SVG/PNG evidence for documentation review.',
+    dependencies: ['Python 3.10+', 'BeagleBone Black', 'AD8232 Single-Lead Heart Rate Monitor', 'Linux IIO ADC', 'AIN0..AIN6', 'Optional GPIO LO+/LO-', 'unittest', 'Headless Chrome screenshots'],
+    repository: 'https://github.com/rheslar1/Rheslar1-github.io/tree/main/beaglebone-ad8232-ekg-driver',
+    repositoryLabel: 'View Driver Source',
+    collection: 'embedded-systems',
+    architectureDocs: [
+      {
+        title: 'Driver README',
+        path: 'beaglebone-ad8232-ekg-driver/README.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/beaglebone-ad8232-ekg-driver/README.md',
+        focus: 'Quick start, simulator, BeagleBone live capture, outputs, and safety boundary'
+      },
+      {
+        title: 'Driver Architecture',
+        path: 'beaglebone-ad8232-ekg-driver/ARCHITECTURE.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/beaglebone-ad8232-ekg-driver/ARCHITECTURE.md',
+        focus: 'Config, IIO reader, simulator, filters, heart-rate analysis, recorder, plot evidence, and CLI flow'
+      },
+      {
+        title: 'Wiring Notes',
+        path: 'beaglebone-ad8232-ekg-driver/docs/wiring.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/beaglebone-ad8232-ekg-driver/docs/wiring.md',
+        focus: 'AD8232 OUT to protected BeagleBone AIN path, 1.8V ADC limit, divider ratio, and lead-off pins'
+      },
+      {
+        title: 'Generated Evidence',
+        path: 'beaglebone-ad8232-ekg-driver/docs/evidence/README.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/beaglebone-ad8232-ekg-driver/docs/evidence/README.md',
+        focus: 'Synthetic capture CSV, report JSON, waveform SVG, and PNG screenshot provenance'
+      }
+    ],
+    preview: githubPreview('Rheslar1-github.io'),
+    visuals: [
+      {
+        src: 'https://raw.githubusercontent.com/rheslar1/Rheslar1-github.io/main/beaglebone-ad8232-ekg-driver/docs/evidence/ad8232-waveform.png',
+        caption: 'Simulated AD8232 waveform evidence generated by the Python BeagleBone ADC driver.'
+      },
+      {
+        src: githubPreview('Rheslar1-github.io'),
+        caption: 'Portfolio repository preview containing the BeagleBone AD8232 EKG ADC driver source and docs.'
+      }
+    ],
+    tags: ['BeagleBone Black', 'AD8232', 'EKG/ECG', 'ADC', 'Linux IIO', 'Python', 'Heart Rate'],
+    problem:
+      'Build a reviewable embedded Linux acquisition path for an AD8232 single-lead heart-rate breakout connected to a BeagleBone Black ADC input, including scaling, lead-off status, filtering, heart-rate extraction, and evidence artifacts.',
+    architecture:
+      'The driver starts with an Ad8232Config for AIN channel, Linux IIO device, ADC scale, divider ratio, and optional LO+/LO- GPIO value files. A BeagleBoneIioReader or deterministic simulator produces samples that flow through baseline removal, smoothing, R-peak detection, heart-rate/HRV analysis, CSV/JSON recording, and dependency-free SVG plotting.',
+    proofPoints: [
+      {
+        label: 'Hardware Boundary',
+        title: 'BBB ADC Limits Are Modeled',
+        detail:
+          'The driver treats BeagleBone AIN pins as 1.8V-limited ADC inputs and uses an explicit divider ratio to reconstruct AD8232-side millivolts after the protected analog front end.'
+      },
+      {
+        label: 'Runnable Evidence',
+        title: 'Simulation Produces Review Artifacts',
+        detail:
+          'The simulator generates repeatable EKG-style samples, CSV captures, heart-rate JSON reports, and SVG/PNG waveform evidence without needing hardware on the CI runner.'
+      },
+      {
+        label: 'Lead-Off Handling',
+        title: 'Sensor Status Has Its Own Channel',
+        detail:
+          'Optional LO+/LO- GPIO value paths are tracked independently from the analog waveform so lead-off status can lower signal quality without pretending to be a clinical interpretation.'
+      }
+    ],
+    deepDetails: [
+      'Ad8232Config centralizes analog channel selection, Linux IIO device path, ADC reference, ADC counts, protective divider ratio, sample rate, and optional LO+/LO- GPIO value paths.',
+      'BeagleBoneIioReader reads `/sys/bus/iio/devices/iio:device0/in_voltageN_raw` and uses `in_voltageN_scale` when present, falling back to reference-voltage math when the kernel scale file is absent.',
+      'The default divider ratio of 1.8333333333 maps a protected 1.8V BeagleBone ADC-side range back to an approximate 3.3V AD8232-side range for reporting.',
+      'SimulatedAd8232Reader creates a deterministic single-lead waveform with baseline wander, P wave, QRS complex, T wave, changing heart-rate phase, and light noise for repeatable tests.',
+      'Filtering removes baseline drift with a long moving average, then smooths the signal with a short moving average before R-peak detection.',
+      'Heart-rate analysis reports sample count, peak count, BPM, RR standard deviation, RMSSD, lead-off fraction, and a bounded signal-quality score.',
+      'The CLI supports live BeagleBone capture, simulation, AIN channel selection, custom IIO device paths, divider-ratio overrides, lead-off value files, CSV/JSON output, and SVG plot generation.',
+      'Docs cover wiring, 1.8V ADC protection, safety boundaries, validation steps, generated evidence provenance, and hardware evidence still needed for live board review.',
+      'Unit tests cover ADC conversion, lead-off GPIO handling, simulated capture, heart-rate evidence, report writing, and SVG waveform generation.'
+    ],
+    features: [
+      'BeagleBone Linux IIO ADC reader for AD8232 OUT on AIN0 through AIN6.',
+      'Protective divider scaling for 3.3V AD8232 output into the BBB 1.8V ADC range.',
+      'Optional LO+/LO- GPIO value-file support for lead-off status.',
+      'Deterministic simulator for CI, screenshots, and documentation evidence.',
+      'Baseline removal, smoothing, R-peak detection, heart-rate estimate, HRV metrics, lead-off fraction, and signal-quality scoring.',
+      'CSV capture writer, JSON report writer, dependency-free SVG waveform plotter, and PNG screenshot generation path.',
+      'Safety notes that keep the project framed as engineering evidence, not a medical device or patient monitor.'
+    ],
+    outcomes: [
+      'Created a standalone Python driver package under the portfolio repository with source modules, docs, tests, simulator, CLI, and evidence artifacts.',
+      'Made the AD8232/BeagleBone ADC electrical boundary explicit, including the BBB 1.8V ADC limit and the default 1.8333333333 reconstruction ratio.',
+      'Produced repeatable synthetic waveform evidence so the project can be demonstrated without live patient-connected hardware.',
+      'Provided a path for future live BeagleBone evidence using board revision, ADC channel, divider values, lead-off wiring, and timing/capture logs.'
+    ],
+    resumeBullets: [
+      'Built a Python BeagleBone Black acquisition driver for an AD8232 single-lead heart-rate monitor using Linux IIO ADC files.',
+      'Implemented ADC scaling, lead-off status handling, signal filtering, R-peak detection, heart-rate metrics, and evidence artifact generation.',
+      'Documented embedded hardware safety boundaries including 1.8V ADC protection and non-clinical project scope.'
+    ],
+    screenshotCaption:
+      'Simulated waveform evidence shows the AD8232-to-BeagleBone ADC acquisition path, filtered R-peak view, heart-rate estimate, signal quality, and lead-off fraction.',
+    suggestedContent: [
+      'Capture a live BeagleBone run with board revision, ADC channel, divider values, and oscilloscope notes.',
+      'Add a systemd service example for long-running local waveform logging.',
+      'Add hardware-in-the-loop timing evidence from the BeagleBone under load.',
+      'Create a dedicated GitHub repository if the driver should be published outside the portfolio repo.'
     ]
   },
   {
@@ -466,6 +600,12 @@ const baseProjects: Project[] = [
         path: 'ARCHITECTURE.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/ARCHITECTURE.md',
         focus: 'React SPA routing, project data model, dashboard/detail pages, Pages deployment'
+      },
+      {
+        title: 'Final Design Suggestions',
+        path: 'docs/final-design-documentation-suggestions.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/final-design-documentation-suggestions.md',
+        focus: 'Portfolio-wide and project-specific final design documentation, evidence, screenshots, and validation content'
       }
     ],
     preview: projectAsset('portfolio-home.png'),
@@ -523,7 +663,7 @@ const baseProjects: Project[] = [
     outcomes: [
       'Live portfolio is deployed at rheslar1.github.io/Rheslar1-github.io.',
       'Current resume positioning is visible: Embedded Engineer, Full Stack Developer, React, Node.js, and MySQL.',
-      'Project catalog now carries deep architecture and implementation details for every showcased repository.',
+      'Project catalog now carries architecture and implementation details for every showcased repository.',
       'GitHub Actions deployment published the portfolio successfully to GitHub Pages.'
     ],
     resumeBullets: [
@@ -646,10 +786,16 @@ const baseProjects: Project[] = [
         focus: 'Enterprise BMS layers, API, database, AI service, edge, Docker, Yocto'
       },
       {
-        title: 'Deep Architecture',
+        title: 'Architecture',
         path: 'BEMS_ENTERPRISE_COMPLETE/repo/docs/deep-architecture.md',
         url: 'https://github.com/rheslar1/BMS/blob/bems/BEMS_ENTERPRISE_COMPLETE/repo/docs/deep-architecture.md',
         focus: 'BEMS-ai integration, service contracts, telemetry flow, deployment evidence model'
+      },
+      {
+        title: 'EnergyBuildAI Schedule Details',
+        path: 'docs/energybuildai-schedule-details.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/energybuildai-schedule-details.md',
+        focus: 'Schedule route, building-zone-floor-room schedule rows, override rules, dampers, motors, fans, and final screenshot evidence'
       }
     ],
     loginRoute: '#dashboard',
@@ -767,7 +913,7 @@ const baseProjects: Project[] = [
       'edge-core is the embedded/edge layer and is primarily C++, with BACnet-oriented integration and CMake-style structure.',
       'node-api is an Express service that depends on cors, @grpc/grpc-js, @grpc/proto-loader, and mysql2 for API, service, and database workflows.',
       'ui is a React/Vite dashboard that uses Recharts for operator-facing visualization, including BEMS-ai energy heat-map and usage overlays on a simulated building floorplan.',
-      'The dashboard home page now includes a Deep Architecture Alignment panel that maps React/Vite UI, Node API, MySQL, BEMS-ai service, C++ edge core, and BACnet devices to live status and evidence rows.',
+      'The dashboard home page now includes an Architecture Alignment panel that maps React/Vite UI, Node API, MySQL, BEMS-ai service, C++ edge core, and BACnet devices to live status and evidence rows.',
       'ai-service is the BEMS-ai/Python optimization layer with gRPC/protobuf dependencies, designed to connect predictive energy analysis into the system.',
       'Runtime data flow runs from operator dashboard to Node API, MySQL telemetry lookup, BEMS-ai gRPC optimization, persisted optimization history, edge command publication, BACnet read/write response, and telemetry/status event feedback.',
       'The API owns safety checks and coordination across session/auth, REST endpoints, MySQL persistence, AI optimization, edge commands, digital twin composition, schedules, alarms, and audit/event shaping.',

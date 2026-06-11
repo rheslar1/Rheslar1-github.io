@@ -4,6 +4,8 @@
 
 This repository is a synthetic research and portfolio project. It must not be used for diagnosis, therapy, patient monitoring, medication delivery, stimulation, or any autonomous closed-loop intervention.
 
+The BeagleBone EKG path is auxiliary physiological context only. EKG/ECG measures cardiac activity, not brain activity, and must not be represented as a replacement for EEG, ECoG, iEEG, or other neural sensing.
+
 ## Hazards And Controls
 
 | Hazard | Risk | Control |
@@ -14,6 +16,7 @@ This repository is a synthetic research and portfolio project. It must not be us
 | Privacy exposure | Neural data reveals sensitive health state | Encryption, minimal retention, audit logs, de-identification. |
 | Opaque output | Clinician cannot inspect alert basis | Feature-level explanation and alert report. |
 | Autonomous intervention | Unsafe stimulation or treatment action | Human-in-the-loop gate and explicit no-autonomy boundary. |
+| EKG misuse | Cardiac signal is treated as a neural seizure predictor by itself | EKG context is bounded to a small fusion boost and documented as auxiliary only. |
 
 ## Required Gates Before Clinical Use
 
@@ -41,4 +44,3 @@ The current pipeline supports feature-level review through:
 - Per-model teacher rationales.
 
 That evidence is not sufficient for clinical trust by itself, but it is the right starting point for a reviewable architecture.
-

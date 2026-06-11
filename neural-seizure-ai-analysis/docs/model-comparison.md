@@ -12,6 +12,7 @@ The source paper discusses CNNs, recurrent networks, transformers, graph neural 
 | GNN | `GnnConnectivityHeuristic` | Connectivity and spatial concentration | GNNs model brain regions or electrodes as connected nodes. |
 | Ensemble | `TeacherEnsemble` | Average soft probability | Blends model-family views for offline analysis. |
 | Student | `StudentLogisticModel` | Normalized feature vector | Compact edge model trained from teacher probabilities. |
+| EKG fusion | `student_plus_beaglebone_ekg_context` | Student probability plus EKG context | Uses BeagleBone EKG features as bounded autonomic context only. |
 
 ## Why Heuristics Instead Of Heavy Frameworks
 
@@ -24,6 +25,7 @@ This project is intended to be runnable as portfolio evidence without patient da
 3. Normalize selected features.
 4. Train logistic student by minimizing soft-label mean-squared error.
 5. Compare student metrics and edge budget against teacher proxy.
+6. Optionally fuse BeagleBone EKG context using signal quality and autonomic-stress features.
 
 ## Future Upgrade Path
 
@@ -32,4 +34,3 @@ This project is intended to be runnable as portfolio evidence without patient da
 - Train CNN/LSTM/transformer/GNN baselines against the same `WindowFeatures` contract or raw windows.
 - Export a trained student to ONNX or C for embedded inference.
 - Add calibration, uncertainty, and patient-specific thresholding.
-

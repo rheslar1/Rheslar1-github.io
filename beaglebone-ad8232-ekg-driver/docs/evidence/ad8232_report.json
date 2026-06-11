@@ -1,0 +1,16 @@
+{
+  "sensor": "AD8232 Single-Lead Heart Rate Monitor",
+  "source": "simulated-ad8232",
+  "sample_rate_hz": 250,
+  "duration_seconds": 10.0,
+  "analog_channel": 0,
+  "heart_rate": {
+    "sample_count": 2500,
+    "peak_count": 13,
+    "heart_rate_bpm": 77.05479452054794,
+    "rr_std_ms": 15.755710845354557,
+    "rmssd_ms": 5.393598899705906,
+    "lead_off_fraction": 0.0,
+    "signal_quality": 1.0
+  }
+}

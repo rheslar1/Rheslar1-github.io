@@ -1,0 +1,3005 @@
+{
+  "config": {
+    "sensor": "ecog",
+    "sensor_name": "ECoG",
+    "channels": 12,
+    "sampling_rate_hz": 512,
+    "duration_seconds": 90.0,
+    "preictal_start_seconds": 55.0,
+    "ictal_start_seconds": 75.0,
+    "window_seconds": 2.0,
+    "stride_seconds": 1.0,
+    "seed": 42
+  },
+  "sample_count": 46080,
+  "window_count": 89,
+  "teacher_metrics": {
+    "true_positive": 23,
+    "false_positive": 0,
+    "true_negative": 54,
+    "false_negative": 12,
+    "sensitivity": 0.6571428571428571,
+    "specificity": 1.0,
+    "precision": 1.0,
+    "false_predictions_per_hour": 0.0,
+    "first_alert_seconds": 66.0,
+    "lead_time_seconds": 9.0,
+    "mean_positive_probability": 0.5786144356980564,
+    "mean_negative_probability": 0.4065022004871314
+  },
+  "student_metrics": {
+    "true_positive": 22,
+    "false_positive": 0,
+    "true_negative": 54,
+    "false_negative": 13,
+    "sensitivity": 0.6285714285714286,
+    "specificity": 1.0,
+    "precision": 1.0,
+    "false_predictions_per_hour": 0.0,
+    "first_alert_seconds": 67.0,
+    "lead_time_seconds": 8.0,
+    "mean_positive_probability": 0.5277630007580216,
+    "mean_negative_probability": 0.4576357088023415
+  },
+  "distillation": {
+    "epochs": 240,
+    "learning_rate": 0.08,
+    "final_loss": 0.0017515515554391587,
+    "decision_threshold": 0.5142,
+    "feature_names": [
+      "avg_energy",
+      "avg_line_length",
+      "zero_crossing_rate",
+      "hfo_to_beta",
+      "hfo_to_total",
+      "pac_proxy",
+      "mean_abs_connectivity",
+      "spatial_concentration"
+    ],
+    "weights": [
+      0.28121685065503477,
+      0.04298054173333915,
+      0.018277340386776093,
+      0.28220475879569906,
+      0.007493232603888047,
+      -0.03736213917342435,
+      0.0009744574188770965,
+      -0.0481742892950188
+    ],
+    "bias": -0.2988518075976177
+  },
+  "teacher_budget": {
+    "model_name": "teacher_ensemble_proxy",
+    "parameter_count": 6208,
+    "memory_bytes": 24832,
+    "macs_per_window": 6144,
+    "estimated_latency_ms": 0.051199999999999996,
+    "estimated_power_mw": 33.36,
+    "notes": [
+      "Proxy budget for a multi-family teacher ensemble used during analysis.",
+      "Representative of why full teacher models are kept off tiny edge targets."
+    ]
+  },
+  "student_budget": {
+    "model_name": "distilled_logistic_student",
+    "parameter_count": 9,
+    "memory_bytes": 36,
+    "macs_per_window": 8,
+    "estimated_latency_ms": 6.666666666666667e-05,
+    "estimated_power_mw": 18.02,
+    "notes": [
+      "Student uses one weight per normalized feature plus bias.",
+      "Suitable for microcontroller or implantable-gateway style review after clinical validation."
+    ]
+  },
+  "safety_case": {
+    "project_boundary": "Synthetic research pipeline only. It must not be used for diagnosis, therapy, closed-loop stimulation, medication delivery, or patient monitoring.",
+    "required_gates": [
+      "IRB/ethics approval before any patient data use.",
+      "Patient consent, de-identification, and access logging for neural data.",
+      "Dataset shift analysis across patient, sensor, medication, and sleep-state conditions.",
+      "Human clinician review before any action or intervention.",
+      "Independent validation on held-out clinical datasets and hardware-in-the-loop targets.",
+      "Fail-safe behavior that treats model uncertainty as no autonomous intervention authority."
+    ],
+    "risk_register": [
+      {
+        "hazard": "False positive pre-ictal alert",
+        "risk": "Alarm fatigue, anxiety, or unnecessary intervention.",
+        "mitigation": "Tune alert thresholds per patient and require clinician-facing confidence display.",
+        "verification": "Measure false predictions per hour on held-out patient sessions."
+      },
+      {
+        "hazard": "False negative missed pre-ictal state",
+        "risk": "No warning before seizure onset.",
+        "mitigation": "Use conservative monitoring, redundancy, and explicit uncertainty states.",
+        "verification": "Track sensitivity and lead time across seizure types and patients."
+      },
+      {
+        "hazard": "Neural data privacy exposure",
+        "risk": "Highly sensitive biosignal data may reveal health or behavioral state.",
+        "mitigation": "Encrypt at rest and in transit; minimize retention; audit access.",
+        "verification": "Security review, threat model, and access-log inspection."
+      },
+      {
+        "hazard": "Opaque model decision",
+        "risk": "Clinical reviewer cannot understand why an alert occurred.",
+        "mitigation": "Expose HFO, PAC, line length, connectivity, and trend evidence per alert.",
+        "verification": "Explainability review with feature-level alert reports."
+      }
+    ],
+    "metric_flags": [
+      "false_negative_review_required"
+    ]
+  },
+  "ekg_feature_rows": [
+    {
+      "start_seconds": 0.0,
+      "end_seconds": 1.998046875,
+      "sample_count": 500,
+      "mean_mv": 851.3431414320007,
+      "peak_to_peak_mv": 343.8268499616804,
+      "heart_rate_bpm": 72.63922518159806,
+      "rr_std_ms": 8.48528137423857,
+      "rmssd_ms": 12.0,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.2975
+    },
+    {
+      "start_seconds": 1.0,
+      "end_seconds": 2.998046875,
+      "sample_count": 500,
+      "mean_mv": 842.1371923641752,
+      "peak_to_peak_mv": 332.5265714017461,
+      "heart_rate_bpm": 73.52941176470587,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 2.0,
+      "end_seconds": 3.998046875,
+      "sample_count": 500,
+      "mean_mv": 827.5164241563131,
+      "peak_to_peak_mv": 338.5138474202889,
+      "heart_rate_bpm": 73.89162561576356,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 3.0,
+      "end_seconds": 4.998046875,
+      "sample_count": 500,
+      "mean_mv": 831.0871135709621,
+      "peak_to_peak_mv": 341.6716838954245,
+      "heart_rate_bpm": 74.81296758104736,
+      "rr_std_ms": 2.828427124745547,
+      "rmssd_ms": 3.9999999999990905,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.33250000000000396
+    },
+    {
+      "start_seconds": 4.0,
+      "end_seconds": 5.998046875,
+      "sample_count": 500,
+      "mean_mv": 846.1994386714094,
+      "peak_to_peak_mv": 335.2495139378469,
+      "heart_rate_bpm": 75.18796992481202,
+      "rr_std_ms": 2.828427124747155,
+      "rmssd_ms": 4.000000000001364,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.332499999999994
+    },
+    {
+      "start_seconds": 5.0,
+      "end_seconds": 6.998046875,
+      "sample_count": 500,
+      "mean_mv": 846.7579195732745,
+      "peak_to_peak_mv": 325.2370490445212,
+      "heart_rate_bpm": 75.7575757575757,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 6.0,
+      "end_seconds": 7.998046875,
+      "sample_count": 500,
+      "mean_mv": 832.8385723833327,
+      "peak_to_peak_mv": 332.89988459468293,
+      "heart_rate_bpm": 75.75757575757578,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 7.0,
+      "end_seconds": 8.998046875,
+      "sample_count": 500,
+      "mean_mv": 829.2099811489511,
+      "peak_to_peak_mv": 328.85009971068314,
+      "heart_rate_bpm": 75.9493670886076,
+      "rr_std_ms": 2.8284271247458683,
+      "rmssd_ms": 3.9999999999995453,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.33250000000000196
+    },
+    {
+      "start_seconds": 8.0,
+      "end_seconds": 9.998046875,
+      "sample_count": 500,
+      "mean_mv": 840.6243046587749,
+      "peak_to_peak_mv": 344.918714853659,
+      "heart_rate_bpm": 75.75757575757578,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 9.0,
+      "end_seconds": 10.998046875,
+      "sample_count": 500,
+      "mean_mv": 846.7143659739587,
+      "peak_to_peak_mv": 323.437352428767,
+      "heart_rate_bpm": 76.1421319796954,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 10.0,
+      "end_seconds": 11.998046875,
+      "sample_count": 500,
+      "mean_mv": 838.8442472718833,
+      "peak_to_peak_mv": 331.50809133314215,
+      "heart_rate_bpm": 75.37688442211062,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 11.0,
+      "end_seconds": 12.998046875,
+      "sample_count": 500,
+      "mean_mv": 831.6304914831164,
+      "peak_to_peak_mv": 340.97562861416577,
+      "heart_rate_bpm": 75.00000000000003,
+      "rr_std_ms": 5.656854249493024,
+      "rmssd_ms": 8.00000000000091,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.314999999999996
+    },
+    {
+      "start_seconds": 12.0,
+      "end_seconds": 13.998046875,
+      "sample_count": 500,
+      "mean_mv": 835.5595284870226,
+      "peak_to_peak_mv": 340.31188187477755,
+      "heart_rate_bpm": 74.62686567164177,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 13.0,
+      "end_seconds": 14.998046875,
+      "sample_count": 500,
+      "mean_mv": 842.7529581470034,
+      "peak_to_peak_mv": 337.1240487256763,
+      "heart_rate_bpm": 73.89162561576345,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 14.0,
+      "end_seconds": 15.998046875,
+      "sample_count": 500,
+      "mean_mv": 842.8666311752402,
+      "peak_to_peak_mv": 335.89626473923136,
+      "heart_rate_bpm": 73.1707317073172,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 15.0,
+      "end_seconds": 16.998046875,
+      "sample_count": 500,
+      "mean_mv": 836.7478056334044,
+      "peak_to_peak_mv": 356.2630438420989,
+      "heart_rate_bpm": 72.463768115942,
+      "rr_std_ms": 5.656854249492943,
+      "rmssd_ms": 8.000000000000796,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.3149999999999965
+    },
+    {
+      "start_seconds": 16.0,
+      "end_seconds": 17.998046875,
+      "sample_count": 500,
+      "mean_mv": 831.1857004643441,
+      "peak_to_peak_mv": 334.4368546604727,
+      "heart_rate_bpm": 71.77033492822964,
+      "rr_std_ms": 5.6568542494918175,
+      "rmssd_ms": 7.999999999999204,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.31500000000000344
+    },
+    {
+      "start_seconds": 17.0,
+      "end_seconds": 18.998046875,
+      "sample_count": 500,
+      "mean_mv": 838.3051236804596,
+      "peak_to_peak_mv": 333.19861344980677,
+      "heart_rate_bpm": 70.75471698113216,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 18.0,
+      "end_seconds": 19.998046875,
+      "sample_count": 500,
+      "mean_mv": 846.5945604187074,
+      "peak_to_peak_mv": 328.2593058993167,
+      "heart_rate_bpm": 70.42253521126757,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 19.0,
+      "end_seconds": 20.998046875,
+      "sample_count": 500,
+      "mean_mv": 840.5317891910612,
+      "peak_to_peak_mv": 333.9168239332047,
+      "heart_rate_bpm": 69.76744186046517,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 20.0,
+      "end_seconds": 21.998046875,
+      "sample_count": 500,
+      "mean_mv": 829.846172379183,
+      "peak_to_peak_mv": 342.4667795394289,
+      "heart_rate_bpm": 69.12442396313348,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 21.0,
+      "end_seconds": 22.998046875,
+      "sample_count": 500,
+      "mean_mv": 831.456048054408,
+      "peak_to_peak_mv": 350.0197224598925,
+      "heart_rate_bpm": 68.64988558352398,
+      "rr_std_ms": 2.828427124747155,
+      "rmssd_ms": 4.000000000001364,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.332499999999994
+    },
+    {
+      "start_seconds": 22.0,
+      "end_seconds": 23.998046875,
+      "sample_count": 500,
+      "mean_mv": 842.8007443711413,
+      "peak_to_peak_mv": 350.0197224598925,
+      "heart_rate_bpm": 68.18181818181826,
+      "rr_std_ms": 5.656854249489245,
+      "rmssd_ms": 7.999999999995566,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.3150000000000194
+    },
+    {
+      "start_seconds": 23.0,
+      "end_seconds": 24.998046875,
+      "sample_count": 500,
+      "mean_mv": 848.104742518802,
+      "peak_to_peak_mv": 327.58870111385727,
+      "heart_rate_bpm": 68.18181818181799,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 24.0,
+      "end_seconds": 25.998046875,
+      "sample_count": 500,
+      "mean_mv": 840.6377116507148,
+      "peak_to_peak_mv": 344.1255144709353,
+      "heart_rate_bpm": 68.18181818181826,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 25.0,
+      "end_seconds": 26.998046875,
+      "sample_count": 500,
+      "mean_mv": 829.5253020664026,
+      "peak_to_peak_mv": 333.7176305841572,
+      "heart_rate_bpm": 67.87330316742079,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 26.0,
+      "end_seconds": 27.998046875,
+      "sample_count": 500,
+      "mean_mv": 832.5851508730759,
+      "peak_to_peak_mv": 338.85652768115006,
+      "heart_rate_bpm": 68.49315068493141,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 27.0,
+      "end_seconds": 28.998046875,
+      "sample_count": 500,
+      "mean_mv": 842.7457310349854,
+      "peak_to_peak_mv": 336.977815498573,
+      "heart_rate_bpm": 68.18181818181826,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 28.0,
+      "end_seconds": 29.998046875,
+      "sample_count": 500,
+      "mean_mv": 844.3811230429396,
+      "peak_to_peak_mv": 346.0384947568547,
+      "heart_rate_bpm": 69.28406466512705,
+      "rr_std_ms": 2.8284271247445822,
+      "rmssd_ms": 3.9999999999977263,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.3325000000000099
+    },
+    {
+      "start_seconds": 29.0,
+      "end_seconds": 30.998046875,
+      "sample_count": 500,
+      "mean_mv": 834.5358731039743,
+      "peak_to_peak_mv": 346.0384947568547,
+      "heart_rate_bpm": 69.60556844547563,
+      "rr_std_ms": 2.828427124747155,
+      "rmssd_ms": 4.000000000001364,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.332499999999994
+    },
+    {
+      "start_seconds": 30.0,
+      "end_seconds": 31.998046875,
+      "sample_count": 500,
+      "mean_mv": 832.3330965632396,
+      "peak_to_peak_mv": 329.294319399973,
+      "heart_rate_bpm": 70.42253521126757,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 31.0,
+      "end_seconds": 32.998046875,
+      "sample_count": 500,
+      "mean_mv": 841.2964193353251,
+      "peak_to_peak_mv": 344.1005269740539,
+      "heart_rate_bpm": 71.09004739336483,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 32.0,
+      "end_seconds": 33.998046875,
+      "sample_count": 500,
+      "mean_mv": 844.1196348397335,
+      "peak_to_peak_mv": 328.2920967602204,
+      "heart_rate_bpm": 71.77033492822979,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 33.0,
+      "end_seconds": 34.998046875,
+      "sample_count": 500,
+      "mean_mv": 835.9024219604669,
+      "peak_to_peak_mv": 344.2759014450179,
+      "heart_rate_bpm": 72.46376811594178,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 34.0,
+      "end_seconds": 35.998046875,
+      "sample_count": 500,
+      "mean_mv": 830.4335438252816,
+      "peak_to_peak_mv": 338.6523430905231,
+      "heart_rate_bpm": 73.17073170731705,
+      "rr_std_ms": 5.656854249489245,
+      "rmssd_ms": 7.999999999995566,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.3150000000000194
+    },
+    {
+      "start_seconds": 35.0,
+      "end_seconds": 36.998046875,
+      "sample_count": 500,
+      "mean_mv": 838.6189199970049,
+      "peak_to_peak_mv": 344.1444164815264,
+      "heart_rate_bpm": 73.89162561576345,
+      "rr_std_ms": 5.65685424949431,
+      "rmssd_ms": 8.000000000002728,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.31499999999998807
+    },
+    {
+      "start_seconds": 36.0,
+      "end_seconds": 37.998046875,
+      "sample_count": 500,
+      "mean_mv": 845.2216314980773,
+      "peak_to_peak_mv": 334.2168370228251,
+      "heart_rate_bpm": 74.62686567164225,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 37.0,
+      "end_seconds": 38.998046875,
+      "sample_count": 500,
+      "mean_mv": 840.9457033953007,
+      "peak_to_peak_mv": 336.81910103870905,
+      "heart_rate_bpm": 74.6268656716416,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 38.0,
+      "end_seconds": 39.998046875,
+      "sample_count": 500,
+      "mean_mv": 833.6960011206846,
+      "peak_to_peak_mv": 346.5632812345998,
+      "heart_rate_bpm": 75.56675062972288,
+      "rr_std_ms": 2.8284271247445822,
+      "rmssd_ms": 3.9999999999977263,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.3325000000000099
+    },
+    {
+      "start_seconds": 39.0,
+      "end_seconds": 40.998046875,
+      "sample_count": 500,
+      "mean_mv": 833.8185316070054,
+      "peak_to_peak_mv": 337.360823096649,
+      "heart_rate_bpm": 75.75757575757595,
+      "rr_std_ms": 5.656854249494229,
+      "rmssd_ms": 8.000000000002615,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.3149999999999885
+    },
+    {
+      "start_seconds": 40.0,
+      "end_seconds": 41.998046875,
+      "sample_count": 500,
+      "mean_mv": 839.442643752602,
+      "peak_to_peak_mv": 332.5094131752322,
+      "heart_rate_bpm": 75.75757575757561,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 41.0,
+      "end_seconds": 42.998046875,
+      "sample_count": 500,
+      "mean_mv": 844.5002014457459,
+      "peak_to_peak_mv": 344.410515902817,
+      "heart_rate_bpm": 75.94936708860767,
+      "rr_std_ms": 2.8284271247395982,
+      "rmssd_ms": 3.9999999999906777,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.33250000000004076
+    },
+    {
+      "start_seconds": 42.0,
+      "end_seconds": 43.998046875,
+      "sample_count": 500,
+      "mean_mv": 840.8709486582708,
+      "peak_to_peak_mv": 351.2274757616367,
+      "heart_rate_bpm": 75.75757575757594,
+      "rr_std_ms": 4.9841015008457754e-12,
+      "rmssd_ms": 7.048583938740194e-12,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.3499999999999691
+    },
+    {
+      "start_seconds": 43.0,
+      "end_seconds": 44.998046875,
+      "sample_count": 500,
+      "mean_mv": 832.5569084907521,
+      "peak_to_peak_mv": 337.44593063536286,
+      "heart_rate_bpm": 75.75757575757561,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 44.0,
+      "end_seconds": 45.998046875,
+      "sample_count": 500,
+      "mean_mv": 832.6490251953828,
+      "peak_to_peak_mv": 337.0055410208056,
+      "heart_rate_bpm": 75.00000000000027,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 45.0,
+      "end_seconds": 46.998046875,
+      "sample_count": 500,
+      "mean_mv": 842.8600819862371,
+      "peak_to_peak_mv": 334.9071153806341,
+      "heart_rate_bpm": 74.6268656716416,
+      "rr_std_ms": 5.6568542494891645,
+      "rmssd_ms": 7.9999999999954525,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.3150000000000199
+    },
+    {
+      "start_seconds": 46.0,
+      "end_seconds": 47.998046875,
+      "sample_count": 500,
+      "mean_mv": 846.0178812105423,
+      "peak_to_peak_mv": 335.79126211856476,
+      "heart_rate_bpm": 74.0740740740742,
+      "rr_std_ms": 2.8284271247446626,
+      "rmssd_ms": 3.99999999999784,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.33250000000000945
+    },
+    {
+      "start_seconds": 47.0,
+      "end_seconds": 48.998046875,
+      "sample_count": 500,
+      "mean_mv": 836.7611692838523,
+      "peak_to_peak_mv": 338.46075578831676,
+      "heart_rate_bpm": 73.52941176470566,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 48.0,
+      "end_seconds": 49.998046875,
+      "sample_count": 500,
+      "mean_mv": 830.3131747166867,
+      "peak_to_peak_mv": 335.55414325985237,
+      "heart_rate_bpm": 72.8155339805827,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 49.0,
+      "end_seconds": 50.998046875,
+      "sample_count": 500,
+      "mean_mv": 835.6774168709486,
+      "peak_to_peak_mv": 339.21914381250656,
+      "heart_rate_bpm": 71.77033492822979,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 50.0,
+      "end_seconds": 51.998046875,
+      "sample_count": 500,
+      "mean_mv": 846.7055674273507,
+      "peak_to_peak_mv": 335.43183566676635,
+      "heart_rate_bpm": 71.25890736342024,
+      "rr_std_ms": 8.485281374243955,
+      "rmssd_ms": 12.000000000007617,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.2974999999999667
+    },
+    {
+      "start_seconds": 51.0,
+      "end_seconds": 52.998046875,
+      "sample_count": 500,
+      "mean_mv": 842.3306285194653,
+      "peak_to_peak_mv": 348.02704175395445,
+      "heart_rate_bpm": 70.42253521126757,
+      "rr_std_ms": 5.656854249484181,
+      "rmssd_ms": 7.999999999988404,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.3150000000000507
+    },
+    {
+      "start_seconds": 52.0,
+      "end_seconds": 53.998046875,
+      "sample_count": 500,
+      "mean_mv": 832.8081790515924,
+      "peak_to_peak_mv": 326.98697708453767,
+      "heart_rate_bpm": 70.0934579439251,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 53.0,
+      "end_seconds": 54.998046875,
+      "sample_count": 500,
+      "mean_mv": 833.8993259309586,
+      "peak_to_peak_mv": 345.6114247354054,
+      "heart_rate_bpm": 69.12442396313348,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 54.0,
+      "end_seconds": 55.998046875,
+      "sample_count": 500,
+      "mean_mv": 841.5680904724604,
+      "peak_to_peak_mv": 341.021999478898,
+      "heart_rate_bpm": 68.80733944954129,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 55.0,
+      "end_seconds": 56.998046875,
+      "sample_count": 500,
+      "mean_mv": 844.0777091704139,
+      "peak_to_peak_mv": 331.17877662767285,
+      "heart_rate_bpm": 69.12442396313348,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 56.0,
+      "end_seconds": 57.998046875,
+      "sample_count": 500,
+      "mean_mv": 835.8439088272631,
+      "peak_to_peak_mv": 341.7799888692682,
+      "heart_rate_bpm": 70.09345794392539,
+      "rr_std_ms": 5.656854249494229,
+      "rmssd_ms": 8.000000000002615,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.3149999999999885
+    },
+    {
+      "start_seconds": 57.0,
+      "end_seconds": 58.998046875,
+      "sample_count": 500,
+      "mean_mv": 830.4557946244979,
+      "peak_to_peak_mv": 335.4783184397852,
+      "heart_rate_bpm": 70.75471698113216,
+      "rr_std_ms": 5.656854249489325,
+      "rmssd_ms": 7.99999999999568,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.3150000000000189
+    },
+    {
+      "start_seconds": 58.0,
+      "end_seconds": 59.998046875,
+      "sample_count": 500,
+      "mean_mv": 839.419592098618,
+      "peak_to_peak_mv": 328.48580105161716,
+      "heart_rate_bpm": 71.77033492822979,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 59.0,
+      "end_seconds": 60.998046875,
+      "sample_count": 500,
+      "mean_mv": 847.1945965047718,
+      "peak_to_peak_mv": 339.6859410848257,
+      "heart_rate_bpm": 72.8155339805827,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 60.0,
+      "end_seconds": 61.998046875,
+      "sample_count": 500,
+      "mean_mv": 839.2917345513482,
+      "peak_to_peak_mv": 333.27851902570114,
+      "heart_rate_bpm": 73.89162561576312,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.0875
+    },
+    {
+      "start_seconds": 61.0,
+      "end_seconds": 62.998046875,
+      "sample_count": 500,
+      "mean_mv": 830.6239040485706,
+      "peak_to_peak_mv": 343.93962193864945,
+      "heart_rate_bpm": 75.3768844221106,
+      "rr_std_ms": 11.31370849897849,
+      "rmssd_ms": 15.999999999991132,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.2800000000000388
+    },
+    {
+      "start_seconds": 62.0,
+      "end_seconds": 63.998046875,
+      "sample_count": 500,
+      "mean_mv": 834.7118865677943,
+      "peak_to_peak_mv": 345.6606384254792,
+      "heart_rate_bpm": 76.53061224489771,
+      "rr_std_ms": 5.65685424949431,
+      "rmssd_ms": 8.000000000002728,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.31499999999998807
+    },
+    {
+      "start_seconds": 63.0,
+      "end_seconds": 64.998046875,
+      "sample_count": 500,
+      "mean_mv": 842.6792400346613,
+      "peak_to_peak_mv": 336.93266100449773,
+      "heart_rate_bpm": 78.12499999999993,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.08982142857142725
+    },
+    {
+      "start_seconds": 64.0,
+      "end_seconds": 65.998046875,
+      "sample_count": 500,
+      "mean_mv": 844.2719336018017,
+      "peak_to_peak_mv": 336.1274293061733,
+      "heart_rate_bpm": 80.21390374331578,
+      "rr_std_ms": 5.656854249489245,
+      "rmssd_ms": 7.999999999995566,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.3561153552330268
+    },
+    {
+      "start_seconds": 65.0,
+      "end_seconds": 66.998046875,
+      "sample_count": 500,
+      "mean_mv": 839.0935058016895,
+      "peak_to_peak_mv": 339.2582755953755,
+      "heart_rate_bpm": 81.30081300813013,
+      "rr_std_ms": 8.485281374238891,
+      "rmssd_ms": 12.000000000000455,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.35880081300812905
+    },
+    {
+      "start_seconds": 66.0,
+      "end_seconds": 67.998046875,
+      "sample_count": 500,
+      "mean_mv": 829.30738110997,
+      "peak_to_peak_mv": 327.7980284447939,
+      "heart_rate_bpm": 82.87292817679516,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.1779972375690529
+    },
+    {
+      "start_seconds": 67.0,
+      "end_seconds": 68.998046875,
+      "sample_count": 500,
+      "mean_mv": 834.8998762074006,
+      "peak_to_peak_mv": 332.90937135611705,
+      "heart_rate_bpm": 84.98583569405062,
+      "rr_std_ms": 8.485281374238891,
+      "rmssd_ms": 12.000000000000455,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.42723694860379524
+    },
+    {
+      "start_seconds": 68.0,
+      "end_seconds": 69.998046875,
+      "sample_count": 500,
+      "mean_mv": 846.9059177032559,
+      "peak_to_peak_mv": 335.7346818966075,
+      "heart_rate_bpm": 85.95988538681942,
+      "rr_std_ms": 2.8284271247496466,
+      "rmssd_ms": 4.0000000000048885,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.4803264428980536
+    },
+    {
+      "start_seconds": 69.0,
+      "end_seconds": 70.998046875,
+      "sample_count": 500,
+      "mean_mv": 842.9581142138617,
+      "peak_to_peak_mv": 341.5664207400579,
+      "heart_rate_bpm": 88.23529411764709,
+      "rr_std_ms": 5.656854249489245,
+      "rmssd_ms": 7.999999999995566,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.5050840336134652
+    },
+    {
+      "start_seconds": 70.0,
+      "end_seconds": 71.998046875,
+      "sample_count": 500,
+      "mean_mv": 832.514055801178,
+      "peak_to_peak_mv": 338.50016807596523,
+      "heart_rate_bpm": 89.02077151335318,
+      "rr_std_ms": 2.8284271247496466,
+      "rmssd_ms": 4.0000000000048885,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.5371714709622519
+    },
+    {
+      "start_seconds": 71.0,
+      "end_seconds": 72.998046875,
+      "sample_count": 500,
+      "mean_mv": 831.1422450956,
+      "peak_to_peak_mv": 332.0765708753414,
+      "heart_rate_bpm": 91.18541033434633,
+      "rr_std_ms": 2.8284271247395982,
+      "rmssd_ms": 3.9999999999906777,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.5773719062093298
+    },
+    {
+      "start_seconds": 72.0,
+      "end_seconds": 73.998046875,
+      "sample_count": 500,
+      "mean_mv": 841.0000765712641,
+      "peak_to_peak_mv": 329.506843382693,
+      "heart_rate_bpm": 91.74311926605456,
+      "rr_std_ms": 2.8284271247496466,
+      "rmssd_ms": 4.0000000000048885,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.5877293577981348
+    },
+    {
+      "start_seconds": 73.0,
+      "end_seconds": 74.998046875,
+      "sample_count": 500,
+      "mean_mv": 847.6251988834734,
+      "peak_to_peak_mv": 330.3638459868265,
+      "heart_rate_bpm": 93.16770186335427,
+      "rr_std_ms": 5.656854249489245,
+      "rmssd_ms": 7.999999999995566,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.5966858917480272
+    },
+    {
+      "start_seconds": 74.0,
+      "end_seconds": 75.998046875,
+      "sample_count": 500,
+      "mean_mv": 837.4798319054003,
+      "peak_to_peak_mv": 336.48843906285333,
+      "heart_rate_bpm": 93.74999999999991,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.37999999999999845
+    },
+    {
+      "start_seconds": 75.0,
+      "end_seconds": 76.998046875,
+      "sample_count": 500,
+      "mean_mv": 830.421278889364,
+      "peak_to_peak_mv": 333.1853070954123,
+      "heart_rate_bpm": 94.0438871473357,
+      "rr_std_ms": 2.8284271247496466,
+      "rmssd_ms": 4.0000000000048885,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.6304579041647844
+    },
+    {
+      "start_seconds": 76.0,
+      "end_seconds": 77.998046875,
+      "sample_count": 500,
+      "mean_mv": 835.9857764420057,
+      "peak_to_peak_mv": 354.77174221730365,
+      "heart_rate_bpm": 93.74999999999991,
+      "rr_std_ms": 4.0000000000048885,
+      "rmssd_ms": 4.0000000000048885,
+      "peak_count": 4,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.624999999999977
+    },
+    {
+      "start_seconds": 77.0,
+      "end_seconds": 78.998046875,
+      "sample_count": 500,
+      "mean_mv": 844.6289905038805,
+      "peak_to_peak_mv": 337.9653308956009,
+      "heart_rate_bpm": 93.16770186335427,
+      "rr_std_ms": 1.0048913285366984e-11,
+      "rmssd_ms": 1.4210854715202004e-11,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.6316858917479456
+    },
+    {
+      "start_seconds": 78.0,
+      "end_seconds": 79.998046875,
+      "sample_count": 500,
+      "mean_mv": 843.5609560457683,
+      "peak_to_peak_mv": 344.48946577260415,
+      "heart_rate_bpm": 92.87925696594415,
+      "rr_std_ms": 2.8284271247395982,
+      "rmssd_ms": 3.9999999999906777,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.6088290579390037
+    },
+    {
+      "start_seconds": 79.0,
+      "end_seconds": 80.998046875,
+      "sample_count": 500,
+      "mean_mv": 832.6417011461461,
+      "peak_to_peak_mv": 361.4349654907161,
+      "heart_rate_bpm": 92.3076923076925,
+      "rr_std_ms": 2.8284271247496466,
+      "rmssd_ms": 4.0000000000048885,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.598214285714268
+    },
+    {
+      "start_seconds": 80.0,
+      "end_seconds": 81.998046875,
+      "sample_count": 500,
+      "mean_mv": 830.8278895033295,
+      "peak_to_peak_mv": 350.58016775061753,
+      "heart_rate_bpm": 91.4634146341465,
+      "rr_std_ms": 5.656854249489245,
+      "rmssd_ms": 7.999999999995566,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.5650348432055973
+    },
+    {
+      "start_seconds": 81.0,
+      "end_seconds": 82.998046875,
+      "sample_count": 500,
+      "mean_mv": 840.0937360528452,
+      "peak_to_peak_mv": 345.8147944990385,
+      "heart_rate_bpm": 90.90909090909041,
+      "rr_std_ms": 1.0048913285366984e-11,
+      "rmssd_ms": 1.4210854715202004e-11,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.5897402597401883
+    },
+    {
+      "start_seconds": 82.0,
+      "end_seconds": 83.998046875,
+      "sample_count": 500,
+      "mean_mv": 846.9073644032578,
+      "peak_to_peak_mv": 326.3687777279779,
+      "heart_rate_bpm": 90.09009009009053,
+      "rr_std_ms": 2.8284271247596955,
+      "rmssd_ms": 4.000000000019099,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.5570302445301691
+    },
+    {
+      "start_seconds": 83.0,
+      "end_seconds": 84.998046875,
+      "sample_count": 500,
+      "mean_mv": 839.8186561109402,
+      "peak_to_peak_mv": 331.29076047667866,
+      "heart_rate_bpm": 89.55223880596992,
+      "rr_std_ms": 2.8284271247395982,
+      "rmssd_ms": 3.9999999999906777,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.5470415778251965
+    },
+    {
+      "start_seconds": 84.0,
+      "end_seconds": 85.998046875,
+      "sample_count": 500,
+      "mean_mv": 830.5419334222892,
+      "peak_to_peak_mv": 328.3244544402985,
+      "heart_rate_bpm": 88.75739644970389,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.2872802197802151
+    },
+    {
+      "start_seconds": 85.0,
+      "end_seconds": 86.998046875,
+      "sample_count": 500,
+      "mean_mv": 834.7870529919293,
+      "peak_to_peak_mv": 338.22271262363574,
+      "heart_rate_bpm": 88.23529411764709,
+      "rr_std_ms": 5.656854249489245,
+      "rmssd_ms": 7.999999999995566,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.5050840336134652
+    },
+    {
+      "start_seconds": 86.0,
+      "end_seconds": 87.998046875,
+      "sample_count": 500,
+      "mean_mv": 844.779741543722,
+      "peak_to_peak_mv": 327.3382812771621,
+      "heart_rate_bpm": 87.20930232558109,
+      "rr_std_ms": 5.656854249499293,
+      "rmssd_ms": 8.000000000009777,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.4860299003321775
+    },
+    {
+      "start_seconds": 87.0,
+      "end_seconds": 88.998046875,
+      "sample_count": 500,
+      "mean_mv": 845.475296233739,
+      "peak_to_peak_mv": 331.6528279557547,
+      "heart_rate_bpm": 86.95652173912983,
+      "rr_std_ms": 2.8284271247496466,
+      "rmssd_ms": 4.0000000000048885,
+      "peak_count": 3,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.49883540372667534
+    },
+    {
+      "start_seconds": 88.0,
+      "end_seconds": 89.998046875,
+      "sample_count": 500,
+      "mean_mv": 833.1282024596528,
+      "peak_to_peak_mv": 323.02262727773484,
+      "heart_rate_bpm": 86.2068965517244,
+      "rr_std_ms": 0.0,
+      "rmssd_ms": 0.0,
+      "peak_count": 2,
+      "lead_off_fraction": 0.0,
+      "signal_quality": 1.0,
+      "autonomic_stress": 0.23991379310345312
+    }
+  ],
+  "teacher_predictions": [
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4120858187601712,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.51, lstm_temporal_teacher:0.27, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.42]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.39426100765365446,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.45, lstm_temporal_teacher:0.28, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.40]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.40556165903745234,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.49, lstm_temporal_teacher:0.29, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.40]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4008081526243005,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.46, lstm_temporal_teacher:0.30, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.38221555218319403,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.39, lstm_temporal_teacher:0.30, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4040878681154979,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.46, lstm_temporal_teacher:0.31, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.41]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.3902668894750255,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.42, lstm_temporal_teacher:0.31, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.39334514821949224,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.42, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.40736074670215056,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.39, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.46, gnn_connectivity_teacher:0.47]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.41538641292103073,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.44, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.46, gnn_connectivity_teacher:0.44]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4053818070626147,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.45, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.40]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.3987026213489733,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.43, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.40]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4164098213849113,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.48, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.41]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.39125754998679746,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.40, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4155067536494719,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.49, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.40]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.43127129151117516,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.54, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.42]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.39636776225784637,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.44, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4231359530989488,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.51, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.42]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.45809775059963087,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.52, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.54]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.42633967768075676,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.43, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.46, gnn_connectivity_teacher:0.49]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.39500094065396735,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.40, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.40]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.40207173978824945,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.44, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.40]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4167879552375379,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.50, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.41]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4004133851258582,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.45, lstm_temporal_teacher:0.33, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4101165924878266,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.46, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.40]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.41880058485683,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.48, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.42]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.38082389755003576,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.38, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.38]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.38851428711045055,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.40, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.42338077575185107,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.44, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.46, gnn_connectivity_teacher:0.47]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4064643101974119,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.41, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.46, gnn_connectivity_teacher:0.44]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.394064659934171,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.41, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.3987849661625552,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.43, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.40187907618108376,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.42, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.46, gnn_connectivity_teacher:0.41]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.3863153787050626,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.38, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.40738507123217665,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.47, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.40]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.38879296149873493,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.40, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.40215321098322626,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.46, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4115854154718952,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.48, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.41]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.46227657346502976,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.54, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.54]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.43497052092551725,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.46, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.46, gnn_connectivity_teacher:0.50]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4000024680972043,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.42, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.41]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.3810462385522182,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.37, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.412356138325613,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.48, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.41]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4044406716478468,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.47, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.38]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4028495590506957,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.45, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4026813673135562,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.43, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.41]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4195302899825962,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.51, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.40]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.41353337296429793,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.48, lstm_temporal_teacher:0.33, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.40]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.41210710851909227,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.40, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.47]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.40833422697147326,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.42, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.44]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.3882820584254619,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.40, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.44, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4068313344594802,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.46, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.40]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4147024591196526,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.47, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.46, gnn_connectivity_teacher:0.41]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.38598898528334086,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.39, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.3917426171375376,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.41, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.3918081819551844,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.40, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.433396867914419,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.56, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.45, gnn_connectivity_teacher:0.40]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.5022990479602566,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.73, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.49, gnn_connectivity_teacher:0.46]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.5429955242990614,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.76, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.53, gnn_connectivity_teacher:0.57]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.5335675915497106,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.74, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.53, gnn_connectivity_teacher:0.53]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.4573124882211179,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.56, lstm_temporal_teacher:0.32, transformer_attention_teacher:0.55, gnn_connectivity_teacher:0.40]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.5004479862738441,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.70, lstm_temporal_teacher:0.33, transformer_attention_teacher:0.58, gnn_connectivity_teacher:0.41]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.5305733161156649,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.75, lstm_temporal_teacher:0.33, transformer_attention_teacher:0.61, gnn_connectivity_teacher:0.43]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.5350856113369813,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.74, lstm_temporal_teacher:0.33, transformer_attention_teacher:0.65, gnn_connectivity_teacher:0.42]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.5364495484114684,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.75, lstm_temporal_teacher:0.34, transformer_attention_teacher:0.65, gnn_connectivity_teacher:0.40]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.5411470758227068,
+      "predicted_preictal": false,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.75, lstm_temporal_teacher:0.34, transformer_attention_teacher:0.67, gnn_connectivity_teacher:0.40]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.5535455914854096,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.75, lstm_temporal_teacher:0.35, transformer_attention_teacher:0.71, gnn_connectivity_teacher:0.41]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.5601133108331432,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.75, lstm_temporal_teacher:0.35, transformer_attention_teacher:0.74, gnn_connectivity_teacher:0.40]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.5780016861913359,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.77, lstm_temporal_teacher:0.36, transformer_attention_teacher:0.75, gnn_connectivity_teacher:0.43]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.5756970217157545,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.75, lstm_temporal_teacher:0.37, transformer_attention_teacher:0.77, gnn_connectivity_teacher:0.42]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.5778850151390544,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.76, lstm_temporal_teacher:0.38, transformer_attention_teacher:0.78, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.5799432627465914,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.76, lstm_temporal_teacher:0.38, transformer_attention_teacher:0.79, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.5870856312870767,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.77, lstm_temporal_teacher:0.39, transformer_attention_teacher:0.80, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.5912317598135374,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.77, lstm_temporal_teacher:0.40, transformer_attention_teacher:0.81, gnn_connectivity_teacher:0.38]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.5968429726448099,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.77, lstm_temporal_teacher:0.41, transformer_attention_teacher:0.82, gnn_connectivity_teacher:0.39]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.5969436518766811,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.75, lstm_temporal_teacher:0.42, transformer_attention_teacher:0.80, gnn_connectivity_teacher:0.41]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.6156403459042354,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.76, lstm_temporal_teacher:0.44, transformer_attention_teacher:0.76, gnn_connectivity_teacher:0.50]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.6312355097457838,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.74, lstm_temporal_teacher:0.48, transformer_attention_teacher:0.71, gnn_connectivity_teacher:0.60]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.6455368187773256,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.74, lstm_temporal_teacher:0.52, transformer_attention_teacher:0.65, gnn_connectivity_teacher:0.67]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.6521928713335898,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.74, lstm_temporal_teacher:0.56, transformer_attention_teacher:0.63, gnn_connectivity_teacher:0.68]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.6607462160458037,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.77, lstm_temporal_teacher:0.59, transformer_attention_teacher:0.62, gnn_connectivity_teacher:0.66]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.660398080748481,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.76, lstm_temporal_teacher:0.61, transformer_attention_teacher:0.62, gnn_connectivity_teacher:0.65]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.6637126792136891,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.76, lstm_temporal_teacher:0.62, transformer_attention_teacher:0.62, gnn_connectivity_teacher:0.65]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.6694929933903335,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.77, lstm_temporal_teacher:0.63, transformer_attention_teacher:0.63, gnn_connectivity_teacher:0.65]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.6671186291727931,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.75, lstm_temporal_teacher:0.64, transformer_attention_teacher:0.63, gnn_connectivity_teacher:0.65]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.6698116391493375,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.75, lstm_temporal_teacher:0.64, transformer_attention_teacher:0.63, gnn_connectivity_teacher:0.65]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.6711092826039398,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.76, lstm_temporal_teacher:0.65, transformer_attention_teacher:0.63, gnn_connectivity_teacher:0.65]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.6754157783712499,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.77, lstm_temporal_teacher:0.65, transformer_attention_teacher:0.63, gnn_connectivity_teacher:0.65]"
+    },
+    {
+      "model": "teacher_ensemble",
+      "probability": 0.6749786442440615,
+      "predicted_preictal": true,
+      "rationale": "ensemble blend [cnn_spectrogram_teacher:0.77, lstm_temporal_teacher:0.65, transformer_attention_teacher:0.63, gnn_connectivity_teacher:0.65]"
+    }
+  ],
+  "student_predictions": [
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4627468639174189,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45612964733331873,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4589180523935253,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45798901859028907,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4526963830809042,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4575074609351943,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45500890587944254,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45554836538602417,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45257562908431254,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4569225028752575,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4596653939116832,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45897491306325905,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.46069339540116916,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4547549857682132,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.46272016854863973,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4650490890393578,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45662044966747073,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.46373508645974987,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4640084078653778,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45794918118912975,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4530660095118807,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45651509292043946,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4618678268118475,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45700625055964683,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45954183962981665,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.46125920536316634,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45054419750215724,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4530595386892272,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.456971774010015,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4558089580541107,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45578812552593956,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.456152543457435,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45683353715348696,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4543251894311343,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.46064411765586444,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45422728560315134,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45806961225140086,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4587747078424384,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4652559778237426,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4606644773289879,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4551314953718641,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45149840165562166,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.46143922628672474,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45832376988627466,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.455839978103832,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45589899182625704,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.46087502112190876,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.460290658542109,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.454424668282868,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4567198894223755,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45483891504749746,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.458512860625981,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45892625096134504,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4530179806761555,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4546270133607257,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.45439037813930183,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4673901786041612,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4954107260112482,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5088434750843559,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4941408773443547,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4714878008209773,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.4854401602824104,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5120594741349297,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5141709215104634,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.49991464666266744,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.49870285594716424,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5038697183250476,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5202015237948399,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5226522439467403,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5244241725245129,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.526197514257816,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5284543969375165,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5308986494675972,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5334677503809357,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5357321703350941,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5397312589935414,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5476872323615973,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5611469570818118,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5675636079518224,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5673197059579631,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5672066440732241,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5672729324790853,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5673178671426122,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5672870204744653,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5673160403338258,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5673095068860797,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5673825845722439,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5673489862090748,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    },
+    {
+      "model": "distilled_edge_student",
+      "probability": 0.5673380341405506,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model"
+    }
+  ],
+  "fused_predictions": [
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4865468639174189,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.024, hr=72.6 bpm, rmssd=12.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.46312964733331874,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=73.5 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4659180523935253,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=73.9 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.48458901859028936,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.027, hr=74.8 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4792963830809037,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.027, hr=75.2 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4645074609351943,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=75.8 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.46200890587944254,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=75.8 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.48214836538602435,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.027, hr=75.9 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.45957562908431254,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=75.8 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4639225028752575,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=76.1 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4666653939116832,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=75.4 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4841749130632587,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.025, hr=75.0 bpm, rmssd=8.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.46769339540116917,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=74.6 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4617549857682132,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=73.9 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.46972016854863974,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=73.2 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.49024908903935754,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.025, hr=72.5 bpm, rmssd=8.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.481820449667471,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.025, hr=71.8 bpm, rmssd=8.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4707350864597499,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=70.8 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4710084078653778,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=70.4 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.46494918118912976,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=69.8 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4600660095118807,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=69.1 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.48311509292043897,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.027, hr=68.6 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.48706782681184907,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.025, hr=68.2 bpm, rmssd=8.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.46400625055964684,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=68.2 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.46654183962981666,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=68.2 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.46825920536316634,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=67.9 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.45754419750215725,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=68.5 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4600595386892272,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=68.2 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4835717740100158,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.027, hr=69.3 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4824089580541102,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.027, hr=69.6 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.46278812552593956,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=70.4 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.463152543457435,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=71.1 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.46383353715348696,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=71.8 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4613251894311343,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=72.5 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.485844117655866,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.025, hr=73.2 bpm, rmssd=8.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4794272856031504,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.025, hr=73.9 bpm, rmssd=8.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.46506961225140087,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=74.6 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4657747078424384,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=74.6 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4918559778237434,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.027, hr=75.6 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.48586447732898697,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.025, hr=75.8 bpm, rmssd=8.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4621314953718641,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=75.8 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4780984016556249,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.027, hr=75.9 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.48943922628672226,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.028, hr=75.8 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.46532376988627466,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=75.8 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.462839978103832,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=75.0 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.48109899182625865,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.025, hr=74.6 bpm, rmssd=8.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4874750211219095,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.027, hr=74.1 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.467290658542109,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=73.5 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.461424668282868,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=72.8 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4637198894223755,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=71.8 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4786389150474948,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.024, hr=71.3 bpm, rmssd=12.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.48371286062598506,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.025, hr=70.4 bpm, rmssd=8.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.46592625096134505,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=70.1 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4600179806761555,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=69.1 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4616270133607257,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=68.8 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.46139037813930184,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=69.1 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.49259017860416027,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.025, hr=70.1 bpm, rmssd=8.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.5206107260112497,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.025, hr=70.8 bpm, rmssd=8.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.5158434750843559,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=71.8 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.5011408773443546,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=72.8 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.4784878008209773,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=73.9 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.5078401602824135,
+      "predicted_preictal": false,
+      "rationale": "distilled logistic edge model; EKG context boost=0.022, hr=75.4 bpm, rmssd=16.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.5372594741349287,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.025, hr=76.5 bpm, rmssd=8.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.5213566357961775,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.007, hr=78.1 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.5284038750813096,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.028, hr=80.2 bpm, rmssd=8.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.5274069209878146,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.029, hr=81.3 bpm, rmssd=12.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.5181094973305718,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.014, hr=82.9 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.5543804796831435,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.034, hr=85.0 bpm, rmssd=12.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.5610783593785845,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.038, hr=86.0 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.5648308952135901,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.040, hr=88.2 bpm, rmssd=8.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.5691712319347961,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.043, hr=89.0 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.5746441494342629,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.046, hr=91.2 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.577916998091448,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.047, hr=91.7 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.581202621720778,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.048, hr=93.2 bpm, rmssd=8.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.566132170335094,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.030, hr=93.7 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.5901678913267241,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.050, hr=94.0 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.5976872323615955,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.050, hr=93.7 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.6116818284216475,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.051, hr=93.2 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.6162699325869426,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.049, hr=92.9 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.6151768488151046,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.048, hr=92.3 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.6124094315296719,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.045, hr=91.5 bpm, rmssd=8.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.6144521532583004,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.047, hr=90.9 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.6118802867050258,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.045, hr=90.1 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.6110503467004811,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.044, hr=89.6 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.590298457916243,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.023, hr=88.8 bpm, rmssd=0.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.6077162295751569,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.040, hr=88.2 bpm, rmssd=8.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.6062649765988181,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.039, hr=87.2 bpm, rmssd=8.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.6072558185072089,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.040, hr=87.0 bpm, rmssd=4.0 ms, quality=1.00"
+    },
+    {
+      "model": "student_plus_beaglebone_ekg_context",
+      "probability": 0.5865311375888269,
+      "predicted_preictal": true,
+      "rationale": "distilled logistic edge model; EKG context boost=0.019, hr=86.2 bpm, rmssd=0.0 ms, quality=1.00"
+    }
+  ],
+  "fused_metrics": {
+    "true_positive": 29,
+    "false_positive": 0,
+    "true_negative": 54,
+    "false_negative": 6,
+    "sensitivity": 0.8285714285714286,
+    "specificity": 1.0,
+    "precision": 1.0,
+    "false_predictions_per_hour": 0.0,
+    "first_alert_seconds": 57.0,
+    "lead_time_seconds": 18.0,
+    "mean_positive_probability": 0.5600076140189081,
+    "mean_negative_probability": 0.4719468199134527
+  }
+}

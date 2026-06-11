@@ -8,8 +8,10 @@ from pathlib import Path
 from .config import SimulationConfig
 from .distillation import DistillationReport, StudentLogisticModel, distill_student
 from .edge_budget import EdgeBudget, estimate_student_budget, estimate_teacher_budget
+from .ekg import EkgFeatureWindow, EkgSample, SyntheticEkgGenerator, extract_ekg_feature_windows
 from .evaluation import EvaluationMetrics, evaluate_predictions
 from .features import FeatureExtractor, WindowFeatures, feature_names
+from .fusion import fuse_student_with_ekg
 from .models import Prediction, TeacherEnsemble
 from .preprocessing import preprocess_samples, window_samples
 from .safety import SafetyCase, build_safety_case
@@ -28,8 +30,11 @@ class DemoResult:
     student_budget: EdgeBudget
     safety_case: SafetyCase
     feature_rows: list[WindowFeatures]
+    ekg_feature_rows: list[EkgFeatureWindow]
     teacher_predictions: list[Prediction]
     student_predictions: list[Prediction]
+    fused_predictions: list[Prediction]
+    fused_metrics: EvaluationMetrics | None
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -42,12 +47,20 @@ class DemoResult:
             "teacher_budget": self.teacher_budget.to_dict(),
             "student_budget": self.student_budget.to_dict(),
             "safety_case": self.safety_case.to_dict(),
+            "ekg_feature_rows": [row.to_dict() for row in self.ekg_feature_rows],
             "teacher_predictions": [asdict(prediction) for prediction in self.teacher_predictions],
             "student_predictions": [asdict(prediction) for prediction in self.student_predictions],
+            "fused_predictions": [asdict(prediction) for prediction in self.fused_predictions],
+            "fused_metrics": self.fused_metrics.to_dict() if self.fused_metrics is not None else None,
         }
 
 
-def run_demo(config: SimulationConfig | None = None, output_dir: Path | None = None) -> DemoResult:
+def run_demo(
+    config: SimulationConfig | None = None,
+    output_dir: Path | None = None,
+    ekg_samples: list[EkgSample] | None = None,
+    include_synthetic_ekg: bool = True,
+) -> DemoResult:
     config = config or SimulationConfig()
     generator = SyntheticNeuralSignalGenerator(config)
     raw_samples = generator.generate()
@@ -70,6 +83,33 @@ def run_demo(config: SimulationConfig | None = None, output_dir: Path | None = N
 
     student, distillation = distill_student(feature_rows, teacher_probabilities)
     student_predictions = [student.predict(row) for row in feature_rows]
+    ekg_feature_rows: list[EkgFeatureWindow] = []
+    fused_predictions: list[Prediction] = []
+    fused_metrics: EvaluationMetrics | None = None
+
+    if include_synthetic_ekg or ekg_samples is not None:
+        if ekg_samples is None:
+            ekg_samples = SyntheticEkgGenerator(
+                duration_seconds=config.duration_seconds,
+                preictal_start_seconds=config.preictal_start_seconds,
+                ictal_start_seconds=config.ictal_start_seconds,
+                seed=config.seed,
+            ).generate()
+        ekg_feature_rows = extract_ekg_feature_windows(
+            ekg_samples,
+            [(row.start_seconds, row.end_seconds) for row in feature_rows],
+        )
+        fused_predictions = fuse_student_with_ekg(
+            student_predictions,
+            ekg_feature_rows,
+            threshold=distillation.decision_threshold,
+        )
+        fused_metrics = evaluate_predictions(
+            feature_rows,
+            fused_predictions,
+            ictal_start_seconds=config.ictal_start_seconds,
+            duration_seconds=config.duration_seconds,
+        )
 
     teacher_metrics = evaluate_predictions(
         feature_rows,
@@ -110,8 +150,11 @@ def run_demo(config: SimulationConfig | None = None, output_dir: Path | None = N
         student_budget=student_budget,
         safety_case=safety_case,
         feature_rows=feature_rows,
+        ekg_feature_rows=ekg_feature_rows,
         teacher_predictions=teacher_predictions,
         student_predictions=student_predictions,
+        fused_predictions=fused_predictions,
+        fused_metrics=fused_metrics,
     )
 
     if output_dir is not None:
@@ -124,6 +167,7 @@ def _write_outputs(output_dir: Path, result: DemoResult) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     report_path = output_dir / "demo-report.json"
     feature_path = output_dir / "window-features.csv"
+    ekg_path = output_dir / "bbb-ekg-features.csv"
     report_path.write_text(json.dumps(result.to_dict(), indent=2), encoding="utf-8")
 
     if result.feature_rows:
@@ -133,3 +177,9 @@ def _write_outputs(output_dir: Path, result: DemoResult) -> None:
             writer.writeheader()
             writer.writerows(rows)
 
+    if result.ekg_feature_rows:
+        rows = [row.to_dict() for row in result.ekg_feature_rows]
+        with ekg_path.open("w", newline="", encoding="utf-8") as handle:
+            writer = csv.DictWriter(handle, fieldnames=list(rows[0].keys()))
+            writer.writeheader()
+            writer.writerows(rows)

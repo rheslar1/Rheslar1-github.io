@@ -2401,12 +2401,11 @@ section h2 {
 .eco-building-list,
 .eco-building-system-grid,
 .eco-room-summary-grid,
+.eco-schedule-policy-grid,
 .eco-zone-list,
 .eco-floor-grid,
 .eco-equipment-grid,
 .eco-distribution-list,
-.eco-project-list,
-.eco-embedded-project-list,
 .eco-alarm-list {
   display: grid;
   gap: 10px;
@@ -2677,9 +2676,7 @@ section h2 {
 
 .eco-alarm strong,
 .eco-equipment-grid strong,
-.eco-distribution-list strong,
-.eco-project-list strong,
-.eco-embedded-project-list strong {
+.eco-distribution-list strong {
   display: block;
   color: var(--eco-ink);
 }
@@ -2892,6 +2889,10 @@ section h2 {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
+.eco-schedule-policy-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .eco-schedule-path {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2901,6 +2902,7 @@ section h2 {
 
 .eco-building-list section,
 .eco-room-summary-grid section,
+.eco-schedule-policy-grid section,
 .eco-schedule-path section,
 .eco-zone-list section,
 .eco-floor-grid section {
@@ -2916,6 +2918,8 @@ section h2 {
 .eco-schedule-path small,
 .eco-room-summary-grid span,
 .eco-room-summary-grid small,
+.eco-schedule-policy-grid span,
+.eco-schedule-policy-grid small,
 .eco-zone-list span,
 .eco-zone-list small,
 .eco-floor-grid span,
@@ -2928,6 +2932,7 @@ section h2 {
 .eco-building-list strong,
 .eco-schedule-path strong,
 .eco-room-summary-grid strong,
+.eco-schedule-policy-grid strong,
 .eco-zone-list strong,
 .eco-floor-grid strong,
 .eco-schedule-table strong {
@@ -2943,6 +2948,10 @@ section h2 {
 
 .eco-room-summary-grid section {
   border-top: 4px solid var(--eco-green);
+}
+
+.eco-schedule-policy-grid section {
+  border-left: 5px solid var(--eco-green);
 }
 
 .eco-schedule-path section {
@@ -2968,9 +2977,25 @@ section h2 {
   line-height: 1.2;
 }
 
+.eco-schedule-policy-grid strong {
+  display: block;
+  margin-top: 7px;
+  color: var(--eco-ink);
+  font-size: 0.98rem;
+  line-height: 1.25;
+}
+
 .eco-room-summary-grid small {
   display: block;
   margin-top: 6px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.eco-schedule-policy-grid small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
   font-weight: 800;
   line-height: 1.4;
 }
@@ -3049,9 +3074,9 @@ section h2 {
 }
 
 .eco-schedule-table [role='row'] {
-  min-width: 980px;
+  min-width: 1520px;
   display: grid;
-  grid-template-columns: minmax(170px, 1.15fr) minmax(130px, 1fr) minmax(120px, 0.85fr) minmax(150px, 1.1fr) minmax(115px, 0.8fr) minmax(130px, 0.9fr) minmax(100px, 0.75fr);
+  grid-template-columns: minmax(170px, 1.1fr) minmax(130px, 0.9fr) minmax(110px, 0.75fr) minmax(150px, 1fr) minmax(115px, 0.75fr) minmax(130px, 0.85fr) minmax(95px, 0.65fr) minmax(150px, 1fr) minmax(160px, 1fr) minmax(130px, 0.85fr) minmax(210px, 1.35fr);
   gap: 0;
   border-bottom: 1px solid var(--eco-line);
 }
@@ -3082,9 +3107,7 @@ section h2 {
 }
 
 .eco-equipment-grid section,
-.eco-distribution-list section,
-.eco-project-list button,
-.eco-embedded-project-list button {
+.eco-distribution-list section {
   min-width: 0;
   padding: 13px;
   border: 1px solid var(--eco-line);
@@ -3105,13 +3128,22 @@ section h2 {
   font-size: 1.35rem;
 }
 
-.eco-equipment-grid small,
-.eco-project-list span,
-.eco-embedded-project-list span {
+.eco-equipment-grid small {
   display: block;
   margin-top: 6px;
   color: var(--muted);
   font-weight: 800;
+}
+
+.eco-equipment-grid em,
+.eco-building-system-grid em {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1.35;
 }
 
 .eco-distribution-list section {
@@ -3128,45 +3160,6 @@ section h2 {
 .eco-distribution-list span {
   color: var(--muted);
   font-weight: 900;
-}
-
-.eco-embedded-project-list {
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 8px;
-  max-height: 372px;
-  overflow: auto;
-  padding-right: 4px;
-}
-
-.eco-embedded-project-list button {
-  padding: 10px;
-}
-
-.eco-embedded-project-list strong {
-  font-size: 0.92rem;
-  line-height: 1.2;
-}
-
-.eco-embedded-project-list span {
-  font-size: 0.76rem;
-  line-height: 1.3;
-}
-
-.eco-project-list button,
-.eco-embedded-project-list button {
-  cursor: pointer;
-  font: inherit;
-  text-align: left;
-  transition: border-color 160ms ease, transform 160ms ease;
-}
-
-.eco-project-list button:hover,
-.eco-project-list button:focus-visible,
-.eco-embedded-project-list button:hover,
-.eco-embedded-project-list button:focus-visible {
-  border-color: var(--eco-green);
-  transform: translateY(-1px);
-  outline: none;
 }
 
 .detail-layout {

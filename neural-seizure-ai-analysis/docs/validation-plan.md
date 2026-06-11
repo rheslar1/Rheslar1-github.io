@@ -14,6 +14,10 @@ Current tests cover:
 - Synthetic generator emits interictal, preictal, and ictal labels.
 - Feature extractor exposes paper-backed biomarkers.
 - End-to-end demo runs teacher, student, edge budget, and safety case.
+- BeagleBone IIO ADC raw-count conversion to millivolts.
+- Synthetic EKG feature extraction and autonomic context.
+- Public dataset manifest provenance guard.
+- Plot, C export, and timing evidence generation.
 
 ## Artifact Validation
 
@@ -21,13 +25,23 @@ Run:
 
 ```bash
 PYTHONPATH=neural-seizure-ai-analysis/src \
-python3 -m neural_seizure_ai.cli --sensor ecog --output-dir neural-seizure-ai-analysis/artifacts
+python3 -m neural_seizure_ai.cli \
+  --sensor ecog \
+  --output-dir neural-seizure-ai-analysis/docs/evidence \
+  --write-plots \
+  --export-c \
+  --write-hil-report
 ```
 
 Inspect:
 
 - `demo-report.json`
 - `window-features.csv`
+- `bbb-ekg-features.csv`
+- `synthetic-neural-ekg-traces.svg/png`
+- `feature-trajectories.svg/png`
+- `distilled_student.c/.h`
+- `hil-timing-report.json/.md`
 
 ## Future Engineering Validation
 
@@ -50,4 +64,3 @@ This project cannot claim clinical performance until it is validated against app
 - False predictions per hour across long recordings.
 - Calibration curves and confidence thresholds.
 - Prospective validation before any intervention workflow.
-

@@ -1,0 +1,13 @@
+{
+  "target_label": "host-python-reference",
+  "platform": "Linux 6.17.0-35-generic x86_64",
+  "iterations": 200,
+  "windows": 89,
+  "total_seconds": 0.055317409000053885,
+  "average_inference_us": 3.1077196067446007,
+  "max_window_latency_us": 26.283999886800302,
+  "notes": [
+    "Python host timing is evidence for software path repeatability, not a substitute for target profiling.",
+    "Run this same benchmark on BeagleBone or MCU-adjacent Linux to collect hardware-in-the-loop timing."
+  ]
+}

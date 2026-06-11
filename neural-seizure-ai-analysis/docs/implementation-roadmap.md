@@ -12,13 +12,17 @@
 - Edge inference budget estimator.
 - Safety case generator.
 - CLI and unit tests.
+- BeagleBone IIO ADC EKG capture adapter.
+- Synthetic EKG generator and EKG feature extraction.
+- Bounded EKG context fusion.
+- Plot evidence and PNG screenshots.
+- Public dataset adapter with strict provenance validation.
+- C export for the distilled student.
+- Host/target timing evidence generator.
 
 ## Next
 
-- Add a notebook that visualizes sample traces and feature curves.
-- Add generated plots for HFO ratio, PAC proxy, and connectivity over time.
 - Add schema validation for JSON/CSV artifacts.
 - Add optional NumPy acceleration while preserving pure-Python fallback.
-- Add public-dataset adapter behind a strict consent and provenance boundary.
-- Add ONNX or C export path for the distilled student.
-
+- Add fixed-point or quantized student inference tests.
+- Run timing evidence on real BeagleBone hardware and commit the target report.

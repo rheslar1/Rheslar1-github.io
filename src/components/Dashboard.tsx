@@ -1,9 +1,5 @@
 import React from 'react';
-import type { DashboardView, Project, ProjectSelectHandler } from '../types';
-
-function uniqueItems(projects: Project[], key: 'dependencies' | 'tags'): string[] {
-  return Array.from(new Set(projects.flatMap((project) => project[key] || [])));
-}
+import type { DashboardView } from '../types';
 
 const operationNav = ['Overview', 'Alarms', 'Building', 'Zones', 'Floors', 'Rooms', 'Schedules', 'Energy', 'HVAC', 'Lighting'] as const;
 
@@ -108,10 +104,54 @@ const alarmEvents = [
 ];
 
 const equipmentSystems = [
-  { name: 'AHU-01', value: '92%', label: 'Supply fan', state: 'Normal' },
-  { name: 'Chiller Loop', value: '68 F', label: 'Return water', state: 'Normal' },
-  { name: 'VAV Network', value: '1 fault', label: 'Dampers', state: 'Review' },
-  { name: 'Lighting Bus', value: '97%', label: 'Online nodes', state: 'Normal' }
+  {
+    name: 'AHU-01 Supply Fan',
+    value: '92%',
+    label: 'VFD command',
+    state: 'Normal',
+    feedback: 'Fan proof on | 1.4 in. w.c.',
+    action: 'Hold static reset curve'
+  },
+  {
+    name: 'VAV Damper Network',
+    value: '74% avg',
+    label: 'Damper position',
+    state: 'Review',
+    feedback: '1 stuck-open branch | 18 dampers online',
+    action: 'Inspect Floor 1 conference VAV'
+  },
+  {
+    name: 'Supply Fan Motor',
+    value: '6.8 A',
+    label: 'Motor current',
+    state: 'Normal',
+    feedback: 'Temp 118 F | no overload',
+    action: 'Normal motor load'
+  },
+  {
+    name: 'Return Fan Motor',
+    value: '4.1 A',
+    label: 'Motor current',
+    state: 'Normal',
+    feedback: 'Tracking supply fan at -8%',
+    action: 'Maintain building pressure'
+  },
+  {
+    name: 'Chiller Loop Pump Motor',
+    value: '58%',
+    label: 'Pump speed',
+    state: 'Normal',
+    feedback: '68 F return water',
+    action: 'Keep chilled-water loop stable'
+  },
+  {
+    name: 'Lighting Relay Bus',
+    value: '97%',
+    label: 'Online nodes',
+    state: 'Normal',
+    feedback: 'Lobby override queued',
+    action: 'Clear on next schedule pulse'
+  }
 ];
 
 const energyBreakdown = [
@@ -138,11 +178,73 @@ const floorSummaries = [
 ];
 
 const roomSchedules = [
-  { room: 'Lobby', floor: 'Ground', zone: 'Lobby', schedule: '06:00-20:00', mode: 'Occupied', setpoint: '72 F' },
-  { room: 'Conference 101', floor: 'Floor 1', zone: 'Floor 1', schedule: '08:30-17:30', mode: 'Reserved', setpoint: '71 F' },
-  { room: 'Engineering Lab', floor: 'Floor 2', zone: 'Floor 2', schedule: '07:30-18:30', mode: 'Occupied', setpoint: '72 F' },
-  { room: 'Server Room', floor: 'Tower B', zone: 'Tower B Floor 1', schedule: '24/7', mode: 'Cooling priority', setpoint: '68 F' },
-  { room: 'Tower Office', floor: 'Tower B', zone: 'Tower B Floor 1', schedule: '07:00-19:00', mode: 'Demand response', setpoint: '73 F' }
+  {
+    room: 'Lobby',
+    floor: 'Ground',
+    zone: 'Lobby',
+    schedule: '06:00-20:00',
+    mode: 'Occupied',
+    setpoint: '72 F',
+    source: 'Primary weekday',
+    nextEvent: '20:00 lighting setback',
+    override: 'Auto-clear pending',
+    intent: 'Comfort entry path with lobby lighting pulse'
+  },
+  {
+    room: 'Conference 101',
+    floor: 'Floor 1',
+    zone: 'Floor 1',
+    schedule: '08:30-17:30',
+    mode: 'Reserved',
+    setpoint: '71 F',
+    source: 'Room reservation',
+    nextEvent: '17:30 unoccupied reset',
+    override: 'None',
+    intent: 'Meeting comfort during booked occupancy'
+  },
+  {
+    room: 'Engineering Lab',
+    floor: 'Floor 2',
+    zone: 'Floor 2',
+    schedule: '07:30-18:30',
+    mode: 'Occupied',
+    setpoint: '72 F',
+    source: 'Lab calendar',
+    nextEvent: '18:30 ventilation setback',
+    override: 'None',
+    intent: 'Maintain lab ventilation and occupied comfort'
+  },
+  {
+    room: 'Server Room',
+    floor: 'Tower B',
+    zone: 'Tower B Floor 1',
+    schedule: '24/7',
+    mode: 'Cooling priority',
+    setpoint: '68 F',
+    source: 'Critical space',
+    nextEvent: 'Continuous cooling guard',
+    override: 'Locked',
+    intent: 'Protect server load from temperature drift'
+  },
+  {
+    room: 'Tower Office',
+    floor: 'Tower B',
+    zone: 'Tower B Floor 1',
+    schedule: '07:00-19:00',
+    mode: 'Demand response',
+    setpoint: '73 F',
+    source: 'BEMS-ai peak guard',
+    nextEvent: '15:00 load trim review',
+    override: 'AI trim active',
+    intent: 'Reduce peak demand while preserving comfort'
+  }
+];
+
+const schedulePolicies = [
+  { label: 'Resolution order', value: 'Safety > manual > AI > reservation > base', helper: 'Prevents lower-priority calendars from masking critical states' },
+  { label: 'Manual overrides', value: 'Auto-clear', helper: 'Lobby override clears on the next scheduler pulse' },
+  { label: 'Critical rooms', value: 'Never setback', helper: 'Server Room remains in 24/7 cooling priority' },
+  { label: 'Demand response', value: 'Active on Tower B', helper: 'BEMS-ai can trim noncritical load during peak intervals' }
 ];
 
 const dashboardRoutes: Record<DashboardView, string> = {
@@ -154,12 +256,10 @@ const dashboardRoutes: Record<DashboardView, string> = {
 };
 
 interface DashboardProps {
-  projects: Project[];
-  onSelectProject: ProjectSelectHandler;
   activeView?: DashboardView;
 }
 
-function Dashboard({ projects, onSelectProject, activeView = 'Overview' }: DashboardProps) {
+function Dashboard({ activeView = 'Overview' }: DashboardProps) {
   const [activeNav, setActiveNav] = React.useState<OperationNavItem>(activeView);
   const [selectedAlarmId, setSelectedAlarmId] = React.useState(alarmEvents[0].id);
 
@@ -167,7 +267,6 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }: Dashb
     setActiveNav(activeView);
   }, [activeView]);
 
-  const allDependencies = uniqueItems(projects, 'dependencies');
   const totalBemsUsage = energyZones.reduce((total, zone) => total + zone.kwh, 0);
   const peakUsage = Math.max(...usageTrend.map((point) => point.kwh));
   const activeAlarmCount = alarmEvents.filter((event) => event.status === 'Active').length;
@@ -175,8 +274,6 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }: Dashb
   const isAlarmView = activeNav === 'Alarms';
   const isBuildingView = activeNav === 'Building';
   const isScheduleView = activeNav === 'Rooms' || activeNav === 'Schedules';
-  const embeddedSystemsProjects = projects.filter((project) => project.collection === 'embedded-systems');
-
   const jumpTargets: Partial<Record<OperationNavItem, string>> = {
     Overview: 'dashboard',
     Zones: 'zone-status',
@@ -244,7 +341,7 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }: Dashb
     { label: 'Rooms scheduled', value: String(roomSchedules.length), helper: 'Dedicated room schedule page' },
     { label: 'Occupied rooms', value: String(roomSchedules.filter((room) => room.mode === 'Occupied').length), helper: 'Live occupied mode' },
     { label: '24/7 spaces', value: String(roomSchedules.filter((room) => room.schedule === '24/7').length), helper: 'Critical operations' },
-    { label: 'Cooling priority', value: '1', helper: 'Server Room setpoint protected' }
+    { label: 'Overrides', value: String(roomSchedules.filter((room) => room.override !== 'None').length), helper: 'Auto-clear, locked, and AI trim states' }
   ];
   const scheduleHierarchy = [
     { label: 'Building', value: 'EnergyBuildAI Tower', helper: 'Schedule root' },
@@ -257,7 +354,7 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }: Dashb
   const heroTitle = isAlarmView
     ? 'Alarm queue, response ownership, and BMS troubleshooting details are available from the active console view.'
     : isBuildingView
-      ? 'Brief Building Summary opens as a dedicated dashboard subpage for core facility status.'
+      ? 'Building Summary opens as a dedicated dashboard subpage for core facility status.'
       : isScheduleView
         ? 'Schedules'
       : '';
@@ -318,7 +415,7 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }: Dashb
         <section className="eco-topbar">
           <div>
             <p className="detail-kicker">EnergyBuildAI</p>
-            <h1>{isAlarmView ? 'Alarm Response Center' : isBuildingView ? 'Brief Building Summary' : isScheduleView ? 'Schedules' : 'Building Operation Center'}</h1>
+            <h1>{isAlarmView ? 'Alarm Response Center' : isBuildingView ? 'Building Summary' : isScheduleView ? 'Schedules' : 'Building Operation Center'}</h1>
           </div>
           <div className="eco-topbar-actions">
             <span className="eco-live-pill">Live</span>
@@ -508,7 +605,7 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }: Dashb
               <div className="eco-card-heading">
                 <div>
                   <span>Building</span>
-                  <h2>Brief Building Summary</h2>
+                  <h2>Building Summary</h2>
                   <p>Focused facility status for the EnergyBuildAI Tower, including floors, zones, rooms, operating mode, and active controls context.</p>
                 </div>
                 <strong>Online</strong>
@@ -575,6 +672,8 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }: Dashb
                     <span>{system.name}</span>
                     <strong>{system.value}</strong>
                     <small>{system.label} | {system.state}</small>
+                    <em>{system.feedback}</em>
+                    <em>{system.action}</em>
                   </section>
                 ))}
               </div>
@@ -606,7 +705,26 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }: Dashb
                   <section key={`${room.room}-summary`}>
                     <span>{room.room}</span>
                     <strong>{room.mode}</strong>
-                    <small>EnergyBuildAI Tower | {room.zone} | {room.floor} | {room.schedule}</small>
+                    <small>EnergyBuildAI Tower | {room.zone} | {room.floor} | {room.schedule} | {room.nextEvent}</small>
+                  </section>
+                ))}
+              </div>
+            </article>
+
+            <article className="eco-card eco-card-wide">
+              <div className="eco-card-heading">
+                <div>
+                  <span>Control Policy</span>
+                  <h2>Schedule Resolution Details</h2>
+                  <p>EnergyBuildAI resolves base calendars, room reservations, AI demand response, manual overrides, and critical-space rules before sending control commands.</p>
+                </div>
+              </div>
+              <div className="eco-schedule-policy-grid">
+                {schedulePolicies.map((policy) => (
+                  <section key={policy.label}>
+                    <span>{policy.label}</span>
+                    <strong>{policy.value}</strong>
+                    <small>{policy.helper}</small>
                   </section>
                 ))}
               </div>
@@ -628,6 +746,10 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }: Dashb
                   <span role="columnheader">Schedule</span>
                   <span role="columnheader">Mode</span>
                   <span role="columnheader">Setpoint</span>
+                  <span role="columnheader">Source</span>
+                  <span role="columnheader">Next Event</span>
+                  <span role="columnheader">Override</span>
+                  <span role="columnheader">Control Intent</span>
                 </div>
                 {roomSchedules.map((room) => (
                   <div role="row" key={`${room.room}-schedule-page`}>
@@ -638,6 +760,10 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }: Dashb
                     <span role="cell">{room.schedule}</span>
                     <span role="cell">{room.mode}</span>
                     <span role="cell">{room.setpoint}</span>
+                    <span role="cell">{room.source}</span>
+                    <span role="cell">{room.nextEvent}</span>
+                    <span role="cell">{room.override}</span>
+                    <span role="cell">{room.intent}</span>
                   </div>
                 ))}
               </div>
@@ -737,7 +863,7 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }: Dashb
             <div className="eco-card-heading">
               <div>
                 <span>Building</span>
-                <h2>Brief Building Summary</h2>
+                <h2>Building Summary</h2>
               </div>
               <button type="button" className="eco-inline-action" onClick={() => jumpToDashboardContent('Building')}>
                 Full Building
@@ -828,6 +954,8 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }: Dashb
                   <span>{system.name}</span>
                   <strong>{system.value}</strong>
                   <small>{system.label} | {system.state}</small>
+                  <em>{system.feedback}</em>
+                  <em>{system.action}</em>
                 </section>
               ))}
             </div>
@@ -855,43 +983,6 @@ function Dashboard({ projects, onSelectProject, activeView = 'Overview' }: Dashb
             </div>
           </article>
 
-          <article className="eco-card">
-            <div className="eco-card-heading">
-              <div>
-                <span>Portfolio Evidence</span>
-                <h2>Project Links</h2>
-              </div>
-            </div>
-            <div className="eco-project-list">
-              {projects.slice(0, 6).map((project) => (
-                <button type="button" onClick={() => onSelectProject(project.id)} key={project.id}>
-                  <strong>{project.title}</strong>
-                  <span>{project.tags.slice(0, 2).join(' + ')}</span>
-                </button>
-              ))}
-            </div>
-            <p className="eco-stack-note">{allDependencies.length} stack items tracked across the portfolio.</p>
-          </article>
-
-          {embeddedSystemsProjects.length > 0 && (
-            <article className="eco-card eco-card-wide" id="embedded-systems-projects">
-              <div className="eco-card-heading">
-                <div>
-                  <span>Portfolio Repos</span>
-                  <h2>Embedded Systems Projects</h2>
-                </div>
-                <strong>{embeddedSystemsProjects.length} repo designs</strong>
-              </div>
-              <div className="eco-embedded-project-list">
-                {embeddedSystemsProjects.map((project) => (
-                  <button type="button" onClick={() => onSelectProject(project.id)} key={project.id}>
-                    <strong>{project.title}</strong>
-                    <span>{project.tags.slice(0, 3).join(' + ')}</span>
-                  </button>
-                ))}
-              </div>
-            </article>
-          )}
         </section>
         )}
       </div>

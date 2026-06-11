@@ -49,12 +49,21 @@ When `run_demo(..., output_dir=Path(...))` or the CLI is used, the project write
 | --- | --- |
 | `demo-report.json` | Config, metrics, distillation report, edge budget, safety case, and predictions. |
 | `window-features.csv` | Per-window feature vectors for inspection or downstream notebook work. |
+| `bbb-ekg-features.csv` | Per-window EKG/ECG context features from synthetic or BeagleBone source. |
+| `synthetic-neural-ekg-traces.svg/png` | Trace plot evidence and screenshot-style capture. |
+| `feature-trajectories.svg/png` | Feature trajectory plot evidence and screenshot-style capture. |
+| `distilled_student.c/.h` | Plain C export of the edge student. |
+| `hil-timing-report.json/.md` | Timing evidence for host or target inference runs. |
 
 ## CLI Contract
 
 ```bash
-PYTHONPATH=src python3 -m neural_seizure_ai.cli --sensor ecog --output-dir artifacts
+PYTHONPATH=src python3 -m neural_seizure_ai.cli \
+  --sensor ecog \
+  --output-dir artifacts \
+  --write-plots \
+  --export-c \
+  --write-hil-report
 ```
 
 The CLI prints a JSON summary and writes artifacts when `--output-dir` is supplied.
-

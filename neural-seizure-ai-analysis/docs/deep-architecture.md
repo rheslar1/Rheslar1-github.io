@@ -1,4 +1,4 @@
-# Deep Architecture
+# Architecture
 
 ## 1. Project Intent
 
@@ -99,7 +99,29 @@ The numbers are synthetic evidence only. They are useful for pipeline validation
 
 The student budget is expected to be much smaller than the teacher proxy, proving why distillation matters for embedded neurotechnology.
 
-## 10. Safety Layer
+## 10. BeagleBone EKG Context Layer
+
+`ekg.py` adds an ADC/IIO path for BeagleBone Black EKG/ECG acquisition:
+
+- `BeagleBoneIioAnalogReader` reads `/sys/bus/iio/devices/iio:device0/in_voltageN_raw`.
+- `BeagleBoneEkgSensor` captures samples at a configured rate.
+- `SyntheticEkgGenerator` supports repeatable tests and non-hardware demos.
+- `extract_ekg_feature_windows` computes heart rate, HRV, lead-off fraction, signal quality, and autonomic stress.
+
+The EKG context is intentionally bounded. EKG is a cardiac signal, not a neural signal. The fusion layer can only apply a small probability boost when signal quality is acceptable and autonomic stress is elevated.
+
+## 11. Evidence Generation Layer
+
+The CLI can generate:
+
+- Synthetic neural/EKG trace plots.
+- HFO, PAC, connectivity, and energy feature trajectories.
+- CSV feature exports.
+- Full JSON model report.
+- C export for the distilled student.
+- Timing evidence for host or target runs.
+
+## 12. Safety Layer
 
 `build_safety_case` creates:
 
@@ -109,4 +131,3 @@ The student budget is expected to be much smaller than the teacher proxy, provin
 - Metric-driven flags for false positives, false negatives, and missing lead time.
 
 This layer keeps the project honest: the code can demonstrate an architecture, but it cannot authorize clinical use.
-

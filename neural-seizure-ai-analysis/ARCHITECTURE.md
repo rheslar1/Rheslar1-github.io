@@ -12,7 +12,8 @@ The project models the research pipeline only:
 4. Compare teacher model families through interpretable heuristics.
 5. Distill teacher probabilities into a smaller edge student.
 6. Estimate embedded inference budget.
-7. Produce safety review outputs.
+7. Fuse BeagleBone EKG/ECG context as an auxiliary physiological signal when available.
+8. Produce safety review outputs and generated evidence artifacts.
 
 The project does not diagnose epilepsy, monitor patients, make treatment decisions, or trigger neuromodulation.
 
@@ -28,7 +29,8 @@ SimulationConfig
   -> distill_student
   -> StudentLogisticModel
   -> evaluate_predictions
-  -> edge_budget + safety_case
+  -> optional BeagleBone EKG context fusion
+  -> edge_budget + safety_case + C export + plots + timing evidence
   -> JSON/CSV artifacts
 ```
 
@@ -44,6 +46,12 @@ SimulationConfig
 | `distillation.py` | Logistic student trained from teacher soft probabilities. |
 | `evaluation.py` | Sensitivity, specificity, precision, false predictions per hour, lead time. |
 | `edge_budget.py` | Memory, MAC, latency, and power estimates for teacher and student models. |
+| `ekg.py` | BeagleBone IIO ADC EKG capture, synthetic EKG generation, and EKG feature extraction. |
+| `fusion.py` | Bounded multimodal fusion from neural student output plus EKG context. |
+| `datasets.py` | Provenance-guarded public dataset CSV adapter. |
+| `export.py` | C export for the distilled student. |
+| `hil.py` | Host or target timing evidence for the distilled student. |
+| `plots.py` | SVG plot generation for trace and feature evidence. |
 | `safety.py` | Research boundary, required gates, and hazard mitigation register. |
 | `pipeline.py` | End-to-end orchestration and artifact writing. |
 | `cli.py` | Command-line interface for repeatable demo runs. |
@@ -58,4 +66,3 @@ The paper compares several deep learning model families, but this portfolio impl
 - GNN-style model: inter-channel connectivity and spatial concentration.
 
 The teacher ensemble produces soft labels. The student model is intentionally small: one normalized feature vector, one logistic layer, and a JSON-friendly weight report. That makes the edge deployment path visible without overclaiming clinical performance.
-

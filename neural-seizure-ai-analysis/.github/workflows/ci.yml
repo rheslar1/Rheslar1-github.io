@@ -21,9 +21,14 @@ jobs:
           PYTHONPATH=src python3 -m unittest discover tests -v
       - name: Run demo CLI
         run: |
-          PYTHONPATH=src python3 -m neural_seizure_ai.cli --sensor eeg --duration-seconds 34 --preictal-start-seconds 14 --ictal-start-seconds 25 --output-dir artifacts
+          PYTHONPATH=src python3 -m neural_seizure_ai.cli --sensor eeg --duration-seconds 34 --preictal-start-seconds 14 --ictal-start-seconds 25 --output-dir artifacts --write-plots --export-c --write-hil-report
       - name: Validate artifacts
         run: |
           test -s artifacts/demo-report.json
           test -s artifacts/window-features.csv
-
+          test -s artifacts/bbb-ekg-features.csv
+          test -s artifacts/synthetic-neural-ekg-traces.svg
+          test -s artifacts/feature-trajectories.svg
+          test -s artifacts/distilled_student.c
+          test -s artifacts/distilled_student.h
+          test -s artifacts/hil-timing-report.md

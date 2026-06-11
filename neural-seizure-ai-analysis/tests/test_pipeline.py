@@ -1,8 +1,16 @@
+import json
+import tempfile
 import unittest
+from pathlib import Path
 
 from neural_seizure_ai.config import BrainState, SimulationConfig
+from neural_seizure_ai.datasets import CsvPublicDatasetAdapter, PublicDatasetManifest
+from neural_seizure_ai.ekg import BeagleBoneEkgConfig, BeagleBoneIioAnalogReader, SyntheticEkgGenerator, extract_ekg_feature_windows
+from neural_seizure_ai.export import export_student_to_c
 from neural_seizure_ai.features import FeatureExtractor, feature_names
+from neural_seizure_ai.hil import benchmark_student
 from neural_seizure_ai.pipeline import run_demo
+from neural_seizure_ai.plots import write_plot_evidence
 from neural_seizure_ai.preprocessing import preprocess_samples, window_samples
 from neural_seizure_ai.signals import SyntheticNeuralSignalGenerator
 
@@ -44,8 +52,68 @@ class NeuralSeizurePipelineTests(unittest.TestCase):
         self.assertGreaterEqual(result.student_metrics.sensitivity, 0.4)
         self.assertLess(result.student_budget.memory_bytes, result.teacher_budget.memory_bytes)
         self.assertIn("Synthetic research pipeline only", result.safety_case.project_boundary)
+        self.assertEqual(result.window_count, len(result.ekg_feature_rows))
+        self.assertIsNotNone(result.fused_metrics)
+
+    def test_beaglebone_iio_reader_converts_raw_adc_to_millivolts(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            device = Path(tmp)
+            (device / "in_voltage0_raw").write_text("2048\n", encoding="utf-8")
+            (device / "in_voltage0_scale").write_text("0.43956\n", encoding="utf-8")
+            config = BeagleBoneEkgConfig(iio_device_path=device)
+            raw, millivolts = BeagleBoneIioAnalogReader(config).read_millivolts()
+
+        self.assertEqual(raw, 2048)
+        self.assertAlmostEqual(millivolts, 900.21888, places=4)
+
+    def test_synthetic_ekg_features_provide_autonomic_context(self):
+        samples = SyntheticEkgGenerator(duration_seconds=12.0, preictal_start_seconds=4.0, ictal_start_seconds=10.0, seed=3).generate()
+        features = extract_ekg_feature_windows(samples, [(0.0, 4.0), (8.0, 12.0)])
+
+        self.assertEqual(len(features), 2)
+        self.assertGreater(features[0].heart_rate_bpm, 0.0)
+        self.assertGreaterEqual(features[1].autonomic_stress, features[0].autonomic_stress)
+
+    def test_public_dataset_adapter_requires_strict_provenance(self):
+        manifest = PublicDatasetManifest(
+            dataset_name="Approved public EEG fixture",
+            source_url="https://example.org/dataset",
+            license="Research use",
+            citation="Example et al.",
+            consent_or_public_basis="Public deidentified research release",
+            deidentified=True,
+            patient_id_column="patient",
+            timestamp_column="timestamp",
+            label_column="label",
+            signal_columns=["ch0", "ch1"],
+            patient_split={"train": ["p1"], "validation": ["p2"], "test": ["p3"]},
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            csv_path = Path(tmp) / "signals.csv"
+            csv_path.write_text("patient,timestamp,label,ch0,ch1\np1,0.0,interictal,0.1,0.2\n", encoding="utf-8")
+            rows = list(CsvPublicDatasetAdapter(manifest, csv_path).iter_rows())
+
+        self.assertEqual(rows[0]["patient_id"], "p1")
+        self.assertEqual(rows[0]["signals"], [0.1, 0.2])
+
+    def test_evidence_outputs_include_plots_c_export_and_timing(self):
+        config = SimulationConfig(sensor="eeg", duration_seconds=12.0, preictal_start_seconds=4.0, ictal_start_seconds=9.0, seed=5)
+        result = run_demo(config)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            output_dir = Path(tmp)
+            plot_paths = write_plot_evidence(config, result, output_dir)
+            c_paths = export_student_to_c(result.distillation, output_dir)
+            timing = benchmark_student(result.feature_rows, result.distillation, output_dir=output_dir, iterations=1)
+
+            for path in [*plot_paths, *c_paths, output_dir / "hil-timing-report.json", output_dir / "hil-timing-report.md"]:
+                self.assertTrue(path.exists(), path)
+
+            timing_json = json.loads((output_dir / "hil-timing-report.json").read_text(encoding="utf-8"))
+
+        self.assertGreater(timing.average_inference_us, 0.0)
+        self.assertEqual(timing_json["windows"], result.window_count)
 
 
 if __name__ == "__main__":
     unittest.main()
-

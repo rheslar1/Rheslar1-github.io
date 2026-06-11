@@ -1,0 +1,10 @@
+[project]
+name = "beaglebone-ad8232-ekg-driver"
+version = "0.1.0"
+description = "BeagleBone Black AD8232 single-lead EKG/ECG acquisition driver and simulator."
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+

@@ -85,7 +85,7 @@ Validated BMS checks:
 
 | Repo | State | Notes |
 | --- | --- | --- |
-| `Rheslar1-github.io` | Portfolio repo, clean against `origin/main` before this inventory commit. | Dashboard label changed from `BMS Project Links` to `Project Links` in prior commit. |
+| `Rheslar1-github.io` | Portfolio repo, active worktree in this update. | EnergyBuildAI dashboard project-link and embedded-repo cards were removed so the dashboard stays operations-focused. |
 | `ansible` | Clean against `origin/main`. | Automation architecture guide is already present. |
 | `containers` | Clean against `origin/main`. | Container repo is present but not part of the embedded C++ project set. |
 | `pythonHelpers` | Clean against `origin/main`. | Existing helper library repo. |
@@ -115,4 +115,3 @@ At the time this inventory was written:
 - BMS is clean and pushed after adding the BEMS implementation guide.
 - Top-level duplicate embedded clones are clean and fast-forwarded.
 - `home-automation` is the only Git worktree without commits.
-

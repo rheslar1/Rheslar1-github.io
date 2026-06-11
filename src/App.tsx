@@ -134,7 +134,7 @@ function App() {
     return (
       <div className="App" data-theme={theme}>
         <Navbar onThemeToggle={toggleTheme} currentTheme={theme} />
-        <Dashboard projects={projects} onSelectProject={handleProjectSelect} activeView={dashboardView} />
+        <Dashboard activeView={dashboardView} />
         <Footer />
       </div>
     );

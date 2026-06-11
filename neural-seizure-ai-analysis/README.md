@@ -15,6 +15,8 @@ This is not a clinical device, diagnosis tool, or treatment recommendation. It i
 - Evaluation metrics for sensitivity, specificity, false prediction rate, latency, and lead time.
 - Edge budget estimates for memory, multiply-accumulate count, latency, and power.
 - Safety controls that separate research analysis from clinical or closed-loop intervention use.
+- BeagleBone Black EKG/ECG auxiliary context through Linux IIO ADC reads.
+- Generated evidence package with plots, PNG screenshots, CSV/JSON artifacts, C export, and timing report.
 
 ## Quick Start
 
@@ -32,13 +34,38 @@ PYTHONPATH=neural-seizure-ai-analysis/src \
 python3 -m neural_seizure_ai.cli \
   --sensor ecog \
   --duration-seconds 90 \
-  --output-dir neural-seizure-ai-analysis/artifacts
+  --output-dir neural-seizure-ai-analysis/docs/evidence \
+  --write-plots \
+  --export-c \
+  --write-hil-report
 ```
 
 The demo emits:
 
 - `demo-report.json`: summary metrics, model outputs, edge budget, and safety case.
 - `window-features.csv`: per-window feature vectors and labels.
+- `bbb-ekg-features.csv`: EKG/ECG context features from synthetic or BeagleBone ADC input.
+- `synthetic-neural-ekg-traces.svg/png`: trace evidence and screenshot capture.
+- `feature-trajectories.svg/png`: feature trajectory evidence and screenshot capture.
+- `distilled_student.c/.h`: C export for embedded review.
+- `hil-timing-report.md`: timing evidence for the student inference path.
+
+## BeagleBone EKG Capture
+
+Use an ADC-connected EKG/ECG front end on BeagleBone Black through Linux IIO:
+
+```bash
+PYTHONPATH=src python3 -m neural_seizure_ai.cli \
+  --sensor ecog \
+  --duration-seconds 90 \
+  --ekg-source beaglebone \
+  --bbb-ain 0 \
+  --bbb-iio-device /sys/bus/iio/devices/iio:device0 \
+  --ekg-sampling-rate-hz 250 \
+  --output-dir artifacts/beaglebone-ekg-run
+```
+
+EKG is used only as auxiliary autonomic context. It is not a substitute for neural sensing.
 
 ## Project Boundary
 
@@ -47,10 +74,13 @@ The implementation uses deterministic synthetic data. It does not train on patie
 ## Documentation
 
 - [Source paper extraction](docs/source-paper-extracted.md)
-- [Deep architecture](docs/deep-architecture.md)
+- [Architecture](docs/deep-architecture.md)
 - [Pipeline contract](docs/pipeline-contract.md)
 - [Model comparison](docs/model-comparison.md)
 - [Edge inference budget](docs/edge-inference-budget.md)
 - [Safety review](docs/safety-review.md)
 - [Validation plan](docs/validation-plan.md)
-
+- [BeagleBone EKG integration](docs/beaglebone-ekg-integration.md)
+- [Public dataset adapter](docs/public-dataset-adapter.md)
+- [Distilled student export](docs/distilled-student-export.md)
+- [Generated evidence package](docs/evidence/README.md)
