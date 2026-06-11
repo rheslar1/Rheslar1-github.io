@@ -9,6 +9,13 @@ const actEnvironment = globalThis as typeof globalThis & {
 
 actEnvironment.IS_REACT_ACT_ENVIRONMENT = true;
 
+beforeAll(() => {
+  Object.defineProperty(window, 'scrollTo', {
+    value: jest.fn(),
+    writable: true
+  });
+});
+
 test('renders the loading screen before the portfolio is ready', () => {
   const container = document.createElement('div');
   document.body.appendChild(container);
@@ -67,4 +74,34 @@ test('redirects BMS login to the dashboard after successful credentials', () => 
   container.remove();
   localStorage.clear();
   window.location.hash = '';
+});
+
+test('renders Schedule Details directly from #dashboard/schedules', () => {
+  jest.useFakeTimers();
+  const container = document.createElement('div');
+  document.body.appendChild(container);
+  window.location.hash = '#dashboard/schedules';
+  let root: Root | undefined;
+
+  act(() => {
+    root = createRoot(container);
+    root.render(<App />);
+  });
+
+  act(() => {
+    jest.advanceTimersByTime(600);
+  });
+
+  expect(container.textContent).toContain('Schedule Details');
+  expect(container.textContent).toContain('schedules');
+  expect(container.textContent).toContain('Review room operating windows, setpoints, overrides, next events, and control intent across each building zone.');
+  expect(container.textContent).not.toContain('Start at the building, inspect zone grouping');
+  expect(container.textContent).not.toContain('Secure BMS Access');
+
+  act(() => {
+    root?.unmount();
+  });
+  container.remove();
+  window.location.hash = '';
+  jest.useRealTimers();
 });

@@ -351,7 +351,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
   ];
 
   const scheduleKpis = [
-    { label: 'Rooms scheduled', value: String(roomSchedules.length), helper: 'Dedicated Schedule Summary page' },
+    { label: 'Rooms scheduled', value: String(roomSchedules.length), helper: 'Dedicated Schedule Details page' },
     { label: 'Occupied rooms', value: String(roomSchedules.filter((room) => room.mode === 'Occupied').length), helper: 'Live occupied mode' },
     { label: '24/7 spaces', value: String(roomSchedules.filter((room) => room.schedule === '24/7').length), helper: 'Critical operations' },
     { label: 'Overrides', value: String(roomSchedules.filter((room) => room.override !== 'None').length), helper: 'Auto-clear, locked, and AI trim states' }
@@ -369,14 +369,14 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
       : isBuildingView
         ? 'Building Summary opens as a dedicated dashboard subpage for core facility status.'
       : isScheduleView
-        ? 'Schedule Summary'
+        ? 'Schedule Details'
       : '';
   const heroCopy = isAlarmView
     ? 'Select an alarm to inspect its location, source point, current reading, threshold, likely cause, impact, response steps, and event history.'
     : isBuildingView
       ? 'Use the Building tab for a concise view of the building, floors, zones, rooms, and connected systems.'
       : isScheduleView
-        ? 'Start at the building, inspect zone grouping, confirm the floor, then review each room schedule, operating mode, and setpoint.'
+        ? 'Review room operating windows, setpoints, overrides, next events, and control intent across each building zone.'
       : 'Real-time energy zones, comfort risk, alarm state, equipment health, portfolio evidence, and AI-assisted BEMS recommendations are arranged like an operational building dashboard.';
   const systemSummary = isAlarmView
     ? [
@@ -388,11 +388,11 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
       ? [
           { label: 'Building', value: 'Online' },
           { label: 'Floors', value: `${floorSummaries.length} active` },
-          { label: 'Schedule Summary', value: 'Synced' }
+          { label: 'Schedule Details', value: 'Synced' }
         ]
       : isScheduleView
         ? [
-            { label: 'Schedule Summary', value: 'Active' },
+            { label: 'Schedule Details', value: 'Active' },
             { label: 'Rooms', value: `${roomSchedules.length} listed` },
             { label: 'Sync State', value: 'Current' }
           ]
@@ -428,7 +428,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
         <section className="eco-topbar">
           <div>
             <p className="detail-kicker">EnergyBuildAI</p>
-            <h1>{isAlarmView ? 'Alarm Response Center' : isBuildingView ? 'Building Summary' : isScheduleView ? 'Schedule Summary' : 'Building Operation Center'}</h1>
+            <h1>{isAlarmView ? 'Alarm Response Center' : isBuildingView ? 'Building Summary' : isScheduleView ? 'Schedule Details' : 'Building Operation Center'}</h1>
           </div>
           <div className="eco-topbar-actions">
             <span className="eco-live-pill">Live</span>
@@ -441,7 +441,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
                 className="cta-button secondary-cta"
                 onClick={() => jumpToDashboardContent('Schedules')}
               >
-                Schedule Summary
+                Schedule Details
               </button>
             )}
             <button
@@ -461,7 +461,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
           <section className="eco-command-hero">
             <div>
               <h2>{heroTitle}</h2>
-              <p>{heroCopy}</p>
+              {heroCopy && <p>{heroCopy}</p>}
             </div>
             <div className="eco-system-summary" aria-label="System health summary">
               {systemSummary.map((item) => (
@@ -699,7 +699,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
               <div className="eco-card-heading">
                 <div>
                   <span>Building Hierarchy</span>
-                  <h2>Schedule Summary</h2>
+                  <h2>Schedule Details</h2>
                   <p>Dedicated schedule view organized from building to zone, floor, and room-level operating windows.</p>
                 </div>
                 <strong>{roomSchedules.length} rooms</strong>

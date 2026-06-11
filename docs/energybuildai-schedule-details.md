@@ -1,6 +1,6 @@
-# EnergyBuildAI Schedule Summary Details
+# EnergyBuildAI Schedule Details
 
-This document describes the Schedule Summary details shown in the portfolio dashboard at `#dashboard/schedules`.
+This document describes the Schedule Details view shown in the portfolio dashboard at `#dashboard/schedules`.
 
 ## Dashboard Route
 
@@ -45,12 +45,15 @@ The dashboard also surfaces equipment that influences schedule execution:
 
 ## Captured Evidence
 
-- `docs/evidence/energybuildai-schedules-desktop.png`: desktop screenshot of the Schedule Summary route at `#dashboard/schedules`.
-- `docs/evidence/energybuildai-schedules-mobile.png`: mobile screenshot of the Schedule Summary route at `#dashboard/schedules`.
+- `docs/evidence/energybuildai-schedules-desktop.png`: desktop screenshot of the Schedule Details route at `#dashboard/schedules`.
+- `docs/evidence/energybuildai-schedules-mobile.png`: mobile screenshot of the Schedule Details route at `#dashboard/schedules`.
 - `docs/evidence/energybuildai-building-summary-desktop.png`: screenshot of the Building Summary view after the wording update.
 - `docs/evidence/energybuildai-equipment-systems-desktop.png`: screenshot of fans, dampers, motors, pump motor, and lighting relay system details.
+- `docs/energybuildai-schedule-api-seed-evidence.md`: seeded schedule rows and future BEMS API mapping.
+- `docs/energybuildai-schedule-route-test-report.md`: automated route parsing test report for `#dashboard/schedules`.
 
-## Final Evidence Still Suggested
+## Final Evidence Status
 
-- API response or database seed record for schedule rows when the dashboard is connected to live BMS data.
-- Test report confirming that schedule route parsing opens Schedule Summary directly from the hash route.
+- Seed/API evidence is captured for the current portfolio-seeded dashboard data.
+- Automated route parsing evidence is captured in the React test report.
+- Future live-BMS evidence should replace or augment the seed document after the dashboard connects to a live database/API.

@@ -846,7 +846,7 @@ const baseProjects: Project[] = [
         focus: 'BEMS-ai integration, service contracts, telemetry flow, deployment evidence model'
       },
       {
-        title: 'EnergyBuildAI Schedule Summary Details',
+        title: 'EnergyBuildAI Schedule Details',
         path: 'docs/energybuildai-schedule-details.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/energybuildai-schedule-details.md',
         focus: 'Schedule route, building-zone-floor-room schedule rows, override rules, dampers, motors, fans, and final screenshot evidence'
@@ -873,7 +873,7 @@ const baseProjects: Project[] = [
         title: 'Operator Manual',
         path: 'docs/bems-final-content/operator-manual.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/bems-final-content/operator-manual.md',
-        focus: 'Recurring login, building, room, alarm, Schedule Summary, reports, and system-health workflows'
+        focus: 'Recurring login, building, room, alarm, Schedule Details, reports, and system-health workflows'
       },
       {
         title: 'CI And Deployment Evidence',
