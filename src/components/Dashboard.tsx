@@ -372,15 +372,12 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
 
   const openActiveAlarmDetails = () => {
     setSelectedAlarmId(activeAlarm.id);
-    setAlarmPage('details');
-    jumpToDashboardContent('Alarms');
+    setActiveNav('Alarms');
+    setAlarmPage('acknowledge');
 
-    window.setTimeout(() => {
-      const target = document.getElementById('alarm-detail-page');
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 0);
+    if (window.location.hash !== alarmAcknowledgeRoute) {
+      window.location.hash = alarmAcknowledgeRoute;
+    }
   };
 
   const openAlarmAcknowledgePage = () => {
@@ -590,7 +587,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
                 className="eco-kpi eco-kpi-action"
                 key={kpi.label}
                 onClick={openActiveAlarmDetails}
-                aria-label="Open active alarm details and acknowledgement page"
+                aria-label="Open active alarm acknowledgement page"
               >
                 {kpiContent}
               </button>
