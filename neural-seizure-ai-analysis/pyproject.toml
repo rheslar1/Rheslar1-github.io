@@ -1,0 +1,10 @@
+[project]
+name = "neural-seizure-ai-analysis"
+version = "0.1.0"
+description = "Synthetic predictive AI pipeline for high-bandwidth neural seizure analysis."
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+

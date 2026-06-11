@@ -1,0 +1,29 @@
+name: Neural Seizure AI CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run unit tests
+        run: |
+          PYTHONPATH=src python3 -m unittest discover tests -v
+      - name: Run demo CLI
+        run: |
+          PYTHONPATH=src python3 -m neural_seizure_ai.cli --sensor eeg --duration-seconds 34 --preictal-start-seconds 14 --ictal-start-seconds 25 --output-dir artifacts
+      - name: Validate artifacts
+        run: |
+          test -s artifacts/demo-report.json
+          test -s artifacts/window-features.csv
+

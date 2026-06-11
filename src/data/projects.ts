@@ -330,18 +330,49 @@ const baseProjects: Project[] = [
   {
     id: 'neural-seizure-ai-analysis',
     title: 'Predictive AI Neural Seizure Analysis',
-    summary: 'Research and architecture project for early seizure forecasting using high-bandwidth neural sensors, predictive AI, knowledge distillation, and edge inference.',
+    summary: 'Synthetic embedded AI project for seizure-forecasting research with high-bandwidth neural sensors, pre-ictal feature extraction, teacher/student distillation, edge budgeting, and safety review.',
     deployment:
-      'Document-backed research artifact prepared as a portfolio case study; future implementation targets include synthetic EEG/ECoG preprocessing notebooks, model-comparison scripts, and edge-inference budget analysis.',
-    dependencies: ['Python', 'Deep Learning', 'CNN', 'LSTM', 'Transformers', 'GNN', 'EEG', 'ECoG', 'iEEG', 'Edge AI', 'Knowledge Distillation'],
-    repository: 'https://github.com/rheslar1/Rheslar1-github.io',
-    repositoryLabel: 'View Portfolio Source',
+      'Published as a standalone Python project with deterministic synthetic neural-signal generation, unit tests, demo CLI artifacts, and GitHub Actions CI.',
+    dependencies: ['Python 3.12', 'Synthetic EEG/ECoG/iEEG', 'Goertzel Bandpower', 'CNN/LSTM/Transformer/GNN Proxies', 'Knowledge Distillation', 'Edge AI Budgeting', 'unittest', 'GitHub Actions'],
+    repository: 'https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis',
+    repositoryLabel: 'View Project Repo',
+    collection: 'embedded-systems',
     architectureDocs: [
       {
         title: 'Project Brief',
         path: 'docs/neural-seizure-ai-analysis.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/neural-seizure-ai-analysis.md',
-        focus: 'High-bandwidth neural sensing, seizure prediction AI, edge deployment, and safety review boundaries'
+        focus: 'Portfolio summary, code evidence, and clinical safety boundary'
+      },
+      {
+        title: 'Project README',
+        path: 'README.md',
+        url: 'https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis/blob/main/README.md',
+        focus: 'Quick start, project boundary, runnable code, and documentation index'
+      },
+      {
+        title: 'Deep Architecture',
+        path: 'docs/deep-architecture.md',
+        url: 'https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis/blob/main/docs/deep-architecture.md',
+        focus: 'Sensor layer, synthetic data, preprocessing, features, teacher ensemble, distillation, edge budget, and safety case'
+      },
+      {
+        title: 'Model Comparison',
+        path: 'docs/model-comparison.md',
+        url: 'https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis/blob/main/docs/model-comparison.md',
+        focus: 'CNN, LSTM, transformer, GNN, teacher ensemble, and distilled student model roles'
+      },
+      {
+        title: 'Edge Inference Budget',
+        path: 'docs/edge-inference-budget.md',
+        url: 'https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis/blob/main/docs/edge-inference-budget.md',
+        focus: 'Memory, MAC, latency, and power estimates for teacher and student inference'
+      },
+      {
+        title: 'Safety Review',
+        path: 'docs/safety-review.md',
+        url: 'https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis/blob/main/docs/safety-review.md',
+        focus: 'Research-only boundary, hazard register, validation gates, privacy, and human-review controls'
       }
     ],
     preview: projectAsset('neural-seizure-ai-pipeline.svg'),
@@ -349,57 +380,62 @@ const baseProjects: Project[] = [
       {
         src: projectAsset('neural-seizure-ai-pipeline.svg'),
         caption: 'Architecture visual derived from the seizure prediction research paper: sensors, AI models, distillation, edge inference, and closed-loop review.'
+      },
+      {
+        src: githubPreview('Predictive_AI_Neural-_Seizure_Analysis'),
+        caption: 'GitHub repository preview for the standalone synthetic neural seizure AI implementation.'
       }
     ],
-    tags: ['AI', 'Neural Sensors', 'EEG', 'Edge AI', 'Research'],
+    tags: ['Embedded AI', 'Neural Sensors', 'EEG/ECoG', 'Python', 'Edge AI', 'Safety'],
     problem:
       'Explore how high-resolution neural data and predictive AI can identify pre-ictal seizure signatures earlier than conventional low-resolution monitoring workflows.',
     architecture:
-      'The project maps a pipeline from EEG, ECoG, iEEG, and microelectrode-array data into time-frequency features, spatial maps, temporal models, graph representations, model distillation, and edge inference review.',
+      'The project maps a runnable Python pipeline from EEG, ECoG, iEEG, and microelectrode-array sensor profiles into synthetic neural samples, preprocessing, bandpower/PAC/connectivity features, teacher ensemble probabilities, distilled edge inference, metrics, and safety review.',
     proofPoints: [
       {
         label: 'Neural Signal Pipeline',
-        title: 'Sensor Modalities Are Compared',
+        title: 'Sensor Modalities Are Executable',
         detail:
-          'The project separates EEG, ECoG, iEEG, and microelectrode arrays by invasiveness, signal fidelity, spatial coverage, and clinical constraints so model choices are grounded in sensor reality.'
+          'The code defines EEG, ECoG, iEEG, and microelectrode-array profiles with different channel counts, sample rates, noise, and HFO gain so model behavior is grounded in sensor tradeoffs.'
       },
       {
         label: 'AI Architecture Review',
-        title: 'Model Families Match Signal Structure',
+        title: 'Teacher Models Match Signal Structure',
         detail:
-          'CNNs, LSTMs, transformers, and graph neural networks are mapped to spectrograms, temporal dependencies, long-range forecasting, and functional connectivity patterns.'
+          'CNN, LSTM, transformer, and graph-neural-network style teacher heuristics map to time-frequency patterns, temporal progression, attention-like strongest biomarkers, and electrode connectivity.'
       },
       {
         label: 'Embedded AI Boundary',
-        title: 'Edge Deployment Is Part Of The Design',
+        title: 'Distilled Student Targets Edge Review',
         detail:
-          'Knowledge distillation is included as the path from high-capacity teacher models to smaller student models that could fit wearable or implantable neurotechnology constraints.'
+          'The teacher ensemble trains a compact logistic student and reports memory, MAC, latency, and power estimates so the edge deployment conversation is backed by runnable evidence.'
       }
     ],
     deepDetails: [
       'The source paper frames seizure prediction around pre-ictal biomarkers that may be difficult to detect through conventional EEG analysis alone.',
       'High-bandwidth neural sensing is described across EEG, ECoG, iEEG, and microelectrode arrays, each with different tradeoffs in safety, signal fidelity, invasiveness, and spatial precision.',
-      'Candidate features include high-frequency oscillations, phase-amplitude coupling, micro-seizure activity, time-frequency spectrograms, wavelet transforms, and spatial electrode maps.',
-      'CNNs are positioned for localized spatial and time-frequency features, while LSTM-style recurrent models target sequential dependencies between interictal and pre-ictal states.',
-      'Transformer models are included for long-range temporal forecasting and scalable attention over large neural time-series windows.',
-      'Graph neural networks are included for connectivity-aware modeling where brain regions are treated as nodes with synchronization and functional connectivity patterns.',
-      'Multimodal fusion is considered across neural signals, behavioral data, heart rate, oxygen levels, and other physiological context.',
-      'Knowledge distillation is identified as a deployment strategy for reducing compute cost, latency, and power draw while preserving model behavior.',
-      'Closed-loop neuromodulation is framed as a future review workflow involving signal acquisition, real-time AI analysis, pre-ictal detection, and controlled intervention decisions.',
+      'Candidate features are implemented as energy, line length, zero-crossing rate, delta/theta/alpha/beta/gamma/HFO bandpower, HFO ratios, PAC proxy, channel connectivity, and spatial concentration.',
+      'The CNN-style teacher scores localized time-frequency activity; the LSTM-style teacher accumulates temporal risk; the transformer-style teacher acts as a strongest-biomarker attention proxy; the GNN-style teacher scores connectivity and spatial concentration.',
+      'Knowledge distillation trains a threshold-calibrated logistic student from teacher probabilities, producing feature names, weights, bias, final loss, and decision threshold for review.',
+      'The CLI writes demo-report.json and window-features.csv so the project has inspectable artifacts beyond Markdown.',
+      'Unit tests cover synthetic label generation, biomarker extraction, end-to-end teacher/student evaluation, edge budget comparison, and safety-case creation.',
+      'GitHub Actions runs the unit tests, demo CLI, and artifact validation in the standalone project repo.',
+      'Closed-loop neuromodulation remains a documented review boundary only; the code does not authorize stimulation, medication, diagnosis, or patient monitoring.',
       'The project explicitly calls out privacy, neural data security, interpretability, false-positive and false-negative risk, informed consent, limited datasets, patient variability, and hardware constraints.'
     ],
     features: [
-      'Research brief summarizing the neural sensing and predictive AI architecture.',
-      'Sensor modality comparison across EEG, ECoG, iEEG, and microelectrode arrays.',
-      'Model-family map covering CNNs, recurrent networks, transformers, and graph neural networks.',
-      'Embedded AI deployment path using teacher-to-student knowledge distillation.',
-      'Closed-loop neuromodulation workflow review with safety and ethics boundaries.',
-      'Portfolio visual showing sensor, feature, model, edge inference, and intervention review stages.'
+      'Synthetic high-bandwidth neural signal generator with EEG, ECoG, iEEG, and microelectrode-array profiles.',
+      'Preprocessing pipeline for baseline removal, channel normalization, and labeled windowing.',
+      'Feature extraction for HFO ratio, PAC proxy, line length, bandpower, connectivity, and spatial concentration.',
+      'Teacher ensemble with CNN, LSTM, transformer, and GNN-inspired risk models.',
+      'Distilled edge student with calibrated decision threshold and inspectable weights.',
+      'Evaluation metrics, edge inference budget, safety case, CLI artifacts, tests, and GitHub Actions CI.'
     ],
     outcomes: [
-      'Converted a full research paper into a structured portfolio project with technical scope, proof points, evidence backlog, and visual architecture.',
-      'Connected computational neuroscience concepts to embedded AI deployment concerns such as latency, power, model size, and edge inference.',
-      'Documented a future implementation path for preprocessing, model comparison, distillation, and safety-review artifacts.',
+      'Converted a full research paper into a standalone Python project with runnable signal generation, preprocessing, feature extraction, model comparison, distillation, edge budgeting, and safety review.',
+      'Connected computational neuroscience concepts to embedded AI deployment concerns such as latency, power, model size, calibrated thresholds, and edge inference.',
+      'Added deep documentation for architecture, pipeline contract, model comparison, edge budget, safety, validation, and implementation roadmap.',
+      'Added unit tests and CI workflow so the project can be validated independently of the portfolio site.',
       'Preserved the project as a research architecture artifact rather than representing it as a deployed clinical medical device.'
     ],
     resumeBullets: [
@@ -408,13 +444,12 @@ const baseProjects: Project[] = [
       'Evaluated edge AI deployment concerns including knowledge distillation, latency, power, safety, privacy, and closed-loop review constraints.'
     ],
     screenshotCaption:
-      'Pipeline visual summarizes the project architecture. The current artifact is a research and design case study, not a deployed clinical system.',
+      'Pipeline visual summarizes the project architecture and is now backed by a standalone Python implementation. The artifact is a research and engineering demo, not a clinical system.',
     suggestedContent: [
-      'Add a synthetic EEG/ECoG preprocessing notebook or script.',
-      'Add a model-comparison table for CNN, LSTM, transformer, and GNN approaches.',
-      'Add an edge-inference estimate for memory, latency, and power.',
-      'Add a safety review matrix for false positives, false negatives, privacy, consent, and interpretability.',
-      'Add a closed-loop workflow prototype diagram with human-review and intervention boundaries.'
+      'Add plotted screenshots of synthetic traces, HFO ratio, PAC proxy, and connectivity over time.',
+      'Add a public-dataset adapter only after documenting dataset provenance and patient-level train/test separation.',
+      'Add an ONNX or C export path for the distilled student model.',
+      'Add hardware-in-the-loop timing evidence for an embedded Linux or MCU target.'
     ]
   },
   {
