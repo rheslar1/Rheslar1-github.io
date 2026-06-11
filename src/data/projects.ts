@@ -889,6 +889,114 @@ const baseProjects: Project[] = [
     ]
   },
   {
+    id: 'energybuildai-qt-dashboard',
+    aliases: ['qt-dashboard', 'qt-bms-dashboard', 'digi-connectcore-qt-dashboard'],
+    title: 'EnergyBuildAI Qt Dashboard',
+    summary: 'Qt Quick BMS dashboard for Digi ConnectCore-class EVKs with alarm acknowledgement, active-alarm clearing, CMake, systemd, and Yocto packaging.',
+    deployment:
+      'Built as a Qt 6/CMake application for ARM64 Yocto targets. The package includes a systemd kiosk service and a Yocto recipe starter for Digi Embedded Yocto style deployments.',
+    dependencies: ['Qt 6', 'Qt Quick', 'QML', 'C++17', 'CMake', 'Digi ConnectCore', 'i.MX94 EVK', 'i.MX95', 'Yocto', 'systemd'],
+    repository: 'https://github.com/rheslar1/energybuildai-qt-dashboard',
+    repositoryLabel: 'View Qt Dashboard Repo',
+    architectureDocs: [
+      {
+        title: 'Qt Dashboard README',
+        path: 'README.md',
+        url: 'https://github.com/rheslar1/energybuildai-qt-dashboard/blob/main/README.md',
+        focus: 'Qt Quick dashboard purpose, Digi/NXP target notes, build steps, EVK install, service behavior, and Yocto recipe use'
+      },
+      {
+        title: 'Qt Project Mirror',
+        path: 'qt/energybuildai-dashboard/README.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/qt/energybuildai-dashboard/README.md',
+        focus: 'Portfolio-tracked mirror of the Qt dashboard source package'
+      },
+      {
+        title: 'Yocto Recipe Starter',
+        path: 'yocto/energybuildai-dashboard_git.bb',
+        url: 'https://github.com/rheslar1/energybuildai-qt-dashboard/blob/main/yocto/energybuildai-dashboard_git.bb',
+        focus: 'cmake_qt6 recipe, Qt runtime dependencies, systemd unit installation, and pinned SRCREV guidance'
+      }
+    ],
+    preview: projectAsset('bms-dashboard-simulated.svg'),
+    visuals: [
+      {
+        src: projectAsset('bms-dashboard-simulated.svg'),
+        caption: 'Qt dashboard mirrors the BMS operations layout, alarm KPIs, and EnergyBuildAI operator workflow.'
+      },
+      {
+        src: projectAsset('bems-energy-heat-map.svg'),
+        caption: 'Building energy status visual used as the Qt dashboard overview model.'
+      },
+      {
+        src: projectAsset('bms-uml-layers.png'),
+        caption: 'BEMS layer diagram showing where the Qt kiosk UI fits beside web UI, API, edge, and database layers.'
+      }
+    ],
+    tags: ['Qt 6', 'QML', 'Digi ConnectCore', 'Yocto', 'C++17', 'BMS'],
+    problem:
+      'Provide an embedded-native BMS operator console that can run on a Digi ConnectCore-class EVK without depending on a browser-hosted React dashboard.',
+    architecture:
+      'A Qt Quick application uses a small C++17 entry point, QML components for KPI cards and alarm tickets, local ListModel state for seeded alarms, CMake build metadata, a systemd service, and a Yocto recipe starter for image integration.',
+    proofPoints: [
+      {
+        label: 'Embedded UI',
+        title: 'Qt Version Mirrors The Dashboard Workflow',
+        detail:
+          'The app carries the same active-alarm KPI, alarm queue, selected alarm detail, and separate acknowledgement page behavior into a native Qt Quick interface.'
+      },
+      {
+        label: 'EVK Deployment',
+        title: 'CMake, systemd, And Yocto Are Included',
+        detail:
+          'The project is structured for ARM64 Yocto cross-builds, appliance-style startup through systemd, and recipe integration into a custom Digi Embedded Yocto layer.'
+      },
+      {
+        label: 'Alarm Behavior',
+        title: 'Active Alarms Clear From The Queue',
+        detail:
+          'Clicking the active ALM-1042 queue ticket or using the acknowledge page changes the event to Acknowledged and reduces the Active alarms KPI to zero.'
+      }
+    ],
+    deepDetails: [
+      'CMakeLists.txt requires Qt 6.5 or newer and links Qt Quick plus Qt Quick Controls 2.',
+      'src/main.cpp initializes QGuiApplication, applies the Fusion controls style, and loads the EnergyBuildAI QML module.',
+      'qml/Main.qml defines the dashboard shell, sidebar navigation, KPI strip, overview panel, alarm details page, and alarm acknowledgement page.',
+      'qml/components/KpiCard.qml, AlarmTicket.qml, and StatusBadge.qml keep repeated dashboard controls small and reusable.',
+      'The alarm ListModel seeds ALM-1042, ALM-1038, and ALM-1029 with status, priority, location, owner, SLA, reading, and trend metadata.',
+      'The queue click handler acknowledges active events immediately so the dashboard count reflects operator action.',
+      'packaging/energybuildai-dashboard.service starts the Qt app under graphical.target and defaults QT_QPA_PLATFORM to wayland.',
+      'yocto/energybuildai-dashboard_git.bb provides a cmake_qt6 recipe starter with Qt declarative and Quick Controls runtime dependencies.'
+    ],
+    features: [
+      'Native Qt Quick dashboard shell with portfolio header, BMS sidebar, KPI cards, and alarm pages.',
+      'Touch-friendly alarm acknowledgement flow for EVK kiosk displays.',
+      'Status-based red alarm card styling that disappears after acknowledgement.',
+      'Qt 6/CMake source structure suitable for desktop build and ARM64 Yocto cross-build.',
+      'systemd unit for boot-to-dashboard deployment.',
+      'Yocto recipe starter for adding the app to a Digi Embedded Yocto image or custom layer.'
+    ],
+    outcomes: [
+      'Standalone GitHub repository target is wired to https://github.com/rheslar1/energybuildai-qt-dashboard.',
+      'Portfolio mirror source exists under qt/energybuildai-dashboard for review with this site.',
+      'The Qt app implements the active-alarm acknowledgement behavior requested for the dashboard.',
+      'Build, EVK install, platform plugin, and Yocto recipe notes are documented in the project README.'
+    ],
+    resumeBullets: [
+      'Built a Qt Quick/C++17 BMS dashboard for Digi ConnectCore-class ARM64 Yocto EVK deployment.',
+      'Implemented native alarm acknowledgement flow with active alarm clearing and kiosk-ready systemd packaging.',
+      'Prepared CMake and Yocto recipe assets for embedded Linux image integration.'
+    ],
+    screenshotCaption:
+      'Qt project currently reuses BMS dashboard portfolio visuals until a target EVK or desktop Qt runtime screenshot is captured.',
+    suggestedContent: [
+      'Capture a desktop Qt runtime screenshot after installing Qt 6.5+ locally.',
+      'Capture an EVK LCD photo after cross-building with the Digi/NXP Yocto SDK.',
+      'Pin the Yocto recipe SRCREV after the first standalone repo commit.',
+      'Add a boot log showing systemd launching energybuildai-dashboard on the target.'
+    ]
+  },
+  {
     id: 'bems',
     aliases: ['bms', 'nms'],
     title: 'BEMS',
