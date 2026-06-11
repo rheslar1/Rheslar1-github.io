@@ -81,10 +81,10 @@ const alarmEvents = [
     trend: 'Rising 11% over last interval',
     cause: 'Tower B is above the peak demand envelope while occupancy and cooling load are both high.',
     impact: 'Demand charge exposure and comfort drift risk if the zone remains above target for another interval.',
-    action: 'Apply demand response trim, reduce VAV airflow in low-priority rooms, and shift noncritical plug load.',
-    owner: 'Operations lead',
-    sla: '4 min response',
-    history: ['14:08 BEMS-ai detected interval spike', '14:10 Demand response armed', '14:14 Awaiting operator acknowledgement']
+    action: 'Apply peak-load trim, reduce VAV airflow in low-priority rooms, and shift noncritical plug load.',
+    owner: 'Facilities team',
+    sla: '4 min dispatch',
+    history: ['14:08 BEMS-ai detected interval spike', '14:10 Peak guard armed', '14:14 Awaiting operator acknowledgement']
   },
   {
     id: 'ALM-1038',
@@ -405,7 +405,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
     { label: 'Active alarms', value: String(activeAlarmCount), helper: '1 high priority dispatch' },
     { label: 'Acknowledged', value: String(acknowledgedAlarmSet.size), helper: 'Operator-reviewed events' },
     { label: 'Auto-clear queue', value: String(alarmEvents.filter((event) => event.status === 'Auto-clear').length), helper: 'Lobby lighting schedule pulse' },
-    { label: 'Response SLA', value: selectedAlarm.sla, helper: selectedAlarm.owner }
+    { label: 'Dispatch SLA', value: selectedAlarm.sla, helper: selectedAlarm.owner }
   ];
 
   const buildingKpis = [
@@ -493,7 +493,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
         <section className="eco-topbar">
           <div>
             <p className="detail-kicker">EnergyBuildAI</p>
-            <h1>{isAlarmView ? 'Alarm Response Center' : isBuildingView ? 'Building Summary' : isScheduleView ? 'Schedule Summary' : 'Building Operation Center'}</h1>
+            <h1>{isAlarmView ? 'Alarm Center' : isBuildingView ? 'Building Summary' : isScheduleView ? 'Schedule Summary' : 'Building Operation Center'}</h1>
           </div>
           <div className="eco-topbar-actions">
             <span className="eco-live-pill">Live</span>
@@ -638,7 +638,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
                 <div>
                   <span>Alarm Acknowledge Page</span>
                   <h2>Acknowledge Selected Alarm</h2>
-                  <p>Operator acknowledgement records ownership for {selectedAlarm.id} before response actions continue.</p>
+                  <p>Operator acknowledgement records ownership for {selectedAlarm.id} before follow-up work continues.</p>
                 </div>
                 <strong>{selectedAlarmAcknowledged ? 'Acknowledged' : 'Pending'}</strong>
               </div>
@@ -665,7 +665,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
               <p className="eco-acknowledge-note">
                 {selectedAlarmAcknowledged
                   ? `Acknowledgement recorded for ${selectedAlarm.id} in this console session.`
-                  : 'Acknowledge before applying response actions or closing the alarm.'}
+                  : 'Acknowledge before applying follow-up actions or closing the alarm.'}
               </p>
             </article>
 

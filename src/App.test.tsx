@@ -203,7 +203,9 @@ test('renders alarms dashboard without the removed helper copy', () => {
     jest.advanceTimersByTime(600);
   });
 
-  expect(container.textContent).toContain('Alarm Response Center');
+  expect(container.textContent).toContain('Alarm Center');
+  expect(container.textContent).not.toContain('Response SLA');
+  expect(container.textContent).not.toContain('Operations lead');
   expect(container.querySelector('.eco-command-hero h2')).toBeNull();
   expect(container.querySelector('.eco-command-hero p')).toBeNull();
   expect(container.textContent).not.toContain('Secure BMS Access');
@@ -251,10 +253,12 @@ test('opens alarm details and acknowledgement page from the active alarms KPI', 
   });
 
   expect(window.location.hash).toBe('#dashboard/alarms');
-  expect(container.textContent).toContain('Alarm Response Center');
+  expect(container.textContent).toContain('Alarm Center');
   expect(container.querySelector('#alarm-detail-page')?.textContent).toContain('Demand peak');
   expect(container.querySelector('#alarm-acknowledge-page')?.textContent).toContain('Acknowledge Selected Alarm');
   expect(container.querySelector('#alarm-acknowledge-page')?.textContent).toContain('Pending');
+  expect(container.textContent).not.toContain('Response SLA');
+  expect(container.textContent).not.toContain('Operations lead');
 
   const acknowledgePageButton = Array.from(
     container.querySelectorAll<HTMLButtonElement>('#alarm-detail-page button')
