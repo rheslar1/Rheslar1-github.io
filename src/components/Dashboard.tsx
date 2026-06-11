@@ -314,17 +314,33 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
 
   const totalBemsUsage = energyZones.reduce((total, zone) => total + zone.kwh, 0);
   const peakUsage = Math.max(...usageTrend.map((point) => point.kwh));
-  const activeAlarmCount = alarmEvents.filter((event) => event.status === 'Active').length;
-  const activeAlarm = alarmEvents.find((event) => event.status === 'Active') || alarmEvents[0];
   const acknowledgedAlarmSet = new Set([
     ...alarmEvents.filter((event) => event.status === 'Acknowledged').map((event) => event.id),
     ...acknowledgedAlarmIds
   ]);
+  const getAlarmDisplayStatus = (event: typeof alarmEvents[number]) =>
+    acknowledgedAlarmSet.has(event.id) ? 'Acknowledged' : event.status;
+  const getAlarmStatusClass = (event: typeof alarmEvents[number]) =>
+    `status-${getAlarmDisplayStatus(event).toLowerCase().replace(/\s+/g, '-')}`;
+  const activeAlarmEvents = alarmEvents.filter((event) => getAlarmDisplayStatus(event) === 'Active');
+  const activeAlarmCount = activeAlarmEvents.length;
+  const highPriorityActiveAlarmCount = activeAlarmEvents.filter((event) => event.priority === 'High').length;
+  const activeAlarmHelper =
+    activeAlarmCount === 0
+      ? 'No active alarms'
+      : highPriorityActiveAlarmCount === 1
+        ? '1 high priority'
+        : `${activeAlarmCount} active alarms`;
+  const activeAlarmDispatchHelper =
+    activeAlarmCount === 0
+      ? 'No active alarms'
+      : highPriorityActiveAlarmCount === 1
+        ? '1 high priority dispatch'
+        : `${activeAlarmCount} active dispatch`;
+  const activeAlarm = activeAlarmEvents[0] || alarmEvents[0];
   const selectedAlarm = alarmEvents.find((event) => event.id === selectedAlarmId) || alarmEvents[0];
   const selectedAlarmAcknowledged = acknowledgedAlarmSet.has(selectedAlarm.id);
   const selectedAlarmDisplayStatus = selectedAlarmAcknowledged ? 'Acknowledged' : selectedAlarm.status;
-  const getAlarmDisplayStatus = (event: typeof alarmEvents[number]) =>
-    acknowledgedAlarmSet.has(event.id) ? 'Acknowledged' : event.status;
   const isAlarmView = activeNav === 'Alarms';
   const isAlarmAcknowledgePage = isAlarmView && alarmPage === 'acknowledge';
   const isBuildingView = activeNav === 'Building';
@@ -396,11 +412,15 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
     }, 0);
   };
 
+  const acknowledgeAlarm = (alarmId: string) => {
+    setAcknowledgedAlarmIds((currentIds) =>
+      currentIds.includes(alarmId) ? currentIds : [...currentIds, alarmId]
+    );
+  };
+
   const acknowledgeSelectedAlarm = () => {
     setAlarmPage('acknowledge');
-    setAcknowledgedAlarmIds((currentIds) =>
-      currentIds.includes(selectedAlarm.id) ? currentIds : [...currentIds, selectedAlarm.id]
-    );
+    acknowledgeAlarm(selectedAlarm.id);
 
     window.setTimeout(() => {
       const target = document.getElementById('alarm-acknowledge-page');
@@ -410,6 +430,17 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
     }, 0);
   };
 
+  const handleAlarmQueueSelect = (event: typeof alarmEvents[number]) => {
+    const displayStatus = getAlarmDisplayStatus(event);
+
+    setSelectedAlarmId(event.id);
+    setAlarmPage('details');
+
+    if (displayStatus === 'Active') {
+      acknowledgeAlarm(event.id);
+    }
+  };
+
   const handleHeatmapScroll = () => {
     jumpToDashboardContent('Energy');
   };
@@ -417,14 +448,14 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
   const commandKpis = [
     { label: 'Live building load', value: `${totalBemsUsage.toFixed(1)} kWh`, helper: 'Sampled across 5 zones' },
     { label: 'Peak demand', value: `${peakUsage.toFixed(1)} kWh`, helper: 'Tower B Floor 1' },
-    { label: 'Active alarms', value: String(activeAlarmCount), helper: '1 high priority' },
+    { label: 'Active alarms', value: String(activeAlarmCount), helper: activeAlarmHelper },
     { label: 'Connected systems', value: '4', helper: 'HVAC, lighting, sensors, controls' }
   ];
 
   const alarmKpis = [
-    { label: 'Active alarms', value: String(activeAlarmCount), helper: '1 high priority dispatch' },
+    { label: 'Active alarms', value: String(activeAlarmCount), helper: activeAlarmDispatchHelper },
     { label: 'Acknowledged', value: String(acknowledgedAlarmSet.size), helper: 'Operator-reviewed events' },
-    { label: 'Auto-clear queue', value: String(alarmEvents.filter((event) => event.status === 'Auto-clear').length), helper: 'Lobby lighting schedule pulse' },
+    { label: 'Auto-clear queue', value: String(alarmEvents.filter((event) => getAlarmDisplayStatus(event) === 'Auto-clear').length), helper: 'Lobby lighting schedule pulse' },
     { label: 'Dispatch SLA', value: selectedAlarm.sla, helper: selectedAlarm.owner }
   ];
 
@@ -745,21 +776,23 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
                 </div>
               </div>
               <div className="eco-alarm-queue">
-                {alarmEvents.map((event) => (
-                  <button
-                    type="button"
-                    className={`eco-alarm-ticket ${event.priority.toLowerCase()} ${selectedAlarm.id === event.id ? 'active' : ''}`}
-                    onClick={() => {
-                      setSelectedAlarmId(event.id);
-                      setAlarmPage('details');
-                    }}
-                    key={event.id}
-                  >
-                    <span>{event.id}</span>
-                    <strong>{event.zone}</strong>
-                    <small>{event.type} | {getAlarmDisplayStatus(event)}</small>
-                  </button>
-                ))}
+                {alarmEvents.map((event) => {
+                  const displayStatus = getAlarmDisplayStatus(event);
+
+                  return (
+                    <button
+                      type="button"
+                      className={`eco-alarm-ticket ${event.priority.toLowerCase()} ${getAlarmStatusClass(event)} ${selectedAlarm.id === event.id ? 'selected' : ''}`}
+                      onClick={() => handleAlarmQueueSelect(event)}
+                      aria-label={`${event.id} ${event.zone} ${event.type} ${displayStatus}${displayStatus === 'Active' ? ' clear active alarm' : ''}`}
+                      key={event.id}
+                    >
+                      <span>{event.id}</span>
+                      <strong>{event.zone}</strong>
+                      <small>{event.type} | {displayStatus}</small>
+                    </button>
+                  );
+                })}
               </div>
             </article>
 
@@ -1126,18 +1159,22 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
               </div>
             </div>
             <div className="eco-alarm-list">
-              {alarmEvents.map((event) => (
-                <section className={`eco-alarm ${event.priority.toLowerCase()}`} key={`${event.zone}-${event.type}`}>
-                  <div>
-                    <strong>{event.zone}</strong>
-                    <span>{event.type}</span>
-                  </div>
-                  <small>
-                    <span className="eco-priority-badge">{event.priority}</span>
-                    {event.status}
-                  </small>
-                </section>
-              ))}
+              {alarmEvents.map((event) => {
+                const displayStatus = getAlarmDisplayStatus(event);
+
+                return (
+                  <section className={`eco-alarm ${event.priority.toLowerCase()} ${getAlarmStatusClass(event)}`} key={`${event.zone}-${event.type}`}>
+                    <div>
+                      <strong>{event.zone}</strong>
+                      <span>{event.type}</span>
+                    </div>
+                    <small>
+                      <span className="eco-priority-badge">{event.priority}</span>
+                      {displayStatus}
+                    </small>
+                  </section>
+                );
+              })}
             </div>
           </article>
 
