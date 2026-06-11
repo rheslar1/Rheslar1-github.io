@@ -4,8 +4,8 @@ Generated evidence captured from the local production build and deterministic pr
 
 ## EnergyBuildAI Dashboard
 
-- `energybuildai-schedules-desktop.png`: desktop capture of `#dashboard/schedules` with the Building Schedules view, building-zone-floor-room rows, schedule source, next event, override state, and control intent.
-- `energybuildai-schedules-mobile.png`: mobile capture of the Building Schedules route at `#dashboard/schedules`.
+- `energybuildai-schedules-desktop.png`: desktop capture of `#dashboard/schedules` with the Schedule Details view, building-zone-floor-room rows, schedule source, next event, override state, and control intent.
+- `energybuildai-schedules-mobile.png`: mobile capture of the Schedule Details route at `#dashboard/schedules`.
 - `energybuildai-building-summary-desktop.png`: desktop capture of `#dashboard/building` after renaming the page to Building Summary and adding expanded systems context.
 - `energybuildai-equipment-systems-desktop.png`: desktop capture focused on fans, dampers, motors, pump motor, and lighting relay system health.
 

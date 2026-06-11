@@ -1,6 +1,6 @@
 # EnergyBuildAI Schedule API And Seed Evidence
 
-This evidence documents the current seeded Building Schedules rows used by the portfolio dashboard at `#dashboard/schedules`.
+This evidence documents the current seeded Schedule Details rows used by the portfolio dashboard at `#dashboard/schedules`.
 
 ## Source Boundary
 

@@ -93,8 +93,8 @@ test('renders schedules directly from #dashboard/schedules without the removed i
   });
 
   expect(container.textContent).toContain('schedules');
-  expect(container.textContent).toContain('Building Schedules');
-  expect(container.textContent).not.toContain(['Schedule', 'Details'].join(' '));
+  expect(container.textContent).toContain('Schedule Details');
+  expect(container.textContent).not.toContain(['Building', 'Schedules'].join(' '));
   expect(container.textContent).not.toContain(['Building', 'Hierarchy'].join(' '));
   expect(container.textContent).not.toContain('Dedicated schedule view organized from building to zone, floor, and room-level operating windows.');
   expect(container.querySelector('.eco-command-hero')).toBeNull();
