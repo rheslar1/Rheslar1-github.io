@@ -2290,6 +2290,13 @@ section h2 {
   outline: none;
 }
 
+.ecostruxure-dashboard.is-alarm-dashboard .eco-sidebar button.active,
+.ecostruxure-dashboard.is-alarm-dashboard .eco-sidebar button:hover,
+.ecostruxure-dashboard.is-alarm-dashboard .eco-sidebar button:focus-visible {
+  border-left-color: var(--eco-critical);
+  background: rgba(220, 38, 38, 0.18);
+}
+
 .eco-workspace {
   min-width: 0;
   padding: 16px 18px 42px;
@@ -2451,6 +2458,14 @@ section h2 {
   border-top: 4px solid var(--eco-green);
 }
 
+.ecostruxure-dashboard.is-alarm-dashboard .eco-kpi {
+  border-top-color: var(--eco-critical);
+}
+
+.ecostruxure-dashboard.is-alarm-dashboard .eco-kpi strong {
+  color: var(--eco-critical);
+}
+
 .eco-kpi strong {
   display: block;
   margin-top: 6px;
@@ -2506,6 +2521,15 @@ section h2 {
   color: var(--eco-green-dark);
   font-size: 0.78rem;
   font-weight: 1000;
+}
+
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-detail-card {
+  border-top: 4px solid var(--eco-critical);
+}
+
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-detail-card .eco-card-heading > strong {
+  background: color-mix(in srgb, var(--eco-critical) 14%, var(--eco-panel));
+  color: var(--eco-critical);
 }
 
 .eco-inline-action {
@@ -2731,6 +2755,7 @@ section h2 {
 
 .eco-critical-strip.high {
   border-left-color: var(--eco-critical);
+  background: color-mix(in srgb, var(--eco-critical) 9%, var(--eco-field));
 }
 
 .eco-critical-strip.medium {
@@ -2768,6 +2793,11 @@ section h2 {
   border: 1px solid var(--eco-line);
   border-radius: 6px;
   background: var(--eco-field);
+}
+
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-detail-grid section,
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-narrative section {
+  border-color: color-mix(in srgb, var(--eco-critical) 22%, var(--eco-line));
 }
 
 .eco-alarm-detail-grid span,
@@ -2839,6 +2869,14 @@ section h2 {
   border-left-color: var(--eco-green);
   background: color-mix(in srgb, var(--eco-green) 10%, var(--eco-field));
   outline: none;
+}
+
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-ticket.active,
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-ticket:hover,
+.ecostruxure-dashboard.is-alarm-dashboard .eco-alarm-ticket:focus-visible {
+  border-color: var(--eco-critical);
+  border-left-color: var(--eco-critical);
+  background: color-mix(in srgb, var(--eco-critical) 10%, var(--eco-field));
 }
 
 .eco-response-list {

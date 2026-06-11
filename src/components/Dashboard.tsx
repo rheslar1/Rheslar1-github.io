@@ -396,7 +396,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
         ];
 
   return (
-    <main className="dashboard-page ecostruxure-dashboard" id="dashboard">
+    <main className={`dashboard-page ecostruxure-dashboard ${isAlarmView ? 'is-alarm-dashboard' : ''}`} id="dashboard">
       <aside className="eco-sidebar" aria-label="Building operation navigation">
         <div className="eco-brand">
           <span>BMS</span>
