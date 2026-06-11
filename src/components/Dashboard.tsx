@@ -369,14 +369,14 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
       : isBuildingView
         ? 'Building Summary opens as a dedicated dashboard subpage for core facility status.'
       : isScheduleView
-        ? 'Schedule Details'
+        ? ''
       : '';
   const heroCopy = isAlarmView
     ? 'Select an alarm to inspect its location, source point, current reading, threshold, likely cause, impact, response steps, and event history.'
     : isBuildingView
       ? 'Use the Building tab for a concise view of the building, floors, zones, rooms, and connected systems.'
       : isScheduleView
-        ? 'Review room operating windows, setpoints, overrides, next events, and control intent across each building zone.'
+        ? ''
       : 'Real-time energy zones, comfort risk, alarm state, equipment health, portfolio evidence, and AI-assisted BEMS recommendations are arranged like an operational building dashboard.';
   const systemSummary = isAlarmView
     ? [
@@ -457,7 +457,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
           </div>
         </section>
 
-        {(isAlarmView || isBuildingView || isScheduleView) && (
+        {(isAlarmView || isBuildingView) && (
           <section className="eco-command-hero">
             <div>
               <h2>{heroTitle}</h2>

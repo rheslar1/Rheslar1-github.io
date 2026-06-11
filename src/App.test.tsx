@@ -76,7 +76,7 @@ test('redirects BMS login to the dashboard after successful credentials', () => 
   window.location.hash = '';
 });
 
-test('renders Schedule Details directly from #dashboard/schedules', () => {
+test('renders schedules directly from #dashboard/schedules without the removed intro copy', () => {
   jest.useFakeTimers();
   const container = document.createElement('div');
   document.body.appendChild(container);
@@ -94,7 +94,8 @@ test('renders Schedule Details directly from #dashboard/schedules', () => {
 
   expect(container.textContent).toContain('Schedule Details');
   expect(container.textContent).toContain('schedules');
-  expect(container.textContent).toContain('Review room operating windows, setpoints, overrides, next events, and control intent across each building zone.');
+  expect(container.textContent).toContain('Building Hierarchy');
+  expect(container.querySelector('.eco-command-hero')).toBeNull();
   expect(container.textContent).not.toContain('Secure BMS Access');
 
   act(() => {
