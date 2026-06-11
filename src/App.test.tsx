@@ -95,6 +95,12 @@ test('renders schedules directly from #dashboard/schedules without the removed i
   expect(container.textContent).toContain('Schedules');
   expect(container.textContent).toContain('Schedule Details');
   expect(container.textContent).toContain('Building Schedule Details');
+  const hierarchyLabels = Array.from(container.querySelectorAll('.eco-schedule-path section > span')).map((node) => node.textContent);
+  expect(hierarchyLabels).toEqual(['Building', 'Floors', 'Zones', 'Rooms']);
+  const tableHeaderLabels = Array.from(container.querySelectorAll('.eco-schedule-table [role="columnheader"]'))
+    .slice(0, 4)
+    .map((node) => node.textContent);
+  expect(tableHeaderLabels).toEqual(['Building', 'Floor', 'Zone', 'Room']);
   expect(container.textContent).not.toContain(['Building', 'Schedules'].join(' '));
   expect(container.textContent).not.toContain(['Building', 'Hierarchy'].join(' '));
   expect(container.textContent).not.toContain(['Building Zone', 'Floor Room', 'Schedules'].join(' '));
