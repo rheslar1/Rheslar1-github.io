@@ -39,6 +39,7 @@ yarn-error.log*
 /digi-imx93-peripheral-driver/
 /drv8801-brushed-dc-motor-controller/
 /edge-ai-tinyml-microcontroller/
+/energybuildai-qt-dashboard/
 /embedded-linux-secure-boot-ota-system/
 /embedded-linux-yocto-image/
 /home-automation/
