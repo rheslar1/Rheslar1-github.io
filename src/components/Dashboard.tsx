@@ -451,7 +451,7 @@ function Dashboard({ activeView = 'Overview' }: DashboardProps) {
         </section>
 
         {(isAlarmView || isBuildingView) && (
-          <section className="eco-command-hero">
+          <section className="eco-command-hero" data-copy-version="building-helper-removed">
             {(heroTitle || heroCopy) && (
               <div>
                 {heroTitle && <h2>{heroTitle}</h2>}

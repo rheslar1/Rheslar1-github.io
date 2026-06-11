@@ -133,8 +133,8 @@ test('renders building dashboard without the removed helper copy', () => {
   });
 
   expect(container.textContent).toContain('Building Summary');
-  expect(container.textContent).not.toContain('Building Summary opens as a dedicated dashboard subpage for core facility status.');
-  expect(container.textContent).not.toContain('Use the Building tab for a concise view of the building, floors, zones, rooms, and connected systems.');
+  expect(container.querySelector('.eco-command-hero h2')).toBeNull();
+  expect(container.querySelector('.eco-command-hero p')).toBeNull();
   expect(container.textContent).not.toContain('Secure BMS Access');
 
   act(() => {
