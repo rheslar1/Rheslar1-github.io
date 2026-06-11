@@ -1043,6 +1043,12 @@ const baseProjects: Project[] = [
         focus: 'ERD and seeded-data explanation for buildings, rooms, sensors, events, schedules, alarms, and energy records'
       },
       {
+        title: 'MySQL Backup Runbook',
+        path: 'docs/bems-final-content/mysql-backup-runbook.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/bems-final-content/mysql-backup-runbook.md',
+        focus: 'mysqldump backup, restore, checksum, retention, Docker Compose fallback, and cron workflow for dashboard MySQL data'
+      },
+      {
         title: 'Operator Manual',
         path: 'docs/bems-final-content/operator-manual.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/bems-final-content/operator-manual.md',
@@ -1175,6 +1181,7 @@ const baseProjects: Project[] = [
       'Runtime data flow runs from operator dashboard to Node API, MySQL telemetry lookup, BEMS-ai gRPC optimization, persisted optimization history, edge command publication, BACnet read/write response, and telemetry/status event feedback.',
       'The API owns safety checks and coordination across session/auth, REST endpoints, MySQL persistence, AI optimization, edge commands, digital twin composition, schedules, alarms, and audit/event shaping.',
       'database/schema.sql provides the database foundation, while Docker files and Yocto meta-bems recipes support containerized and embedded Linux deployment.',
+      'scripts/backup-bems-mysql.sh and scripts/restore-bems-mysql.sh provide repeatable MySQL backup and restore operations with gzip compression, SHA-256 checksums, Docker Compose support, host/port fallback, and retention cleanup.',
       'Root GitHub Actions workflows now run BEMS CI and BEMS CD from the repository root, including C++ tests, static analysis, Python checks, Node checks, UI build, Docker image build, and GHCR publishing.'
     ],
     features: [
@@ -1183,6 +1190,7 @@ const baseProjects: Project[] = [
       'React/Vite UI with Recharts, architecture-alignment status, dashboard-style visualization, energy heat-map, and usage trends.',
       'BEMS-ai/Python optimization layer with gRPC/protobuf dependencies for predictive energy recommendations.',
       'HTTP/JSON and SSE UI/API boundary, SQL database boundary, gRPC AI boundary, edge command/event boundary, and Docker health-check boundary.',
+      'MySQL backup and restore scripts for preserving the dashboard database with checksums and retention.',
       'Docker deployment files, MySQL schema, GitHub Actions CI/CD, and Yocto recipes for embedded Linux packaging.'
     ],
     outcomes: [
@@ -1190,6 +1198,7 @@ const baseProjects: Project[] = [
       'Multi-service architecture covers React UI, Node.js API, BEMS-ai/Python optimization, C++ edge control, MySQL schema, Docker deployment, protobuf contracts, and Yocto recipes.',
       'GitHub Actions BEMS CI and BEMS CD passed on commit 4dbd8045 after root workflow and CMake-cache cleanup fixes.',
       'Local Docker deployment verified the updated dashboard bundle and healthy UI, API, AI service, edge-core, database, event bus, and observability containers.',
+      'Dashboard MySQL backup workflow now creates compressed dumps, checksum manifests, and restore-ready artifacts.',
       'UML architecture, layer, sequence, and data-model diagrams are included as case-study documentation.'
     ],
     resumeBullets: [
@@ -1204,6 +1213,7 @@ const baseProjects: Project[] = [
       'Capture a real BEMS energy heat map and usage dashboard over the production building floorplan from telemetry or MySQL sample data.',
       'Capture API health, digital-twin, alarm, and schedule endpoint responses.',
       'Add MySQL schema/entity screenshots or an ERD generated from schema.sql.',
+      'Run the MySQL backup script against the live Docker database and attach the checksum output.',
       'Add a deployment screenshot showing Docker services healthy together.'
     ]
   },
