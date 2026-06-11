@@ -92,7 +92,7 @@ test('renders schedules directly from #dashboard/schedules without the removed i
     jest.advanceTimersByTime(600);
   });
 
-  expect(container.textContent).toContain('schedules');
+  expect(container.textContent).toContain('Schedules');
   expect(container.textContent).toContain('Schedule Details');
   expect(container.textContent).not.toContain(['Building', 'Schedules'].join(' '));
   expect(container.textContent).not.toContain(['Building', 'Hierarchy'].join(' '));

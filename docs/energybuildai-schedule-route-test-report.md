@@ -15,7 +15,7 @@ renders schedules directly from #dashboard/schedules without the removed intro c
 The test sets `window.location.hash = '#dashboard/schedules'`, renders `App`, advances the loading timer, and verifies:
 
 - the dashboard renders the `Schedule Details` page title,
-- the left operation sidebar renders `schedules`,
+- the left operation sidebar renders `Schedules`,
 - the removed schedule-intro copy does not render on the route,
 - the previous long intro text is absent,
 - the BMS login page is not shown.

@@ -12,7 +12,7 @@ const operationNavLabels: Record<OperationNavItem, string> = {
   Zones: 'Zones',
   Floors: 'Floors',
   Rooms: 'Rooms',
-  Schedules: 'schedules',
+  Schedules: 'Schedules',
   Energy: 'Energy',
   HVAC: 'HVAC',
   Lighting: 'Lighting'
