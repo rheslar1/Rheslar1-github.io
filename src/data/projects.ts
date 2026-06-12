@@ -558,6 +558,24 @@ const baseProjects: Project[] = [
         focus: 'AD8232 OUT to protected BeagleBone AIN path, 1.8V ADC limit, divider ratio, and lead-off pins'
       },
       {
+        title: 'BeagleBone Black Documentation',
+        path: 'docs/beaglebone-black/README.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/beaglebone-black/README.md',
+        focus: 'Shared BeagleBone Black hardware, boot, peripheral, device tree, PRU, image, validation, and project-map documentation'
+      },
+      {
+        title: 'BBB Peripheral Bring-Up',
+        path: 'docs/beaglebone-black/peripheral-bringup.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/beaglebone-black/peripheral-bringup.md',
+        focus: 'GPIO, I2C, SPI, UART, PWM, ADC/IIO, voltage protection, and evidence templates'
+      },
+      {
+        title: 'BBB Validation Checklist',
+        path: 'docs/beaglebone-black/validation-checklist.md',
+        url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/beaglebone-black/validation-checklist.md',
+        focus: 'Board identity, wiring, device tree, service, peripheral, update, and evidence checks'
+      },
+      {
         title: 'Schematic',
         path: 'beaglebone-ad8232-ekg-driver/docs/schematics/ad8232-beaglebone-wiring.svg',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/beaglebone-ad8232-ekg-driver/docs/schematics/ad8232-beaglebone-wiring.svg',

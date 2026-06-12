@@ -17,6 +17,36 @@ interface EmbeddedSystemsSpec {
   proof: string;
 }
 
+const isBeagleBoneBlackProject = (spec: EmbeddedSystemsSpec) =>
+  spec.tags.includes('BeagleBone Black') || /\bBBB\b|BeagleBone Black/i.test(`${spec.title} ${spec.summary}`);
+
+const beagleboneBlackDocs = [
+  {
+    title: 'BeagleBone Black Documentation',
+    path: 'docs/beaglebone-black/README.md',
+    url: portfolioDoc('docs/beaglebone-black/README.md'),
+    focus: 'Shared BBB reference index covering hardware, boot images, peripherals, overlays, PRU, Yocto/Buildroot, validation, and project mapping'
+  },
+  {
+    title: 'BBB Boot And Image Runbook',
+    path: 'docs/beaglebone-black/boot-and-image-runbook.md',
+    url: portfolioDoc('docs/beaglebone-black/boot-and-image-runbook.md'),
+    focus: 'microSD/eMMC boot, serial console, first boot capture, network bring-up, service startup, and recovery plan'
+  },
+  {
+    title: 'BBB Peripheral Bring-Up',
+    path: 'docs/beaglebone-black/peripheral-bringup.md',
+    url: portfolioDoc('docs/beaglebone-black/peripheral-bringup.md'),
+    focus: 'GPIO, I2C, SPI, UART, PWM, ADC/IIO, voltage protection, and evidence templates'
+  },
+  {
+    title: 'BBB Validation Checklist',
+    path: 'docs/beaglebone-black/validation-checklist.md',
+    url: portfolioDoc('docs/beaglebone-black/validation-checklist.md'),
+    focus: 'Board, image, wiring, device tree, service, PRU, network, update, and evidence acceptance checks'
+  }
+];
+
 const embeddedSystemsSpecs: EmbeddedSystemsSpec[] = [
   {
     id: 'bems-edge-ai-gateway',
@@ -323,7 +353,8 @@ const buildEmbeddedSystemsProject = (spec: EmbeddedSystemsSpec): Project => ({
             focus: 'Power rails, reset reason, clock lock, masked register checks, peripheral probes, and diagnostic transports'
           }
         ]
-      : [])
+      : []),
+    ...(isBeagleBoneBlackProject(spec) ? beagleboneBlackDocs : [])
   ],
   preview: githubPreview(spec.id),
   visuals: [
