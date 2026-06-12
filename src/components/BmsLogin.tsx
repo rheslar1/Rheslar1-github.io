@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const accessProfiles = [
   { id: 'operator', label: 'Operator', scope: 'Live dashboards, alarms, and schedules' },
   { id: 'engineer', label: 'Engineer', scope: 'Optimization, devices, and service diagnostics' },
@@ -64,7 +65,7 @@ function BmsLogin() {
   };
 
   return (
-    <main className="bms-login-page" id="bms-login">
+    <main className="bms-login-page" id="main-content" tabIndex={-1}>
       <section className="bms-login-shell">
         <div className="container bms-login-layout">
           <div className="bms-login-copy">
@@ -101,6 +102,7 @@ function BmsLogin() {
                   role="tab"
                   aria-selected={activeProfile === profile.id}
                   className={activeProfile === profile.id ? 'profile-tab active' : 'profile-tab'}
+
                   key={profile.id}
                   onClick={() => setActiveProfile(profile.id)}
                 >

@@ -1,0 +1,13 @@
+/* Persistent focus snapshot styling used by CI screenshot matrix */
+
+html[data-focus-snapshot='enabled'] :focus-visible {
+  outline: 3px solid #f59e0b !important;
+  outline-offset: 3px !important;
+  border-radius: 4px;
+}
+
+html[data-focus-snapshot='enabled'] [tabindex='-1']:focus {
+  outline: 3px solid #f59e0b !important;
+  outline-offset: 3px !important;
+}
+

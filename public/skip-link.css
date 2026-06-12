@@ -1,0 +1,23 @@
+/* Global skip-link styling (React app entry page only).
+   BMS portfolio is a separate static HTML page under public/BMS/portfolio.
+*/
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -60px;
+  z-index: 1000;
+  padding: 10px 14px;
+  background: #ffffff;
+  border: 2px solid color-mix(in srgb, var(--primary) 70%, transparent);
+  border-radius: 6px;
+  color: var(--primary);
+  font-weight: 900;
+  text-decoration: none;
+  transition: top 120ms ease;
+}
+
+.skip-link:focus {
+  top: 14px;
+  outline: none;
+}
+

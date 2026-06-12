@@ -192,7 +192,7 @@ function ProjectDetails({ project, onBack }: ProjectDetailsProps) {
   const stats = detailStats(project);
 
   return (
-    <main className="project-detail-page">
+    <main className="project-detail-page" id="main-content" tabIndex={-1}>
       <section className="project-detail-hero">
         <div className="container">
           <button className="back-button" type="button" onClick={onBack}>

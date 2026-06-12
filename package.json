@@ -13,11 +13,14 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.60.0",
     "@types/jest": "^29.5.14",
     "@types/node": "^18.19.130",
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
+    "axe-playwright": "^2.2.2",
     "gh-pages": "^6.3.0",
+    "playwright": "^1.60.0",
     "typescript": "^4.9.5"
   },
   "scripts": {
