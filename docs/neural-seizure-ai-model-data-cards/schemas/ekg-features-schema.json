@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EkgFeatures",
+  "type": "object",
+  "required": [
+    "ekg_feature_rows"
+  ],
+  "properties": {
+    "ekg_feature_rows": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "start_seconds",
+          "end_seconds",
+          "mean_mv",
+          "heart_rate_bpm",
+          "signal_quality",
+          "autonomic_stress"
+        ],
+        "properties": {
+          "start_seconds": { "type": "number" },
+          "end_seconds": { "type": "number" },
+          "mean_mv": { "type": "number" },
+          "peak_to_peak_mv": { "type": "number" },
+          "heart_rate_bpm": { "type": "number" },
+          "rr_std_ms": { "type": "number" },
+          "rmssd_ms": { "type": "number" },
+          "peak_count": { "type": "integer" },
+          "lead_off_fraction": { "type": "number" },
+          "signal_quality": { "type": "number", "minimum": 0, "maximum": 1 },
+          "autonomic_stress": { "type": "number" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}
+

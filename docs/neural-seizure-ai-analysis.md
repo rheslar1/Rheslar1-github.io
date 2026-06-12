@@ -59,6 +59,29 @@ The project is not a deployed clinical system. It is a research and engineering 
 - `docs/distilled-student-export.md`: C export documentation.
 - `docs/artifact-schema-validation.md`: JSON/CSV artifact contracts and validation checks.
 - `docs/notebook-visualization.md`: notebook workflow for traces, HFO/PAC/connectivity curves, artifact validation, and C export.
+
+## Model/Data Cards + Evidence Package (added)
+- Model card (teacher ensemble + distilled student):
+  - `docs/neural-seizure-ai-model-data-cards/model-card-teacher-ensemble-distilled-student.md`
+- Data card (synthetic + approved public dataset adapter):
+  - `docs/neural-seizure-ai-model-data-cards/data-card-synthetic-and-public-adapters.md`
+- Requirements-to-tests matrix:
+  - `docs/neural-seizure-ai-model-data-cards/requirements-to-tests-matrix.md`
+- Calibration evidence package specification:
+  - `docs/neural-seizure-ai-model-data-cards/calibration-evidence.md`
+- Live embedded/Linux timing report spec:
+  - `docs/neural-seizure-ai-model-data-cards/live-embedded-linux-timing-report.md`
+- Export options note (ONNX/fixed-point vs current C export):
+  - `docs/neural-seizure-ai-model-data-cards/export-note-onnx-fixed-point-vs-c.md`
+- Public dataset example run template:
+  - `docs/neural-seizure-ai-model-data-cards/public-dataset-example-run.md`
+- Hardware-in-the-loop report template:
+  - `docs/neural-seizure-ai-model-data-cards/hil-report.md`
+- Safety case expansion / hazard register:
+  - `docs/neural-seizure-ai-model-data-cards/safety-case-hazard-register.md`
+- Reviewer walkthrough:
+  - `docs/neural-seizure-ai-model-data-cards/reviewer-walkthrough.md`
+
 - `notebooks/neural-seizure-feature-visualization.ipynb`: executable visualization notebook.
 - `docs/source/`: included DOCX source manuscript and Markdown extraction.
 - `docs/source-paper-provenance.md`: source filename, project copy, SHA-256 checksums, DOCX metadata, and safety boundary.

@@ -1,6 +1,6 @@
 # Portfolio Suggested Updates
 
-Updated: 2026-06-11
+Updated: 2026-06-12
 
 This document lists practical updates that would make the Rheslar portfolio easier to review as a finished embedded systems, BMS, full-stack, and AI engineering portfolio.
 
@@ -111,7 +111,7 @@ Suggested updates:
 
 - Add model card for teacher ensemble and distilled student.
 - Add data card for synthetic data and approved public-dataset adapters.
-- Add probability threshold sweep plot.
+- Add a probability threshold sweep plot.
 - Add confusion matrix and lead-time distribution plot.
 - Add BeagleBone timing report from real embedded Linux hardware.
 - Add optional ONNX export or fixed-point student export.
@@ -159,3 +159,4 @@ Suggested updates:
 3. Add final design reports for Bare-Metal, AD8232, Neural Seizure AI, and BEMS.
 4. Add CI badges and validation transcripts to the top five projects.
 5. Add mobile screenshots and accessibility notes for the portfolio.
+

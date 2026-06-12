@@ -1,0 +1,48 @@
+{
+  "evidence_manifest_version": "1.0",
+  "project": "Predictive AI Neural Seizure Analysis",
+  "artifacts_expected": {
+    "plots": [
+      "synthetic-neural-ekg-traces.svg",
+      "feature-trajectories.svg",
+      "biomarker-feature-curves.svg",
+      "risk-warning-timeline.svg",
+      "algorithm-coverage-map.svg",
+      "time-frequency-image-map.svg"
+    ],
+    "data_exports": [
+      "demo-report.json",
+      "window-features.csv",
+      "bbb-ekg-features.csv"
+    ],
+    "model_exports": [
+      "distilled_student.h",
+      "distilled_student.c"
+    ],
+    "timing_evidence": [
+      "hil-timing-report.json",
+      "hil-timing-report.md"
+    ],
+    "calibration_evidence_planned": [
+      "calibration/probability_histogram_positive.svg",
+      "calibration/probability_histogram_negative.svg",
+      "calibration/threshold_sweep.csv",
+      "calibration/confusion_matrix.json",
+      "calibration/lead_time_distribution.csv",
+      "calibration/false_alerts.csv"
+    ]
+  },
+  "artifact_schema_refs": {
+    "timing_report": "docs/neural-seizure-ai-model-data-cards/schemas/timing-report-schema.json",
+    "metrics": "docs/neural-seizure-ai-model-data-cards/schemas/artifact-metrics-schema.json",
+    "predictions": "docs/neural-seizure-ai-model-data-cards/schemas/artifact-predictions-schema.json",
+    "ekg_features": "docs/neural-seizure-ai-model-data-cards/schemas/ekg-features-schema.json"
+  },
+  "provenance_required": [
+    "run_config",
+    "seed",
+    "adapter_versions_if_applicable",
+    "patient_split_notes_if_applicable"
+  ]
+}
+

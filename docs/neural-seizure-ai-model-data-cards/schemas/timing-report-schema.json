@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TimingReport",
+  "type": "object",
+  "required": [
+    "target_label",
+    "platform",
+    "iterations",
+    "windows",
+    "total_seconds",
+    "average_inference_us",
+    "max_window_latency_us",
+    "notes"
+  ],
+  "properties": {
+    "target_label": { "type": "string" },
+    "platform": { "type": "string" },
+    "iterations": { "type": "integer", "minimum": 1 },
+    "windows": { "type": "integer", "minimum": 1 },
+    "total_seconds": { "type": "number", "minimum": 0 },
+    "average_inference_us": { "type": "number", "minimum": 0 },
+    "max_window_latency_us": { "type": "number", "minimum": 0 },
+    "notes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    }
+  },
+  "additionalProperties": true
+}
+

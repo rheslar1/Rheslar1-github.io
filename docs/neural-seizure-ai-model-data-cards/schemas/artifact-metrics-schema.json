@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ArtifactMetrics",
+  "type": "object",
+  "required": [
+    "sensitivity",
+    "specificity",
+    "precision",
+    "false_predictions_per_hour",
+    "lead_time_seconds"
+  ],
+  "properties": {
+    "sensitivity": { "type": "number", "minimum": 0, "maximum": 1 },
+    "specificity": { "type": "number", "minimum": 0, "maximum": 1 },
+    "precision": { "type": "number", "minimum": 0, "maximum": 1 },
+    "false_predictions_per_hour": { "type": "number", "minimum": 0 },
+    "lead_time_seconds": { "type": ["number", "null"] }
+  },
+  "additionalProperties": true
+}
+
