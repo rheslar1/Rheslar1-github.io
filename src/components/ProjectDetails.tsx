@@ -111,9 +111,50 @@ const detailStats = (project: Project): DetailStat[] => [
   }
 ];
 
+const evidenceCategory = (text: string): string => {
+  const lower = text.toLowerCase();
+  if (/(ci|github actions|workflow|badge)/i.test(lower)) return 'CI / Validation';
+  if (/(terminal|cli|command|run transcript|transcript)/i.test(lower)) return 'Terminal / CLI';
+  if (/(oscilloscope|logic analyzer|scope|uart|signal|waveform)/i.test(lower)) return 'Signal / Waveform';
+  if (/(diagram|uml|architecture|erde?d|erd|schematic|draw\.io|evidence map)/i.test(lower)) return 'Diagrams / Schematics';
+  if (/(lighthouse|accessibility|axe|performance|metrics|benchmark|latency|power|memory|accuracy|confusion matrix)/i.test(lower)) return 'Metrics / Reports';
+  if (/(screenshot|mobile|desktop|photo|picture|capture)/i.test(lower)) return 'Screenshots';
+  if (/(build|test|pytest|ctest|cmake|make run|runbook|validation report|pass\/fail|test report)/i.test(lower)) return 'Build / Tests';
+  return 'Other';
+};
+
+const groupEvidenceBacklog = (items: string[]): { label: string; items: string[] }[] => {
+  const order = ['CI / Validation', 'Build / Tests', 'Terminal / CLI', 'Screenshots', 'Diagrams / Schematics', 'Signal / Waveform', 'Metrics / Reports', 'Other'];
+  const map = new Map<string, string[]>();
+
+  for (const item of items) {
+    const label = evidenceCategory(item);
+    const arr = map.get(label) ?? [];
+    arr.push(item);
+    map.set(label, arr);
+  }
+
+  const groups: { label: string; items: string[] }[] = [];
+  for (const label of order) {
+    const arr = map.get(label);
+    if (arr && arr.length > 0) groups.push({ label, items: arr });
+  }
+
+  // Note: avoid iterating MapIterator to keep TS config compatible.
+  const mapEntries = Array.from(map.entries());
+  for (let i = 0; i < mapEntries.length; i++) {
+    const [label, arr] = mapEntries[i];
+    if (!order.includes(label) && arr.length > 0) groups.push({ label, items: arr });
+  }
+
+
+
+  return groups;
+};
+
 const reportSections = (project: Project): ReportSection[] => [
   {
-    title: 'Hardware Stack',
+    title: 'Technical Stack & Boundaries',
     items: [
       ...(project.dependencies || []).filter((item) => (
         /(C\+\+|C\+\+17|C$|CMake|Qt 6|Qt Quick|QML|V4L2|Framebuffer|DRM|mmap|aarch64|Linux|Yocto|BACnet|i\.MX93|i\.MX94|i\.MX95|ConnectCore|STM32|ESP32|I2C|SPI|UART|CAN|BLE|MySQL|Docker|EEG|ECoG|iEEG|Edge AI|Neural Sensors)/i.test(item)
@@ -248,8 +289,11 @@ function ProjectDetails({ project, onBack }: ProjectDetailsProps) {
               <article className="detail-panel engineering-report-panel">
                 <div className="detail-panel-heading">
                   <p className="detail-kicker">Mini Engineering Report</p>
-                  <h2>Hardware, Firmware, Architecture, And Artifacts</h2>
+                  <h2>Engineering Boundaries, Architecture, And Artifacts</h2>
                 </div>
+                <p className="engineering-report-subtitle">
+                  Designed for fast reviewer scanning: what the project proves, how the system is structured, and what artifacts prove it.
+                </p>
                 <div className="engineering-report-grid">
                   {reportSections(project).map((section) => (
                     <section key={section.title}>
@@ -335,13 +379,15 @@ function ProjectDetails({ project, onBack }: ProjectDetailsProps) {
                           <img
                             src={visual.src}
                             alt={`${project.title} visual`}
+                            loading="lazy"
+                            decoding="async"
                             onError={() => setFailedVisuals((current) => ({
                               ...current,
                               [visual.src]: true
                             }))}
                           />
                         ) : (
-                          <div className="screenshot-fallback">
+                          <div className="screenshot-fallback" role="note" aria-label="Image unavailable">
                             Preview image unavailable
                           </div>
                         )}
@@ -380,6 +426,40 @@ function ProjectDetails({ project, onBack }: ProjectDetailsProps) {
             </div>
 
             <aside className="detail-side-column" aria-label={`${project.title} supporting project details`}>
+              {(() => {
+                const topDocs = (project.architectureDocs || []).slice(0, 2);
+                const topEvidence = (project.suggestedContent || []).slice(0, 6);
+
+                if (topDocs.length === 0 && topEvidence.length === 0) return null;
+
+                return (
+                  <article className="detail-panel detail-sticky-panel">
+                    <div className="detail-panel-heading">
+                      <p className="detail-kicker">Top Recommendations</p>
+                      <h2>What to Read Next</h2>
+                    </div>
+
+                    <ul className="evidence-list">
+                      {topDocs.map((doc) => (
+                        <li key={doc.path}>
+                          <span>Start</span>
+                          <a href={doc.url} target="_blank" rel="noopener noreferrer">
+                            {doc.title}
+                          </a>
+                        </li>
+                      ))}
+
+                      {topEvidence.length > 0 && (
+                        <li>
+                          <span>Then</span>
+                          Evidence backlog: {topEvidence.join(' • ')}
+                        </li>
+                      )}
+                    </ul>
+                  </article>
+                );
+              })()}
+
               <article className="detail-panel detail-sticky-panel">
                 <div className="detail-panel-heading">
                   <p className="detail-kicker">Project Links</p>
@@ -492,16 +572,25 @@ function ProjectDetails({ project, onBack }: ProjectDetailsProps) {
                     <p className="detail-kicker">Evidence Backlog</p>
                     <h2>Next Content To Capture</h2>
                   </div>
-                  <ul className="evidence-list">
-                    {project.suggestedContent.map((item) => (
-                      <li key={item}>
-                        <span>Capture</span>
-                        {item}
-                      </li>
+
+                  <div className="evidence-backlog-groups" aria-label="Evidence backlog grouped by capture type">
+                    {groupEvidenceBacklog(project.suggestedContent).map((group) => (
+                      <section key={group.label}>
+                        <h3>{group.label}</h3>
+                        <ul className="evidence-list">
+                          {group.items.map((item) => (
+                            <li key={item}>
+                              <span>Capture</span>
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </section>
                     ))}
-                  </ul>
+                  </div>
                 </article>
               )}
+
             </aside>
           </div>
         </div>
