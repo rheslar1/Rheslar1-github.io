@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">RAII Ownership And Cleanup</title>
+  <desc id="desc">C++ RAII diagram showing acquisition in constructors, scoped ownership, and deterministic cleanup in destructors.</desc>
+  <rect width="1200" height="630" fill="#f8fafc"/>
+  <rect x="62" y="52" width="1076" height="526" rx="18" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="96" y="112" fill="#0f172a" font-family="Arial, sans-serif" font-size="34" font-weight="700">RAII Ownership And Cleanup</text>
+  <text x="96" y="148" fill="#475569" font-family="Arial, sans-serif" font-size="18">Resource lifetime is bound to object lifetime, so cleanup happens on every exit path.</text>
+  <g font-family="Arial, sans-serif" font-weight="700">
+    <rect x="110" y="228" width="230" height="118" rx="12" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+    <text x="155" y="278" fill="#1e3a8a" font-size="24">Constructor</text>
+    <text x="144" y="314" fill="#1e40af" font-size="17">open fd / allocate</text>
+    <rect x="486" y="228" width="230" height="118" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>
+    <text x="532" y="278" fill="#166534" font-size="24">Scope Owns</text>
+    <text x="518" y="314" fill="#15803d" font-size="17">use handle safely</text>
+    <rect x="862" y="228" width="230" height="118" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="3"/>
+    <text x="903" y="278" fill="#991b1b" font-size="24">Destructor</text>
+    <text x="904" y="314" fill="#b91c1c" font-size="17">close / release</text>
+  </g>
+  <g stroke="#64748b" stroke-width="4" fill="none" marker-end="url(#arrow)">
+    <path d="M340 287h146"/>
+    <path d="M716 287h146"/>
+    <path d="M602 346v78c0 26-20 46-46 46H270c-26 0-46-20-46-46v-78" stroke-dasharray="12 10"/>
+  </g>
+  <rect x="374" y="422" width="454" height="76" rx="10" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="405" y="454" fill="#334155" font-family="Arial, sans-serif" font-size="18" font-weight="700">Exception / early return still unwinds the stack</text>
+  <text x="405" y="482" fill="#64748b" font-family="Arial, sans-serif" font-size="16">The destructor owns cleanup instead of scattered manual release calls.</text>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#64748b"/>
+    </marker>
+  </defs>
+</svg>

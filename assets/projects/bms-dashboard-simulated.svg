@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Simulated BEMS Dashboard Screenshot</title>
+  <desc id="desc">Simulated BEMS operations dashboard based on the React/Vite UI, Node API, MySQL schema, BEMS-ai optimization, and digital twin features.</desc>
+  <rect width="1200" height="630" fill="#f8fafc"/>
+  <rect x="48" y="42" width="1104" height="546" rx="10" fill="#ffffff" stroke="#d8e2ea"/>
+  <text x="82" y="96" fill="#1f355e" font-family="Arial, sans-serif" font-size="32" font-weight="700">BEMS Operations Dashboard</text>
+  <text x="82" y="128" fill="#526173" font-family="Arial, sans-serif" font-size="18">Simulated view based on UI source: usage, heat map, BEMS-ai mode, schedules, alarms, and simulated building floorplan</text>
+  <g>
+    <rect x="82" y="170" width="184" height="84" rx="8" fill="#eef6ff" stroke="#bfdbfe"/>
+    <rect x="286" y="170" width="184" height="84" rx="8" fill="#ecfdf3" stroke="#bbf7d0"/>
+    <rect x="490" y="170" width="184" height="84" rx="8" fill="#fff7ed" stroke="#fed7aa"/>
+    <rect x="694" y="170" width="184" height="84" rx="8" fill="#f5f3ff" stroke="#ddd6fe"/>
+    <rect x="898" y="170" width="184" height="84" rx="8" fill="#fef2f2" stroke="#fecaca"/>
+    <text x="106" y="202" fill="#526173" font-family="Arial, sans-serif" font-size="15">Devices</text>
+    <text x="310" y="202" fill="#526173" font-family="Arial, sans-serif" font-size="15">Active Alarms</text>
+    <text x="514" y="202" fill="#526173" font-family="Arial, sans-serif" font-size="15">Schedules</text>
+    <text x="718" y="202" fill="#526173" font-family="Arial, sans-serif" font-size="15">AI Profile</text>
+    <text x="922" y="202" fill="#526173" font-family="Arial, sans-serif" font-size="15">Usage Saved</text>
+    <text x="106" y="236" fill="#152238" font-family="Arial, sans-serif" font-size="30" font-weight="700">6</text>
+    <text x="310" y="236" fill="#152238" font-family="Arial, sans-serif" font-size="30" font-weight="700">2</text>
+    <text x="514" y="236" fill="#152238" font-family="Arial, sans-serif" font-size="30" font-weight="700">2</text>
+    <text x="718" y="236" fill="#152238" font-family="Arial, sans-serif" font-size="24" font-weight="700">occupied</text>
+    <text x="922" y="236" fill="#152238" font-family="Arial, sans-serif" font-size="28" font-weight="700">18 kWh</text>
+  </g>
+  <rect x="82" y="292" width="430" height="220" rx="8" fill="#ffffff" stroke="#d8e2ea"/>
+  <text x="110" y="332" fill="#1f355e" font-family="Arial, sans-serif" font-size="22" font-weight="700">Live Device Values</text>
+  <rect x="126" y="446" width="42" height="40" fill="#2563eb"/>
+  <rect x="190" y="406" width="42" height="80" fill="#2563eb"/>
+  <rect x="254" y="372" width="42" height="114" fill="#2563eb"/>
+  <rect x="318" y="424" width="42" height="62" fill="#2563eb"/>
+  <rect x="382" y="392" width="42" height="94" fill="#2563eb"/>
+  <line x1="108" y1="486" x2="466" y2="486" stroke="#94a3b8"/>
+  <rect x="550" y="292" width="532" height="220" rx="8" fill="#ffffff" stroke="#d8e2ea"/>
+  <text x="578" y="332" fill="#1f355e" font-family="Arial, sans-serif" font-size="22" font-weight="700">Simulated Building Floorplan</text>
+  <rect x="594" y="354" width="190" height="58" fill="#eef6ff" stroke="#93c5fd"/>
+  <rect x="804" y="354" width="224" height="58" fill="#eef6ff" stroke="#93c5fd"/>
+  <rect x="594" y="430" width="132" height="58" fill="#eef6ff" stroke="#93c5fd"/>
+  <rect x="744" y="430" width="284" height="58" fill="#eef6ff" stroke="#93c5fd"/>
+  <circle cx="646" cy="382" r="10" fill="#16a34a" stroke="#ffffff" stroke-width="3"/>
+  <circle cx="866" cy="382" r="10" fill="#16a34a" stroke="#ffffff" stroke-width="3"/>
+  <circle cx="666" cy="458" r="10" fill="#dc2626" stroke="#ffffff" stroke-width="3"/>
+  <circle cx="884" cy="458" r="10" fill="#16a34a" stroke="#ffffff" stroke-width="3"/>
+  <text x="82" y="552" fill="#526173" font-family="Arial, sans-serif" font-size="18">Simulated screenshot based on the BEMS React dashboard source, BEMS-ai optimization, and seeded MySQL schema.</text>
+</svg>
