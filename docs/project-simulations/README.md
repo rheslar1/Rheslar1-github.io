@@ -10,7 +10,13 @@ This folder contains deterministic simulation evidence for every project current
 npm run simulate:projects
 ```
 
+## Examples and Screenshot Matrix
+
+- [Examples (what/where/how to view)](./examples.md)
+- [Screenshot Matrix (PNG/SVG/JSON links)](./screenshot-matrix.md)
+
 ## Artifacts
+
 
 | Project | Data | SVG | Screenshot |
 | --- | --- | --- | --- |
@@ -41,6 +47,7 @@ npm run simulate:projects
 | Edge AI / TinyML Microcontroller | [JSON](edge-ai-tinyml-microcontroller/simulation.json) | [SVG](edge-ai-tinyml-microcontroller/simulation.svg) | [PNG](../evidence/project-simulations/edge-ai-tinyml-microcontroller.png) |
 | Secure Boot and OTA Update System | [JSON](embedded-linux-secure-boot-ota-system/simulation.json) | [SVG](embedded-linux-secure-boot-ota-system/simulation.svg) | [PNG](../evidence/project-simulations/embedded-linux-secure-boot-ota-system.png) |
 | Embedded Linux / Yocto Image | [JSON](embedded-linux-yocto-image/simulation.json) | [SVG](embedded-linux-yocto-image/simulation.svg) | [PNG](../evidence/project-simulations/embedded-linux-yocto-image.png) |
+| EnergyBuildAI Qt Dashboard | [JSON](energybuildai-qt-dashboard/simulation.json) | [SVG](energybuildai-qt-dashboard/simulation.svg) | [PNG](../evidence/project-simulations/energybuildai-qt-dashboard.png) |
 | FPGA to HPS Memory-Mapped Hardware Driver | [JSON](fpga-hps-memory-mapped-driver/simulation.json) | [SVG](fpga-hps-memory-mapped-driver/simulation.svg) | [PNG](../evidence/project-simulations/fpga-hps-memory-mapped-driver.png) |
 | Low-Power Temperature Datalogger | [JSON](low-power-temperature-datalogger/simulation.json) | [SVG](low-power-temperature-datalogger/simulation.svg) | [PNG](../evidence/project-simulations/low-power-temperature-datalogger.png) |
 | Medical Wearable Power Manager | [JSON](medical-wearable-power-manager/simulation.json) | [SVG](medical-wearable-power-manager/simulation.svg) | [PNG](../evidence/project-simulations/medical-wearable-power-manager.png) |
