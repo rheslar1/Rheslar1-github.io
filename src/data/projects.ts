@@ -237,13 +237,13 @@ const baseProjects: Project[] = [
         title: 'Controller Architecture',
         path: 'ARCHITECTURE.md',
         url: 'https://github.com/rheslar1/BEMS-ai/blob/master/ARCHITECTURE.md',
-        focus: '116-state contract, 12-action control, PPO, digital twin, ONNX boundary'
+        focus: 'What the 116-state/12-action contracts prove: policy interface stability across PPO training, ONNX export, and C++ deployment checks'
       },
       {
         title: 'Architecture',
         path: 'docs/DEEP_ARCHITECTURE.md',
         url: 'https://github.com/rheslar1/BEMS-ai/blob/master/docs/DEEP_ARCHITECTURE.md',
-        focus: 'Training pipeline, simulation loop, grid optimizer, C++ deployment interface'
+        focus: 'What the implementation proves end-to-end: simulation loop + digital-twin decisions, PPO reward path, ONNX boundary, and the deployment-side action/state interface'
       }
     ],
     preview: projectAsset('bems-ai-system-architecture.png'),
@@ -321,10 +321,12 @@ const baseProjects: Project[] = [
     screenshotCaption:
       'Simulated controller view is paired with real BEMS-ai architecture and RL control-loop diagrams from the repository.',
     suggestedContent: [
-      'Capture pytest and CTest output from a clean run.',
-      'Add a training/reward plot from a PPO training session.',
-      'Add an ONNX export/validation screenshot once a trained policy artifact is generated.',
-      'Add a before/after energy-cost comparison using a representative simulation scenario.'
+      'Capture CI badge + passing test transcript for the full suite: `pytest -q` and C++ tests via `ctest --output-on-failure` (pass/fail).',
+      'Capture a local clean-run transcript (no caches): `pytest -q` then `cmake -S . -B build && cmake --build build -j && ctest --test-dir build --output-on-failure` (pass/fail).',
+      'Capture terminal output screenshot for ONNX export + validation: “export succeeded” and “ONNX inference OK” (include exact command used). If target evidence is not available, mark as simulator/host-only and keep it explicitly non-hardware.',
+      'Capture training reward/metric plots from a PPO training session (terminal command + output file names + plot screenshot).',
+      'Record a before/after energy-cost comparison transcript from a representative scenario (include baseline vs PPO policy metrics and the exact simulation command).',
+      'Export an evidence bundle for reviewer scanning: JSON/CSV artifact list + hashes + `git rev-parse HEAD` (provenance notes).'
     ]
   },
   {
@@ -342,73 +344,73 @@ const baseProjects: Project[] = [
         title: 'Project Brief',
         path: 'docs/neural-seizure-ai-analysis.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/neural-seizure-ai-analysis.md',
-        focus: 'Portfolio summary, code evidence, and clinical safety boundary'
+        focus: 'What this portfolio artifact proves: runnable research pipeline + clear research-only safety boundary'
       },
       {
         title: 'Project README',
         path: 'README.md',
         url: 'https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis/blob/main/README.md',
-        focus: 'Quick start, project boundary, runnable code, and documentation index'
+        focus: 'What a reviewer can execute: quick start, runnable demo boundary, and the documentation index'
       },
       {
         title: 'Architecture',
         path: 'docs/deep-architecture.md',
         url: 'https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis/blob/main/docs/deep-architecture.md',
-        focus: 'Sensor layer, synthetic data, preprocessing, features, teacher ensemble, distillation, edge budget, and safety case'
+        focus: 'What the pipeline proves end-to-end: synthetic sensor layer → preprocessing → features → teacher ensemble → distillation → edge budget → safety case'
       },
       {
         title: 'Model Comparison',
         path: 'docs/model-comparison.md',
         url: 'https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis/blob/main/docs/model-comparison.md',
-        focus: 'CNN, LSTM, transformer, GNN, teacher ensemble, and distilled student model roles'
+        focus: 'What model family comparisons prove: CNN/LSTM/Transformer/GNN teacher roles and distilled-student behavior against the same feature contract'
       },
       {
         title: 'Edge Inference Budget',
         path: 'docs/edge-inference-budget.md',
         url: 'https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis/blob/main/docs/edge-inference-budget.md',
-        focus: 'Memory, MAC, latency, and power estimates for teacher and student inference'
+        focus: 'What the edge budget proves: memory/MAC/latency/power estimates for teacher vs student inference paths'
       },
       {
         title: 'Safety Review',
         path: 'docs/safety-review.md',
         url: 'https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis/blob/main/docs/safety-review.md',
-        focus: 'Research-only boundary, hazard register, validation gates, privacy, and human-review controls'
+        focus: 'What safety review gates prove: research-only boundary, hazard register, validation gates, privacy, and human-review controls'
       },
       {
         title: 'BeagleBone EKG Integration',
         path: 'docs/beaglebone-ekg-integration.md',
         url: 'https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis/blob/main/docs/beaglebone-ekg-integration.md',
-        focus: 'ADC/IIO capture, EKG features, signal quality, and bounded multimodal fusion'
+        focus: 'What integration proves: ADC/IIO capture + EKG feature extraction + bounded multimodal fusion'
       },
       {
         title: 'Generated Evidence',
         path: 'docs/evidence/README.md',
         url: 'https://github.com/rheslar1/Predictive_AI_Neural-_Seizure_Analysis/blob/main/docs/evidence/README.md',
-        focus: 'Trace screenshots, feature screenshots, CSV/JSON artifacts, C export, and timing report'
+        focus: 'What evidence artifacts prove: trace/feature screenshots + JSON/CSV outputs + C export + timing report'
       },
       {
         title: 'IEEE 11031450 Implementation Evidence',
         path: 'neural-seizure-ai-analysis/docs/evidence/ieee-11031450-implementation-evidence.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/neural-seizure-ai-analysis/docs/evidence/ieee-11031450-implementation-evidence.md',
-        focus: 'IEEE URL/PDF mapping, algorithm-to-code evidence, generated metrics, plots, tests, and clinical boundary'
+        focus: 'What traceability proves: IEEE mapping + algorithm-to-code evidence + generated metrics/plots/tests tied to clinical boundary'
       },
       {
         title: 'IEEE 11031450 Paper-To-Code Traceability',
         path: 'neural-seizure-ai-analysis/docs/ieee-11031450-paper-to-code-traceability.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/neural-seizure-ai-analysis/docs/ieee-11031450-paper-to-code-traceability.md',
-        focus: 'Structured strategy map from IEEE Access review methods to Python modules, artifacts, validation, and future upgrade path'
+        focus: 'What paper-to-code traceability proves: implemented strategies → code modules → artifacts → validation → upgrade path'
       },
       {
         title: 'Artifact Schema Validation',
         path: 'neural-seizure-ai-analysis/docs/artifact-schema-validation.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/neural-seizure-ai-analysis/docs/artifact-schema-validation.md',
-        focus: 'Dependency-free validation for generated demo-report JSON, neural feature CSV, and EKG feature CSV artifacts'
+        focus: 'What schema validation proves: dependency-free checks for generated JSON/CSV keys, columns, ordering, and non-empty evidence'
       },
       {
         title: 'Notebook Visualization',
         path: 'neural-seizure-ai-analysis/notebooks/neural-seizure-feature-visualization.ipynb',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/neural-seizure-ai-analysis/notebooks/neural-seizure-feature-visualization.ipynb',
-        focus: 'Executable notebook for sample traces, HFO ratio, PAC proxy, connectivity curves, schema validation, and C export'
+        focus: 'What notebook output proves: repeatable sample traces + biomarker curves + schema validation + C export artifacts'
       }
     ],
     preview: projectAsset('neural-seizure-ai-pipeline.svg'),
@@ -518,14 +520,12 @@ const baseProjects: Project[] = [
     screenshotCaption:
       'Pipeline visual summarizes the project architecture and is now backed by a standalone Python implementation. The artifact is a research and engineering demo, not a clinical system.',
     suggestedContent: [
-      'Replace synthetic data with approved public datasets.',
-      'Add PyTorch dataset and dataloader boundaries.',
-      'Train CNN/LSTM/transformer/GNN baselines against the same WindowFeatures contract or raw windows.',
-      'Export a trained student to ONNX or C for embedded inference.',
-      'Add calibration, uncertainty, and patient-specific thresholding.',
-      'Run the timing evidence on real BeagleBone hardware and commit the target report.',
-      'Add a fixed-point student inference path for MCU-class targets.',
-      'Add notebook execution output snapshots after the next evidence refresh.'
+      'Capture CI run transcript: `pytest -q` + demo CLI command output (pass/fail).',
+      'Capture a local clean-run transcript: demo CLI → writes `demo-report.json` + CSV/PNG artifacts → schema validation passes (pass/fail).',
+      'Capture terminal screenshot for C export + build: “distilled_student.c/.h generated” and compilation status (include exact command).',
+      'Capture a timing-evidence screenshot from synthetic/demo run; if real BeagleBone hardware is unavailable, mark target timing as pending and keep it host/simulator-only.',
+      'Record a fixed set of evaluation metrics comparison screenshot: confusion matrix + lead-time distribution (include notebook/CLI command used).',
+      'Export a reviewer evidence bundle screenshot: artifact list + hashes + `git rev-parse HEAD` provenance notes.'
     ]
   },
   {
@@ -543,49 +543,49 @@ const baseProjects: Project[] = [
         title: 'Driver README',
         path: 'beaglebone-ad8232-ekg-driver/README.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/beaglebone-ad8232-ekg-driver/README.md',
-        focus: 'Quick start, simulator, BeagleBone live capture, outputs, and safety boundary'
+        focus: 'What a reviewer can execute: simulator quick-start, expected CLI outputs, and non-medical safety boundary'
       },
       {
         title: 'Driver Architecture',
         path: 'beaglebone-ad8232-ekg-driver/ARCHITECTURE.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/beaglebone-ad8232-ekg-driver/ARCHITECTURE.md',
-        focus: 'Config, IIO reader, simulator, filters, heart-rate analysis, recorder, plot evidence, and CLI flow'
+        focus: 'What the implementation proves: config + IIO reader + simulator → filtering → R-peak detection → heart-rate reporting'
       },
       {
         title: 'Wiring Notes',
         path: 'beaglebone-ad8232-ekg-driver/docs/wiring.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/beaglebone-ad8232-ekg-driver/docs/wiring.md',
-        focus: 'AD8232 OUT to protected BeagleBone AIN path, 1.8V ADC limit, divider ratio, and lead-off pins'
+        focus: 'What the wiring proves: AD8232 OUT → protected BBB AIN path, 1.8V ADC limit, divider ratio math, and lead-off pins'
       },
       {
         title: 'BeagleBone Black Documentation',
         path: 'docs/beaglebone-black/README.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/beaglebone-black/README.md',
-        focus: 'Shared BeagleBone Black hardware, boot, peripheral, device tree, PRU, image, validation, and project-map documentation'
+        focus: 'What BBB references prove: shared boot/peripheral/device-tree/image/validation index for portfolio-scanning'
       },
       {
         title: 'BBB Peripheral Bring-Up',
         path: 'docs/beaglebone-black/peripheral-bringup.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/beaglebone-black/peripheral-bringup.md',
-        focus: 'GPIO, I2C, SPI, UART, PWM, ADC/IIO, voltage protection, and evidence templates'
+        focus: 'What bring-up proves: common GPIO/I2C/SPI/UART/PWM/ADC evidence patterns and capture templates'
       },
       {
         title: 'BBB Validation Checklist',
         path: 'docs/beaglebone-black/validation-checklist.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/beaglebone-black/validation-checklist.md',
-        focus: 'Board identity, wiring, device tree, service, peripheral, update, and evidence checks'
+        focus: 'What validation proves: board identity + wiring + device tree + service + peripheral acceptance checks'
       },
       {
         title: 'Schematic',
         path: 'beaglebone-ad8232-ekg-driver/docs/schematics/ad8232-beaglebone-wiring.svg',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/beaglebone-ad8232-ekg-driver/docs/schematics/ad8232-beaglebone-wiring.svg',
-        focus: 'AD8232 to BeagleBone Black wiring, lead-off pins, divider protection, and ADC safety boundary'
+        focus: 'What the schematic proves: connector-level wiring, lead-off pins, divider protection, and ADC safety boundary'
       },
       {
         title: 'Generated Evidence',
         path: 'beaglebone-ad8232-ekg-driver/docs/evidence/README.md',
         url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/beaglebone-ad8232-ekg-driver/docs/evidence/README.md',
-        focus: 'Synthetic capture CSV, report JSON, waveform SVG, and PNG screenshot provenance'
+        focus: 'What evidence artifacts prove: synthetic CSV + JSON heart-rate report + waveform SVG + PNG provenance'
       }
     ],
     preview: githubPreview('Rheslar1-github.io'),
@@ -658,10 +658,12 @@ const baseProjects: Project[] = [
     screenshotCaption:
       'Simulated waveform evidence shows the AD8232-to-BeagleBone ADC acquisition path, filtered R-peak view, heart-rate estimate, signal quality, and lead-off fraction.',
     suggestedContent: [
-      'Capture a live BeagleBone run with board revision, ADC channel, divider values, and oscilloscope notes.',
-      'Add a systemd service example for long-running local waveform logging.',
-      'Add hardware-in-the-loop timing evidence from the BeagleBone under load.',
-      'Create a dedicated GitHub repository if the driver should be published outside the portfolio repo.'
+      'Capture CI evidence for driver tests: `pytest -q` (pass/fail).',
+      'Capture local clean-run transcript for simulator/CLI: run the documented command that produces CSV/JSON + SVG/PNG outputs (pass/fail).',
+      'Capture a terminal output screenshot for live-capture configuration (board revision, ADC channel, divider values, LO+/LO- paths) and the first report line(s). If target hardware is unavailable, mark as pending and keep evidence simulator-only.',
+      'Capture an evidence screenshot of waveform + R-peak overlay export from the exact CLI command (include filenames + output).',
+      'Attach oscilloscope/logic-analyzer/photo evidence showing AD8232 OUT into the protected BBB ADC path (nominal + lead-off failure mode), with a short note explaining what each mode demonstrates.',
+      'Export a reviewer evidence bundle: artifact list + hashes + `git rev-parse HEAD` provenance notes.'
     ]
   },
   {
