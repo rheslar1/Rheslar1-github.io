@@ -28,7 +28,7 @@ This document lists practical updates that would make the Rheslar portfolio easi
 
 4. Standardize visible document naming.
    - Use `Design Architecture` as the visible label.
-   - Keep existing file paths such as `docs/deep-architecture.md` when renaming files would break links.
+   - Keep existing file paths such as `docs/detailed design archtitecture.md` when renaming files would break links.
    - Use document titles that match what reviewers expect: `Architecture`, `Validation Plan`, `Evidence`, `Safety Review`, `Runbook`, and `Final Design Report`.
 
 ## Bare-Metal Custom Board Bring-Up

@@ -48,7 +48,7 @@ The project is not a deployed clinical system. It is a research and engineering 
 
 - `README.md`: quick start and project boundary.
 - `ARCHITECTURE.md`: system boundary and runtime flow.
-- `docs/deep-architecture.md`: layered implementation architecture.
+- `docs/detailed design archtitecture.md`: layered implementation architecture.
 - `docs/pipeline-contract.md`: input, feature, and artifact contracts.
 - `docs/model-comparison.md`: model-family mapping and distillation flow.
 - `docs/edge-inference-budget.md`: embedded inference budget review.

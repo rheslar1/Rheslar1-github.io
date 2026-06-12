@@ -88,7 +88,7 @@ The implementation uses deterministic synthetic data. It does not train on patie
 - [Source paper extraction](docs/source-paper-extracted.md)
 - [Source manuscript artifacts](docs/source/README.md)
 - [Source paper provenance](docs/source-paper-provenance.md)
-- [Architecture](docs/deep-architecture.md)
+- [Architecture](docs/detailed design archtitecture.md)
 - [Pipeline contract](docs/pipeline-contract.md)
 - [Model comparison](docs/model-comparison.md)
 - [Edge inference budget](docs/edge-inference-budget.md)
