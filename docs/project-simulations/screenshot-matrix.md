@@ -56,4 +56,5 @@ This matrix links each portfolio project to its **simulated** screenshot PNG (pl
 | study | [PNG](../evidence/project-simulations/study.png) | [SVG](./study/simulation.svg) | [JSON](./study/simulation.json) |
 | TinyML Sensor Anomaly Detector | [PNG](../evidence/project-simulations/tinyml-sensor-anomaly-detector.png) | [SVG](./tinyml-sensor-anomaly-detector/simulation.svg) | [JSON](./tinyml-sensor-anomaly-detector/simulation.json) |
 | Zephyr RTOS IoT Sensor Node | [PNG](../evidence/project-simulations/zephyr-rtos-iot-sensor-node.png) | [SVG](./zephyr-rtos-iot-sensor-node/simulation.svg) | [JSON](./zephyr-rtos-iot-sensor-node/simulation.json) |
+| QtRabbitAsync | [PNG](../evidence/project-simulations/qtrabbit-async.png) | [SVG](./qtrabbit-async/simulation.svg) | [JSON](./qtrabbit-async/simulation.json) |
 

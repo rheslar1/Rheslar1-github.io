@@ -65,6 +65,7 @@ npm run simulate:projects
 | study | [JSON](study/simulation.json) | [SVG](study/simulation.svg) | [PNG](../evidence/project-simulations/study.png) |
 | TinyML Sensor Anomaly Detector | [JSON](tinyml-sensor-anomaly-detector/simulation.json) | [SVG](tinyml-sensor-anomaly-detector/simulation.svg) | [PNG](../evidence/project-simulations/tinyml-sensor-anomaly-detector.png) |
 | Zephyr RTOS IoT Sensor Node | [JSON](zephyr-rtos-iot-sensor-node/simulation.json) | [SVG](zephyr-rtos-iot-sensor-node/simulation.svg) | [PNG](../evidence/project-simulations/zephyr-rtos-iot-sensor-node.png) |
+| QtRabbitAsync | [JSON](qtrabbit-async/simulation.json) | [SVG](qtrabbit-async/simulation.svg) | [PNG](../evidence/project-simulations/qtrabbit-async.png) |
 
 ## Provenance
 
