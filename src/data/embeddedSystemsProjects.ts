@@ -4,6 +4,7 @@ const githubPreview = (repo: string) => `https://opengraph.githubassets.com/embe
 const githubRepo = (repo: string) => `https://github.com/rheslar1/${repo}`;
 const portfolioDoc = (docPath: string) => `https://github.com/rheslar1/Rheslar1-github.io/blob/main/${docPath}`;
 const portfolioRaw = (docPath: string) => `https://raw.githubusercontent.com/rheslar1/Rheslar1-github.io/main/${docPath}`;
+const projectAsset = (name: string) => `${process.env.PUBLIC_URL}/assets/projects/${name}`;
 
 const embeddedSystemsCoreTags = ['C++17', 'C++ Design Patterns', 'SOLID'];
 const withCoreTags = (tags: string[]) => Array.from(new Set([...embeddedSystemsCoreTags, ...tags]));
@@ -427,5 +428,100 @@ const buildEmbeddedSystemsProject = (spec: EmbeddedSystemsSpec): Project => ({
 
 const embeddedSystemsProjects = embeddedSystemsSpecs.map(buildEmbeddedSystemsProject);
 
+// QtRabbitAsync - Qt/C++ async backend with RabbitMQ integration
+const qtrabbitAsyncProject: Project = {
+  id: 'qtrabbit-async',
+  title: 'QtRabbitAsync Backend',
+  collection: 'embedded-systems',
+  summary: 'Qt 6 C++ async backend using QPromise/QFuture, RabbitMQ publish/subscribe, OTA update pipeline, and QML integration.',
+  deployment: 'Built as a CMake project for ARM64 Yocto targets or desktop Qt runtime. Includes Dockerfile for containerization.',
+  dependencies: ['Qt 6', 'QPromise/QFuture', 'QtConcurrent', 'RabbitMQ/AMQP', 'C++17', 'CMake'],
+  repository: 'https://github.com/rheslar1/Rheslar1-github.io/tree/main/QtRabbitAsync',
+  architectureDocs: [
+    {
+      title: 'QtRabbitAsync README',
+      path: 'QtRabbitAsync/PROJECT.md',
+      url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/QtRabbitAsync/PROJECT.md',
+      focus: 'Qt version of async, core interfaces, infrastructure, application layer, State pattern, OTA pipeline'
+    },
+    {
+      title: 'Simulation Evidence',
+      path: 'docs/project-simulations/qtrabbit-async/simulation.json',
+      url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/project-simulations/qtrabbit-async/simulation.json',
+      focus: 'Deterministic async publish latency simulation and scenario checks'
+    }
+  ],
+  preview: projectAsset('qtrabbit-async-dashboard.svg'),
+  visuals: [
+    {
+      src: projectAsset('qtrabbit-async-dashboard.svg'),
+      caption: 'QtRabbitAsync dashboard showing async message publishing and OTA progress.'
+    },
+    {
+      src: portfolioRaw('docs/project-simulations/qtrabbit-async/simulation.svg'),
+      caption: 'Simulation evidence showing async publish latency and OTA progress over time.'
+    }
+  ],
+  tags: ['Qt 6', 'QPromise', 'Async', 'RabbitMQ', 'C++', 'CMake', 'Embedded'],
+  problem: 'Build a Qt-native async backend that can handle RabbitMQ messaging and OTA updates without blocking the UI thread.',
+  architecture: 'BackendFacade exposes Q_INVOKABLE async methods. RabbitClient handles AMQP with Qt signal integration. OtaManager uses State pattern. DeviceModel integrates with QML.',
+  proofPoints: [
+    {
+      label: 'Async Patterns',
+      title: 'QPromise/QFuture With QtConcurrent',
+      detail: 'Async publish/subscribe uses QPromise/QFuture with QtConcurrent::run for non-blocking RabbitMQ operations.'
+    },
+    {
+      label: 'State Machine',
+      title: 'OTA Update With Progress',
+      detail: 'OtaManager transitions Idle → Running → Completed/Failed with progress callbacks and cancellation support.'
+    },
+    {
+      label: 'QML Ready',
+      title: 'UI Integration Ready',
+      detail: 'DeviceModel as QAbstractListModel allows QML to bind directly to device state updates from async operations.'
+    }
+  ],
+  deepDetails: [
+    'BackendFacade publishes to RabbitMQ asynchronously and returns a QFuture for result handling.',
+    'RabbitClient runs AMQP callbacks on its own thread and emits Qt signals for thread-safe UI updates.',
+    'OtaManager handles firmware upload with progress reporting and failure recovery.',
+    'All async operations support cancellation through QPromise::isCanceled().',
+    'CMakeLists.txt supports both desktop Qt and cross-compilation for Yocto targets.',
+    'Docker build supports containerized deployment with qt6-base runtime.'
+  ],
+  features: [
+    'Async RabbitMQ publish with ACK tracking',
+    'Streaming async subscribe with QFutureWatcher',
+    'OTA update pipeline with progress reporting',
+    'State machine pattern for update lifecycle',
+    'QAbstractListModel for QML device binding',
+    'CMake build for desktop and cross-compile',
+    'Docker containerization support'
+  ],
+  outcomes: [
+    'Complete Qt/C++ async backend with QPromise/QFuture patterns implemented.',
+    'Build system validated with CMake and Qt 6.4+.',
+    'Dockerfile created for containerized runtime.',
+    'Full PROJECT.md archive with all source code.'
+  ],
+  resumeBullets: [
+    'Designed Qt-native async backend using QPromise/QFuture with QtConcurrent.',
+    'Integrated RabbitMQ messaging into Qt signal/slot architecture.',
+    'Implemented OTA state machine with progress and cancellation support.'
+  ],
+  screenshotCaption: 'QtRabbitAsync dashboard showing async device control, OTA progress, and RabbitMQ connection status.',
+  suggestedContent: [
+    'Capture desktop Qt runtime screenshot after building locally.',
+    'Add CMake build log with QtConcurrent/QPromise compile.',
+    'Capture Docker build and runtime evidence.'
+  ]
+};
+
+// Replace the placeholder entry with real implementation
+const updatedEmbeddedSystemsProjects = embeddedSystemsProjects.map(p => 
+  p.id === 'bems-edge-ai-gateway' ? qtrabbitAsyncProject : p
+);
+
 export { embeddedSystemsSpecs };
-export default embeddedSystemsProjects;
+export default updatedEmbeddedSystemsProjects;

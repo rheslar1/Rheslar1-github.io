@@ -1438,15 +1438,116 @@ const baseProjects: Project[] = [
       'Created Makefile targets for aarch64 cross-compilation, SCP deployment, SSH execution, and debug builds.',
       'Documented camera bring-up architecture for embedded Linux/i.MX93-style validation.'
     ],
-    screenshotCaption:
-      'CameraDemo case-study visuals include a simulated capture console, a running portfolio detail screenshot, and an architecture diagram derived from the C/V4L2 implementation.',
-    suggestedContent: [
-      'Capture real target terminal output from make run with /dev/video0 connected.',
-      'Add a real frame or HDMI preview photo from the embedded target.',
-      'Add a hardware setup photo showing camera, target board, display, and network connection.',
-      'Add format/capability output for the tested camera module.'
-    ]
-  }
+screenshotCaption:
+       'CameraDemo case-study visuals include a simulated capture console, a running portfolio detail screenshot, and an architecture diagram derived from the C/V4L2 implementation.',
+     suggestedContent: [
+       'Capture real target terminal output from make run with /dev/video0 connected.',
+       'Add a real frame or HDMI preview photo from the embedded target.',
+       'Add a hardware setup photo showing camera, target board, display, and network connection.',
+       'Add format/capability output for the tested camera module.'
+     ]
+   },
+   {
+     id: 'qtrabbit-async',
+     aliases: ['qtrabbitasync', 'qt-rabbitmq-async'],
+     title: 'QtRabbitAsync',
+     summary: 'Qt-based MQTT/RabbitMQ client with QPromise/QFuture async patterns, OTA update pipeline with progress/cancellation, and State pattern for device lifecycle management.',
+     deployment:
+       'CMake-based C++ project. Runs on desktop for simulation; designed for ARM64/Yocto embedded targets.',
+     dependencies: ['Qt 6', 'Qt Concurrent', 'CMake', 'C++17', 'QPromise', 'QFuture', 'Qt Mqtt (optional)', 'AMQP-CPP (optional)'],
+     repository: 'https://github.com/rheslar1/Rheslar1-github.io/tree/main/QtRabbitAsync',
+     repositoryLabel: 'View QtRabbitAsync Source',
+     collection: 'embedded-systems',
+architectureDocs: [
+        {
+          title: 'QtRabbitAsync README',
+          path: 'QtRabbitAsync/PROJECT.md',
+          url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/QtRabbitAsync/PROJECT.md',
+          focus: 'Qt version of async, core interfaces, infrastructure, application layer, State pattern, OTA pipeline'
+        },
+        {
+          title: 'Simulation Evidence',
+          path: 'docs/project-simulations/qtrabbit-async/simulation.json',
+          url: 'https://github.com/rheslar1/Rheslar1-github.io/blob/main/docs/project-simulations/qtrabbit-async/simulation.json',
+          focus: 'Deterministic async publish latency simulation and scenario checks'
+        }
+      ],
+      preview: projectAsset('qtrabbit-async-dashboard.svg'),
+      visuals: [
+        {
+          src: projectAsset('qtrabbit-async-dashboard.svg'),
+          caption: 'QtRabbitAsync dashboard showing async message publishing and OTA progress.'
+        },
+        {
+          src: 'https://raw.githubusercontent.com/rheslar1/Rheslar1-github.io/main/docs/project-simulations/qtrabbit-async/simulation.svg',
+          caption: 'Simulation evidence showing async publish latency and OTA progress over time.'
+        }
+      ],
+      tags: ['Qt 6', 'C++', 'Async', 'MQTT', 'RabbitMQ', 'OTA', 'State Pattern', 'Embedded'],
+     problem:
+       'Bridge Qt async patterns with MQTT/RabbitMQ for embedded device management, providing non-blocking publish/subscribe, OTA updates with progress feedback, and state-driven device lifecycle control.',
+     architecture:
+       'Core interfaces (ICloudClient, ILogger, IRetryPolicy, IMessageEncoder) decouple Qt specifics from business logic. Infrastructure (RabbitClient, ConsoleLogger, JsonEncoder, ExponentialBackoff) uses QtConcurrent::run for async work. Application layer (BackendFacade, OtaManager, DeviceModel) orchestrates RabbitMQ messages and OTA state machines.',
+     proofPoints: [
+       {
+         label: 'Qt Async',
+         title: 'QPromise/QFuture Replace Callbacks',
+         detail:
+           'QtConcurrent::run wraps blocking operations in futures, giving the QtRabbitAsync backend async message publishing without manual thread management.'
+       },
+       {
+         label: 'OTA Pipeline',
+         title: 'OTA Has Progress And Cancellation',
+         detail:
+           'The OtaManager State pattern (Idle, Downloading, Installing, Complete, Failed) enables real-time progress updates and user-initiated cancellation.'
+       },
+       {
+         label: 'Embedded Ready',
+         title: 'Design Is Yocto Compatible',
+         detail:
+           'The CMakeLists.txt targets Qt 6.4+ with Concurrent support, making the backend suitable for ARM64/Yocto embedded targets.'
+       }
+     ],
+     deepDetails: [
+       'ICloudClient interface abstracts cloud messaging so RabbitClient can be swapped for MQTT client or mock in tests.',
+       'ILogger interface uses Qt message categories for thread-aware logging.',
+       'IRetryPolicy with ExponentialBackoff gives configurable retry behavior for failed connections.',
+       'IMessageEncoder with JsonEncoder isolates encoding so Protobuf or CBOR could replace JSON later.',
+       'BackendFacade wraps publish/subscribe with QFuture/async processing and a simple Qt event loop.',
+       'OtaManager uses the State pattern to model download, install, verify, and rollback phases with cancellation support.',
+       'DeviceModel represents a connected device with status, value, and OTA progress fields.',
+       'CMakeLists.txt uses find_package(Qt6 6.4 REQUIRED COMPONENTS Core Concurrent Qml Quick) for cross-platform builds.',
+       'main.cpp demonstrates the backend flow: RabbitClient initializes, BackendFacade publishes async, WebSocket emits updates.',
+       'SimulatedRabbitClient exists for testing without a live AMQP or MQTT broker.'
+     ],
+     features: [
+       'Qt QPromise/QFuture-based async message publishing and subscription.',
+       'State pattern for OTA lifecycle (Idle, Downloading, Installing, Complete, Failed).',
+       'Progress callbacks and cancellation support for firmware updates.',
+       'JSON message encoding with interfaces ready for format extension.',
+       'Exponential backoff retry policy for connection resilience.',
+       'CMake build for desktop simulation and cross-compilation.',
+       'Thread-safe device model and status tracking.'
+     ],
+     outcomes: [
+       'Complete C++ backend demonstrating Qt async patterns with CMake build system.',
+       'Simulated RabbitMQ client enables testing without live broker infrastructure.',
+       'State machine design for OTA gives predictable device update behavior.',
+       'React dashboard component created for UI integration with the portfolio.'
+     ],
+     resumeBullets: [
+       'Designed Qt async patterns with QPromise/QFuture for non-blocking RabbitMQ messaging.',
+       'Implemented State pattern for OTA update pipeline with progress/cancellation.',
+       'Built CMake-based Qt 6.4+ project suitable for embedded Linux deployment.'
+     ],
+     screenshotCaption:
+       'QtRabbitAsync dashboard shows async message publishing and OTA progress in the React portfolio.',
+     suggestedContent: [
+       'Capture Qt desktop build screenshot of the dashboard view.',
+       'Capture CMake build output showing Qt 6.4+ detection and compilation.',
+       'Add terminal output showing RabbitClient initialization and simulated ACK receipt.'
+     ]
+   }
 ];
 
 const projects: Project[] = [...baseProjects, ...embeddedSystemsProjects];

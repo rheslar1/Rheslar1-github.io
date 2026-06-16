@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">QtRabbitAsync Dashboard Screenshot</title>
+  <desc id="desc">QtRabbitAsync dashboard showing async RabbitMQ publish/subscribe and OTA update progress with QtConcurrent/Future patterns.</desc>
+  <rect width="1200" height="630" fill="#f8fafc"/>
+  <rect x="48" y="42" width="1104" height="546" rx="10" fill="#ffffff" stroke="#d8e2ea"/>
+  <text x="82" y="96" fill="#1f355e" font-family="Arial, sans-serif" font-size="32" font-weight="700">QtRabbitAsync Dashboard</text>
+  <text x="82" y="128" fill="#526173" font-family="Arial, sans-serif" font-size="18">Qt 6 async RabbitMQ + OTA with QFuture/QPromise patterns</text>
+  <g>
+    <rect x="82" y="170" width="184" height="84" rx="8" fill="#eef6ff" stroke="#bfdbfe"/>
+    <rect x="286" y="170" width="184" height="84" rx="8" fill="#ecfdf3" stroke="#bbf7d0"/>
+    <rect x="490" y="170" width="184" height="84" rx="8" fill="#fef2f2" stroke="#fecaca"/>
+    <rect x="694" y="170" width="184" height="84" rx="8" fill="#f5f3ff" stroke="#ddd6fe"/>
+    <text x="106" y="202" fill="#526173" font-family="Arial, sans-serif" font-size="15">Building Load</text>
+    <text x="310" y="202" fill="#526173" font-family="Arial, sans-serif" font-size="15">Active Alarms</text>
+    <text x="514" y="202" fill="#526173" font-family="Arial, sans-serif" font-size="15">OTA Status</text>
+    <text x="718" y="202" fill="#526173" font-family="Arial, sans-serif" font-size="15">Connected Devices</text>
+    <text x="106" y="236" fill="#152238" font-family="Arial, sans-serif" font-size="30" font-weight="700">68.0 kWh</text>
+    <text x="310" y="236" fill="#152238" font-family="Arial, sans-serif" font-size="30" font-weight="700">1</text>
+    <text x="514" y="236" fill="#152238" font-family="Arial, sans-serif" font-size="24" font-weight="700">Idle</text>
+    <text x="718" y="236" fill="#152238" font-family="Arial, sans-serif" font-size="30" font-weight="700">5</text>
+  </g>
+  <rect x="82" y="292" width="1030" height="10" rx="5" fill="#f1f5f9"/>
+  <rect x="82" y="292" width="480" height="10" rx="5" fill="#3b82f6"/>
+  <text x="82" y="320" fill="#526173" font-family="Arial, sans-serif" font-size="16">Publish Progress</text>
+  <rect x="82" y="360" width="1030" height="10" rx="5" fill="#f1f5f9"/>
+  <rect x="82" y="360" width="206" height="10" rx="5" fill="#047857"/>
+  <text x="82" y="388" fill="#526173" font-family="Arial, sans-serif" font-size="16">OTA Progress</text>
+  <text x="82" y="436" fill="#047857" font-family="Arial, sans-serif" font-size="16" font-weight="700">Idle</text>
+  <text x="82" y="470" fill="#1f355e" font-family="Arial, sans-serif" font-size="22" font-weight="700">Zone Energy Status</text>
+  <rect x="82" y="500" width="220" height="60" rx="6" fill="#ffffff" stroke="#93c5fd"/>
+  <rect x="262" y="500" width="220" height="60" rx="6" fill="#ffffff" stroke="#f59e0b"/>
+  <rect x="482" y="500" width="220" height="60" rx="6" fill="#ffffff" stroke="#16a34a"/>
+  <rect x="702" y="500" width="220" height="60" rx="6" fill="#ffffff" stroke="#3b82f6"/>
+  <rect x="922" y="500" width="220" height="60" rx="6" fill="#ffffff" stroke="#dc2626"/>
+  <text x="100" y="532" fill="#152238" font-family="Arial, sans-serif" font-size="14" font-weight="700">Tower B Floor 1</text>
+  <text x="280" y="532" fill="#152238" font-family="Arial, sans-serif" font-size="14" font-weight="700">Floor 1</text>
+  <text x="500" y="532" fill="#152238" font-family="Arial, sans-serif" font-size="14" font-weight="700">Floor 2</text>
+  <text x="720" y="532" fill="#152238" font-family="Arial, sans-serif" font-size="14" font-weight="700">Tower Lobby</text>
+  <text x="940" y="532" fill="#152238" font-family="Arial, sans-serif" font-size="14" font-weight="700">Lobby</text>
+  <text x="82" y="592" fill="#526173" font-family="Arial, sans-serif" font-size="18">Qt QPromise/QFuture async patterns for RabbitMQ publish/subscribe and OTA updates.</text>
+</svg>

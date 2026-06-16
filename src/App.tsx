@@ -6,6 +6,7 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import ProjectDetails from './components/ProjectDetails';
 import Dashboard from './components/Dashboard';
+import QtRabbitAsyncDashboard from './components/QtRabbitAsyncDashboard';
 import BmsLogin from './components/BmsLogin';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
@@ -43,6 +44,7 @@ const getDashboardViewFromHash = (): DashboardView => {
   return 'Overview';
 };
 const getBmsLoginFromHash = (): boolean => window.location.hash === '#bms-login';
+const getQtRabbitAsyncDashboardFromHash = (): boolean => window.location.hash === '#qtrabbit-async';
 
 function App() {
   const [theme, setTheme] = React.useState<Theme>('light');
@@ -51,6 +53,7 @@ function App() {
   const [isDashboard, setIsDashboard] = React.useState(getDashboardFromHash);
   const [dashboardView, setDashboardView] = React.useState(getDashboardViewFromHash);
   const [isBmsLogin, setIsBmsLogin] = React.useState(getBmsLoginFromHash);
+  const [isQtRabbitAsyncDashboard, setIsQtRabbitAsyncDashboard] = React.useState(getQtRabbitAsyncDashboardFromHash);
 
   React.useEffect(() => {
     // Check for saved theme preference
@@ -70,8 +73,9 @@ function App() {
       setIsDashboard(getDashboardFromHash());
       setDashboardView(getDashboardViewFromHash());
       setIsBmsLogin(getBmsLoginFromHash());
+      setIsQtRabbitAsyncDashboard(getQtRabbitAsyncDashboardFromHash());
 
-      if (!hash || hash.startsWith('dashboard') || hash === 'bms-login' || hash.startsWith('project/')) {
+      if (!hash || hash.startsWith('dashboard') || hash === 'bms-login' || hash === 'qtrabbit-async' || hash.startsWith('project/')) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
@@ -145,6 +149,16 @@ function App() {
       <div className="App" data-theme={theme}>
         <Navbar onThemeToggle={toggleTheme} currentTheme={theme} />
         <BmsLogin />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (isQtRabbitAsyncDashboard) {
+    return (
+      <div className="App" data-theme={theme}>
+        <Navbar onThemeToggle={toggleTheme} currentTheme={theme} />
+        <QtRabbitAsyncDashboard />
         <Footer />
       </div>
     );

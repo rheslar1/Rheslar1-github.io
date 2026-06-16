@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">QtRabbitAsync Simulation Evidence</title>
+  <desc id="desc">Deterministic synthetic simulation trace and scenario checks for QtRabbitAsync async RabbitMQ backend.</desc>
+  <style>
+    text { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+    .eyebrow { fill: #475569; font-size: 18px; font-weight: 700; letter-spacing: 0; }
+    .title { fill: #0f172a; font-size: 42px; font-weight: 800; letter-spacing: 0; }
+    .header-eyebrow { fill: #a7f3d0; font-size: 18px; font-weight: 800; letter-spacing: 0; }
+    .header-title { fill: #ffffff; font-size: 36px; font-weight: 800; letter-spacing: 0; }
+    .header-meta { fill: #e2e8f0; font-size: 15px; }
+    .body { fill: #334155; font-size: 18px; }
+    .small { fill: #475569; font-size: 15px; }
+    .mini { fill: #64748b; font-size: 12px; }
+    .value { fill: #0f172a; font-size: 16px; font-weight: 800; }
+    .tag { fill: #e2e8f0; font-size: 14px; font-weight: 700; }
+    .footer-body { fill: #ffffff; font-size: 18px; }
+    .footer-small { fill: #cbd5e1; font-size: 15px; }
+    .panel { fill: #ffffff; stroke: #dbe3ef; stroke-width: 1.5; }
+  </style>
+  <rect width="1280" height="720" fill="#f8fafc"/>
+  <rect x="38" y="34" width="1204" height="652" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="38" y="34" width="1204" height="86" rx="8" fill="#0f172a"/>
+  <text x="78" y="76" class="header-eyebrow">Qt Async Simulation</text>
+  <text x="78" y="111" class="header-title">QtRabbitAsync</text>
+  <text x="1015" y="78" class="header-eyebrow" text-anchor="end">PASS</text>
+  <text x="1015" y="105" class="header-meta" text-anchor="end">2026-06-16T13:00:00-04:00</text>
+
+  <text x="78" y="158" class="body">Qt-based MQTT/RabbitMQ client with QPromise/QFuture async patterns, OTA update pipeline with progress/cancellation...</text>
+  <rect x="70" y="188" width="820" height="326" rx="8" class="panel"/>
+  <text x="92" y="222" class="eyebrow">Publish Latency ms Trace</text>
+  <line x1="90" y1="470" x2="860" y2="470" stroke="#cbd5e1"/>
+  <line x1="90" y1="200" x2="90" y2="470" stroke="#cbd5e1"/>
+  
+        <line x1="270.3" y1="185" x2="270.3" y2="470" stroke="#94a3b8" stroke-dasharray="6 7"/>
+        <text x="270.3" y="178" text-anchor="middle" class="mini">publish</text>
+        <line x1="468.6" y1="185" x2="468.6" y2="470" stroke="#94a3b8" stroke-dasharray="6 7"/>
+        <text x="468.6" y="178" text-anchor="middle" class="mini">ota-start</text>
+        <line x1="818.2" y1="185" x2="818.2" y2="470" stroke="#94a3b8" stroke-dasharray="6 7"/>
+        <text x="818.2" y="178" text-anchor="middle" class="mini">ota-complete</text>
+  <path d="M 90.0 297.6 L 123.5 287.0 L 157.0 276.4 L 190.4 284.7 L 223.9 290.3 L 257.4 278.6 L 290.3 260.4 L 323.8 251.0 L 357.2 259.3 L 390.7 266.0 L 424.2 260.5 L 457.6 255.0 L 491.1 262.3 L 524.6 270.6 L 558.1 278.9 L 591.6 284.5 L 625.0 281.8 L 658.5 279.1 L 692.0 286.4 L 725.4 296.1 L 758.9 305.8 L 792.4 311.4 L 825.9 317.0" fill="none" stroke="#0ea5e9" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="92" y="494" class="small">16-step deterministic run | average 128.0 ms</text>
+
+  <rect x="916" y="188" width="294" height="326" rx="8" class="panel"/>
+  <text x="940" y="222" class="eyebrow">Scenario Checks</text>
+  
+      <g>
+        <rect x="940" y="445.5" width="54" height="72.5" rx="5" fill="#0ea5e9" opacity="0.68"/>
+        <text x="967" y="535" text-anchor="middle" class="mini">publish</text>
+        <text x="967" y="433.5" text-anchor="middle" class="value">135</text>
+      </g>
+      <g>
+        <rect x="1032" y="458.2" width="54" height="59.8" rx="5" fill="#0ea5e9" opacity="0.64"/>
+        <text x="1059" y="535" text-anchor="middle" class="mini">subscribe</text>
+        <text x="1059" y="446.2" text-anchor="middle" class="value">120</text>
+      </g>
+      <g>
+        <rect x="1124" y="418.2" width="54" height="99.8" rx="5" fill="#0ea5e9" opacity="0.75"/>
+        <text x="1151" y="535" text-anchor="middle" class="mini">ota-update</text>
+        <text x="1151" y="406.2" text-anchor="middle" class="value">145</text>
+      </g>
+  <text x="940" y="566" class="small">3/3 scenario checks passed</text>
+  <text x="940" y="594" class="mini">Async operations non-blocking, OTA progress tracked</text>
+
+  <rect x="70" y="548" width="1140" height="88" rx="8" fill="#111827"/>
+  
+    <text x="80" y="620" class="tag">Qt 6</text>
+  
+    <text x="180" y="620" class="tag">QPromise</text>
+  
+    <text x="320" y="620" class="tag">Async</text>
+  
+    <text x="430" y="620" class="tag">RabbitMQ</text>
+  
+    <text x="580" y="620" class="tag">OTA</text>
+  
+    <text x="680" y="620" class="tag">C++</text>
+  
+  <text x="80" y="580" class="footer-body">Artifacts: simulation.json, simulation.svg, simulation.png</text>
+  <text x="80" y="606" class="footer-small">Generated by scripts/generate-project-simulations.js from project catalog data.</text>
+</svg>
